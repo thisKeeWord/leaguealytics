@@ -1,0 +1,20 @@
+# bower
+bower_components
+
+# node_mod
+node_modules
+
+# stuff
+config.env
+
+# demo html
+demoData.html
+
+# npm debug log
+npm-debug.log
+
+# readmeImages
+readmeImages
+
+# bundle
+client/build/
