@@ -19,3 +19,4 @@ readmeImages
 # bundle
 client/build/
 
+.env

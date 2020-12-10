@@ -3,7 +3,7 @@ const path = require("path");
 module.exports = {
   entry: [
     // entry point of our app
-    "./client/components/app.js",
+    "./client/components/index.js",
   ],
   output: {
     // eslint-disable-next-line no-undef
