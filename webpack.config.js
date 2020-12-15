@@ -3,7 +3,7 @@ const path = require("path");
 module.exports = {
   entry: [
     // entry point of our app
-    "./client/components/index.js",
+    "./client/components/index.tsx",
   ],
   output: {
     // eslint-disable-next-line no-undef
@@ -43,6 +43,11 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(ts|tsx)$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+      {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
@@ -59,5 +64,8 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
     ],
+  },
+  resolve: {
+    extensions: [ '.tsx', '.ts', '.js' ],
   },
 };

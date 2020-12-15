@@ -4,7 +4,7 @@ var path = require("path");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 // var sendingForm = require('./../client/champ.jsx');
-var history = require("./../leagueHistory/leagueHistoryController.js");
+// var history = require("./../leagueHistory/leagueHistoryController.js");
 var mongoURI = "mongodb://localhost/league";
 mongoose.connect(mongoURI);
 
