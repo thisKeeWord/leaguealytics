@@ -17,6 +17,6 @@ npm-debug.log
 readmeImages
 
 # bundle
-client/build/
+dist/bundle.js
 
 .env

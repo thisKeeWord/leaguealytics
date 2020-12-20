@@ -1,7 +1,9 @@
+
+import { hot } from 'react-hot-loader/root';
 import React, { FunctionComponent } from "react";
 
 const App: FunctionComponent = () => {
-  return <div></div>
+  return <div>test</div>
 }
 
-export default App
+export default hot(App)

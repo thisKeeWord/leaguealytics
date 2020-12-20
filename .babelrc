@@ -26,6 +26,7 @@
       }
     ],
     "@babel/plugin-transform-async-to-generator",
-    ["@babel/plugin-transform-template-literals", { "loose": true }]
+    ["@babel/plugin-transform-template-literals", { "loose": true }],
+    ["react-hot-loader/babel"]
   ]
 }

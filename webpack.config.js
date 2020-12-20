@@ -1,9 +1,10 @@
 const path = require("path");
 
 module.exports = {
+  watch: true,
   entry: [
     // entry point of our app
-    "./client/components/index.tsx",
+    'react-hot-loader/patch', "./client/components/index.tsx",
   ],
   output: {
     // eslint-disable-next-line no-undef

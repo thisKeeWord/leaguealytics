@@ -5,10 +5,8 @@ import { Provider as ReduxProvider } from 'react-redux'
 import App from './App'
 
 
-ReactDOM.render(
-  // <ReduxProvider store={store}>
-    <App />
-  // </ReduxProvider>
-  ,
-  document.getElementById('root') as HTMLElement
+// <ReduxProvider store={store}>
+// </ReduxProvider>
+ReactDOM.render(<App />,
+  document.getElementById('content')
 )
