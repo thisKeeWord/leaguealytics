@@ -1,4 +1,6 @@
 const path = require("path");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   watch: true,
@@ -16,9 +18,9 @@ module.exports = {
   mode: "development",
   devServer: {
     // Required for Docker to work with dev server
-    host: "0.0.0.0",
+    // host: "0.0.0.0",
     //host: localhost,
-    port: 8080,
+    // port: 8080,
     // match the output path
     // eslint-disable-next-line no-undef
     contentBase: path.resolve(__dirname, "dist"),
@@ -69,4 +71,10 @@ module.exports = {
   resolve: {
     extensions: [ '.tsx', '.ts', '.js' ],
   },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'Hot Module Replacement',
+    }),
+  ]
 };
