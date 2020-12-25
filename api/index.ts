@@ -1,9 +1,7 @@
 import firebase from "firebase/app";
-import "firebase/auth";
 import "firebase/firestore";
 
 export interface API {
-  auth: firebase.auth.Auth;
   users: firebase.firestore.CollectionReference;
 }
 
@@ -19,11 +17,9 @@ if (!firebase.apps.length) {
   });
 }
 
-const auth = firebase.auth();
 const store = firebase.firestore();
 
 const api: API = {
-  auth,
   users: store.collection("users"),
 };
 

@@ -9,7 +9,7 @@
         }
       }
     ],
-    "@babel/react"
+    "@babel/preset-react"
   ],
   "plugins": [
     [
