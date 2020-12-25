@@ -1,22 +1,13 @@
-# bower
-bower_components
-
 # node_mod
 node_modules
 
 # stuff
 config.env
-
-# demo html
-demoData.html
+.env
 
 # npm debug log
 npm-debug.log
 
-# readmeImages
-readmeImages
-
 # bundle
 dist/bundle.js
 
-.env
