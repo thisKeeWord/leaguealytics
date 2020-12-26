@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export interface MatchState {
   byId: any;
@@ -17,7 +17,7 @@ const initialState: MatchState = {
 };
 
 const matchSlice = createSlice({
-  name: "matches",
+  name: 'matches',
   initialState,
   reducers: {
     setFetching(state, action): void {

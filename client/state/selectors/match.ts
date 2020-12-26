@@ -1,5 +1,5 @@
-import { createSelector } from "@reduxjs/toolkit";
-import { RootState } from "../index";
+import { createSelector } from '@reduxjs/toolkit';
+import { RootState } from '../index';
 
 export const selectMatchesByID = (state: RootState): typeof state.match.byId => state.match.byId;
 export const selectMatchIDs = (state: RootState): typeof state.match.ids => state.match.ids;

@@ -1,8 +1,10 @@
-import firebase from "firebase/app";
-import "firebase/firestore";
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import riotAPI, { RiotAPI } from './riotgames';
 
 export interface API {
   users: firebase.firestore.CollectionReference;
+  riotAPI: RiotAPI;
 }
 
 if (!firebase.apps.length) {
@@ -20,7 +22,8 @@ if (!firebase.apps.length) {
 const store = firebase.firestore();
 
 const api: API = {
-  users: store.collection("users"),
+  users: store.collection('user'),
+  riotAPI,
 };
 
 export default api;

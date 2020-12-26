@@ -1,10 +1,10 @@
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
   overrides: {
     MuiScopedCssBaseline: {
       root: {
-        height: "100%",
+        height: '100%',
       },
     },
   },

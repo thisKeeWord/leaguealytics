@@ -1,15 +1,19 @@
-var express = require("express");
-var app = express();
-var path = require("path");
-var bodyParser = require("body-parser");
+const dotenv = require('dotenv').config({ path: '.env' });
+import express from 'express';
+const app = express();
+import path from 'path';
+import bodyParser from 'body-parser';
+import { getUserInfo } from '../backend';
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname, "./../")));
+app.use(express.static(path.join(__dirname, './../')));
 
-app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname + "./../index.html"));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname + './../index.html'));
 });
+
+app.get('/api/user/:username', getUserInfo);
 
 app.listen(3000);

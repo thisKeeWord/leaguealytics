@@ -1,9 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { FirebaseUserDoc } from "../../../utils/index";
+import { createSlice } from '@reduxjs/toolkit';
+import { FirebaseUserDoc } from '../../../utils/index';
 
 export interface UserState {
   fetching: false;
   doc: FirebaseUserDoc | null;
+  error?: string;
 }
 
 const initialState: UserState = {
@@ -12,7 +13,7 @@ const initialState: UserState = {
 };
 
 const user = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {
     setUser: (state, action): void => {
@@ -21,8 +22,15 @@ const user = createSlice({
     setFetching(state, action): void {
       state.fetching = action.payload.isFetching;
     },
+    setUserError(state, action): void {
+      if (action.payload?.message) {
+        state.error = action.payload.message;
+      } else {
+        state.error && delete state.error;
+      }
+    },
   },
 });
 
-export const { setUser, setFetching } = user.actions;
+export const { setUser, setFetching, setUserError } = user.actions;
 export default user.reducer;
