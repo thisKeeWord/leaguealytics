@@ -1,18 +1,14 @@
 import React, { FunctionComponent } from 'react';
-import TextField from '@material-ui/core/TextField';
+import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch, useSelector } from 'react-redux';
+import TextField from '@material-ui/core/TextField';
 import { getUser } from '../../state/actions/getUser';
-import { selectUserDoc } from '../../state/selectors/user';
 
 const Homepage: FunctionComponent = () => {
   const dispatch = useDispatch();
-  const user = useSelector(selectUserDoc);
 
-  console.log(user, 'user');
-
-  const formik = useFormik({
+  const { handleSubmit, handleChange, handleBlur, errors, touched } = useFormik({
     initialValues: {
       username: '',
     },
@@ -28,25 +24,18 @@ const Homepage: FunctionComponent = () => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={handleSubmit} data-testid='homepage'>
       <TextField
         id='username'
         name='username'
-        onChange={formik.handleChange}
-        helperText={formik.touched.username && formik.errors.username}
-        error={formik.touched.username && !!formik.errors.username}
+        onChange={handleChange}
+        helperText={touched.username && errors.username}
+        error={touched.username && !!errors.username}
         label='Summoner Name'
-        onBlur={formik.handleBlur}
+        onBlur={handleBlur}
       />
     </form>
   );
 };
 
 export default Homepage;
-
-// 1. dispatch action to my server
-// 2. server calls firestore to get user
-// 3. if user doesn’t exist, make call to riot’s api
-//    a. update firestore
-// 4. return user to frontend
-// 5. update state
