@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { AppThunk } from '../index';
+import { loadMatchList } from '../reducers/match';
 import { setFetching, setUser, setUserError } from '../reducers/user';
 
 interface GetUserProps {
@@ -12,16 +13,12 @@ export const getUser = ({ username }: GetUserProps): AppThunk => async (
 ): Promise<void> => {
   setFetching({ isFetching: true });
 
-  const state = getState();
-
-  const parsedName = state.user.doc?.name.replace(/\s+/g, '').toLowerCase();
-  if (username === parsedName) {
-    return;
-  }
-
   try {
-    const user = await axios.get(`/api/user/${username}`);
-    dispatch(setUser(user));
+    const user = await axios.get(`/api/users/${username}`);
+    dispatch(setUser(user.data));
+
+    const matchList = await axios.get(`/api/user/${user.data.accountId}`);
+    dispatch(loadMatchList({ matchList: matchList.data }));
   } catch (error) {
     dispatch(setUserError(error.message || 'An error has occurred'));
   } finally {

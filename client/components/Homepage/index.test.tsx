@@ -31,7 +31,7 @@ describe('Homepage', () => {
   it('should not call dispatch with "getUser" on form submit if field is not valid', () => {
     mockUseDispatch.mockImplementation(() => mockDispatch);
 
-    const { getByTestId, getByLabelText } = render(<Homepage />);
+    const { getByTestId } = render(<Homepage />);
 
     const form = getByTestId('homepage');
     fireEvent.submit(form);

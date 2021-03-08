@@ -35,11 +35,11 @@ const matchSlice = createSlice({
       state.isFetching = false;
     },
     loadMatchList(state, action): void {
-      const { matches } = action.payload;
-      state.ids = matches.map((m: any) => m.matchId);
-      state.byId = matches.reduce((acc: any, matchMeta: any) => {
-        const { matchId } = matchMeta;
-        acc[matchId] = {
+      const { matchList } = action.payload;
+      state.ids = matchList.map((m: any) => m.gameId);
+      state.byId = matchList.reduce((acc: any, matchMeta: any) => {
+        const { gameId } = matchMeta;
+        acc[gameId] = {
           meta: {
             ...matchMeta,
           },
