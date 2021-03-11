@@ -6,12 +6,12 @@ import App from '.';
 import store from '../../state';
 
 describe('App', () => {
-  it('should render the Homepage', () => {
+  it('should render the app', () => {
     const { getByTestId } = render(
       <Provider store={store}>
         <App />
       </Provider>
     );
-    expect(getByTestId('homepage')).toBeInTheDocument();
+    expect(getByTestId('app')).toBeInTheDocument();
   });
 });

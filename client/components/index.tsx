@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import ReactDOM from 'react-dom';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 import { Provider as ReduxProvider } from 'react-redux';
 import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline/ScopedCssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -12,7 +13,10 @@ const Main: FunctionComponent = () => {
     <ThemeProvider theme={theme}>
       <ScopedCssBaseline>
         <ReduxProvider store={store}>
-          <App />
+          <Router>
+            <Route path='/' exact component={App} />
+            <Route path='/:name' component={App} />
+          </Router>
         </ReduxProvider>
       </ScopedCssBaseline>
     </ThemeProvider>
