@@ -2,10 +2,12 @@ import { combineReducers } from 'redux';
 import { Action, configureStore, Dispatch, ThunkAction } from '@reduxjs/toolkit';
 import userReducer from './reducers/user';
 import matchReducer from './reducers/match';
+import patchReducer from './reducers/patch';
 
 export const rootReducer = combineReducers({
   user: userReducer,
   match: matchReducer,
+  patch: patchReducer,
 });
 
 const store = configureStore({ reducer: rootReducer });

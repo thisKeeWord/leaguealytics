@@ -4,6 +4,7 @@ import riotAPI, { RiotAPI } from './riotgames';
 
 export interface API {
   users: firebase.firestore.CollectionReference;
+  patchData: firebase.firestore.CollectionReference;
   riotAPI: RiotAPI;
 }
 
@@ -23,6 +24,7 @@ const store = firebase.firestore();
 
 const api: API = {
   users: store.collection('user'),
+  patchData: store.collection('patch'),
   riotAPI,
 };
 
