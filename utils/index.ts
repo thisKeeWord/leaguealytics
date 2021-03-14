@@ -6,4 +6,5 @@ export interface FirebaseUserDoc {
   profileIconId: number;
   revisionDate: number;
   summonerLevel: number;
+  matches?: any[];
 }

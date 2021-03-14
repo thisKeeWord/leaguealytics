@@ -1,14 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export interface PatchState {
-  version: any;
-  patchData: any;
+  patchData: Record<any, any> | null;
   isFetching: boolean;
   error: string | null;
 }
 
 const initialState: PatchState = {
-  version: null,
   patchData: null,
   isFetching: false,
   error: null,
@@ -22,9 +20,7 @@ const patchSlice = createSlice({
       state.isFetching = action.payload.isFetching;
     },
     loadPatchSuccess(state, action): void {
-      const { version, patchData } = action.payload;
-      state.version = version;
-      state.patchData = patchData;
+      state.patchData = action.payload;
       state.error = null;
       state.isFetching = false;
     },

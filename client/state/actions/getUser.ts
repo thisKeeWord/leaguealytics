@@ -15,14 +15,14 @@ export const getUser = ({ username }: GetUserProps): AppThunk => async (
   setFetching({ isFetching: true });
 
   try {
+    const patchData = await axios.get(`/api/patch`);
+    dispatch(loadPatchSuccess(patchData.data));
+
     const user = await axios.get(`/api/users/${username}`);
     dispatch(setUser(user.data));
 
     const matchList = await axios.get(`/api/user/${user.data.accountId}`);
     dispatch(loadMatchList({ matchList: matchList.data }));
-
-    const patchData = await axios.get(`/api/patch`);
-    dispatch(loadPatchSuccess(patchData.data));
   } catch (error) {
     dispatch(setUserError(error.message || 'An error has occurred'));
   } finally {
