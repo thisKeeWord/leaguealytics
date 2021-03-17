@@ -23,6 +23,9 @@ export interface RiotAPI {
       get: (patchVersion: string) => Promise<AxiosResponse>;
     };
   };
+  // match: {
+  //   get: (matchId: string) => Promise<AxiosResponse>;
+  // };
 }
 
 const riotAPI: RiotAPI = {
@@ -56,6 +59,11 @@ const riotAPI: RiotAPI = {
       },
     },
   },
+  // match: {
+  //   get: (matchId: string): Promise<AxiosResponse> => {
+  //     return riot.
+  //   }
+  // }
 };
 
 export default riotAPI;

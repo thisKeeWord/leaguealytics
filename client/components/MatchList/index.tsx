@@ -12,6 +12,8 @@ const MatchList: FunctionComponent = () => {
     return null;
   }
 
+  // TODO: add onClick handler that takes id as param
+
   return (
     <div>
       {user.matches.map(({ championImg, timestamp }, index) => {
