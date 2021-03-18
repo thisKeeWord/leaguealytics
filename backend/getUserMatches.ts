@@ -13,7 +13,7 @@ export const getUserMatches = async (req, res) => {
   try {
     const patchData = (await api.patchData.doc('latest').get()).data() || { data: {} };
     const matchList = await api.riotAPI.matchList.get(userId);
-    const matches = matchList.data.matches.slice(-20);
+    const matches = matchList.data.matches.slice(0, 20);
     const championList = patchData.data as PatchType;
 
     matches.forEach((match) => {
@@ -28,7 +28,23 @@ export const getUserMatches = async (req, res) => {
 
     const firestoreUser = (await api.users.where('accountId', '==', userId).get()).docs[0].id;
 
-    await api.users.doc(firestoreUser).set({ matches }, { merge: true });
+    const userDoc = api.users.doc(firestoreUser);
+
+    await userDoc.set({ matches }, { merge: true });
+
+    const currentMatches = (await userDoc.collection('match').get()).docs;
+
+    matches.forEach(async (match) => {
+      const savedMatchData = currentMatches.find(
+        (currentMatchDoc) => currentMatchDoc.data().gameId === match.gameId
+      );
+
+      await userDoc
+        .collection('match')
+        .doc(match.gameId.toString())
+        .set({ ...savedMatchData?.data }, { merge: true });
+    });
+
     res.send(matches);
   } catch (error) {
     throw new Error(error.message);
