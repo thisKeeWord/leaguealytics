@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { FunctionComponent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectPatchData } from '../../state/selectors/patch';
@@ -13,10 +14,15 @@ const MatchList: FunctionComponent = () => {
   }
 
   // TODO: add onClick handler that takes id as param
+  const handleClick = async (gameId: number): Promise<void> => {
+    const gameInfo = await axios.get(
+      `/api/${user.name.replace(/\s+/g, '').toLowerCase()}/match/${gameId}`
+    );
+  };
 
   return (
     <div>
-      {user.matches.map(({ championImg, timestamp }, index) => {
+      {user.matches.map(({ championImg, timestamp, gameId }, index) => {
         return (
           <input
             type='button'
@@ -28,6 +34,7 @@ const MatchList: FunctionComponent = () => {
               height: '30px',
             }}
             value={new Date(timestamp).toLocaleDateString()}
+            onClick={() => handleClick(gameId)}
           />
         );
       })}

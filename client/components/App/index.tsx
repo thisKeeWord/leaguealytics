@@ -31,10 +31,10 @@ const App: FunctionComponent = () => {
   });
 
   useEffect(() => {
-    if (location.pathname && !location.state) {
+    if (location.pathname[1] && !location.state) {
       dispatch(getUser({ username: location.pathname.slice(1) }));
     }
-  }, [location]);
+  }, []);
 
   return (
     <>

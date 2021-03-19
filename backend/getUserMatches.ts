@@ -3,7 +3,7 @@ import api from '../api';
 interface PatchType {
   type: string;
   format: string;
-  version: string;
+  version?: string;
   data: Record<any, any>;
 }
 

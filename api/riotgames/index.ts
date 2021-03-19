@@ -23,9 +23,14 @@ export interface RiotAPI {
       get: (patchVersion: string) => Promise<AxiosResponse>;
     };
   };
-  // match: {
-  //   get: (matchId: string) => Promise<AxiosResponse>;
-  // };
+  match: {
+    overview: {
+      get: (matchId: string) => Promise<AxiosResponse>;
+    };
+    timeline: {
+      get: (matchId: string) => Promise<AxiosResponse>;
+    };
+  };
 }
 
 const riotAPI: RiotAPI = {
@@ -59,11 +64,26 @@ const riotAPI: RiotAPI = {
       },
     },
   },
-  // match: {
-  //   get: (matchId: string): Promise<AxiosResponse> => {
-  //     return riot.
-  //   }
-  // }
+  match: {
+    overview: {
+      get: (matchId: string): Promise<AxiosResponse> => {
+        return riot.get(`/match/v4/matches/${matchId}`, {
+          headers: {
+            'X-Riot-Token': process.env.RIOT_API_KEY,
+          },
+        });
+      },
+    },
+    timeline: {
+      get: (matchId: string): Promise<AxiosResponse> => {
+        return riot.get(`/match/v4/timelines/by-match/${matchId}`, {
+          headers: {
+            'X-Riot-Token': process.env.RIOT_API_KEY,
+          },
+        });
+      },
+    },
+  },
 };
 
 export default riotAPI;
