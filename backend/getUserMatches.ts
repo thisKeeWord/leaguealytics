@@ -32,20 +32,24 @@ export const getUserMatches = async (req, res) => {
 
     await userDoc.set({ matches }, { merge: true });
 
-    const currentMatches = (await userDoc.collection('match').get()).docs;
+    const userMatchesDoc = userDoc.collection('match');
+
+    const currentMatches = (await userMatchesDoc.get()).docs;
 
     matches.forEach(async (match) => {
       const savedMatchData = currentMatches.find(
         (currentMatchDoc) => currentMatchDoc.data().gameId === match.gameId
       );
 
-      await userDoc
-        .collection('match')
-        .doc(match.gameId.toString())
-        .set({ ...savedMatchData?.data }, { merge: true });
+      if (savedMatchData) {
+        const savedMatchDataObj = savedMatchData?.data();
+        await userMatchesDoc.doc(match.gameId.toString()).set(savedMatchDataObj, { merge: true });
+      }
     });
 
-    res.send(matches);
+    const updatedMatches = (await userMatchesDoc.get()).docs;
+
+    res.send({ matches, matchListData: updatedMatches.map((match) => match.data()) });
   } catch (error) {
     throw new Error(error.message);
   }
