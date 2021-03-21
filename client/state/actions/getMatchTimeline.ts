@@ -7,9 +7,7 @@ Display end game data on one side and timeline by marker data on the other
 
 import axios from 'axios';
 import { AppThunk } from '../index';
-import { loadMatchFailure, loadMatchList, loadMatchSuccess } from '../reducers/match';
-import { loadPatchSuccess } from '../reducers/patch';
-import { setFetching, setUser, setUserError } from '../reducers/user';
+import { loadMatchFailure, loadMatchSuccess, setMatchFetching } from '../reducers/match';
 
 interface GetMatchTimelineProps {
   username: string;
@@ -20,7 +18,7 @@ export const getMatchTimeline = ({ username, gameId }: GetMatchTimelineProps): A
   dispatch,
   getState
 ): Promise<void> => {
-  setFetching({ isFetching: true });
+  dispatch(setMatchFetching({ isFetching: true }));
 
   const formattedUsername = username.replace(/\s+/g, '').toLowerCase();
 
@@ -30,6 +28,6 @@ export const getMatchTimeline = ({ username, gameId }: GetMatchTimelineProps): A
   } catch (error) {
     dispatch(loadMatchFailure(error.message || 'An error has occurred'));
   } finally {
-    dispatch(setFetching({ isFetching: false }));
+    dispatch(setMatchFetching({ isFetching: false }));
   }
 };

@@ -20,7 +20,7 @@ const matchSlice = createSlice({
   name: 'matches',
   initialState,
   reducers: {
-    setFetching(state, action): void {
+    setMatchFetching(state, action): void {
       state.isFetching = action.payload.isFetching;
     },
     loadMatchSuccess(state, action): void {
@@ -60,6 +60,6 @@ export const {
   loadMatchSuccess,
   loadMatchFailure,
   loadMatchList,
-  setFetching,
+  setMatchFetching,
 } = matchSlice.actions;
 export default matchSlice.reducer;
