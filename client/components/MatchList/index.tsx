@@ -7,6 +7,7 @@ import {
   selectUserDoc,
 } from '../../state';
 import { getMatchTimeline } from '../../state/actions/getMatchTimeline';
+import Chart from '../Chart';
 
 const MatchList: FunctionComponent = () => {
   const [matchId, setMatchId] = useState<number>();
@@ -35,6 +36,22 @@ const MatchList: FunctionComponent = () => {
 
   console.log(selectedGame);
 
+  const totalDamageDealtData =
+    selectedGame &&
+    !isMatchesFetching &&
+    selectedGame.participants.map(({ championId, stats }) => {
+      console.log(championId, stats);
+      for (let championData in patchData.patchData) {
+        console.log(patchData.patchData[championData].key, championId);
+        if (patchData.patchData[championData].key == championId) {
+          return {
+            x: patchData.patchData[championData].name,
+            y: stats.totalDamageDealtToChampions,
+          };
+        }
+      }
+    });
+
   return (
     <div>
       <div>
@@ -57,6 +74,7 @@ const MatchList: FunctionComponent = () => {
           );
         })}
         {isMatchesFetching ? <span>loading</span> : selectedGame && selectedGame.gameDuration}
+        {totalDamageDealtData && <Chart data={totalDamageDealtData} />}
       </div>
     </div>
   );
