@@ -36,7 +36,7 @@ const MatchList: FunctionComponent = () => {
 
   console.log(selectedGame);
 
-  const totalDamageDealtData =
+  const stats =
     selectedGame &&
     !isMatchesFetching &&
     selectedGame.participants.map(({ championId, stats }) => {
@@ -45,12 +45,16 @@ const MatchList: FunctionComponent = () => {
         console.log(patchData.patchData[championData].key, championId);
         if (patchData.patchData[championData].key == championId) {
           return {
-            x: patchData.patchData[championData].name,
-            y: stats.totalDamageDealtToChampions,
+            champion: patchData.patchData[championData].name,
+            damageDealt: stats.totalDamageDealtToChampions,
+            goldEarned: stats.goldEarned
           };
         }
       }
     });
+
+  const totalDamageStat = stats && stats.map(({ champion, damageDealt}) => ({ x: champion, y: damageDealt }))
+  const goldEarnedStat = stats && stats.map(({ champion, goldEarned}) => ({ x: champion, y: goldEarned }))
 
   return (
     <div>
@@ -74,7 +78,8 @@ const MatchList: FunctionComponent = () => {
           );
         })}
         {isMatchesFetching ? <span>loading</span> : selectedGame && selectedGame.gameDuration}
-        {totalDamageDealtData && <Chart data={totalDamageDealtData} />}
+        {totalDamageStat && <Chart data={totalDamageStat} title="Total Damage Dealt" />}
+        {goldEarnedStat && <Chart data={goldEarnedStat} title="Gold Earned" />}
       </div>
     </div>
   );
