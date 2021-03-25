@@ -41,10 +41,8 @@ export const getUserMatches = async (req, res) => {
         (currentMatchDoc) => currentMatchDoc.data().gameId === match.gameId
       );
 
-      if (savedMatchData) {
-        const savedMatchDataObj = savedMatchData?.data();
-        await userMatchesDoc.doc(match.gameId.toString()).set(savedMatchDataObj, { merge: true });
-      }
+      const savedMatchDataObj = savedMatchData ? savedMatchData?.data() : {};
+      await userMatchesDoc.doc(match.gameId.toString()).set(savedMatchDataObj, { merge: true });
     });
 
     const updatedMatches = (await userMatchesDoc.get()).docs;

@@ -24,8 +24,6 @@ const MatchList: FunctionComponent = () => {
   const selectedGame =
     matchId && matches[matchId] && matches[matchId].data.gameId ? matches[matchId].data : null;
 
-  console.log(isMatchesFetching, 'isFetching');
-
   const handleClick = async (gameId: number): Promise<void> => {
     if (matches[gameId] && !matches[gameId].data.gameId) {
       dispatch(getMatchTimeline({ username: user.name, gameId }));
@@ -34,27 +32,24 @@ const MatchList: FunctionComponent = () => {
     setMatchId(gameId);
   };
 
-  console.log(selectedGame);
-
   const stats =
     selectedGame &&
-    !isMatchesFetching &&
     selectedGame.participants.map(({ championId, stats }) => {
-      console.log(championId, stats);
       for (let championData in patchData.patchData) {
-        console.log(patchData.patchData[championData].key, championId);
         if (patchData.patchData[championData].key == championId) {
           return {
             champion: patchData.patchData[championData].name,
             damageDealt: stats.totalDamageDealtToChampions,
-            goldEarned: stats.goldEarned
+            goldEarned: stats.goldEarned,
           };
         }
       }
     });
 
-  const totalDamageStat = stats && stats.map(({ champion, damageDealt}) => ({ x: champion, y: damageDealt }))
-  const goldEarnedStat = stats && stats.map(({ champion, goldEarned}) => ({ x: champion, y: goldEarned }))
+  const totalDamageStat =
+    stats && stats.map(({ champion, damageDealt }) => ({ x: champion, y: damageDealt }));
+  const goldEarnedStat =
+    stats && stats.map(({ champion, goldEarned }) => ({ x: champion, y: goldEarned }));
 
   return (
     <div>
@@ -77,9 +72,14 @@ const MatchList: FunctionComponent = () => {
             />
           );
         })}
-        {isMatchesFetching ? <span>loading</span> : selectedGame && selectedGame.gameDuration}
-        {totalDamageStat && <Chart data={totalDamageStat} title="Total Damage Dealt" />}
-        {goldEarnedStat && <Chart data={goldEarnedStat} title="Gold Earned" />}
+        {isMatchesFetching ? (
+          <span>loading</span>
+        ) : (
+          <>
+            {totalDamageStat && <Chart data={totalDamageStat} title='Total Damage Dealt' />}
+            {goldEarnedStat && <Chart data={goldEarnedStat} title='Gold Earned' />}
+          </>
+        )}
       </div>
     </div>
   );
