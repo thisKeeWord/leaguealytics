@@ -1,3 +1,4 @@
+import { any } from 'prop-types';
 import React, { FunctionComponent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -34,13 +35,22 @@ const MatchList: FunctionComponent = () => {
 
   const stats =
     selectedGame &&
-    selectedGame.participants.map(({ championId, stats }) => {
+    selectedGame.participants.map(({ championId, stats, teamId }) => {
       for (let championData in patchData.patchData) {
         if (patchData.patchData[championData].key == championId) {
+          const teamStat = selectedGame.teams.find(
+            (team: Record<any, any>) => team.teamId === teamId
+          );
           return {
             champion: patchData.patchData[championData].name,
             damageDealt: stats.totalDamageDealtToChampions,
             goldEarned: stats.goldEarned,
+            kills: stats.kills,
+            assists: stats.assists,
+            deaths: stats.deaths,
+            killParticipation:
+              teamStat.kills === 0 ? 0 : ((stats.kills + stats.assists) / teamStat.kills) * 100,
+            deathShare: teamStat.deaths === 0 ? 0 : (stats.deaths / teamStat.deaths) * 100,
           };
         }
       }
@@ -50,6 +60,17 @@ const MatchList: FunctionComponent = () => {
     stats && stats.map(({ champion, damageDealt }) => ({ x: champion, y: damageDealt }));
   const goldEarnedStat =
     stats && stats.map(({ champion, goldEarned }) => ({ x: champion, y: goldEarned }));
+  const killsStat = stats && stats.map(({ champion, kills }) => ({ x: champion, y: kills }));
+  const assistsStat = stats && stats.map(({ champion, assists }) => ({ x: champion, y: assists }));
+  const killParticipationStat =
+    stats &&
+    stats.map(({ champion, killParticipation }) => ({
+      x: champion,
+      y: Math.floor(killParticipation),
+    }));
+  const deathStat = stats && stats.map(({ champion, deaths }) => ({ x: champion, y: deaths }));
+  const deathShareStat =
+    stats && stats.map(({ champion, deathShare }) => ({ x: champion, y: Math.floor(deathShare) }));
 
   return (
     <div>
@@ -75,10 +96,17 @@ const MatchList: FunctionComponent = () => {
         {isMatchesFetching ? (
           <span>loading</span>
         ) : (
-          <>
+          <div>
             {totalDamageStat && <Chart data={totalDamageStat} title='Total Damage Dealt' />}
             {goldEarnedStat && <Chart data={goldEarnedStat} title='Gold Earned' />}
-          </>
+            {killsStat && <Chart data={killsStat} title='Kills' />}
+            {assistsStat && <Chart data={assistsStat} title='Assists' />}
+            {killParticipationStat && (
+              <Chart data={killParticipationStat} title='Kill Participation' />
+            )}
+            {deathStat && <Chart data={deathStat} title='Deaths' />}
+            {deathShareStat && <Chart data={deathShareStat} title='Death Share' />}
+          </div>
         )}
       </div>
     </div>
