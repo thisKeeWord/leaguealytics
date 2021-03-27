@@ -44,6 +44,7 @@ const MatchList: FunctionComponent = () => {
           return {
             champion: patchData.patchData[championData].name,
             damageDealt: stats.totalDamageDealtToChampions,
+            damageTaken: stats.totalDamageTaken,
             goldEarned: stats.goldEarned,
             kills: stats.kills,
             assists: stats.assists,
@@ -59,8 +60,10 @@ const MatchList: FunctionComponent = () => {
 
   console.log(selectedGame, 'selectedGame');
 
-  const totalDamageStat =
+  const totalDamageDealtStat =
     stats && stats.map(({ champion, damageDealt }) => ({ x: champion, y: damageDealt }));
+  const totalDamageTakenStat =
+    stats && stats.map(({ champion, damageTaken }) => ({ x: champion, y: damageTaken }));
   const goldEarnedStat =
     stats && stats.map(({ champion, goldEarned }) => ({ x: champion, y: goldEarned }));
   const killsStat = stats && stats.map(({ champion, kills }) => ({ x: champion, y: kills }));
@@ -102,7 +105,12 @@ const MatchList: FunctionComponent = () => {
           <span>loading</span>
         ) : (
           <div>
-            {totalDamageStat && <Chart data={totalDamageStat} title='Total Damage Dealt' />}
+            {totalDamageDealtStat && (
+              <Chart data={totalDamageDealtStat} title='Total Damage Dealt' />
+            )}
+            {totalDamageTakenStat && (
+              <Chart data={totalDamageTakenStat} title='Total Damage Taken' />
+            )}
             {goldEarnedStat && <Chart data={goldEarnedStat} title='Gold Earned' />}
             {killsStat && <Chart data={killsStat} title='Kills' />}
             {assistsStat && <Chart data={assistsStat} title='Assists' />}
