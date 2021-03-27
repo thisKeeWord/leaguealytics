@@ -51,10 +51,13 @@ const MatchList: FunctionComponent = () => {
             killParticipation:
               teamStat.kills === 0 ? 0 : ((stats.kills + stats.assists) / teamStat.kills) * 100,
             deathShare: teamStat.deaths === 0 ? 0 : (stats.deaths / teamStat.deaths) * 100,
+            creepScore: stats.totalMinionsKilled + stats.neutralMinionsKilled,
           };
         }
       }
     });
+
+  console.log(selectedGame, 'selectedGame');
 
   const totalDamageStat =
     stats && stats.map(({ champion, damageDealt }) => ({ x: champion, y: damageDealt }));
@@ -71,6 +74,8 @@ const MatchList: FunctionComponent = () => {
   const deathStat = stats && stats.map(({ champion, deaths }) => ({ x: champion, y: deaths }));
   const deathShareStat =
     stats && stats.map(({ champion, deathShare }) => ({ x: champion, y: Math.floor(deathShare) }));
+  const creepScore =
+    stats && stats.map(({ champion, creepScore }) => ({ x: champion, y: creepScore }));
 
   return (
     <div>
@@ -106,6 +111,7 @@ const MatchList: FunctionComponent = () => {
             )}
             {deathStat && <Chart data={deathStat} title='Deaths' />}
             {deathShareStat && <Chart data={deathShareStat} title='Death Share' />}
+            {creepScore && <Chart data={creepScore} title='Creep Score' />}
           </div>
         )}
       </div>
