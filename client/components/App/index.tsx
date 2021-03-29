@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import TextField from '@material-ui/core/TextField';
 import { getUser } from '../../state/actions/getUser';
 import { selectUserDoc } from '../../state/selectors/user';
-import MatchList from '../MatchList';
+import Match from '../Match';
 
 const App: FunctionComponent = () => {
   const user = useSelector(selectUserDoc);
@@ -50,7 +50,7 @@ const App: FunctionComponent = () => {
         />
       </form>
       {user?.name}
-      <MatchList />
+      <Match />
     </>
   );
 };

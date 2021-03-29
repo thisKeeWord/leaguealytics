@@ -9,8 +9,9 @@ import {
 } from '../../state';
 import { getMatchTimeline } from '../../state/actions/getMatchTimeline';
 import Chart from '../Chart';
+import { MatchList } from './MatchList';
 
-const MatchList: FunctionComponent = () => {
+const Match: FunctionComponent = () => {
   const [matchId, setMatchId] = useState<number>();
   const user = useSelector(selectUserDoc);
   const patchData = useSelector(selectPatchData);
@@ -83,24 +84,16 @@ const MatchList: FunctionComponent = () => {
   return (
     <div>
       <div>
-        {user.matches.map(({ championImg, timestamp, gameId }, index) => {
-          return (
-            <input
-              type='button'
-              key={`${index}`}
-              style={{
-                backgroundSize: '25px',
-                backgroundImage: `url(http://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/champion/${championImg})`,
-                backgroundRepeat: 'no-repeat',
-                height: '30px',
-                paddingLeft: '30px',
-                margin: '4px',
-              }}
-              value={new Date(timestamp).toLocaleDateString()}
-              onClick={() => handleClick(gameId)}
-            />
-          );
-        })}
+        {user.matches.map(({ championImg, timestamp, gameId }, index) => (
+          <MatchList
+            index={index}
+            handleClick={handleClick}
+            championImg={championImg}
+            timestamp={timestamp}
+            gameId={gameId}
+            version={patchData.version}
+          />
+        ))}
         {isMatchesFetching ? (
           <span>loading</span>
         ) : (
@@ -127,4 +120,4 @@ const MatchList: FunctionComponent = () => {
   );
 };
 
-export default MatchList;
+export default Match;
