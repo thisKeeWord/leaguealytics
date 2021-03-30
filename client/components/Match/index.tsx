@@ -34,9 +34,12 @@ const Match: FunctionComponent = () => {
     setMatchId(gameId);
   };
 
+  const currentPlayerIdentity =
+    selectedGame &&
+    selectedGame.participantIdentities.find(({ player }) => player.accountId === user?.accountId);
   const stats =
     selectedGame &&
-    selectedGame.participants.map(({ championId, stats, teamId }) => {
+    selectedGame.participants.map(({ participantId, championId, stats, teamId }) => {
       for (let championData in patchData.patchData) {
         if (patchData.patchData[championData].key == championId) {
           const teamStat = selectedGame.teams.find(
@@ -54,6 +57,7 @@ const Match: FunctionComponent = () => {
               teamStat.kills === 0 ? 0 : ((stats.kills + stats.assists) / teamStat.kills) * 100,
             deathShare: teamStat.deaths === 0 ? 0 : (stats.deaths / teamStat.deaths) * 100,
             creepScore: stats.totalMinionsKilled + stats.neutralMinionsKilled,
+            isCurrentPlayer: currentPlayerIdentity.participantId === participantId,
           };
         }
       }
@@ -62,24 +66,68 @@ const Match: FunctionComponent = () => {
   console.log(selectedGame, 'selectedGame');
 
   const totalDamageDealtStat =
-    stats && stats.map(({ champion, damageDealt }) => ({ x: champion, y: damageDealt }));
+    stats &&
+    stats.map(({ champion, damageDealt, isCurrentPlayer }) => ({
+      x: champion,
+      y: damageDealt,
+      isCurrentPlayer,
+    }));
   const totalDamageTakenStat =
-    stats && stats.map(({ champion, damageTaken }) => ({ x: champion, y: damageTaken }));
+    stats &&
+    stats.map(({ champion, damageTaken, isCurrentPlayer }) => ({
+      x: champion,
+      y: damageTaken,
+      isCurrentPlayer,
+    }));
   const goldEarnedStat =
-    stats && stats.map(({ champion, goldEarned }) => ({ x: champion, y: goldEarned }));
-  const killsStat = stats && stats.map(({ champion, kills }) => ({ x: champion, y: kills }));
-  const assistsStat = stats && stats.map(({ champion, assists }) => ({ x: champion, y: assists }));
+    stats &&
+    stats.map(({ champion, goldEarned, isCurrentPlayer }) => ({
+      x: champion,
+      y: goldEarned,
+      isCurrentPlayer,
+    }));
+  const killsStat =
+    stats &&
+    stats.map(({ champion, kills, isCurrentPlayer }) => ({
+      x: champion,
+      y: kills,
+      isCurrentPlayer,
+    }));
+  const assistsStat =
+    stats &&
+    stats.map(({ champion, assists, isCurrentPlayer }) => ({
+      x: champion,
+      y: assists,
+      isCurrentPlayer,
+    }));
   const killParticipationStat =
     stats &&
-    stats.map(({ champion, killParticipation }) => ({
+    stats.map(({ champion, killParticipation, isCurrentPlayer }) => ({
       x: champion,
       y: Math.floor(killParticipation),
+      isCurrentPlayer,
     }));
-  const deathStat = stats && stats.map(({ champion, deaths }) => ({ x: champion, y: deaths }));
+  const deathStat =
+    stats &&
+    stats.map(({ champion, deaths, isCurrentPlayer }) => ({
+      x: champion,
+      y: deaths,
+      isCurrentPlayer,
+    }));
   const deathShareStat =
-    stats && stats.map(({ champion, deathShare }) => ({ x: champion, y: Math.floor(deathShare) }));
+    stats &&
+    stats.map(({ champion, deathShare, isCurrentPlayer }) => ({
+      x: champion,
+      y: Math.floor(deathShare),
+      isCurrentPlayer,
+    }));
   const creepScore =
-    stats && stats.map(({ champion, creepScore }) => ({ x: champion, y: creepScore }));
+    stats &&
+    stats.map(({ champion, creepScore, isCurrentPlayer }) => ({
+      x: champion,
+      y: creepScore,
+      isCurrentPlayer,
+    }));
 
   return (
     <div>

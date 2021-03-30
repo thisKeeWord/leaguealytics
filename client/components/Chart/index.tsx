@@ -1,13 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import {
-  VictoryAxis,
-  VictoryBar,
-  VictoryChart,
-  VictoryClipContainer,
-  VictoryContainer,
-  VictoryLabel,
-  VictoryPortal,
-} from 'victory';
+import { CallbackArgs, VictoryAxis, VictoryBar, VictoryChart, VictoryLabel } from 'victory';
 import styled from 'styled-components';
 
 interface ChartProps {
@@ -26,6 +18,8 @@ const StyledChart = styled.div`
 `;
 
 const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
+  const playerType = props.data.map(({ isCurrentPlayer }) => isCurrentPlayer);
+
   return (
     <StyledChart>
       <VictoryChart domainPadding={10} height={400} width={400} horizontal>
@@ -38,10 +32,18 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
         <VictoryAxis
           standalone={false}
           tickLabelComponent={<VictoryLabel renderInPortal={true} />}
+          style={{
+            tickLabels: {
+              fill: ({ index }) => (playerType[index] ? 'green' : 'black'),
+            },
+          }}
         />
         <VictoryBar
           style={{
             data: { fill: '#c43a31' },
+            labels: {
+              fill: ({ datum }: any) => (datum.isCurrentPlayer ? 'green' : 'black'),
+            },
           }}
           data={props.data}
           labels={({ datum }) => datum.y}
