@@ -18,11 +18,14 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": false,
-    "jsx": "react"
+    "jsx": "react",
+    "typeRoots": ["node_modules/@types", "./types"],
   },
   "include": [
     "api",
     "client",
-    "server"
+    "server",
+    "**/*.ts", 
+    "**/*.tsx"
   ]
 }

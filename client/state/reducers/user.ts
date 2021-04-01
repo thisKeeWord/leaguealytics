@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { FirebaseUserDoc } from '../../../utils/index';
+import { FirebaseUserDoc } from '../../../utils/interface/index';
 
 export interface UserState {
   fetching: false;
