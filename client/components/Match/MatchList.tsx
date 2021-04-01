@@ -12,6 +12,7 @@ interface MatchListProps {
 export const MatchList: FunctionComponent<MatchListProps> = (props: MatchListProps) => {
   return (
     <input
+      data-testid='input'
       type='button'
       key={`${props.index}`}
       style={{
