@@ -29,19 +29,17 @@ export const getUserMatches = async (req, res) => {
     const firestoreUser = (await api.users.where('accountId', '==', userId).get()).docs[0].id;
 
     const userDoc = api.users.doc(firestoreUser);
-
     await userDoc.set({ matches }, { merge: true });
 
     const userMatchesDoc = userDoc.collection('match');
-
     const currentMatches = (await userMatchesDoc.get()).docs;
 
     matches.forEach(async (match) => {
       const savedMatchData = currentMatches.find(
         (currentMatchDoc) => currentMatchDoc.data().gameId === match.gameId
       );
-
       const savedMatchDataObj = savedMatchData ? savedMatchData?.data() : {};
+
       await userMatchesDoc.doc(match.gameId.toString()).set(savedMatchDataObj, { merge: true });
     });
 

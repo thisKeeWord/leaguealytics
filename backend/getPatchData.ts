@@ -16,7 +16,6 @@ export const getPatchData = async (req, res) => {
 
     if (!version || !isPatchEqual) {
       const newPatchData = await api.riotAPI.patch.data.get(latestVersion);
-
       const newData = newPatchData.data;
 
       await firestorePatchData.set({
