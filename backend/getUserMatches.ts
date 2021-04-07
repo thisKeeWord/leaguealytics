@@ -13,6 +13,7 @@ export const getUserMatches = async (req, res) => {
   try {
     const patchData = (await api.patchData.doc('latest').get()).data() || { data: {} };
     const matchList = await api.riotAPI.matchList.get(userId);
+
     const matches = matchList.data.matches.slice(0, 20);
     const championList = patchData.data as PatchType;
 

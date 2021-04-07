@@ -7,6 +7,11 @@ export const getPatchData = async (req, res) => {
     const firestorePatchObject = (await firestorePatchData.get()).data();
     const { version, data } = firestorePatchObject || {};
     const latestVersion = versions.data[0];
+
+    if (!latestVersion) {
+      throw new Error('An error has occurred.');
+    }
+
     const isPatchEqual = version === latestVersion;
 
     const responseData = {

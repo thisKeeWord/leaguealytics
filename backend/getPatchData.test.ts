@@ -36,4 +36,13 @@ describe('getPatchData', () => {
 
     expect(spy).toHaveBeenCalledWith(fakeVersion);
   });
+
+  it(`throws with message from endpoint if unsuccessful api call`, async () => {
+    const unsuccessfulRequestResponse = generateAxiosResponseObject({ data: {} }, { status: 400 });
+    jest
+      .spyOn(api.riotAPI.patch.version, 'get')
+      .mockImplementationOnce((): any => unsuccessfulRequestResponse);
+
+    await expect(getPatchData({}, res)).rejects.toThrow();
+  });
 });
