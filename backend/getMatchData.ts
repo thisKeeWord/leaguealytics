@@ -18,7 +18,6 @@ export const getMatchData = async (req, res) => {
 
     const matchOverviewData = (await api.riotAPI.match.overview.get(matchId)).data;
     const matchTimelineData = (await api.riotAPI.match.timeline.get(matchId)).data;
-
     const teamKillsAndDeaths = (matchOverviewData.participants as Array<any>).reduce(
       (accumulator, currentValue: Record<any, any>) => {
         const { stats, teamId } = currentValue;
