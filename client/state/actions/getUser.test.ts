@@ -2,7 +2,7 @@ import { waitFor } from '@testing-library/react';
 import axios from 'axios';
 import faker from 'faker';
 import { loadMatchList } from '../reducers/match';
-import { setUserError } from '../reducers/user';
+import { setUser, setUserError } from '../reducers/user';
 import { getUser } from './getUser';
 
 jest.mock('axios');
@@ -19,6 +19,21 @@ describe('getUser', () => {
     getUser({ username })(dispatch, getState, null);
 
     expect(spy).toHaveBeenCalled();
+  });
+
+  it('calls dispatch with setUser if api call was successful', async () => {
+    const dispatch = jest.fn();
+    const getState = jest.fn();
+
+    const responseData = {
+      data: {},
+    };
+
+    jest.spyOn(axios, 'get').mockImplementation(() => Promise.resolve(responseData));
+
+    getUser({ username })(dispatch, getState, null);
+
+    await waitFor(() => expect(dispatch).toHaveBeenCalledWith(setUser(responseData.data)));
   });
 
   it('calls dispatch with loadMatchList if api call was successful', async () => {

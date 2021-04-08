@@ -22,7 +22,6 @@ export const getUser = ({ username }: GetUserProps): AppThunk => async (
     dispatch(setUser(user.data));
 
     const matchList = await axios.get(`/api/user/${user.data.accountId}`);
-
     dispatch(loadMatchList(matchList.data));
   } catch (error) {
     dispatch(setUserError(error.message || 'An error has occurred'));
