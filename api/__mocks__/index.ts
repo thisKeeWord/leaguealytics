@@ -1,3 +1,6 @@
+/* eslint-disable import/first */
+/* eslint-disable import/order */
+/* eslint-disable import/no-useless-path-segments */
 import { API } from '../';
 import { mockFirebase } from 'firestore-jest-mock';
 import riotAPI from './../riotgames';
@@ -65,7 +68,9 @@ export const firebaseDatabase = {
           },
           id: 'Malzahar',
           key: '90',
-          info: { magic: 9, attack: 2, defense: 2, difficulty: 6 },
+          info: {
+            magic: 9, attack: 2, defense: 2, difficulty: 6,
+          },
           blurb:
             "A zealous seer dedicated to the unification of all life, Malzahar truly believes the newly emergent Void to be the path to Runeterra's salvation. In the desert wastes of Shurima, he followed the voices that whispered in his mind, all the way to ancient...",
           partype: 'Mana',

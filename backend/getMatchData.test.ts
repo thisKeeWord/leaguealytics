@@ -1636,7 +1636,7 @@ describe('getMatchData', () => {
     expect(spy).toHaveBeenCalledWith(req.params.matchId);
   });
 
-  it(`throws with message from endpoint if unsuccessful api call`, async () => {
+  it('throws with message from endpoint if unsuccessful api call', async () => {
     const unsuccessfulRequestResponse = generateAxiosResponseObject({ data: {} }, { status: 400 });
     jest
       .spyOn(api.riotAPI.match.overview, 'get')

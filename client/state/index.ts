@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
-import { Action, configureStore, Dispatch, ThunkAction } from '@reduxjs/toolkit';
+import {
+  Action, configureStore, Dispatch, ThunkAction,
+} from '@reduxjs/toolkit';
 import userReducer from './reducers/user';
 import matchReducer from './reducers/match';
 import patchReducer from './reducers/patch';

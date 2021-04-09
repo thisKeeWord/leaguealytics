@@ -12,9 +12,11 @@ const App: FunctionComponent = () => {
   const user = useSelector(selectUserDoc);
   const dispatch = useDispatch();
   const location = useLocation();
-  let history = useHistory();
+  const history = useHistory();
 
-  const { handleSubmit, handleChange, handleBlur, errors, touched } = useFormik({
+  const {
+    handleSubmit, handleChange, handleBlur, errors, touched,
+  } = useFormik({
     initialValues: {
       username: '',
     },
@@ -38,14 +40,14 @@ const App: FunctionComponent = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} data-testid='app'>
+      <form onSubmit={handleSubmit} data-testid="app">
         <TextField
-          id='username'
-          name='username'
+          id="username"
+          name="username"
           onChange={handleChange}
           helperText={touched.username && errors.username}
           error={touched.username && !!errors.username}
-          label='Summoner Name'
+          label="Summoner Name"
           onBlur={handleBlur}
         />
       </form>

@@ -28,12 +28,12 @@ export const getMatchData = async (req, res) => {
 
         return accumulator;
       },
-      {}
+      {},
     );
 
     (matchOverviewData.teams as Array<Record<any, any>>).forEach(({ teamId }, index, self) => {
-      self[index]['kills'] = teamKillsAndDeaths[teamId].kills;
-      self[index]['deaths'] = teamKillsAndDeaths[teamId].deaths;
+      self[index].kills = teamKillsAndDeaths[teamId].kills;
+      self[index].deaths = teamKillsAndDeaths[teamId].deaths;
     });
 
     const matchData = { ...matchOverviewData, ...matchTimelineData };

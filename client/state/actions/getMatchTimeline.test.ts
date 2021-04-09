@@ -33,23 +33,20 @@ describe('getUser', () => {
 
     getMatchTimeline({ username, gameId })(dispatch, getState, null);
 
-    await waitFor(() =>
-      expect(dispatch).toHaveBeenCalledWith(
-        loadMatchSuccess({ matchData: responseData.data, matchId: gameId })
-      )
-    );
+    await waitFor(() => expect(dispatch).toHaveBeenCalledWith(
+      loadMatchSuccess({ matchData: responseData.data, matchId: gameId }),
+    ));
   });
 
   it('calls dispatch with loadMatchFailure if api call was unsuccessful', async () => {
     const dispatch = jest.fn();
     const getState = jest.fn();
 
+    // eslint-disable-next-line prefer-promise-reject-errors
     jest.spyOn(axios, 'get').mockImplementationOnce(() => Promise.reject({ data: {} }));
 
     getMatchTimeline({ username, gameId })(dispatch, getState, null);
 
-    await waitFor(() =>
-      expect(dispatch).toHaveBeenCalledWith(loadMatchFailure('An error has occurred'))
-    );
+    await waitFor(() => expect(dispatch).toHaveBeenCalledWith(loadMatchFailure('An error has occurred')));
   });
 });

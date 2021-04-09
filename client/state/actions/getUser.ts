@@ -10,12 +10,13 @@ interface GetUserProps {
 
 export const getUser = ({ username }: GetUserProps): AppThunk => async (
   dispatch,
-  getState
+  // eslint-disable-next-line no-unused-vars
+  getState,
 ): Promise<void> => {
   setFetching({ isFetching: true });
 
   try {
-    const patchData = await axios.get(`/api/patch`);
+    const patchData = await axios.get('/api/patch');
     dispatch(loadPatchSuccess(patchData.data));
 
     const user = await axios.get(`/api/users/${username}`);

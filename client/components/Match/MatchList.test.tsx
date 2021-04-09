@@ -21,7 +21,7 @@ describe('MatchList', () => {
         timestamp={timestamp}
         championImg={championImg}
         gameId={gameId}
-      />
+      />,
     );
 
     const input = getByTestId('input');
@@ -44,7 +44,7 @@ describe('MatchList', () => {
         timestamp={timestamp}
         championImg={championImg}
         gameId={gameId}
-      />
+      />,
     );
 
     const input = getByTestId('input');

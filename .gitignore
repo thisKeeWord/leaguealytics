@@ -8,6 +8,9 @@ config.env
 # npm debug log
 npm-debug.log
 
+# yarn error log
+yarn-error.log
+
 # bundle
 dist/bundle.js
 

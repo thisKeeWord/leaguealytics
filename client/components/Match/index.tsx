@@ -1,4 +1,3 @@
-import { any } from 'prop-types';
 import React, { FunctionComponent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -23,8 +22,8 @@ const Match: FunctionComponent = () => {
     return null;
   }
 
-  const selectedGame =
-    matchId && matches[matchId] && matches[matchId].data.gameId ? matches[matchId].data : null;
+  // eslint-disable-next-line max-len
+  const selectedGame = matchId && matches[matchId] && matches[matchId].data.gameId ? matches[matchId].data : null;
 
   const handleClick = async (gameId: number): Promise<void> => {
     if (matches[gameId] && !matches[gameId].data.gameId) {
@@ -34,16 +33,19 @@ const Match: FunctionComponent = () => {
     setMatchId(gameId);
   };
 
-  const currentPlayerIdentity =
-    selectedGame &&
-    selectedGame.participantIdentities.find(({ player }) => player.accountId === user?.accountId);
-  const stats =
-    selectedGame &&
-    selectedGame.participants.map(({ participantId, championId, stats, teamId }) => {
+  const currentPlayerIdentity = selectedGame
+    // eslint-disable-next-line max-len
+    && selectedGame.participantIdentities.find(({ player }) => player.accountId === user?.accountId);
+  const statsData = selectedGame
+    && selectedGame.participants.map(({
+      participantId, championId, stats, teamId,
+    // eslint-disable-next-line array-callback-return
+    }) => {
+      // eslint-disable-next-line no-restricted-syntax, prefer-const
       for (let championData in patchData.patchData) {
         if (patchData.patchData[championData].key == championId) {
           const teamStat = selectedGame.teams.find(
-            (team: Record<any, any>) => team.teamId === teamId
+            (team: Record<any, any>) => team.teamId === teamId,
           );
           return {
             champion: patchData.patchData[championData].name,
@@ -63,67 +65,58 @@ const Match: FunctionComponent = () => {
       }
     });
 
-  console.log(selectedGame, 'selectedGame');
+  // console.log(selectedGame, 'selectedGame');
 
-  const totalDamageDealtStat =
-    stats &&
-    stats.map(({ champion, damageDealt, isCurrentPlayer }) => ({
+  const totalDamageDealtStat = statsData
+    && statsData.map(({ champion, damageDealt, isCurrentPlayer }) => ({
       x: champion,
       y: damageDealt,
       isCurrentPlayer,
     }));
-  const totalDamageTakenStat =
-    stats &&
-    stats.map(({ champion, damageTaken, isCurrentPlayer }) => ({
+  const totalDamageTakenStat = statsData
+    && statsData.map(({ champion, damageTaken, isCurrentPlayer }) => ({
       x: champion,
       y: damageTaken,
       isCurrentPlayer,
     }));
-  const goldEarnedStat =
-    stats &&
-    stats.map(({ champion, goldEarned, isCurrentPlayer }) => ({
+  const goldEarnedStat = statsData
+    && statsData.map(({ champion, goldEarned, isCurrentPlayer }) => ({
       x: champion,
       y: goldEarned,
       isCurrentPlayer,
     }));
-  const killsStat =
-    stats &&
-    stats.map(({ champion, kills, isCurrentPlayer }) => ({
+  const killsStat = statsData
+    && statsData.map(({ champion, kills, isCurrentPlayer }) => ({
       x: champion,
       y: kills,
       isCurrentPlayer,
     }));
-  const assistsStat =
-    stats &&
-    stats.map(({ champion, assists, isCurrentPlayer }) => ({
+  const assistsStat = statsData
+    && statsData.map(({ champion, assists, isCurrentPlayer }) => ({
       x: champion,
       y: assists,
       isCurrentPlayer,
     }));
-  const killParticipationStat =
-    stats &&
-    stats.map(({ champion, killParticipation, isCurrentPlayer }) => ({
+  const killParticipationStat = statsData
+    && statsData.map(({ champion, killParticipation, isCurrentPlayer }) => ({
       x: champion,
       y: Math.floor(killParticipation),
       isCurrentPlayer,
     }));
-  const deathStat =
-    stats &&
-    stats.map(({ champion, deaths, isCurrentPlayer }) => ({
+  const deathStat = statsData
+    && statsData.map(({ champion, deaths, isCurrentPlayer }) => ({
       x: champion,
       y: deaths,
       isCurrentPlayer,
     }));
-  const deathShareStat =
-    stats &&
-    stats.map(({ champion, deathShare, isCurrentPlayer }) => ({
+  const deathShareStat = statsData
+    && statsData.map(({ champion, deathShare, isCurrentPlayer }) => ({
       x: champion,
       y: Math.floor(deathShare),
       isCurrentPlayer,
     }));
-  const creepScore =
-    stats &&
-    stats.map(({ champion, creepScore, isCurrentPlayer }) => ({
+  const creepScoreStat = statsData
+    && statsData.map(({ champion, creepScore, isCurrentPlayer }) => ({
       x: champion,
       y: creepScore,
       isCurrentPlayer,
@@ -147,20 +140,20 @@ const Match: FunctionComponent = () => {
         ) : (
           <div>
             {totalDamageDealtStat && (
-              <Chart data={totalDamageDealtStat} title='Total Damage Dealt' />
+              <Chart data={totalDamageDealtStat} title="Total Damage Dealt" />
             )}
             {totalDamageTakenStat && (
-              <Chart data={totalDamageTakenStat} title='Total Damage Taken' />
+              <Chart data={totalDamageTakenStat} title="Total Damage Taken" />
             )}
-            {goldEarnedStat && <Chart data={goldEarnedStat} title='Gold Earned' />}
-            {killsStat && <Chart data={killsStat} title='Kills' />}
-            {assistsStat && <Chart data={assistsStat} title='Assists' />}
+            {goldEarnedStat && <Chart data={goldEarnedStat} title="Gold Earned" />}
+            {killsStat && <Chart data={killsStat} title="Kills" />}
+            {assistsStat && <Chart data={assistsStat} title="Assists" />}
             {killParticipationStat && (
-              <Chart data={killParticipationStat} title='Kill Participation' />
+              <Chart data={killParticipationStat} title="Kill Participation" />
             )}
-            {deathStat && <Chart data={deathStat} title='Deaths' />}
-            {deathShareStat && <Chart data={deathShareStat} title='Death Share' />}
-            {creepScore && <Chart data={creepScore} title='Creep Score' />}
+            {deathStat && <Chart data={deathStat} title="Deaths" />}
+            {deathShareStat && <Chart data={deathShareStat} title="Death Share" />}
+            {creepScoreStat && <Chart data={creepScoreStat} title="Creep Score" />}
           </div>
         )}
       </div>

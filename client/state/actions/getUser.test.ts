@@ -55,12 +55,11 @@ describe('getUser', () => {
     const dispatch = jest.fn();
     const getState = jest.fn();
 
+    // eslint-disable-next-line prefer-promise-reject-errors
     jest.spyOn(axios, 'get').mockImplementationOnce(() => Promise.reject({ data: [] }));
 
     getUser({ username })(dispatch, getState, null);
 
-    await waitFor(() =>
-      expect(dispatch).toHaveBeenCalledWith(setUserError('An error has occurred'))
-    );
+    await waitFor(() => expect(dispatch).toHaveBeenCalledWith(setUserError('An error has occurred')));
   });
 });
