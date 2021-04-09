@@ -29,11 +29,15 @@ describe('getUser', () => {
       data: {},
     };
 
-    jest.spyOn(axios, 'get').mockImplementation(() => Promise.resolve(responseData));
+    jest
+      .spyOn(axios, 'get')
+      .mockImplementation(() => Promise.resolve(responseData));
 
     getUser({ username })(dispatch, getState, null);
 
-    await waitFor(() => expect(dispatch).toHaveBeenCalledWith(setUser(responseData.data)));
+    await waitFor(() =>
+      expect(dispatch).toHaveBeenCalledWith(setUser(responseData.data))
+    );
   });
 
   it('calls dispatch with loadMatchList if api call was successful', async () => {
@@ -44,23 +48,31 @@ describe('getUser', () => {
       data: {},
     };
 
-    jest.spyOn(axios, 'get').mockImplementation(() => Promise.resolve(responseData));
+    jest
+      .spyOn(axios, 'get')
+      .mockImplementation(() => Promise.resolve(responseData));
 
     getUser({ username })(dispatch, getState, null);
 
-    await waitFor(() => expect(dispatch).toHaveBeenCalledWith(loadMatchList(responseData.data)));
+    await waitFor(() =>
+      expect(dispatch).toHaveBeenCalledWith(loadMatchList(responseData.data))
+    );
   });
 
   it('calls dispatch with setUserError if api call was unsuccessful', async () => {
     const dispatch = jest.fn();
     const getState = jest.fn();
 
-    jest.spyOn(axios, 'get').mockImplementationOnce(() => Promise.reject({ data: [] }));
+    jest
+      .spyOn(axios, 'get')
+      .mockImplementationOnce(() => Promise.reject({ data: [] }));
 
     getUser({ username })(dispatch, getState, null);
 
     await waitFor(() =>
-      expect(dispatch).toHaveBeenCalledWith(setUserError('An error has occurred'))
+      expect(dispatch).toHaveBeenCalledWith(
+        setUserError('An error has occurred')
+      )
     );
   });
 });

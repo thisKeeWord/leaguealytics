@@ -1,5 +1,7 @@
 import React, { FunctionComponent } from 'react';
-import { CallbackArgs, VictoryAxis, VictoryBar, VictoryChart, VictoryLabel } from 'victory';
+import {
+  VictoryAxis, VictoryBar, VictoryChart, VictoryLabel,
+} from 'victory';
 import styled from 'styled-components';
 
 interface ChartProps {
@@ -27,11 +29,11 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
         <VictoryAxis
           dependentAxis
           standalone={false}
-          tickLabelComponent={<VictoryLabel renderInPortal={true} />}
+          tickLabelComponent={<VictoryLabel renderInPortal />}
         />
         <VictoryAxis
           standalone={false}
-          tickLabelComponent={<VictoryLabel renderInPortal={true} />}
+          tickLabelComponent={<VictoryLabel renderInPortal />}
           style={{
             tickLabels: {
               fill: ({ index }) => (playerType[index] ? 'green' : 'black'),

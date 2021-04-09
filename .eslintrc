@@ -1,9 +1,51 @@
 {
   "extends": "airbnb",
-  "root": true,
+  "plugins": ["@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
   "env": {
     "browser": true,
     "node": true,
     "jest": true
+  },
+  "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ],
+    "jsx-a11y/label-has-associated-control": 0,
+    "jsx-a11y/label-has-for": 0,
+    "jsx-a11y/no-noninteractive-element-interactions": 0,
+    "jsx-a11y/no-autofocus": 0,
+    "react/require-default-props": 0,
+    "import/no-named-default": 0,
+    "consistent-return": 0,
+    "prefer-destructuring": 0,
+    "react/button-has-type": 0,
+    "no-unused-expressions": 0,
+    "react/no-array-index-key": 0,
+    "import/prefer-default-export": 0,
+    "no-param-reassign": 0,
+    "no-use-before-define": 0,
+    "import/no-extraneous-dependencies": 0,
+    "react/destructuring-assignment": 0,
+    "eqeqeq": 0,
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "mjs": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".json"]
+      }
+    }
   }
 }

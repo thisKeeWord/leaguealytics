@@ -1,6 +1,7 @@
-import { API } from '../';
 import { mockFirebase } from 'firestore-jest-mock';
-import riotAPI from './../riotgames';
+import firebase from 'firebase';
+import { API } from '..';
+import riotAPI from '../riotgames';
 
 export const firebaseDatabase = {
   user: [
@@ -65,7 +66,12 @@ export const firebaseDatabase = {
           },
           id: 'Malzahar',
           key: '90',
-          info: { magic: 9, attack: 2, defense: 2, difficulty: 6 },
+          info: {
+            magic: 9,
+            attack: 2,
+            defense: 2,
+            difficulty: 6,
+          },
           blurb:
             "A zealous seer dedicated to the unification of all life, Malzahar truly believes the newly emergent Void to be the path to Runeterra's salvation. In the desert wastes of Shurima, he followed the voices that whispered in his mind, all the way to ancient...",
           partype: 'Mana',
@@ -82,8 +88,6 @@ export const firebaseDatabase = {
 mockFirebase({
   database: firebaseDatabase,
 });
-
-import firebase from 'firebase';
 
 firebase.initializeApp({
   apiKey: '',
