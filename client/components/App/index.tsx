@@ -16,21 +16,23 @@ const App: FunctionComponent = () => {
 
   const {
     handleSubmit, handleChange, handleBlur, errors, touched,
-  } = useFormik({
-    initialValues: {
-      username: '',
+  } = useFormik(
+    {
+      initialValues: {
+        username: '',
+      },
+      onSubmit: (values) => {
+        const username = values.username.replace(/\s+/g, '').toLowerCase();
+        dispatch(getUser({ username }));
+        history.push(`/${username}`, { updated: true });
+      },
+      validationSchema: Yup.object({
+        username: Yup.string()
+          .min(2)
+          .required('Please enter a username'),
+      }),
     },
-    onSubmit: (values) => {
-      const username = values.username.replace(/\s+/g, '').toLowerCase();
-      dispatch(getUser({ username }));
-      history.push(`/${username}`, { updated: true });
-    },
-    validationSchema: Yup.object({
-      username: Yup.string()
-        .min(2)
-        .required('Please enter a username'),
-    }),
-  });
+  );
 
   useEffect(() => {
     if (location.pathname[1] && !location.state) {

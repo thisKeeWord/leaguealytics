@@ -2,5 +2,6 @@
   "typescript.preferences.quoteStyle": "single",
   "javascript.preferences.quoteStyle": "single",
   "prettier.jsxSingleQuote": true,
-  "prettier.singleQuote": true
+  "prettier.singleQuote": true,
+  "html.format.contentUnformatted": ""
 }

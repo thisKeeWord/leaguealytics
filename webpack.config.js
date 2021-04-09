@@ -36,7 +36,9 @@ module.exports = {
     inline: true,
 
     headers: { 'Access-Control-Allow-Origin': '*' },
+    // eslint-disable-next-line max-len
     // proxy is required in order to make api calls to express server while using hot-reload webpack server
+    // eslint-disable-next-line max-len
     // routes api fetch requests from localhost:8080/api/* (webpack dev server) to localhost:3000/api/* (where our Express server is running)
     proxy: {
       '/api/**': {

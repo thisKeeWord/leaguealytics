@@ -22,8 +22,9 @@ const Match: FunctionComponent = () => {
     return null;
   }
 
-  // eslint-disable-next-line max-len
-  const selectedGame = matchId && matches[matchId] && matches[matchId].data.gameId ? matches[matchId].data : null;
+  const selectedGame = matchId && matches[matchId] && matches[matchId].data.gameId
+    ? matches[matchId].data
+    : null;
 
   const handleClick = async (gameId: number): Promise<void> => {
     if (matches[gameId] && !matches[gameId].data.gameId) {
@@ -34,36 +35,45 @@ const Match: FunctionComponent = () => {
   };
 
   const currentPlayerIdentity = selectedGame
-    // eslint-disable-next-line max-len
-    && selectedGame.participantIdentities.find(({ player }) => player.accountId === user?.accountId);
+    && selectedGame.participantIdentities.find(
+      ({ player }) => player.accountId === user?.accountId,
+    );
   const statsData = selectedGame
-    && selectedGame.participants.map(({
-      participantId, championId, stats, teamId,
-    // eslint-disable-next-line array-callback-return
-    }) => {
-      // eslint-disable-next-line no-restricted-syntax, prefer-const
-      for (let championData in patchData.patchData) {
-        if (patchData.patchData[championData].key == championId) {
-          const teamStat = selectedGame.teams.find(
-            (team: Record<any, any>) => team.teamId === teamId,
-          );
-          return {
-            champion: patchData.patchData[championData].name,
-            damageDealt: stats.totalDamageDealtToChampions,
-            damageTaken: stats.totalDamageTaken,
-            goldEarned: stats.goldEarned,
-            kills: stats.kills,
-            assists: stats.assists,
-            deaths: stats.deaths,
-            killParticipation:
-              teamStat.kills === 0 ? 0 : ((stats.kills + stats.assists) / teamStat.kills) * 100,
-            deathShare: teamStat.deaths === 0 ? 0 : (stats.deaths / teamStat.deaths) * 100,
-            creepScore: stats.totalMinionsKilled + stats.neutralMinionsKilled,
-            isCurrentPlayer: currentPlayerIdentity.participantId === participantId,
-          };
+    && selectedGame.participants.map(
+      ({
+        participantId, championId, stats, teamId,
+      // eslint-disable-next-line array-callback-return
+      }) => {
+        // eslint-disable-next-line no-restricted-syntax, prefer-const
+        for (let championData in patchData.patchData) {
+          if (patchData.patchData[championData].key == championId) {
+            const teamStat = selectedGame.teams.find(
+              (team: Record<any, any>) => team.teamId === teamId,
+            );
+            return {
+              champion: patchData.patchData[championData].name,
+              damageDealt: stats.totalDamageDealtToChampions,
+              damageTaken: stats.totalDamageTaken,
+              goldEarned: stats.goldEarned,
+              kills: stats.kills,
+              assists: stats.assists,
+              deaths: stats.deaths,
+              killParticipation:
+                teamStat.kills === 0
+                  ? 0
+                  : ((stats.kills + stats.assists) / teamStat.kills) * 100,
+              deathShare:
+                teamStat.deaths === 0
+                  ? 0
+                  : (stats.deaths / teamStat.deaths) * 100,
+              creepScore: stats.totalMinionsKilled + stats.neutralMinionsKilled,
+              isCurrentPlayer:
+                currentPlayerIdentity.participantId === participantId,
+            };
+          }
         }
-      }
-    });
+      },
+    );
 
   // console.log(selectedGame, 'selectedGame');
 
@@ -145,14 +155,18 @@ const Match: FunctionComponent = () => {
             {totalDamageTakenStat && (
               <Chart data={totalDamageTakenStat} title="Total Damage Taken" />
             )}
-            {goldEarnedStat && <Chart data={goldEarnedStat} title="Gold Earned" />}
+            {goldEarnedStat && (
+              <Chart data={goldEarnedStat} title="Gold Earned" />
+            )}
             {killsStat && <Chart data={killsStat} title="Kills" />}
             {assistsStat && <Chart data={assistsStat} title="Assists" />}
             {killParticipationStat && (
               <Chart data={killParticipationStat} title="Kill Participation" />
             )}
             {deathStat && <Chart data={deathStat} title="Deaths" />}
-            {deathShareStat && <Chart data={deathShareStat} title="Death Share" />}
+            {deathShareStat && (
+              <Chart data={deathShareStat} title="Death Share" />
+            )}
             {creepScoreStat && <Chart data={creepScoreStat} title="Creep Score" />}
           </div>
         )}

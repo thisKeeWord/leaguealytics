@@ -18,8 +18,11 @@ export const getUserMatches = async (req, res) => {
     const championList = patchData.data as PatchType;
 
     matches.forEach((match) => {
+      // eslint-disable-next-line no-restricted-syntax, prefer-const
       for (let championData in championList) {
         if (championList[championData].key == match.champion) {
+        // if (championList[championData].key == match.champion) {
+
           match.championImg = championList[championData].image.full;
 
           break;
@@ -37,7 +40,7 @@ export const getUserMatches = async (req, res) => {
 
     matches.forEach(async (match) => {
       const savedMatchData = currentMatches.find(
-        (currentMatchDoc) => currentMatchDoc.data().gameId === match.gameId
+        (currentMatchDoc) => currentMatchDoc.data().gameId === match.gameId,
       );
       const savedMatchDataObj = savedMatchData ? savedMatchData?.data() : {};
 

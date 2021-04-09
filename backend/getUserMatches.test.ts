@@ -31,7 +31,7 @@ describe('getUserMatches', () => {
           },
         ],
       },
-      { status: 200 }
+      { status: 200 },
     );
 
     jest
@@ -61,7 +61,7 @@ describe('getUserMatches', () => {
           },
         ],
       },
-      { status: 200 }
+      { status: 200 },
     );
     const spy = jest.spyOn(api.riotAPI.matchList, 'get');
     spy.mockImplementationOnce((): any => basicSuccessResponse);

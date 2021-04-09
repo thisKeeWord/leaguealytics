@@ -29,7 +29,9 @@ describe('getUser', () => {
       data: {},
     };
 
-    jest.spyOn(axios, 'get').mockImplementation(() => Promise.resolve(responseData));
+    jest
+      .spyOn(axios, 'get')
+      .mockImplementation(() => Promise.resolve(responseData));
 
     getUser({ username })(dispatch, getState, null);
 
@@ -44,7 +46,9 @@ describe('getUser', () => {
       data: {},
     };
 
-    jest.spyOn(axios, 'get').mockImplementation(() => Promise.resolve(responseData));
+    jest
+      .spyOn(axios, 'get')
+      .mockImplementation(() => Promise.resolve(responseData));
 
     getUser({ username })(dispatch, getState, null);
 

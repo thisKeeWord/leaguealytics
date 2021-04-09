@@ -11,24 +11,30 @@ const riotStatic: AxiosInstance = axios.create({
 
 export interface RiotAPI {
   users: {
+    // eslint-disable-next-line no-unused-vars
     get: (username: string) => Promise<AxiosResponse>;
   };
   matchList: {
+    // eslint-disable-next-line no-unused-vars
     get: (userId: string) => Promise<AxiosResponse>;
   };
   patch: {
     version: {
+      // eslint-disable-next-line no-unused-vars
       get: () => Promise<AxiosResponse>;
     };
     data: {
+      // eslint-disable-next-line no-unused-vars
       get: (patchVersion: string) => Promise<AxiosResponse>;
     };
   };
   match: {
     overview: {
+      // eslint-disable-next-line no-unused-vars
       get: (matchId: string) => Promise<AxiosResponse>;
     };
     timeline: {
+      // eslint-disable-next-line no-unused-vars
       get: (matchId: string) => Promise<AxiosResponse>;
     };
   };

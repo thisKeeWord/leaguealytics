@@ -10,7 +10,9 @@ interface MatchListProps {
   gameId: number;
 }
 
-export const MatchList: FunctionComponent<MatchListProps> = (props: MatchListProps) => (
+export const MatchList: FunctionComponent<MatchListProps> = (
+  props: MatchListProps,
+) => (
   <input
     data-testid="input"
     type="button"
