@@ -1,6 +1,4 @@
-/* eslint-disable import/first */
-/* eslint-disable import/order */
-/* eslint-disable import/no-useless-path-segments */
+/* eslint-disable import/first, import/order, import/no-useless-path-segments */
 import { API } from '../';
 import { mockFirebase } from 'firestore-jest-mock';
 import riotAPI from './../riotgames';

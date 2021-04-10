@@ -1,6 +1,4 @@
-/* eslint-disable import/first */
-/* eslint-disable import/order */
-// eslint-disable-next-line no-unused-vars
+/* eslint-disable import/first, import/order */
 const dotenv = require('dotenv').config({ path: '.env' });
 
 import express from 'express';

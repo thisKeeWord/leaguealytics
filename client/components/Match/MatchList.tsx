@@ -2,7 +2,6 @@ import React, { FunctionComponent } from 'react';
 
 interface MatchListProps {
   index: number;
-  // eslint-disable-next-line no-unused-vars
   handleClick: (gameId: number) => void;
   version: number | string;
   timestamp: Date;

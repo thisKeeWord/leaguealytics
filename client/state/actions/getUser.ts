@@ -10,7 +10,6 @@ interface GetUserProps {
 
 export const getUser = ({ username }: GetUserProps): AppThunk => async (
   dispatch,
-  // eslint-disable-next-line no-unused-vars
   getState,
 ): Promise<void> => {
   setFetching({ isFetching: true });

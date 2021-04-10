@@ -79,88 +79,81 @@ const Match: FunctionComponent = () => {
     );
 
   // console.log(selectedGame, 'selectedGame');
+  let totalDamageDealtStat = null;
+  let totalDamageTakenStat = null;
+  let goldEarnedStat = null;
+  let killsStat = null;
+  let assistsStat = null;
+  let killParticipationStat = null;
+  let deathStat = null;
+  let deathShareStat = null;
+  let creepScoreStat = null;
 
-  const totalDamageDealtStat = statsData
-    ? statsData.map(({
-      // eslint-disable-next-line no-unused-vars
+  if (statsData) {
+    totalDamageDealtStat = statsData.map(({
       champion, damageDealt, isCurrentPlayer, player, participantId,
     }) => ({
       x: `${champion} \n (${participantId})`,
       y: damageDealt,
       isCurrentPlayer,
-    })) : null;
-  const totalDamageTakenStat = statsData
-    ? statsData.map(({
-      // eslint-disable-next-line no-unused-vars
+    }));
+    totalDamageTakenStat = statsData.map(({
       champion, damageTaken, isCurrentPlayer, player, participantId,
     }) => ({
       x: `${champion} \n (${participantId})`,
       y: damageTaken,
       isCurrentPlayer,
-    })) : null;
-  const goldEarnedStat = statsData
-    ? statsData.map(({
-      // eslint-disable-next-line no-unused-vars
+    }));
+    goldEarnedStat = statsData.map(({
       champion, goldEarned, isCurrentPlayer, player, participantId,
     }) => ({
       x: `${champion} \n (${participantId})`,
       y: goldEarned,
       isCurrentPlayer,
-    })) : null;
-  const killsStat = statsData
-    ? statsData.map(({
-      // eslint-disable-next-line no-unused-vars
+    }));
+    killsStat = statsData.map(({
       champion, kills, isCurrentPlayer, player, participantId,
     }) => ({
       x: `${champion} \n (${participantId})`,
       y: kills,
       isCurrentPlayer,
-    })) : null;
-  const assistsStat = statsData
-    ? statsData.map(({
-      // eslint-disable-next-line no-unused-vars
+    }));
+    assistsStat = statsData.map(({
       champion, assists, isCurrentPlayer, player, participantId,
     }) => ({
       x: `${champion} \n (${participantId})`,
       y: assists,
       isCurrentPlayer,
-    })) : null;
-  const killParticipationStat = statsData
-    ? statsData.map(({
-      // eslint-disable-next-line no-unused-vars
+    }));
+    killParticipationStat = statsData.map(({
       champion, killParticipation, isCurrentPlayer, player, participantId,
     }) => ({
       x: `${champion} \n (${participantId})`,
       y: Math.floor(killParticipation),
       isCurrentPlayer,
-    })) : null;
-  const deathStat = statsData
-    ? statsData.map(({
-      // eslint-disable-next-line no-unused-vars
+    }));
+    deathStat = statsData.map(({
       champion, deaths, isCurrentPlayer, player, participantId,
     }) => ({
       x: `${champion} \n (${participantId})`,
       y: deaths,
       isCurrentPlayer,
-    })) : null;
-  const deathShareStat = statsData
-    ? statsData.map(({
-      // eslint-disable-next-line no-unused-vars
+    }));
+    deathShareStat = statsData.map(({
       champion, deathShare, isCurrentPlayer, player, participantId,
     }) => ({
       x: `${champion} \n (${participantId})`,
       y: Math.floor(deathShare),
       isCurrentPlayer,
-    })) : null;
-  const creepScoreStat = statsData
-    ? statsData.map(({
-      // eslint-disable-next-line no-unused-vars
+    }));
+    creepScoreStat = statsData.map(({
       champion, creepScore, isCurrentPlayer, player, participantId,
     }) => ({
       x: `${champion} \n (${participantId})`,
       y: creepScore,
       isCurrentPlayer,
-    })) : null;
+    }));
+  }
 
   return (
     <div>

@@ -9,7 +9,6 @@ interface GetMatchTimelineProps {
 
 export const getMatchTimeline = ({ username, gameId }: GetMatchTimelineProps): AppThunk => async (
   dispatch,
-  // eslint-disable-next-line no-unused-vars
   getState,
 ): Promise<void> => {
   dispatch(setMatchFetching({ isFetching: true }));
