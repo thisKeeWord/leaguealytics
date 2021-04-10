@@ -49,6 +49,6 @@ export const getUserMatches = async (req, res) => {
 
     res.send({ matches, matchListData: updatedMatches.map((match) => match.data()) });
   } catch (error) {
-    throw new Error(error.message);
+    res.send({ error: error.message ? error.message : error });
   }
 };

@@ -19,6 +19,6 @@ export const getUsersInfo = async (req, res) => {
 
     res.send(userData);
   } catch (error) {
-    throw new Error(error.message);
+    res.send({ error: error.message ? error.message : error });
   }
 };

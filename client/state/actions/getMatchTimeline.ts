@@ -18,6 +18,10 @@ export const getMatchTimeline = ({ username, gameId }: GetMatchTimelineProps): A
 
   try {
     const matchData = await axios.get(`/api/${formattedUsername}/match/${gameId}`);
+
+    if (matchData.data.error) {
+      throw new Error(matchData.data);
+    }
     dispatch(loadMatchSuccess({ matchData: matchData.data, matchId: gameId }));
   } catch (error) {
     dispatch(loadMatchFailure(error.message || 'An error has occurred'));

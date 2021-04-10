@@ -55,6 +55,6 @@ export const getMatchData = async (req, res) => {
 
     res.send(matchData);
   } catch (error) {
-    throw new Error(error.message);
+    res.send({ error: error.message });
   }
 };

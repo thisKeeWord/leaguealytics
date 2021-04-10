@@ -32,6 +32,6 @@ export const getPatchData = async (req, res) => {
 
     res.send(responseData);
   } catch (error) {
-    throw new Error(error.message);
+    res.send({ error: error.message ? error.message : error });
   }
 };
