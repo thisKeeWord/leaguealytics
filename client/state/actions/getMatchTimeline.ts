@@ -15,6 +15,10 @@ export const getMatchTimeline = ({ username, gameId }: GetMatchTimelineProps): A
 
   const formattedUsername = username.replace(/\s+/g, '').toLowerCase();
 
+  if (!username) {
+    return
+  }
+
   try {
     const matchData = await axios.get(`/api/${formattedUsername}/match/${gameId}`);
 

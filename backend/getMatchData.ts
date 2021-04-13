@@ -16,44 +16,10 @@ export const getMatchData = async (req, res) => {
       return;
     }
 
-    const matchOverviewData = (await api.riotAPI.match.overview.get(matchId))
-      .data;
-    const matchTimelineData = (await api.riotAPI.match.timeline.get(matchId))
-      .data;
-    const teamKillsAndDeaths = (matchOverviewData.participants as Array<
-      any
-    >).reduce((accumulator, currentValue: Record<any, any>) => {
-      const { stats, teamId } = currentValue;
-      accumulator[teamId] = {
-        kills: accumulator[teamId]
-          ? accumulator[teamId].kills + stats.kills
-          : stats.kills,
-        deaths: accumulator[teamId]
-          ? accumulator[teamId].deaths + stats.deaths
-          : stats.deaths,
-      };
+    const matchTimelineData = (await api.riotAPI.match.timeline.get(matchId)).data;
+    await firestoreMatchDoc.set(matchTimelineData, { merge: true });
 
-      return accumulator;
-    }, {});
-
-    (matchOverviewData.teams as Array<Record<any, any>>).forEach(
-      ({ teamId }, index, self) => {
-        self[index].kills = teamKillsAndDeaths[teamId].kills;
-        self[index].deaths = teamKillsAndDeaths[teamId].deaths;
-      },
-      {},
-    );
-
-    (matchOverviewData.teams as Array<Record<any, any>>).forEach(({ teamId }, index, self) => {
-      self[index].kills = teamKillsAndDeaths[teamId].kills;
-      self[index].deaths = teamKillsAndDeaths[teamId].deaths;
-    });
-
-    const matchData = { ...matchOverviewData, ...matchTimelineData };
-
-    await firestoreMatchDoc.set(matchData, { merge: true });
-
-    res.send(matchData);
+    res.send(matchTimelineData);
   } catch (error) {
     res.send({ error: error.message });
   }

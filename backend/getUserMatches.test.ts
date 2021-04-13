@@ -2,6 +2,7 @@ import faker from 'faker';
 import api from '../api';
 import { generateAxiosResponseObject } from '../utils/helper';
 import { getUserMatches } from './getUserMatches';
+import { matchOverviewData } from './constants';
 
 jest.mock('../api');
 const req = {
@@ -15,58 +16,19 @@ const res = {
 
 describe('getUserMatches', () => {
   it('calls firebase users collection api route', async () => {
-    const basicSuccessResponse = generateAxiosResponseObject(
-      {
-        matches: [
-          {
-            season: 13,
-            platformId: 'NA1',
-            gameId: 3833657566,
-            championImg: 'Anivia.png',
-            champion: 34,
-            role: 'DUO_SUPPORT',
-            timestamp: 1616225321603,
-            queue: 450,
-            lane: 'MID',
-          },
-        ],
-      },
-      { status: 200 },
-    );
-
-    jest
-      .spyOn(api.riotAPI.matchList, 'get')
-      .mockImplementationOnce((): any => basicSuccessResponse);
-
-    const spy = jest.spyOn(api.patchData, 'doc');
+    jest.spyOn(api.riotAPI.match.overview, 'get').mockImplementationOnce((): any => generateAxiosResponseObject(matchOverviewData, { status: 200 }));
+    const spy = jest.spyOn(api.users, 'doc');
     await getUserMatches(req, res);
 
     expect(spy).toHaveBeenCalled();
   });
 
-  it('calls "riotAPI.matchList" api route', async () => {
-    const basicSuccessResponse = generateAxiosResponseObject(
-      {
-        matches: [
-          {
-            season: 13,
-            platformId: 'NA1',
-            gameId: 3833657566,
-            championImg: 'Anivia.png',
-            champion: 34,
-            role: 'DUO_SUPPORT',
-            timestamp: 1616225321603,
-            queue: 450,
-            lane: 'MID',
-          },
-        ],
-      },
-      { status: 200 },
-    );
-    const spy = jest.spyOn(api.riotAPI.matchList, 'get');
-    spy.mockImplementationOnce((): any => basicSuccessResponse);
+  it('calls "riotAPI.match.overview" api route', async () => {
+    const spy = jest.spyOn(api.riotAPI.match.overview, 'get');
+    // eslint-disable-next-line max-len
+    spy.mockImplementationOnce((): any => generateAxiosResponseObject(matchOverviewData, { status: 200 }));
     await getUserMatches(req, res);
 
-    expect(spy).toHaveBeenCalledWith(req.params.userId);
+    expect(spy).toHaveBeenCalled();
   });
 });

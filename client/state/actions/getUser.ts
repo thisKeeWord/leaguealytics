@@ -12,7 +12,7 @@ export const getUser = ({ username }: GetUserProps): AppThunk => async (
   dispatch,
   getState,
 ): Promise<void> => {
-  setFetching({ isFetching: true });
+  dispatch(setFetching({ isFetching: true }));
 
   try {
     const patchData = await axios.get('/api/patch');
@@ -31,7 +31,7 @@ export const getUser = ({ username }: GetUserProps): AppThunk => async (
     if (matchList.data.error) {
       throw new Error(matchList.data);
     }
-    dispatch(loadMatchList(matchList.data));
+    dispatch(loadMatchList({ ...user.data.matches, ...matchList.data }));
   } catch (error) {
     dispatch(setUserError(error.message || 'An error has occurred'));
   } finally {

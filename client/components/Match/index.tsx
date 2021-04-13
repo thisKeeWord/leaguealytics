@@ -5,6 +5,7 @@ import {
   selectMatchesIsFetching,
   selectPatchData,
   selectUserDoc,
+  selectUserFetching,
 } from '../../state';
 import { getMatchTimeline } from '../../state/actions/getMatchTimeline';
 import Chart from '../Chart';
@@ -13,10 +14,15 @@ import { MatchList } from './MatchList';
 const Match: FunctionComponent = () => {
   const [matchId, setMatchId] = useState<number>();
   const user = useSelector(selectUserDoc);
+  const isFetching = useSelector(selectUserFetching);
   const patchData = useSelector(selectPatchData);
   const matches = useSelector(selectMatchesByID);
   const isMatchesFetching = useSelector(selectMatchesIsFetching);
   const dispatch = useDispatch();
+
+  if (isFetching || isMatchesFetching) {
+    return <span>loading</span>;
+  }
 
   if (!user?.matches || !matches || !patchData?.version) {
     return null;
@@ -25,6 +31,8 @@ const Match: FunctionComponent = () => {
   const selectedGame = matchId && matches[matchId] && matches[matchId].data.gameId
     ? matches[matchId].data
     : null;
+
+  console.log(matches, matchId);
 
   const handleClick = async (gameId: number): Promise<void> => {
     if (matches[gameId] && !matches[gameId].data.gameId) {
@@ -38,6 +46,8 @@ const Match: FunctionComponent = () => {
     && selectedGame.participantIdentities.find(
       ({ player }) => player.accountId == user?.accountId,
     );
+
+  console.log(currentPlayerIdentity);
   const statsData = selectedGame
     && selectedGame.participants.map(
       ({
@@ -78,7 +88,7 @@ const Match: FunctionComponent = () => {
       },
     );
 
-  // console.log(selectedGame, 'selectedGame');
+  console.log(selectedGame, 'selectedGame');
   let totalDamageDealtStat = null;
   let totalDamageTakenStat = null;
   let goldEarnedStat = null;
@@ -160,7 +170,7 @@ const Match: FunctionComponent = () => {
       <div>
         {user.matches.map(({ championImg, timestamp, gameId }, index) => (
           <MatchList
-            index={index}
+            key={index}
             handleClick={handleClick}
             championImg={championImg}
             timestamp={timestamp}

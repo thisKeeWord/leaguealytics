@@ -6,7 +6,6 @@ import { MatchList } from './MatchList';
 
 describe('MatchList', () => {
   it('should render an input', () => {
-    const index = faker.datatype.number();
     const onClick = () => jest.fn();
     const version = faker.datatype.number();
     const timestamp = new Date();
@@ -15,7 +14,6 @@ describe('MatchList', () => {
 
     const { getByTestId } = render(
       <MatchList
-        index={index}
         handleClick={onClick}
         version={version}
         timestamp={timestamp}
@@ -29,7 +27,6 @@ describe('MatchList', () => {
   });
 
   it('should call the handleClick handler with the gameId', () => {
-    const index = faker.datatype.number();
     const onClick = jest.fn();
     const version = faker.datatype.number();
     const timestamp = new Date();
@@ -38,7 +35,6 @@ describe('MatchList', () => {
 
     const { getByTestId } = render(
       <MatchList
-        index={index}
         handleClick={onClick}
         version={version}
         timestamp={timestamp}
