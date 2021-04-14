@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import {
-  VictoryAxis, VictoryBar, VictoryChart, VictoryClipContainer, VictoryLabel,
+  VictoryAxis, VictoryBar, VictoryChart, VictoryClipContainer, VictoryContainer, VictoryLabel,
 } from 'victory';
 import styled from 'styled-components';
 
@@ -12,12 +12,14 @@ interface ChartProps {
 
 const StyledChart = styled.div`
   display: inline-block;
-  padding: 40px;
+  padding: 10px;
   width: 50%;
+  height: 65%;
 
   @media (max-width: 768px) {
     width: 100%;
   }
+
 `;
 
 const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
@@ -26,11 +28,25 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
   return (
     <StyledChart>
       <VictoryChart domainPadding={10} height={400} width={400} horizontal>
-        <VictoryLabel text={props.title} y={20} />
+        <VictoryLabel
+          text={props.title}
+          y={20}
+          style={{
+            fill: 'white',
+          }}
+        />
         <VictoryAxis
           dependentAxis
           standalone={false}
           tickLabelComponent={<VictoryLabel renderInPortal />}
+          style={{
+            tickLabels: {
+              fill: 'white',
+            },
+            axis: {
+              stroke: 'white',
+            },
+          }}
         />
         <VictoryAxis
           standalone={false}
@@ -39,15 +55,18 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
           tickValues={props.data.map(({ x }, index: number) => `${x} (${index})`)}
           style={{
             tickLabels: {
-              fill: ({ index }) => (playerType[index] ? 'green' : 'purple'),
+              fill: ({ index }) => (playerType[index] ? 'green' : 'white'),
+            },
+            axis: {
+              stroke: 'white',
             },
           }}
         />
         <VictoryBar
           style={{
-            data: { fill: ({ datum }) => (datum.isCurrentPlayer ? 'green' : 'purple') },
+            data: { fill: ({ datum }) => (datum.isCurrentPlayer ? 'green' : 'white') },
             labels: {
-              fill: ({ datum }: any) => (datum.isCurrentPlayer ? 'green' : 'purple'),
+              fill: ({ datum }: any) => (datum.isCurrentPlayer ? 'green' : 'white'),
             },
           }}
           data={props.data.map(({ x, y, isCurrentPlayer }, index: number) => ({ x: `${x} (${index})`, y, isCurrentPlayer }))}

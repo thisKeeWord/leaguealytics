@@ -182,43 +182,41 @@ const Match: FunctionComponent = () => {
 
   return (
     <div>
-      <div>
-        {user.matches.map(({ championImg, timestamp, gameId }, index) => (
-          <MatchList
-            key={index}
-            handleClick={handleClick}
-            championImg={championImg}
-            timestamp={timestamp}
-            gameId={gameId}
-            version={patchData.version}
-          />
-        ))}
-        {isMatchesFetching ? (
-          <span>loading</span>
-        ) : (
-          <div>
-            {totalDamageDealtStat && (
-              <Chart version={patchData.version} data={totalDamageDealtStat} title="Total Damage Dealt" />
-            )}
-            {totalDamageTakenStat && (
-              <Chart version={patchData.version} data={totalDamageTakenStat} title="Total Damage Taken" />
-            )}
-            {goldEarnedStat && (
-              <Chart version={patchData.version} data={goldEarnedStat} title="Gold Earned" />
-            )}
-            {killsStat && <Chart version={patchData.version} data={killsStat} title="Kills" />}
-            {assistsStat && <Chart version={patchData.version} data={assistsStat} title="Assists" />}
-            {killParticipationStat && (
-              <Chart version={patchData.version} data={killParticipationStat} title="Kill Participation" />
-            )}
-            {deathStat && <Chart version={patchData.version} data={deathStat} title="Deaths" />}
-            {deathShareStat && (
-              <Chart version={patchData.version} data={deathShareStat} title="Death Share" />
-            )}
-            {creepScoreStat && <Chart version={patchData.version} data={creepScoreStat} title="Creep Score" />}
-          </div>
-        )}
-      </div>
+      {user.matches.map(({ championImg, timestamp, gameId }, index) => (
+        <MatchList
+          key={index}
+          handleClick={handleClick}
+          championImg={championImg}
+          timestamp={timestamp}
+          gameId={gameId}
+          version={patchData.version}
+        />
+      ))}
+      {isMatchesFetching ? (
+        <span>loading</span>
+      ) : (
+        <div>
+          {totalDamageDealtStat && (
+          <Chart version={patchData.version} data={totalDamageDealtStat} title="Total Damage Dealt" />
+          )}
+          {totalDamageTakenStat && (
+          <Chart version={patchData.version} data={totalDamageTakenStat} title="Total Damage Taken" />
+          )}
+          {goldEarnedStat && (
+          <Chart version={patchData.version} data={goldEarnedStat} title="Gold Earned" />
+          )}
+          {killsStat && <Chart version={patchData.version} data={killsStat} title="Kills" />}
+          {assistsStat && <Chart version={patchData.version} data={assistsStat} title="Assists" />}
+          {killParticipationStat && (
+          <Chart version={patchData.version} data={killParticipationStat} title="Kill Participation" />
+          )}
+          {deathStat && <Chart version={patchData.version} data={deathStat} title="Deaths" />}
+          {deathShareStat && (
+          <Chart version={patchData.version} data={deathShareStat} title="Death Share" />
+          )}
+          {creepScoreStat && <Chart version={patchData.version} data={creepScoreStat} title="Creep Score" />}
+        </div>
+      )}
     </div>
   );
 };

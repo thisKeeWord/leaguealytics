@@ -40,7 +40,7 @@ export const getUsersInfo = async (req, res) => {
       }
     });
 
-    const userFullData = {...userData, matches }
+    const userFullData = { ...userData, matches };
 
     await api.users.doc(username).set(userFullData);
 
