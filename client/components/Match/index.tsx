@@ -32,8 +32,6 @@ const Match: FunctionComponent = () => {
     ? matches[matchId].data
     : null;
 
-  console.log(matches, matchId);
-
   const handleClick = async (gameId: number): Promise<void> => {
     if (matches[gameId] && !matches[gameId].data.gameId) {
       dispatch(getMatchTimeline({ username: user.name, gameId }));
@@ -47,7 +45,6 @@ const Match: FunctionComponent = () => {
       ({ player }) => player.accountId == user?.accountId,
     );
 
-  console.log(currentPlayerIdentity);
   const statsData = selectedGame
     && selectedGame.participants.map(
       ({
@@ -61,7 +58,7 @@ const Match: FunctionComponent = () => {
               (team: Record<any, any>) => team.teamId === teamId,
             );
             return {
-              champion: patchData.patchData[championData].name,
+              champion: patchData.patchData[championData].id,
               // eslint-disable-next-line max-len
               player: (selectedGame.participantIdentities.find((participant) => participant.participantId === participantId)).player.summonerName,
               participantId,
@@ -101,66 +98,84 @@ const Match: FunctionComponent = () => {
 
   if (statsData) {
     totalDamageDealtStat = statsData.map(({
-      champion, damageDealt, isCurrentPlayer, player, participantId,
+      champion, damageDealt, isCurrentPlayer, player,
     }) => ({
-      x: `${champion} \n (${participantId})`,
+      x: `${champion}`,
       y: damageDealt,
+      player,
+      label: `${champion} ${player}`,
       isCurrentPlayer,
     }));
     totalDamageTakenStat = statsData.map(({
-      champion, damageTaken, isCurrentPlayer, player, participantId,
+      champion, damageTaken, isCurrentPlayer, player,
     }) => ({
-      x: `${champion} \n (${participantId})`,
+      x: `${champion}`,
       y: damageTaken,
+      player,
+      label: `${champion} ${player}`,
       isCurrentPlayer,
     }));
     goldEarnedStat = statsData.map(({
-      champion, goldEarned, isCurrentPlayer, player, participantId,
+      champion, goldEarned, isCurrentPlayer, player,
     }) => ({
-      x: `${champion} \n (${participantId})`,
+      x: `${champion}`,
       y: goldEarned,
+      player,
+      label: `${champion} ${player}`,
       isCurrentPlayer,
     }));
     killsStat = statsData.map(({
-      champion, kills, isCurrentPlayer, player, participantId,
+      champion, kills, isCurrentPlayer, player,
     }) => ({
-      x: `${champion} \n (${participantId})`,
+      x: `${champion}`,
       y: kills,
+      player,
+      label: `${champion} ${player}`,
       isCurrentPlayer,
     }));
     assistsStat = statsData.map(({
-      champion, assists, isCurrentPlayer, player, participantId,
+      champion, assists, isCurrentPlayer, player,
     }) => ({
-      x: `${champion} \n (${participantId})`,
+      x: `${champion}`,
       y: assists,
+      player,
+      label: `${champion} ${player}`,
       isCurrentPlayer,
     }));
     killParticipationStat = statsData.map(({
-      champion, killParticipation, isCurrentPlayer, player, participantId,
+      champion, killParticipation, isCurrentPlayer, player,
     }) => ({
-      x: `${champion} \n (${participantId})`,
+      x: `${champion}`,
       y: Math.floor(killParticipation),
+      player,
+      label: `${champion} ${player}`,
       isCurrentPlayer,
     }));
     deathStat = statsData.map(({
-      champion, deaths, isCurrentPlayer, player, participantId,
+      champion, deaths, isCurrentPlayer, player,
     }) => ({
-      x: `${champion} \n (${participantId})`,
+      x: `${champion}`,
       y: deaths,
+      player,
+      label: `${champion} ${player}`,
       isCurrentPlayer,
     }));
     deathShareStat = statsData.map(({
-      champion, deathShare, isCurrentPlayer, player, participantId,
+      champion, deathShare, isCurrentPlayer, player,
     }) => ({
-      x: `${champion} \n (${participantId})`,
+      x: `${champion}`,
       y: Math.floor(deathShare),
+      player,
+      label: `${champion} ${player}`,
       isCurrentPlayer,
     }));
     creepScoreStat = statsData.map(({
-      champion, creepScore, isCurrentPlayer, player, participantId,
+      champion, creepScore, isCurrentPlayer, player,
     }) => ({
-      x: `${champion} \n (${participantId})`,
+      x: `${champion}`,
       y: creepScore,
+      player,
+      label: `${champion} ${player}`,
       isCurrentPlayer,
     }));
   }
@@ -183,24 +198,24 @@ const Match: FunctionComponent = () => {
         ) : (
           <div>
             {totalDamageDealtStat && (
-              <Chart data={totalDamageDealtStat} title="Total Damage Dealt" />
+              <Chart version={patchData.version} data={totalDamageDealtStat} title="Total Damage Dealt" />
             )}
             {totalDamageTakenStat && (
-              <Chart data={totalDamageTakenStat} title="Total Damage Taken" />
+              <Chart version={patchData.version} data={totalDamageTakenStat} title="Total Damage Taken" />
             )}
             {goldEarnedStat && (
-              <Chart data={goldEarnedStat} title="Gold Earned" />
+              <Chart version={patchData.version} data={goldEarnedStat} title="Gold Earned" />
             )}
-            {killsStat && <Chart data={killsStat} title="Kills" />}
-            {assistsStat && <Chart data={assistsStat} title="Assists" />}
+            {killsStat && <Chart version={patchData.version} data={killsStat} title="Kills" />}
+            {assistsStat && <Chart version={patchData.version} data={assistsStat} title="Assists" />}
             {killParticipationStat && (
-              <Chart data={killParticipationStat} title="Kill Participation" />
+              <Chart version={patchData.version} data={killParticipationStat} title="Kill Participation" />
             )}
-            {deathStat && <Chart data={deathStat} title="Deaths" />}
+            {deathStat && <Chart version={patchData.version} data={deathStat} title="Deaths" />}
             {deathShareStat && (
-              <Chart data={deathShareStat} title="Death Share" />
+              <Chart version={patchData.version} data={deathShareStat} title="Death Share" />
             )}
-            {creepScoreStat && <Chart data={creepScoreStat} title="Creep Score" />}
+            {creepScoreStat && <Chart version={patchData.version} data={creepScoreStat} title="Creep Score" />}
           </div>
         )}
       </div>

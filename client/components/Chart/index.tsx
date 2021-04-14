@@ -1,12 +1,13 @@
 import React, { FunctionComponent } from 'react';
 import {
-  VictoryAxis, VictoryBar, VictoryChart, VictoryLabel,
+  VictoryAxis, VictoryBar, VictoryChart, VictoryClipContainer, VictoryLabel,
 } from 'victory';
 import styled from 'styled-components';
 
 interface ChartProps {
   data: any;
   title: string;
+  version: string | number
 }
 
 const StyledChart = styled.div`
@@ -33,26 +34,55 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
         />
         <VictoryAxis
           standalone={false}
-          tickLabelComponent={<VictoryLabel renderInPortal />}
+          groupComponent={<VictoryClipContainer />}
+          tickLabelComponent={<CustomLabel data={props.data} version={props.version} />}
+          tickValues={props.data.map(({ x }, index: number) => `${x} (${index})`)}
           style={{
             tickLabels: {
-              fill: ({ index }) => (playerType[index] ? 'green' : 'black'),
+              fill: ({ index }) => (playerType[index] ? 'green' : 'purple'),
             },
           }}
         />
         <VictoryBar
           style={{
-            data: { fill: '#c43a31' },
+            data: { fill: ({ datum }) => (datum.isCurrentPlayer ? 'green' : 'purple') },
             labels: {
-              fill: ({ datum }: any) => (datum.isCurrentPlayer ? 'green' : 'black'),
+              fill: ({ datum }: any) => (datum.isCurrentPlayer ? 'green' : 'purple'),
             },
           }}
-          data={props.data}
+          data={props.data.map(({ x, y, isCurrentPlayer }, index: number) => ({ x: `${x} (${index})`, y, isCurrentPlayer }))}
           labels={({ datum }) => datum.y}
           labelComponent={<VictoryLabel dy={0} />}
         />
       </VictoryChart>
     </StyledChart>
+  );
+};
+
+interface CustomLabelProps {
+  // eslint-disable-next-line react/no-unused-prop-types
+  x?: number
+  // eslint-disable-next-line react/no-unused-prop-types
+  y?: number
+  // eslint-disable-next-line react/no-unused-prop-types
+  data?: any[]
+  // eslint-disable-next-line react/no-unused-prop-types
+  datum?: any
+  // eslint-disable-next-line react/no-unused-prop-types
+  index?: number
+  version: number | string
+}
+
+const CustomLabel = (props: CustomLabelProps) => {
+  if (!props.data || (!props.index && props.index !== 0)) {
+    return null;
+  }
+
+  return (
+    <foreignObject y={(props.y || 0) - 10} x={23} style={{ height: '20px', width: '20px' }}>
+      <img alt="champion" src={`http://ddragon.leagueoflegends.com/cdn/${props.version}/img/champion/${props.data[props.index].x}.png`} style={{ height: '20px', width: '20px' }} />
+      <span>{props.data[props.index].player}</span>
+    </foreignObject>
   );
 };
 
