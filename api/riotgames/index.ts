@@ -4,7 +4,7 @@ import rateLimit from 'axios-rate-limit';
 
 const riot: AxiosInstance = rateLimit(axios.create({
   baseURL: 'https://na1.api.riotgames.com/lol',
-}), { maxRequests: 1, perMilliseconds: 4000 });
+}), { maxRequests: 500, perMilliseconds: 10000 });
 
 const riotStatic: AxiosInstance = axios.create({
   baseURL: 'https://ddragon.leagueoflegends.com',
