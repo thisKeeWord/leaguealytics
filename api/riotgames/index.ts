@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import rateLimit from 'axios-rate-limit';
 
-const riot: AxiosInstance = axios.create({
+const riot: AxiosInstance = rateLimit(axios.create({
   baseURL: 'https://na1.api.riotgames.com/lol',
-});
+}), { maxRequests: 500, perMilliseconds: 10000 });
 
 const riotStatic: AxiosInstance = axios.create({
   baseURL: 'https://ddragon.leagueoflegends.com',
