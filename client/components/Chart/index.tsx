@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import {
-  VictoryAxis, VictoryBar, VictoryChart, VictoryClipContainer, VictoryContainer, VictoryLabel,
+  VictoryAxis, VictoryBar, VictoryChart, VictoryClipContainer, VictoryLabel,
 } from 'victory';
 import styled from 'styled-components';
 

@@ -85,7 +85,7 @@ const Match: FunctionComponent = () => {
       },
     );
 
-  console.log(selectedGame, 'selectedGame');
+  // console.log(selectedGame, 'selectedGame');
   let totalDamageDealtStat = null;
   let totalDamageTakenStat = null;
   let goldEarnedStat = null;
