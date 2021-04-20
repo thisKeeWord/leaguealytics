@@ -19,7 +19,6 @@ const StyledChart = styled.div`
   @media (max-width: 768px) {
     width: 100%;
   }
-
 `;
 
 const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
@@ -32,7 +31,7 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
           text={props.title}
           y={20}
           style={{
-            fill: 'white',
+            fill: 'black',
           }}
         />
         <VictoryAxis
@@ -41,10 +40,10 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
           tickLabelComponent={<VictoryLabel renderInPortal />}
           style={{
             tickLabels: {
-              fill: 'white',
+              fill: 'black',
             },
             axis: {
-              stroke: 'white',
+              stroke: 'black',
             },
           }}
         />
@@ -55,18 +54,18 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
           tickValues={props.data.map(({ x }, index: number) => `${x} (${index})`)}
           style={{
             tickLabels: {
-              fill: ({ index }) => (playerType[index] ? 'green' : 'white'),
+              fill: ({ index }) => (playerType[index] ? 'green' : 'black'),
             },
             axis: {
-              stroke: 'white',
+              stroke: 'black',
             },
           }}
         />
         <VictoryBar
           style={{
-            data: { fill: ({ datum }) => (datum.isCurrentPlayer ? 'green' : 'white') },
+            data: { fill: ({ datum }) => (datum.isCurrentPlayer ? 'green' : 'black') },
             labels: {
-              fill: ({ datum }: any) => (datum.isCurrentPlayer ? 'green' : 'white'),
+              fill: ({ datum }: any) => (datum.isCurrentPlayer ? 'green' : 'black'),
             },
           }}
           data={props.data.map(({ x, y, isCurrentPlayer }, index: number) => ({ x: `${x} (${index})`, y, isCurrentPlayer }))}
