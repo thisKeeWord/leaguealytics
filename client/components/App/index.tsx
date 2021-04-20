@@ -17,14 +17,12 @@ const StyledApp = styled.div`
   background-image: url("../../../images/dashboard.jpeg"), linear-gradient(black, #080808);
   background-repeat: no-repeat;
   background-size: contain;
-  // background-position: 
-  display: inline-block;
 
   .search {
     box-shadow: 1px 1px 1px 1px darkcyan;
     box-sizing: border-box;
     border-radius: 5px;
-    margin: 20px 0 20px 20px;
+    margin: 0 0 20px 20px;
     width: fit-content;
     background: white;
     display: flex;

@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
 import {
   selectMatchesByID,
   selectMatchesIsFetching,
@@ -10,6 +11,67 @@ import {
 import { getMatchTimeline } from '../../state/actions/getMatchTimeline';
 import Chart from '../Chart';
 import { MatchList } from './MatchList';
+
+const MatchStyled = styled.div`
+  .matches {
+    margin-bottom: 30px;
+  }
+
+  .section {
+    position: relative;
+    box-sizing: border-box;
+    min-height: 150px;
+    width: 100%;
+    margin: 50px auto 7px auto;
+    background: transparent none repeat-y;
+
+    .top {
+      display: block;
+      width: 100%;
+      position: relative;
+      background: transparent url('https://lolstatic-a.akamaihd.net/lolkit/1.1.5/resources/images/frame-textures-sprite.jpg') no-repeat 50% 0;
+      top: -14px;
+      left: 0;
+      height: 111px;
+      z-index: 1;
+
+      &:before {
+        content: "";
+        width: 100%;
+        height: 136px;
+        position: absolute;
+        top: -21px;
+        left: 0;
+        background: transparent url('https://lolstatic-a.akamaihd.net/lolkit/1.1.5/resources/images/frame-sprite.png') no-repeat 50% -148px;
+      }
+    }
+
+    .content {
+      background-image: url('https://lolstatic-a.akamaihd.net/lolkit/1.1.5/resources/images/frame-center.png');
+      background-repeat: repeat-y;
+      background-position: 50% 0;
+      position: relative;
+      bottom: 10px;
+
+      & > .wrapper {
+        position: relative;
+        width: 980px;
+        margin: -121px auto -116px auto;
+        padding: 20px 20px;
+        min-height: 350px;
+        z-index: 2;
+      }
+    }
+
+    .bottom {
+      width: 100%;
+      position: absolute;
+      background: transparent url('https://lolstatic-a.akamaihd.net/lolkit/1.1.5/resources/images/frame-sprite.png') no-repeat 50% -284px;
+      left: 0;
+      height: 130px;
+    }
+  }
+`;
 
 const Match: FunctionComponent = () => {
   const [matchId, setMatchId] = useState<number>();
@@ -180,44 +242,57 @@ const Match: FunctionComponent = () => {
     }));
   }
 
+  // eslint-disable-next-line max-len
+  const hasStats = totalDamageDealtStat || totalDamageTakenStat || goldEarnedStat || killsStat || assistsStat || killParticipationStat || deathStat || deathShareStat || creepScoreStat;
+
   return (
-    <div>
-      {user.matches.map(({ championImg, timestamp, gameId }, index) => (
-        <MatchList
-          key={index}
-          handleClick={handleClick}
-          championImg={championImg}
-          timestamp={timestamp}
-          gameId={gameId}
-          version={patchData.version}
-        />
-      ))}
+    <MatchStyled>
+      <div className="matches">
+        {user.matches.map(({ championImg, timestamp, gameId }, index) => (
+          <MatchList
+            key={index}
+            handleClick={handleClick}
+            championImg={championImg}
+            timestamp={timestamp}
+            gameId={gameId}
+            version={patchData.version}
+          />
+        ))}
+      </div>
       {isMatchesFetching ? (
         <span>loading</span>
       ) : (
-        <div>
-          {totalDamageDealtStat && (
-          <Chart version={patchData.version} data={totalDamageDealtStat} title="Total Damage Dealt" />
-          )}
-          {totalDamageTakenStat && (
-          <Chart version={patchData.version} data={totalDamageTakenStat} title="Total Damage Taken" />
-          )}
-          {goldEarnedStat && (
-          <Chart version={patchData.version} data={goldEarnedStat} title="Gold Earned" />
-          )}
-          {killsStat && <Chart version={patchData.version} data={killsStat} title="Kills" />}
-          {assistsStat && <Chart version={patchData.version} data={assistsStat} title="Assists" />}
-          {killParticipationStat && (
-          <Chart version={patchData.version} data={killParticipationStat} title="Kill Participation" />
-          )}
-          {deathStat && <Chart version={patchData.version} data={deathStat} title="Deaths" />}
-          {deathShareStat && (
-          <Chart version={patchData.version} data={deathShareStat} title="Death Share" />
-          )}
-          {creepScoreStat && <Chart version={patchData.version} data={creepScoreStat} title="Creep Score" />}
-        </div>
+        hasStats && (
+          <div className="section">
+            <div className="top" />
+            <div className="content">
+              <div className="wrapper">
+                {totalDamageDealtStat && (
+                <Chart version={patchData.version} data={totalDamageDealtStat} title="Total Damage Dealt" />
+                )}
+                {totalDamageTakenStat && (
+                <Chart version={patchData.version} data={totalDamageTakenStat} title="Total Damage Taken" />
+                )}
+                {goldEarnedStat && (
+                <Chart version={patchData.version} data={goldEarnedStat} title="Gold Earned" />
+                )}
+                {killsStat && <Chart version={patchData.version} data={killsStat} title="Kills" />}
+                {assistsStat && <Chart version={patchData.version} data={assistsStat} title="Assists" />}
+                {killParticipationStat && (
+                <Chart version={patchData.version} data={killParticipationStat} title="Kill Participation" />
+                )}
+                {deathStat && <Chart version={patchData.version} data={deathStat} title="Deaths" />}
+                {deathShareStat && (
+                <Chart version={patchData.version} data={deathShareStat} title="Death Share" />
+                )}
+                {creepScoreStat && <Chart version={patchData.version} data={creepScoreStat} title="Creep Score" />}
+              </div>
+            </div>
+            <div className="bottom" style={{ backgroundColor: 'black' }} />
+          </div>
+        )
       )}
-    </div>
+    </MatchStyled>
   );
 };
 
