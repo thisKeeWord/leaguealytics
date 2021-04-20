@@ -141,6 +141,7 @@ const Match: FunctionComponent = () => {
               creepScore: stats.totalMinionsKilled + stats.neutralMinionsKilled,
               isCurrentPlayer:
                 currentPlayerIdentity.participantId == participantId,
+              team: teamId,
             };
           }
         }
@@ -160,85 +161,94 @@ const Match: FunctionComponent = () => {
 
   if (statsData) {
     totalDamageDealtStat = statsData.map(({
-      champion, damageDealt, isCurrentPlayer, player,
+      champion, damageDealt, isCurrentPlayer, player, team,
     }) => ({
       x: `${champion}`,
       y: damageDealt,
       player,
       label: `${champion} ${player}`,
       isCurrentPlayer,
+      team,
     }));
     totalDamageTakenStat = statsData.map(({
-      champion, damageTaken, isCurrentPlayer, player,
+      champion, damageTaken, isCurrentPlayer, player, team,
     }) => ({
       x: `${champion}`,
       y: damageTaken,
       player,
       label: `${champion} ${player}`,
       isCurrentPlayer,
+      team,
     }));
     goldEarnedStat = statsData.map(({
-      champion, goldEarned, isCurrentPlayer, player,
+      champion, goldEarned, isCurrentPlayer, player, team,
     }) => ({
       x: `${champion}`,
       y: goldEarned,
       player,
       label: `${champion} ${player}`,
       isCurrentPlayer,
+      team,
     }));
     killsStat = statsData.map(({
-      champion, kills, isCurrentPlayer, player,
+      champion, kills, isCurrentPlayer, player, team,
     }) => ({
       x: `${champion}`,
       y: kills,
       player,
       label: `${champion} ${player}`,
       isCurrentPlayer,
+      team,
     }));
     assistsStat = statsData.map(({
-      champion, assists, isCurrentPlayer, player,
+      champion, assists, isCurrentPlayer, player, team,
     }) => ({
       x: `${champion}`,
       y: assists,
       player,
       label: `${champion} ${player}`,
       isCurrentPlayer,
+      team,
     }));
     killParticipationStat = statsData.map(({
-      champion, killParticipation, isCurrentPlayer, player,
+      champion, killParticipation, isCurrentPlayer, player, team,
     }) => ({
       x: `${champion}`,
       y: Math.floor(killParticipation),
       player,
       label: `${champion} ${player}`,
       isCurrentPlayer,
+      team,
     }));
     deathStat = statsData.map(({
-      champion, deaths, isCurrentPlayer, player,
+      champion, deaths, isCurrentPlayer, player, team,
     }) => ({
       x: `${champion}`,
       y: deaths,
       player,
       label: `${champion} ${player}`,
       isCurrentPlayer,
+      team,
     }));
     deathShareStat = statsData.map(({
-      champion, deathShare, isCurrentPlayer, player,
+      champion, deathShare, isCurrentPlayer, player, team,
     }) => ({
       x: `${champion}`,
       y: Math.floor(deathShare),
       player,
       label: `${champion} ${player}`,
       isCurrentPlayer,
+      team,
     }));
     creepScoreStat = statsData.map(({
-      champion, creepScore, isCurrentPlayer, player,
+      champion, creepScore, isCurrentPlayer, player, team,
     }) => ({
       x: `${champion}`,
       y: creepScore,
       player,
       label: `${champion} ${player}`,
       isCurrentPlayer,
+      team,
     }));
   }
 
