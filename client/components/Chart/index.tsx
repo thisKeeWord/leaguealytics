@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import {
   VictoryAxis, VictoryBar, VictoryChart, VictoryClipContainer, VictoryLabel,
 } from 'victory';
@@ -11,10 +11,18 @@ interface ChartProps {
 }
 
 const StyledChart = styled.div`
+  position: relative;
   display: inline-block;
   padding: 10px;
   width: 50%;
   height: 65%;
+
+  .sort {
+    position: absolute;
+    right: 10px;
+    top: 22px;
+    z-index: 1;
+  }
 
   @media (max-width: 768px) {
     width: 100%;
@@ -22,16 +30,37 @@ const StyledChart = styled.div`
 `;
 
 const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
-  const playerType = props.data.map(({ isCurrentPlayer }) => isCurrentPlayer);
+  const [sortBy, setSortBy] = useState('');
+  const reversedData = props.data.reverse();
+  const sortedData = sortBy ? [...reversedData].sort((a, b) => {
+    if (sortBy === 'ascending') {
+      return b.y - a.y;
+    }
+    if (sortBy === 'descending') {
+      return a.y - b.y;
+    }
+
+    return 0;
+  }) : reversedData;
+  const playerType = sortedData.map(({ isCurrentPlayer }) => isCurrentPlayer);
 
   return (
     <StyledChart>
+      <div className="sort">
+        {/* <span>Sort by: </span> */}
+        <select onChange={(e) => setSortBy(e.target.value)}>
+          <option value="">no sort</option>
+          <option value="ascending">ascending</option>
+          <option value="descending">descending</option>
+        </select>
+      </div>
       <VictoryChart domainPadding={10} height={400} width={400} horizontal>
         <VictoryLabel
           text={props.title}
           y={20}
           style={{
             fill: 'black',
+            paddingLeft: '20px',
           }}
         />
         <VictoryAxis
@@ -50,8 +79,8 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
         <VictoryAxis
           standalone={false}
           groupComponent={<VictoryClipContainer />}
-          tickLabelComponent={<CustomLabel data={props.data} version={props.version} />}
-          tickValues={props.data.map(({ x }, index: number) => `${x} (${index})`)}
+          tickLabelComponent={<CustomLabel data={sortedData} version={props.version} />}
+          tickValues={sortedData.map(({ x }, index: number) => `${x} (${index})`)}
           style={{
             tickLabels: {
               fill: ({ index }) => (playerType[index] ? 'green' : 'black'),
@@ -63,12 +92,42 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
         />
         <VictoryBar
           style={{
-            data: { fill: ({ datum }) => (datum.isCurrentPlayer ? 'green' : 'black') },
+            data: {
+              fill: ({ datum }) => {
+                if (datum.isCurrentPlayer) {
+                  return datum.team === 100 ? '#1b31a2' : '#8e1719';
+                }
+                if (datum.team === 100) {
+                  return '#2747e8';
+                }
+                if (datum.team === 200) {
+                  return '#cb2124';
+                }
+
+                return 'black';
+              },
+            },
             labels: {
-              fill: ({ datum }: any) => (datum.isCurrentPlayer ? 'green' : 'black'),
+              fill: ({ datum }: any) => {
+                if (datum.isCurrentPlayer) {
+                  return datum.team === 100 ? '#1b31a2' : '#8e1719';
+                }
+                if (datum.team === 100) {
+                  return '#2747e8';
+                }
+                if (datum.team === 200) {
+                  return '#cb2124';
+                }
+
+                return 'black';
+              },
             },
           }}
-          data={props.data.map(({ x, y, isCurrentPlayer }, index: number) => ({ x: `${x} (${index})`, y, isCurrentPlayer }))}
+          data={sortedData.map(({
+            x, y, isCurrentPlayer, team,
+          }, index: number) => ({
+            x: `${x} (${index})`, y, isCurrentPlayer, team,
+          }))}
           labels={({ datum }) => datum.y}
           labelComponent={<VictoryLabel dy={0} />}
         />
