@@ -26,7 +26,7 @@ describe('getUser', () => {
     const getState = jest.fn();
 
     const responseData = {
-      data: {},
+      data: { user: {} },
     };
 
     jest
@@ -35,7 +35,7 @@ describe('getUser', () => {
 
     getUser({ username })(dispatch, getState, null);
 
-    await waitFor(() => expect(dispatch).toHaveBeenCalledWith(setUser(responseData.data)));
+    await waitFor(() => expect(dispatch).toHaveBeenCalledWith(setUser(responseData.data.user)));
   });
 
   it('calls dispatch with loadMatchList if api call was successful', async () => {
