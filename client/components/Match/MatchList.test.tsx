@@ -8,17 +8,17 @@ describe('MatchList', () => {
   it('should render an input', () => {
     const onClick = () => jest.fn();
     const version = faker.datatype.number();
-    const timestamp = new Date();
-    const championImg = faker.lorem.word();
-    const gameId = faker.datatype.number();
+    const gameCreation = new Date();
+    const championName = faker.lorem.word();
+    const matchId = faker.random.alphaNumeric();
 
     const { getByTestId } = render(
       <MatchList
         handleClick={onClick}
         version={version}
-        timestamp={timestamp}
-        championImg={championImg}
-        gameId={gameId}
+        gameCreation={gameCreation}
+        championName={championName}
+        matchId={matchId}
       />,
     );
 
@@ -26,26 +26,26 @@ describe('MatchList', () => {
     expect(input).toBeInTheDocument();
   });
 
-  it('should call the handleClick handler with the gameId', () => {
+  it('should call the handleClick handler with the matchId', () => {
     const onClick = jest.fn();
     const version = faker.datatype.number();
-    const timestamp = new Date();
-    const championImg = faker.lorem.word();
-    const gameId = faker.datatype.number();
+    const gameCreation = new Date();
+    const championName = faker.lorem.word();
+    const matchId = faker.random.alphaNumeric();
 
     const { getByTestId } = render(
       <MatchList
         handleClick={onClick}
         version={version}
-        timestamp={timestamp}
-        championImg={championImg}
-        gameId={gameId}
+        gameCreation={gameCreation}
+        championName={championName}
+        matchId={matchId}
       />,
     );
 
     const input = getByTestId('input');
     fireEvent.click(input);
 
-    expect(onClick).toHaveBeenCalledWith(gameId);
+    expect(onClick).toHaveBeenCalledWith(matchId);
   });
 });

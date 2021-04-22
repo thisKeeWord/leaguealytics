@@ -16,7 +16,7 @@ const StyledApp = styled.div`
   min-height: 100%;
   background-image: url("../../../images/dashboard.jpeg"), linear-gradient(black, #080808);
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 
   .search {
     box-shadow: 1px 1px 1px 1px darkcyan;
@@ -101,6 +101,7 @@ const App: FunctionComponent = () => {
 
   return (
     <StyledApp>
+      <div className="backdrop" />
       <form onSubmit={handleSubmit} className="search" data-testid="app">
         <TextField
           id="username"

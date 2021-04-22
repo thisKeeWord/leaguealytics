@@ -47,7 +47,6 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
   return (
     <StyledChart>
       <div className="sort">
-        {/* <span>Sort by: </span> */}
         <select onChange={(e) => setSortBy(e.target.value)}>
           <option value="">no sort</option>
           <option value="ascending">ascending</option>

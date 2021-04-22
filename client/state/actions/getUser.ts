@@ -25,13 +25,15 @@ export const getUser = ({ username }: GetUserProps): AppThunk => async (
     if (user.data.error) {
       throw new Error(user.data);
     }
-    dispatch(setUser(user.data));
 
-    const matchList = await axios.get(`/api/user/${user.data.accountId}`);
+    const matchList = await axios.get(`/api/user/${user.data.puuid}`);
     if (matchList.data.error) {
       throw new Error(matchList.data);
     }
-    dispatch(loadMatchList({ ...user.data.matches, ...matchList.data }));
+
+    dispatch(setUser(matchList.data.user));
+    // eslint-disable-next-line max-len
+    dispatch(loadMatchList(matchList.data));
   } catch (error) {
     dispatch(setUserError(error.message || 'An error has occurred'));
   } finally {

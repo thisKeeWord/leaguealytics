@@ -36,15 +36,15 @@ const matchSlice = createSlice({
     },
     loadMatchList(state, action): void {
       const { matches, matchListData } = action.payload;
-      state.ids = matches.map((m: any) => m.gameId);
+      state.ids = matches.map((m: any) => m.matchId);
       state.byId = matches.reduce((acc: any, matchMeta: any) => {
-        const { gameId } = matchMeta;
-        acc[gameId] = {
+        const { matchId } = matchMeta;
+        acc[matchId] = {
           meta: {
             ...matchMeta,
           },
           data: {
-            ...matchListData.find((match) => match.gameId === gameId),
+            ...matchListData.find((match) => match.matchId === matchId),
           },
         };
 

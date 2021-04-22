@@ -3,8 +3,12 @@ import axios, { AxiosInstance, AxiosResponse } from 'axios';
 import rateLimit from 'axios-rate-limit';
 
 const riot: AxiosInstance = rateLimit(axios.create({
+  baseURL: 'https://americas.api.riotgames.com/lol',
+}), { maxRequests: 1, perMilliseconds: 2000 });
+
+const riotUser: AxiosInstance = rateLimit(axios.create({
   baseURL: 'https://na1.api.riotgames.com/lol',
-}), { maxRequests: 500, perMilliseconds: 10000 });
+}), { maxRequests: 1, perMilliseconds: 2000 });
 
 const riotStatic: AxiosInstance = axios.create({
   baseURL: 'https://ddragon.leagueoflegends.com',
@@ -15,7 +19,7 @@ export interface RiotAPI {
     get: (username: string) => Promise<AxiosResponse>;
   };
   matchList: {
-    get: (userId: string) => Promise<AxiosResponse>;
+    get: (puuid: string) => Promise<AxiosResponse>;
   };
   patch: {
     version: {
@@ -37,16 +41,16 @@ export interface RiotAPI {
 
 const riotAPI: RiotAPI = {
   users: {
-    get: (username: string): Promise<AxiosResponse> => riot.get(`/summoner/v4/summoners/by-name/${username}`, {
+    get: (username: string): Promise<AxiosResponse> => riotUser.get(`/summoner/v4/summoners/by-name/${username}`, {
       headers: {
-        'X-Riot-Token': process.env.RIOT_API_KEY,
+        'X-Riot-Token': process.env.RIOT_API_KEY2,
       },
     }),
   },
   matchList: {
-    get: (userId: string): Promise<AxiosResponse> => riot.get(`/match/v4/matchlists/by-account/${userId}`, {
+    get: (puuid: string): Promise<AxiosResponse> => riot.get(`/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=20`, {
       headers: {
-        'X-Riot-Token': process.env.RIOT_API_KEY,
+        'X-Riot-Token': process.env.RIOT_API_KEY2,
       },
     }),
   },
@@ -60,16 +64,16 @@ const riotAPI: RiotAPI = {
   },
   match: {
     overview: {
-      get: (matchId: string): Promise<AxiosResponse> => riot.get(`/match/v4/matches/${matchId}`, {
+      get: (matchId: string): Promise<AxiosResponse> => riot.get(`/match/v5/matches/${matchId}`, {
         headers: {
-          'X-Riot-Token': process.env.RIOT_API_KEY,
+          'X-Riot-Token': process.env.RIOT_API_KEY2,
         },
       }),
     },
     timeline: {
-      get: (matchId: string): Promise<AxiosResponse> => riot.get(`/match/v4/timelines/by-match/${matchId}`, {
+      get: (matchId: string): Promise<AxiosResponse> => riot.get(`/match/v5/matches/${matchId}/timeline`, {
         headers: {
-          'X-Riot-Token': process.env.RIOT_API_KEY,
+          'X-Riot-Token': process.env.RIOT_API_KEY2,
         },
       }),
     },

@@ -1,12 +1,5 @@
 import api from '../api';
 
-interface PatchType {
-  type: string;
-  format: string;
-  version?: string;
-  data: Record<any, any>;
-}
-
 export const getUsersInfo = async (req, res) => {
   const username = req.params.username;
 
@@ -19,32 +12,19 @@ export const getUsersInfo = async (req, res) => {
 
       return;
     }
-
     const user = await api.riotAPI.users.get(username);
     const userData = user.data;
 
-    const patchData = (await api.patchData.doc('latest').get()).data() || { data: {} };
-    const matchList = await api.riotAPI.matchList.get(userData.accountId);
+    const matchList = await api.riotAPI.matchList.get(userData.puuid);
+    const matches = matchList.data;
 
-    const matches = matchList.data.matches.slice(0, 20);
-    const championList = patchData.data as PatchType;
-
-    matches.forEach((match) => {
-      // eslint-disable-next-line no-restricted-syntax, prefer-const
-      for (let championData in championList) {
-        if (championList[championData].key == match.champion) {
-          match.championImg = championList[championData].image.full;
-
-          break;
-        }
-      }
+    matches.forEach((match, index, self) => {
+      self[index] = { matchId: match };
     });
 
-    const userFullData = { ...userData, matches };
+    await api.users.doc(username).set({ ...userData, matches });
 
-    await api.users.doc(username).set(userFullData);
-
-    res.send(userFullData);
+    res.send({ ...userData, matches });
   } catch (error) {
     res.send({ error: error.message ? error.message : error });
   }
