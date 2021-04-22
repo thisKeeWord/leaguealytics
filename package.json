@@ -5,6 +5,7 @@
   "scripts": {
     "start": "nodemon --watch \"./\" --ext \"ts,tsx,json\" --exec \"ts-node\" server/server.ts",
     "build": "webpack --config ./webpack.config.js",
+    "dev": "npm start & npm run build",
     "test": "is-ci \"test:coverage\" \"test:watch\"",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch --verbose",
