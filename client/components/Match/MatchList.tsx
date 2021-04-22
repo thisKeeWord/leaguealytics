@@ -1,11 +1,12 @@
 import React, { FunctionComponent } from 'react';
 
 interface MatchListProps {
-  handleClick: (gameId: number) => void;
+  // eslint-disable-next-line no-unused-vars
+  handleClick: (matchId: string) => void;
   version: number | string;
-  timestamp: Date;
-  championImg: string;
-  gameId: number;
+  gameCreation: Date;
+  championName: string;
+  matchId: string;
 }
 
 export const MatchList: FunctionComponent<MatchListProps> = (
@@ -16,13 +17,13 @@ export const MatchList: FunctionComponent<MatchListProps> = (
     type="button"
     style={{
       backgroundSize: '25px',
-      backgroundImage: `url(http://ddragon.leagueoflegends.com/cdn/${props.version}/img/champion/${props.championImg})`,
+      backgroundImage: `url(http://ddragon.leagueoflegends.com/cdn/${props.version}/img/champion/${props.championName}.png)`,
       backgroundRepeat: 'no-repeat',
       height: '30px',
       paddingLeft: '30px',
       margin: '4px',
     }}
-    value={new Date(props.timestamp).toLocaleDateString()}
-    onClick={() => props.handleClick(props.gameId)}
+    value={new Date(props.gameCreation).toLocaleDateString()}
+    onClick={() => props.handleClick(props.matchId)}
   />
 );

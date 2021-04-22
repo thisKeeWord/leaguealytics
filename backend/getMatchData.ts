@@ -17,9 +17,9 @@ export const getMatchData = async (req, res) => {
     }
 
     const matchTimelineData = (await api.riotAPI.match.timeline.get(matchId)).data;
-    await firestoreMatchDoc.set(matchTimelineData, { merge: true });
+    await firestoreMatchDoc.set(matchTimelineData.info, { merge: true });
 
-    res.send(matchTimelineData);
+    res.send(matchTimelineData.info);
   } catch (error) {
     res.send({ error: error.message });
   }

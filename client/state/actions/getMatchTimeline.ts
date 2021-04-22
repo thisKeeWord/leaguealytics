@@ -4,10 +4,10 @@ import { loadMatchFailure, loadMatchSuccess, setMatchFetching } from '../reducer
 
 interface GetMatchTimelineProps {
   username: string;
-  gameId: number;
+  matchId: string;
 }
 
-export const getMatchTimeline = ({ username, gameId }: GetMatchTimelineProps): AppThunk => async (
+export const getMatchTimeline = ({ username, matchId }: GetMatchTimelineProps): AppThunk => async (
   dispatch,
   getState,
 ): Promise<void> => {
@@ -20,12 +20,12 @@ export const getMatchTimeline = ({ username, gameId }: GetMatchTimelineProps): A
   }
 
   try {
-    const matchData = await axios.get(`/api/${formattedUsername}/match/${gameId}`);
+    const matchData = await axios.get(`/api/${formattedUsername}/match/${matchId}`);
 
     if (matchData.data.error) {
       throw new Error(matchData.data);
     }
-    dispatch(loadMatchSuccess({ matchData: matchData.data, matchId: gameId }));
+    dispatch(loadMatchSuccess({ matchData: matchData.data, matchId }));
   } catch (error) {
     dispatch(loadMatchFailure(error.message || 'An error has occurred'));
   } finally {

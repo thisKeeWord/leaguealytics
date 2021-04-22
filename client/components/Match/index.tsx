@@ -55,7 +55,7 @@ const MatchStyled = styled.div`
 
       & > .wrapper {
         position: relative;
-        width: 980px;
+        max-width: 980px;
         margin: -121px auto -116px auto;
         padding: 20px 20px;
         min-height: 350px;
@@ -74,7 +74,7 @@ const MatchStyled = styled.div`
 `;
 
 const Match: FunctionComponent = () => {
-  const [matchId, setMatchId] = useState<number>();
+  const [selectedMatchId, setSelectedMatchId] = useState<string>();
   const user = useSelector(selectUserDoc);
   const isFetching = useSelector(selectUserFetching);
   const patchData = useSelector(selectPatchData);
@@ -90,27 +90,40 @@ const Match: FunctionComponent = () => {
     return null;
   }
 
-  const selectedGame = matchId && matches[matchId] && matches[matchId].data.gameId
-    ? matches[matchId].data
+  // eslint-disable-next-line max-len
+  const selectedGame = selectedMatchId && matches[selectedMatchId] && matches[selectedMatchId].data.matchId
+    ? matches[selectedMatchId].data
     : null;
 
-  const handleClick = async (gameId: number): Promise<void> => {
-    if (matches[gameId] && !matches[gameId].data.gameId) {
-      dispatch(getMatchTimeline({ username: user.name, gameId }));
+  const handleClick = async (matchId: string): Promise<void> => {
+    if (matches[matchId] && !matches[matchId].data.matchId) {
+      dispatch(getMatchTimeline({ username: user.name, matchId }));
     }
 
-    setMatchId(gameId);
+    setSelectedMatchId(matchId);
   };
 
   const currentPlayerIdentity = selectedGame
-    && selectedGame.participantIdentities.find(
-      ({ player }) => player.accountId == user?.accountId,
+    && selectedGame.participants.find(
+      ({ summonerId }) => summonerId == user?.id,
     );
 
   const statsData = selectedGame
     && selectedGame.participants.map(
       ({
-        participantId, championId, stats, teamId,
+        participantId,
+        championId,
+        championName,
+        totalDamageDealtToChampions,
+        totalDamageTaken,
+        goldEarned,
+        kills,
+        assists,
+        deaths,
+        totalMinionsKilled,
+        neutralMinionsKilled,
+        teamId,
+        summonerName,
       // eslint-disable-next-line array-callback-return
       }) => {
         // eslint-disable-next-line no-restricted-syntax, prefer-const
@@ -120,25 +133,25 @@ const Match: FunctionComponent = () => {
               (team: Record<any, any>) => team.teamId === teamId,
             );
             return {
-              champion: patchData.patchData[championData].id,
+              champion: championName,
               // eslint-disable-next-line max-len
-              player: (selectedGame.participantIdentities.find((participant) => participant.participantId === participantId)).player.summonerName,
+              player: summonerName,
               participantId,
-              damageDealt: stats.totalDamageDealtToChampions,
-              damageTaken: stats.totalDamageTaken,
-              goldEarned: stats.goldEarned,
-              kills: stats.kills,
-              assists: stats.assists,
-              deaths: stats.deaths,
+              damageDealt: totalDamageDealtToChampions,
+              damageTaken: totalDamageTaken,
+              goldEarned,
+              kills,
+              assists,
+              deaths,
               killParticipation:
                 teamStat.kills === 0
                   ? 0
-                  : ((stats.kills + stats.assists) / teamStat.kills) * 100,
+                  : ((kills + assists) / teamStat.kills) * 100,
               deathShare:
                 teamStat.deaths === 0
                   ? 0
-                  : (stats.deaths / teamStat.deaths) * 100,
-              creepScore: stats.totalMinionsKilled + stats.neutralMinionsKilled,
+                  : (deaths / teamStat.deaths) * 100,
+              creepScore: totalMinionsKilled + neutralMinionsKilled,
               isCurrentPlayer:
                 currentPlayerIdentity.participantId == participantId,
               team: teamId,
@@ -258,13 +271,13 @@ const Match: FunctionComponent = () => {
   return (
     <MatchStyled>
       <div className="matches">
-        {user.matches.map(({ championImg, timestamp, gameId }, index) => (
+        {user.matches.map(({ championName, gameCreation, matchId }, index) => (
           <MatchList
             key={index}
             handleClick={handleClick}
-            championImg={championImg}
-            timestamp={timestamp}
-            gameId={gameId}
+            championName={championName}
+            gameCreation={gameCreation}
+            matchId={matchId}
             version={patchData.version}
           />
         ))}
