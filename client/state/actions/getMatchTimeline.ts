@@ -11,11 +11,13 @@ export const getMatchTimeline = ({ username, matchId }: GetMatchTimelineProps): 
   dispatch,
   getState,
 ): Promise<void> => {
+  const state = getState();
+  const match = state.match;
   dispatch(setMatchFetching({ isFetching: true }));
 
   const formattedUsername = username.replace(/\s+/g, '').toLowerCase();
 
-  if (!username) {
+  if (!username || match.byId[matchId].data.byTimeframe) {
     return;
   }
 

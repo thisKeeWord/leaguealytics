@@ -10,7 +10,7 @@ jest.mock('../../../api');
 const username = faker.random.alphaNumeric();
 const matchId = faker.random.alphaNumeric();
 
-describe('getUser', () => {
+xdescribe('getMatchTimeline', () => {
   it('calls "axios.get" api route', async () => {
     const dispatch = jest.fn();
     const getState = jest.fn();

@@ -30,6 +30,7 @@
     "import/no-extraneous-dependencies": 0,
     "react/destructuring-assignment": 0,
     "eqeqeq": 0,
+    "no-plusplus": 0,
     "import/extensions": [
       "error",
       "ignorePackages",
