@@ -66,6 +66,7 @@ export const getUserMatches = async (req, res) => {
         champion: currentUser.championId,
         championName: currentUser.championName,
         champLevel: currentUser.champLevel,
+        goldEarned: currentUser.goldEarned,
         summoner1Id: currentUser.summoner1Id,
         summoner2Id: currentUser.summoner2Id,
         item0: currentUser.item0,
