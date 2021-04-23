@@ -96,7 +96,7 @@ const Match: FunctionComponent = () => {
     : null;
 
   const handleClick = async (matchId: string): Promise<void> => {
-    if (matches[matchId] && !matches[matchId].data.matchId) {
+    if (!matches[matchId].data.byTimeframe) {
       dispatch(getMatchTimeline({ username: user.name, matchId }));
     }
 
