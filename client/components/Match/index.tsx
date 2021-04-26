@@ -104,9 +104,9 @@ const Match: FunctionComponent = () => {
   };
 
   const currentPlayerIdentity = selectedGame.participants
-    && selectedGame.participants.find(
+    ? selectedGame.participants.find(
       ({ summonerId }) => summonerId == user?.id,
-    );
+    ) : {};
 
   return (
     <MatchStyled>

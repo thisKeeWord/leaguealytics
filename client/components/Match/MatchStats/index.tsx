@@ -9,11 +9,13 @@ interface MatchStatsProps {
 export const MatchStats: FunctionComponent<MatchStatsProps> = (
   props: MatchStatsProps,
 ) => {
-  if (!props.match.matchId || !props.currentPlayer) {
+  if (!props.match.matchId || !props.currentPlayer.summonerId) {
     return null;
   }
 
   return (
-    <MatchSummary match={props.match} currentPlayer={props.currentPlayer} />
+    <div data-testid="match-summary">
+      <MatchSummary match={props.match} currentPlayer={props.currentPlayer} />
+    </div>
   );
 };
