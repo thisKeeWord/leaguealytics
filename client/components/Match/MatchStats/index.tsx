@@ -14,7 +14,7 @@ export const MatchStats: FunctionComponent<MatchStatsProps> = (
   }
 
   return (
-    <div data-testid="match-summary">
+    <div data-testid="match-stats">
       <MatchSummary match={props.match} currentPlayer={props.currentPlayer} />
     </div>
   );

@@ -17,7 +17,7 @@ describe('MatchStats', () => {
       />,
     );
 
-    expect(queryAllByTestId('match-summary')).toHaveLength(0);
+    expect(queryAllByTestId('match-stats')).toHaveLength(0);
   });
 
   it('returns null if no matchId exists', () => {
@@ -30,7 +30,7 @@ describe('MatchStats', () => {
       />,
     );
 
-    expect(queryAllByTestId('match-summary')).toHaveLength(0);
+    expect(queryAllByTestId('match-stats')).toHaveLength(0);
   });
 
   it('renders MatchSummary', () => {
@@ -44,6 +44,6 @@ describe('MatchStats', () => {
       />,
     );
 
-    expect(getByTestId('match-summary')).toBeInTheDocument();
+    expect(getByTestId('match-stats')).toBeInTheDocument();
   });
 });

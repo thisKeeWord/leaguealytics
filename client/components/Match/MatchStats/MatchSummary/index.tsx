@@ -13,67 +13,66 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
 ) => {
   const patchData = useSelector(selectPatchData);
 
-  if (!patchData) {
+  if (
+    !patchData
+    || !props.currentPlayer.participantId
+    || !props.match.participants
+    || !props.match.teams
+  ) {
     return null;
   }
 
-  const statsData = props.match
-    && props.match.participants.map(
-      ({
-        participantId,
-        championId,
-        championName,
-        totalDamageDealtToChampions,
-        totalDamageTaken,
-        goldEarned,
-        kills,
-        assists,
-        deaths,
-        totalMinionsKilled,
-        neutralMinionsKilled,
-        teamId,
-        summonerName,
+  const statsData = props.match.participants.map(
+    ({
+      participantId,
+      championId,
+      championName,
+      totalDamageDealtToChampions,
+      totalDamageTaken,
+      goldEarned,
+      kills,
+      assists,
+      deaths,
+      totalMinionsKilled,
+      neutralMinionsKilled,
+      teamId,
+      summonerName,
       // eslint-disable-next-line array-callback-return
-      }) => {
-        // eslint-disable-next-line no-restricted-syntax, prefer-const
-        for (let championData in patchData.patchData) {
-          if (patchData.patchData[championData].key == championId) {
-            const teamStats = props.match.teams.find(
-              (team: Record<any, any>) => team.teamId === teamId,
-            );
-            return {
-              champion: championName,
-              // eslint-disable-next-line max-len
-              player: summonerName,
-              participantId,
-              damageDealt: totalDamageDealtToChampions,
-              damageTaken: totalDamageTaken,
-              goldEarned,
-              kills,
-              assists,
-              deaths,
-              killParticipation:
+    }) => {
+      // eslint-disable-next-line no-restricted-syntax, prefer-const
+      for (let championData in patchData.patchData) {
+        if (patchData.patchData[championData].key == championId) {
+          const teamStats = props.match.teams.find(
+            (team: Record<any, any>) => team.teamId === teamId,
+          );
+          return {
+            champion: championName,
+            // eslint-disable-next-line max-len
+            player: summonerName,
+            participantId,
+            damageDealt: totalDamageDealtToChampions,
+            damageTaken: totalDamageTaken,
+            goldEarned,
+            kills,
+            assists,
+            deaths,
+            killParticipation:
                 teamStats.kills === 0
                   ? 0
                   : ((kills + assists) / teamStats.kills) * 100,
-              deathShare:
+            deathShare:
                 teamStats.deaths === 0
                   ? 0
                   : (deaths / teamStats.deaths) * 100,
-              creepScore: totalMinionsKilled + neutralMinionsKilled,
-              isCurrentPlayer:
+            creepScore: totalMinionsKilled + neutralMinionsKilled,
+            isCurrentPlayer:
                 props.currentPlayer.participantId == participantId,
-              team: teamId,
-            };
-          }
+            team: teamId,
+          };
         }
-      },
-    );
-
-  if (!statsData.length) {
-    return null;
-  }
-
+      }
+    },
+  );
   // console.log(props.match, 'props.match');
 
   const totalDamageDealtStat = parseStats(statsData, 'damageDealt');
@@ -87,7 +86,7 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
   const creepScoreStat = parseStats(statsData, 'creepScore');
 
   return (
-    <>
+    <div data-testid="match-summary">
       {totalDamageDealtStat && <Chart version={patchData.version} data={totalDamageDealtStat} title="Total Damage Dealt" />}
       {totalDamageTakenStat && <Chart version={patchData.version} data={totalDamageTakenStat} title="Total Damage Taken" />}
       {goldEarnedStat && <Chart version={patchData.version} data={goldEarnedStat} title="Gold Earned" />}
@@ -97,7 +96,7 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
       {deathStat && <Chart version={patchData.version} data={deathStat} title="Deaths" />}
       {deathShareStat && <Chart version={patchData.version} data={deathShareStat} title="Death Share (% rounded down)" />}
       {creepScoreStat && <Chart version={patchData.version} data={creepScoreStat} title="Creep Score" />}
-    </>
+    </div>
   );
 };
 
