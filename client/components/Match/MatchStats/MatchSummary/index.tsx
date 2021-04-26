@@ -105,7 +105,7 @@ const parseStats = (statsData: Record<any, any>[], type: string) => {
     champion, isCurrentPlayer, player, team,
   }, index, self) => ({
     x: `${champion}`,
-    y: ['deathShare', 'killParticipation'].includes(type) ? self[index][type].floor() : self[index][type],
+    y: ['deathShare', 'killParticipation'].includes(type) ? Math.floor(self[index][type]) : self[index][type],
     player,
     label: `${champion} ${player}`,
     isCurrentPlayer,
