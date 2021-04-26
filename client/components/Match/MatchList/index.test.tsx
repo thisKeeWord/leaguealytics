@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
 import faker from 'faker';
-import { MatchList } from './MatchList';
+import { MatchList } from '.';
 
 describe('MatchList', () => {
   it('should render an input', () => {
