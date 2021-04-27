@@ -1,6 +1,11 @@
 import React, { FunctionComponent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import Divider from '@material-ui/core/Divider/Divider';
+import Box from '@material-ui/core/Box/Box';
+import List from '@material-ui/core/List/List';
+import ListItem from '@material-ui/core/ListItem/ListItem';
+import Pagination from '@material-ui/lab/Pagination';
 import {
   selectMatchesByID,
   selectMatchesIsFetching,
@@ -15,6 +20,24 @@ import { MatchStats } from './MatchStats';
 const MatchStyled = styled.div`
   .matches {
     margin-bottom: 30px;
+    display: inline-block;
+
+    hr {
+      background-color: white !important;
+    }
+  }
+
+  .paginator {
+    justify-content: center;
+    padding: 10px;
+
+     button {
+      color: white !important;
+    }
+  }
+
+  ul > li {
+    justify-content: center;
   }
 
   .section {
@@ -74,13 +97,20 @@ const MatchStyled = styled.div`
 `;
 
 const Match: FunctionComponent = () => {
-  const [selectedMatchId, setSelectedMatchId] = useState<string>();
   const user = useSelector(selectUserDoc);
   const isFetching = useSelector(selectUserFetching);
   const patchData = useSelector(selectPatchData);
   const matches = useSelector(selectMatchesByID);
   const isMatchesFetching = useSelector(selectMatchesIsFetching);
   const dispatch = useDispatch();
+  const [selectedMatchId, setSelectedMatchId] = useState<string>();
+  const itemsPerPage = 4;
+  const [page, setPage] = useState(1);
+  const noOfPages = matches ? (Object.keys(matches)).length / itemsPerPage : 0;
+
+  const handlePageChange = (_event, value) => {
+    setPage(value);
+  };
 
   if (isFetching || isMatchesFetching) {
     return <span>loading</span>;
@@ -111,16 +141,36 @@ const Match: FunctionComponent = () => {
   return (
     <MatchStyled>
       <div className="matches">
-        {user.matches.map(({ championName, gameCreation, matchId }, index) => (
-          <MatchList
-            key={index}
-            handleClick={handleClick}
-            championName={championName}
-            gameCreation={gameCreation}
-            matchId={matchId}
-            version={patchData.version}
+        <List>
+          {user.matches
+            .slice((page - 1) * itemsPerPage, page * itemsPerPage)
+            .map(({ championName, gameCreation, matchId }, index) => (
+              <ListItem key={index}>
+                <MatchList
+                  handleClick={handleClick}
+                  championName={championName}
+                  gameCreation={gameCreation}
+                  matchId={matchId}
+                  version={patchData.version}
+                />
+              </ListItem>
+            ))}
+        </List>
+        <Divider />
+        <Box component="span">
+          <Pagination
+            count={noOfPages}
+            page={page}
+            onChange={handlePageChange}
+            defaultPage={1}
+            color="primary"
+            size="large"
+            showFirstButton
+            showLastButton
+            className="paginator"
           />
-        ))}
+        </Box>
+
       </div>
       {isMatchesFetching ? (
         <span>loading</span>
