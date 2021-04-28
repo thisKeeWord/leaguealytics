@@ -18,28 +18,6 @@ import { MatchList } from './MatchList';
 import { MatchStats } from './MatchStats';
 
 const MatchStyled = styled.div`
-  .matches {
-    margin-bottom: 30px;
-    display: inline-block;
-
-    hr {
-      background-color: white !important;
-    }
-  }
-
-  .paginator {
-    justify-content: center;
-    padding: 10px;
-
-     button {
-      color: white !important;
-    }
-  }
-
-  ul > li {
-    justify-content: center;
-  }
-
   .section {
     position: relative;
     box-sizing: border-box;
@@ -83,6 +61,52 @@ const MatchStyled = styled.div`
         padding: 20px 20px;
         min-height: 350px;
         z-index: 2;
+
+        .content-border {
+          box-sizing: border-box;
+          padding: 4px;
+          background-color: transparent;
+          -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#1A000000,endColorstr=#1A000000);
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#1A000000,endColorstr=#1A000000);
+          background-color: rgba(0,0,0,0.1);
+          border-left: 1px solid rgba(84,84,84,0.3);
+          border-top: 1px solid rgba(84,84,84,0.3);
+          border-bottom: 1px solid rgba(255,255,255,0.6);
+          border-right: 1px solid rgba(255,255,255,0.6);
+      
+          hr {
+            background-color: white !important;
+          }
+        }
+
+        .match-list {
+          padding: 0 !important;
+
+          & > li {
+            padding: 0 !important;
+            justify-content: center;
+            border-left: 1px solid #fff;
+            border-top: 1px solid #fff;
+            border-right: 1px solid #d7d7d7;
+            border-bottom: 1px solid #d7d7d7;
+            background-color: #efefef;
+          }
+        }
+
+        .paginator {
+          padding: 10px;
+          & > ul {
+            justify-content: center;
+          }
+      
+          button {
+            color: white !important;
+          }
+        }
+
+        .match-info {
+          background-color: #efefef;
+        }
       }
     }
 
@@ -108,11 +132,11 @@ const Match: FunctionComponent = () => {
   const [page, setPage] = useState(1);
   const noOfPages = matches ? (Object.keys(matches)).length / itemsPerPage : 0;
 
-  const handlePageChange = (_event, value) => {
+  const handlePageChange = (_event, value: number) => {
     setPage(value);
   };
 
-  if (isFetching || isMatchesFetching) {
+  if (isFetching) {
     return <span>loading</span>;
   }
 
@@ -140,52 +164,59 @@ const Match: FunctionComponent = () => {
 
   return (
     <MatchStyled>
-      <div className="matches">
-        <List>
-          {user.matches
-            .slice((page - 1) * itemsPerPage, page * itemsPerPage)
-            .map(({ championName, gameCreation, matchId }, index) => (
-              <ListItem key={index}>
-                <MatchList
-                  handleClick={handleClick}
-                  championName={championName}
-                  gameCreation={gameCreation}
-                  matchId={matchId}
-                  version={patchData.version}
+      <div className="section">
+        <div className="top" />
+        <div className="content">
+          <div className="wrapper">
+            <div className="content-border">
+              <List className="match-list">
+                {user.matches
+                  .slice((page - 1) * itemsPerPage, page * itemsPerPage)
+                  .map(({ championName, gameCreation, matchId }, index) => (
+                    <ListItem key={index}>
+                      <MatchList
+                        handleClick={handleClick}
+                        championName={championName}
+                        gameCreation={gameCreation}
+                        matchId={matchId}
+                        version={patchData.version}
+                        role="button"
+                        isActiveMatch={selectedMatchId === matchId}
+                      />
+                    </ListItem>
+                  ))}
+              </List>
+              <Divider />
+              <Box component="span">
+                <Pagination
+                  count={noOfPages}
+                  page={page}
+                  onChange={handlePageChange}
+                  defaultPage={1}
+                  color="primary"
+                  size="large"
+                  showFirstButton
+                  showLastButton
+                  className="paginator"
                 />
-              </ListItem>
-            ))}
-        </List>
-        <Divider />
-        <Box component="span">
-          <Pagination
-            count={noOfPages}
-            page={page}
-            onChange={handlePageChange}
-            defaultPage={1}
-            color="primary"
-            size="large"
-            showFirstButton
-            showLastButton
-            className="paginator"
-          />
-        </Box>
+              </Box>
 
-      </div>
-      {isMatchesFetching ? (
-        <span>loading</span>
-      ) : (
-        <div className="section">
-          <div className="top" />
-          <div className="content">
-            <div className="wrapper">
-              {/* <MatchSummary /> */}
-              <MatchStats currentPlayer={currentPlayerIdentity} match={selectedGame} />
             </div>
+            {isMatchesFetching ? (
+              <span>loading</span>
+            ) : (
+
+              <div className="content-border">
+                <div className="match-info">
+                  {/* <MatchSummary /> */}
+                  <MatchStats currentPlayer={currentPlayerIdentity} match={selectedGame} />
+                </div>
+              </div>
+            )}
           </div>
-          <div className="bottom" style={{ backgroundColor: 'black' }} />
         </div>
-      )}
+        <div className="bottom" style={{ backgroundColor: 'black' }} />
+      </div>
     </MatchStyled>
   );
 };
