@@ -19,6 +19,7 @@ describe('MatchList', () => {
         gameCreation={gameCreation}
         championName={championName}
         matchId={matchId}
+        isActiveMatch={false}
       />,
     );
 
@@ -40,6 +41,7 @@ describe('MatchList', () => {
         gameCreation={gameCreation}
         championName={championName}
         matchId={matchId}
+        isActiveMatch={false}
       />,
     );
 
