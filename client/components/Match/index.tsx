@@ -200,12 +200,10 @@ const Match: FunctionComponent = () => {
                   className="paginator"
                 />
               </Box>
-
             </div>
             {isMatchesFetching ? (
               <span>loading</span>
             ) : (
-
               <div className="content-border">
                 <div className="match-info">
                   {/* <MatchSummary /> */}
