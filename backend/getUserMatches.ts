@@ -19,9 +19,11 @@ export const getUserMatches = async (req, res) => {
       const savedMatchDataObj = savedMatchData ? savedMatchData?.data() : {};
 
       const matchOverviewData = (await api.riotAPI.match.overview.get(match.matchId)).data;
-      const teamKillsAndDeaths = (matchOverviewData.info.participants as Array<any>)
+      const teamStats = (matchOverviewData.info.participants as Array<any>)
         .reduce((accumulator, currentValue: Record<any, any>) => {
-          const { kills, deaths, teamId } = currentValue;
+          const {
+            kills, deaths, goldEarned, teamId,
+          } = currentValue;
           accumulator[teamId] = {
             kills: accumulator[teamId]
               ? accumulator[teamId].kills + kills
@@ -29,6 +31,9 @@ export const getUserMatches = async (req, res) => {
             deaths: accumulator[teamId]
               ? accumulator[teamId].deaths + deaths
               : deaths,
+            goldEarned: accumulator[teamId]
+              ? accumulator[teamId].goldEarned + goldEarned
+              : goldEarned,
           };
 
           return accumulator;
@@ -36,8 +41,9 @@ export const getUserMatches = async (req, res) => {
 
       (matchOverviewData.info.teams as Array<Record<any, any>>).forEach(
         ({ teamId }, index, self) => {
-          self[index].kills = teamKillsAndDeaths[teamId].kills;
-          self[index].deaths = teamKillsAndDeaths[teamId].deaths;
+          self[index].kills = teamStats[teamId].kills;
+          self[index].deaths = teamStats[teamId].deaths;
+          self[index].goldEarned = teamStats[teamId].goldEarned;
         },
         {},
       );
@@ -79,6 +85,8 @@ export const getUserMatches = async (req, res) => {
         kills: currentUser.kills,
         deaths: currentUser.deaths,
         assists: currentUser.assists,
+        creepScore: currentUser.neutralMinionsKilled + currentUser.totalMinionsKilled,
+        victory: currentUser.win,
       });
     }));
 
