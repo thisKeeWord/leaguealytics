@@ -78,8 +78,23 @@ export const firebaseDatabase = {
           name: 'Malzahar',
         },
       },
+
     },
   ],
+  summoners: {
+    data: {
+      SummonerBarrier: {
+        description: 'Shields your champion from 115-455 damage (depending on champion level) for 2 seconds.',
+        id: 'SummonerBarrier',
+        image: 'SummonerBarrier.png',
+        key: '21',
+        name: 'Barrier',
+        tooltip: 'Temporarily shields {{ f1 }} damage from your champion for 2 seconds.',
+      },
+    },
+    type: 'summoner',
+    version: '11.9.1',
+  },
 };
 
 mockFirebase({
@@ -103,6 +118,7 @@ const store = firebase.firestore();
 const api: API = {
   users: store.collection('user'),
   patchData: store.collection('patch'),
+  summoners: store.collection('summoners'),
   riotAPI,
 };
 

@@ -2,6 +2,7 @@ import axios from 'axios';
 import { AppThunk } from '../index';
 import { loadMatchList } from '../reducers/match';
 import { loadPatchSuccess } from '../reducers/patch';
+import { loadSummonersSuccess } from '../reducers/summoners';
 import { setFetching, setUser, setUserError } from '../reducers/user';
 
 interface GetUserProps {
@@ -20,6 +21,12 @@ export const getUser = ({ username }: GetUserProps): AppThunk => async (
       throw new Error(patchData.data);
     }
     dispatch(loadPatchSuccess(patchData.data));
+
+    const summonerSpellData = await axios.get(`/api/summoners/${patchData.data.version}`);
+    if (summonerSpellData.data.error) {
+      throw new Error(summonerSpellData.data.error);
+    }
+    dispatch(loadSummonersSuccess(summonerSpellData.data));
 
     const user = await axios.get(`/api/users/${username}`);
     if (user.data.error) {

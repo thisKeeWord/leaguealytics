@@ -29,6 +29,9 @@ export interface RiotAPI {
       get: (patchVersion: string) => Promise<AxiosResponse>;
     };
   };
+  summoners: {
+      get: (patchVersion: string) => Promise<AxiosResponse>;
+  };
   match: {
     overview: {
       get: (matchId: string) => Promise<AxiosResponse>;
@@ -61,6 +64,9 @@ const riotAPI: RiotAPI = {
     data: {
       get: (patchVersion: string): Promise<AxiosResponse> => riotStatic.get(`/cdn/${patchVersion}/data/en_US/champion.json`),
     },
+  },
+  summoners: {
+    get: (patchVersion: string): Promise<AxiosResponse> => riotStatic.get(`/cdn/${patchVersion}/data/en_US/summoner.json`),
   },
   match: {
     overview: {
