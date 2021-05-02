@@ -95,6 +95,9 @@ const riotAPI: RiotAPI = {
       })),
     },
   },
+  summoners: {
+    get: jest.fn(),
+  },
   match: {
     overview: {
       get: jest.fn(async () => generateAxiosResponseObject({

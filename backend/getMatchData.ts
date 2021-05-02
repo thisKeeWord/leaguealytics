@@ -183,7 +183,6 @@ export const getMatchData = async (req, res) => {
         return filteredFrame;
       });
 
-      // console.log(util.inspect(filteredParticipantFrames), { showHidden: false, depth: null });
       // eslint-disable-next-line max-len
       byTimeframe.push({ timestamp: frame.timestamp, events, participantFrames: updatedParticipantFrames });
     }

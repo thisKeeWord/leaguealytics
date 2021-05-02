@@ -16,7 +16,7 @@ const patchSlice = createSlice({
   name: 'patch',
   initialState,
   reducers: {
-    setFetching(state, action): void {
+    setPatchFetching(state, action): void {
       state.isFetching = action.payload.isFetching;
     },
     loadPatchSuccess(state, action): void {
@@ -32,5 +32,5 @@ const patchSlice = createSlice({
   },
 });
 
-export const { loadPatchSuccess, loadPatchFailure, setFetching } = patchSlice.actions;
+export const { loadPatchSuccess, loadPatchFailure, setPatchFetching } = patchSlice.actions;
 export default patchSlice.reducer;
