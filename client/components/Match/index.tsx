@@ -253,7 +253,7 @@ const Match: FunctionComponent = () => {
             )}
           </div>
         </div>
-        <div className="bottom" style={{ backgroundColor: 'black' }} />
+        <div className="bottom" />
       </div>
     </MatchStyled>
   );
