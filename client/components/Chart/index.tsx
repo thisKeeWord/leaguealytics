@@ -53,84 +53,90 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
           <option value="descending">descending</option>
         </select>
       </div>
-      <VictoryChart domainPadding={10} height={400} width={400} horizontal>
-        <VictoryLabel
-          text={props.title}
-          y={20}
-          style={{
-            fill: 'black',
-            paddingLeft: '20px',
-          }}
-        />
-        <VictoryAxis
-          dependentAxis
-          standalone={false}
-          tickLabelComponent={<VictoryLabel renderInPortal />}
-          style={{
-            tickLabels: {
+      <svg
+        viewBox="0 0 500 500"
+        height="100%"
+        width="100%"
+      >
+        <VictoryChart domainPadding={10} height={410} width={410} horizontal standalone={false}>
+          <VictoryLabel
+            text={props.title}
+            y={20}
+            style={{
               fill: 'black',
-            },
-            axis: {
-              stroke: 'black',
-            },
-          }}
-        />
-        <VictoryAxis
-          standalone={false}
-          groupComponent={<VictoryClipContainer />}
-          tickLabelComponent={<CustomLabel data={sortedData} version={props.version} />}
-          tickValues={sortedData.map(({ x }, index: number) => `${x} (${index})`)}
-          style={{
-            tickLabels: {
-              fill: ({ index }) => (playerType[index] ? 'green' : 'black'),
-            },
-            axis: {
-              stroke: 'black',
-            },
-          }}
-        />
-        <VictoryBar
-          style={{
-            data: {
-              fill: ({ datum }) => {
-                if (datum.isCurrentPlayer) {
-                  return datum.team === 100 ? '#1b31a2' : '#8e1719';
-                }
-                if (datum.team === 100) {
-                  return '#2747e8';
-                }
-                if (datum.team === 200) {
-                  return '#cb2124';
-                }
-
-                return 'black';
+              paddingLeft: '20px',
+            }}
+          />
+          <VictoryAxis
+            dependentAxis
+            standalone={false}
+            tickLabelComponent={<VictoryLabel renderInPortal />}
+            style={{
+              tickLabels: {
+                fill: 'black',
               },
-            },
-            labels: {
-              fill: ({ datum }: any) => {
-                if (datum.isCurrentPlayer) {
-                  return datum.team === 100 ? '#1b31a2' : '#8e1719';
-                }
-                if (datum.team === 100) {
-                  return '#2747e8';
-                }
-                if (datum.team === 200) {
-                  return '#cb2124';
-                }
-
-                return 'black';
+              axis: {
+                stroke: 'black',
               },
-            },
-          }}
-          data={sortedData.map(({
-            x, y, isCurrentPlayer, team,
-          }, index: number) => ({
-            x: `${x} (${index})`, y, isCurrentPlayer, team,
-          }))}
-          labels={({ datum }) => datum.y}
-          labelComponent={<VictoryLabel dy={0} />}
-        />
-      </VictoryChart>
+            }}
+          />
+          <VictoryAxis
+            standalone={false}
+            groupComponent={<VictoryClipContainer />}
+            tickLabelComponent={<CustomLabel data={sortedData} version={props.version} />}
+            tickValues={sortedData.map(({ x }, index: number) => `${x} (${index})`)}
+            style={{
+              tickLabels: {
+                fill: ({ index }) => (playerType[index] ? 'green' : 'black'),
+              },
+              axis: {
+                stroke: 'black',
+              },
+            }}
+          />
+          <VictoryBar
+            style={{
+              data: {
+                fill: ({ datum }) => {
+                  if (datum.isCurrentPlayer) {
+                    return datum.team === 100 ? '#1b31a2' : '#8e1719';
+                  }
+                  if (datum.team === 100) {
+                    return '#2747e8';
+                  }
+                  if (datum.team === 200) {
+                    return '#cb2124';
+                  }
+
+                  return 'black';
+                },
+              },
+              labels: {
+                fill: ({ datum }: any) => {
+                  if (datum.isCurrentPlayer) {
+                    return datum.team === 100 ? '#1b31a2' : '#8e1719';
+                  }
+                  if (datum.team === 100) {
+                    return '#2747e8';
+                  }
+                  if (datum.team === 200) {
+                    return '#cb2124';
+                  }
+
+                  return 'black';
+                },
+              },
+            }}
+            data={sortedData.map(({
+              x, y, isCurrentPlayer, team,
+            }, index: number) => ({
+              x: `${x} (${index})`, y, isCurrentPlayer, team,
+            }))}
+            labels={({ datum }) => datum.y}
+            labelComponent={<VictoryLabel dy={0} />}
+          />
+        </VictoryChart>
+      </svg>
     </StyledChart>
   );
 };

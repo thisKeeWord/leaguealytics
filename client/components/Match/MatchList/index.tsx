@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import cx from 'classnames';
 import { useSelector } from 'react-redux';
 import { selectSummonersData } from '../../../state';
-import { getSummoners } from '../../../../utils/helper';
+import { getSummoners, numberFormatter } from '../../../../utils/helper';
 
 interface MatchListProps {
   // eslint-disable-next-line no-unused-vars
@@ -23,6 +23,7 @@ interface MatchListProps {
   summoner2Id: number;
   victory: boolean;
   goldEarned: number;
+  creepScore: number;
   item0: number;
   item1: number;
   item2: number;
@@ -65,7 +66,7 @@ const MatchStyled = styled.div`
 
         span {
           position: absolute;
-          top: 26px;
+          bottom: 5px;
           left: 8px;
           color: #fff;
           text-shadow: 1px 0px 2px #000;
@@ -93,7 +94,7 @@ const MatchStyled = styled.div`
 
     .game-mode {
       padding-left: 20px;
-      width: 165px;
+      width: 145px;
     }
 
     .items {
@@ -101,7 +102,7 @@ const MatchStyled = styled.div`
       padding: 0 15px;
 
       .view {
-        padding: 0 5px;
+        padding: 0 1px;
 
         .item-icon {
           height: 37px;
@@ -124,6 +125,25 @@ const MatchStyled = styled.div`
         }
       }
     }
+
+    .kda {
+      width: 70px;
+    }
+
+    .stat {
+      padding-left: 8px;
+      display: flex;
+      flex-direction: column;
+      min-width: 75px;
+
+      & > span {
+        display: flex;
+      }
+    }
+
+    .date {
+      padding-left: 8px;
+    }
   }
 `;
 
@@ -141,6 +161,7 @@ export const MatchList: FunctionComponent<MatchListProps> = (
     deaths,
     kills,
     assists,
+    creepScore,
     queueId,
     summoner1Id,
     summoner2Id,
@@ -186,8 +207,8 @@ export const MatchList: FunctionComponent<MatchListProps> = (
         <span className="champion-name">{championName}</span>
         <div className="game-mode">{gameMode}</div>
         <div className="items">
-          {[item0, item1, item2, item3, item4, item5, item6].map((item) => (
-            <div id="view-751" className="view">
+          {[item0, item1, item2, item3, item4, item5, item6].map((item, index) => (
+            <div id="view-751" className="view" key={index}>
               <div id="binding-778" className="item-icon binding">
                 {item === 0 ? (
                   <div className="no-image" />
@@ -198,8 +219,26 @@ export const MatchList: FunctionComponent<MatchListProps> = (
             </div>
           ))}
         </div>
+        <span className="kda">
+          {kills}
+          /
+          {deaths}
+          /
+          {assists}
+        </span>
+        <div className="stat">
+          <span className="gold">
+            {numberFormatter(goldEarned)}
+            <img className="label" src="https://matchhistory.na.leagueoflegends.com/assets/1.0.38/css/resources/images/scoreboardicon_gold.png" alt="gold" />
+          </span>
+          <span className="cs">
+            {creepScore}
+            <img className="label" src="https://matchhistory.na.leagueoflegends.com/assets/1.0.38/css/resources/images/scoreboardicon_minion.png" alt="cs" />
 
-        <span>{new Date(gameCreation).toLocaleDateString()}</span>
+          </span>
+        </div>
+
+        <span className="date">{new Date(gameCreation).toLocaleDateString()}</span>
       </div>
     </MatchStyled>
   );
