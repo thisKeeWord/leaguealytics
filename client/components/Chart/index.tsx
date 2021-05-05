@@ -2,32 +2,13 @@ import React, { FunctionComponent, useState } from 'react';
 import {
   VictoryAxis, VictoryBar, VictoryChart, VictoryClipContainer, VictoryLabel,
 } from 'victory';
-import styled from 'styled-components';
+import { StyledChart } from './styles';
 
 interface ChartProps {
   data: any;
   title: string;
   version: string | number
 }
-
-const StyledChart = styled.div`
-  position: relative;
-  display: inline-block;
-  padding: 10px;
-  width: 50%;
-  height: 65%;
-
-  .sort {
-    position: absolute;
-    right: 10px;
-    top: 22px;
-    z-index: 1;
-  }
-
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-`;
 
 const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
   const [sortBy, setSortBy] = useState('');
@@ -54,7 +35,7 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
         </select>
       </div>
       <svg
-        viewBox="0 0 500 500"
+        viewBox="0 0 430 430"
         height="100%"
         width="100%"
       >
