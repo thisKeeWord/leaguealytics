@@ -4,7 +4,7 @@ import React from 'react';
 import faker from 'faker';
 import { Provider } from 'react-redux';
 import { MatchSummary } from '.';
-import store from '../../../../state';
+import store from '../../../state';
 
 describe('MatchSummary', () => {
   it.only('returns null if no patchData', () => {

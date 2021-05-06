@@ -7,51 +7,62 @@ export const StyledApp = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
 
-  .search {
-    box-shadow: 1px 1px 1px 1px darkcyan;
-    box-sizing: border-box;
-    border-radius: 5px;
-    margin: 0 0 20px 20px;
-    width: fit-content;
-    background: white;
+  .root-form {
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    padding: 20px 40px;
 
-    & > input {
-      padding: 16px;
-      border: none;
+    .username {
+      color: #fff;
+      font-size: 36px;
+    }
+
+    .search {
+      box-shadow: 1px 1px 1px 1px darkcyan;
       box-sizing: border-box;
-      flex: 1;
-
-      &:focus {
-        outline: none;
-      }
-    }
-
-    & > button {
-      height: 51px;
-      width: 51px;
-      padding: 0;
-      border: none;
+      border-radius: 5px;
+      width: fit-content;
       background: white;
+      display: flex;
+      align-items: center;
 
-      &:focus {
-        outline: none;
+      & > input {
+        padding: 16px;
+        border: none;
+        box-sizing: border-box;
+        flex: 1;
+
+        &:focus {
+          outline: none;
+        }
       }
-    }
 
-    p {
-      margin-top: 0;
-      position: absolute;
-      bottom: -20;
-    }
+      & > button {
+        height: 51px;
+        width: 51px;
+        padding: 0;
+        border: none;
+        background: white;
 
-    label {
-      background-color: white;
-    }
+        &:focus {
+          outline: none;
+        }
+      }
 
-    fieldset {
-      border: none;
+      p {
+        margin-top: 0;
+        position: absolute;
+        bottom: -20;
+      }
+
+      label {
+        background-color: white;
+      }
+
+      fieldset {
+        border: none;
+      }
     }
   }
 `;

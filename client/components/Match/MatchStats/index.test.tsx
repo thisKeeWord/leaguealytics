@@ -4,7 +4,7 @@ import React from 'react';
 import faker from 'faker';
 import { MatchStats } from '.';
 
-jest.mock('./MatchSummary');
+jest.mock('../MatchSummary');
 
 describe('MatchStats', () => {
   it('returns null if no currentPlayer exists', () => {
