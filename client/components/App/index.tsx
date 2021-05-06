@@ -46,22 +46,24 @@ const App: FunctionComponent = () => {
   return (
     <StyledApp>
       <div className="backdrop" />
-      <form onSubmit={handleSubmit} className="search" data-testid="app">
-        <TextField
-          id="username"
-          name="username"
-          onChange={handleChange}
-          helperText={touched.username && errors.username}
-          error={touched.username && !!errors.username}
-          label="Summoner Name"
-          onBlur={handleBlur}
-          variant="outlined"
-        />
-        <IconButton type="submit" aria-label="search">
-          <SearchIcon />
-        </IconButton>
-      </form>
-      {user?.name}
+      <div className="root-form">
+        <span className="username">{user?.name}</span>
+        <form onSubmit={handleSubmit} className="search" data-testid="app">
+          <TextField
+            id="username"
+            name="username"
+            onChange={handleChange}
+            helperText={touched.username && errors.username}
+            error={touched.username && !!errors.username}
+            label="Summoner Name"
+            onBlur={handleBlur}
+            variant="outlined"
+          />
+          <IconButton type="submit" aria-label="search">
+            <SearchIcon />
+          </IconButton>
+        </form>
+      </div>
       <Match />
     </StyledApp>
   );

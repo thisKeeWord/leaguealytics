@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { MatchSummary } from './MatchSummary';
+import { MatchSummary } from '../MatchSummary';
 
 interface MatchStatsProps {
   match: Record<any, any>;

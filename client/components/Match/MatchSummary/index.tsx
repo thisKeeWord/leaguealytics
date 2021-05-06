@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { useSelector } from 'react-redux';
-import { selectPatchData } from '../../../../state';
-import Chart from '../../../Chart';
+import { selectPatchData } from '../../../state';
+import Chart from '../../Chart';
 
 interface MatchSummaryProps {
   match: Record<any, any>;
