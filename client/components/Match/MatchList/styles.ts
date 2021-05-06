@@ -20,8 +20,27 @@ export const MatchStyled = styled.div`
     display: flex;
     align-items: center;
 
+    .victory {
+      display: block;
+      position: absolute;
+      padding: 0;
+      top: 0;
+      left: 0;
+      width: 10px;
+      bottom: 0;
+
+      &.win {
+        background-color: #6ed56e;
+      }
+
+      &.loss {
+        background-color: #a63935;
+      }
+    }
+
     .champion-image {
       display: flex;
+      margin-left: 10px;
 
       .champion-level {
         & > img {
@@ -32,7 +51,7 @@ export const MatchStyled = styled.div`
         span {
           position: absolute;
           bottom: 5px;
-          left: 8px;
+          left: 18px;
           color: #fff;
           text-shadow: 1px 0px 2px #000;
           font-weight: bold;
@@ -64,7 +83,7 @@ export const MatchStyled = styled.div`
 
     .items {
       display: flex;
-      padding: 0 15px;
+      padding: 0 25px;
 
       .view {
         padding: 0 1px;
@@ -92,22 +111,26 @@ export const MatchStyled = styled.div`
     }
 
     .kda {
-      width: 70px;
+      width: 80px;
+      padding-left: 15px;
     }
 
     .stat {
-      padding-left: 8px;
+      padding-left: 20px;
       display: flex;
       flex-direction: column;
-      min-width: 75px;
+      width: 100px;
+      
 
       & > span {
         display: flex;
       }
     }
 
-    .date {
-      padding-left: 8px;
+    .match-time {
+      display: flex;
+      flex-direction: column;
+      padding-left: 20px;
     }
   }
 `;

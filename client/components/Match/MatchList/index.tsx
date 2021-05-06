@@ -80,6 +80,7 @@ export const MatchList: FunctionComponent<MatchListProps> = (
       className={cx({ active: isActiveMatch })}
     >
       <div className="match-button">
+        <div className={cx('victory', { win: victory, loss: !victory })} />
         <div className="base-info">
           <div className="champion-image">
             <div className="champion-level">
@@ -126,7 +127,11 @@ export const MatchList: FunctionComponent<MatchListProps> = (
           </span>
         </div>
 
-        <span className="date">{new Date(gameCreation).toLocaleDateString()}</span>
+        <div className="match-time">
+          <span className="date">{new Date(gameCreation).toLocaleDateString()}</span>
+          <span className="duration">{new Date(gameDuration).toISOString().substr(11, 8)}</span>
+        </div>
+
       </div>
     </MatchStyled>
   );

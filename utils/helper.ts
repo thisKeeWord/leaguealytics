@@ -59,3 +59,15 @@ export const numberFormatter = (num: number) => {
     return num; // if value < 1000, nothing to do
   }
 };
+
+export const msToTime = (duration: number): string => {
+  let seconds = (duration / 1000) % 60;
+  let minutes = (duration / (1000 * 60)) % 60;
+  let hours = (duration / (1000 * 60 * 60)) % 24;
+
+  hours = (hours < 10) ? 0 : hours;
+  minutes = (minutes < 10) ? 0 : minutes;
+  seconds = (seconds < 10) ? 0 : seconds;
+
+  return `${hours}:${minutes}:${seconds}`;
+};
