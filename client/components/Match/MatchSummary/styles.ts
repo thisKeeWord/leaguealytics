@@ -26,7 +26,6 @@ export const MatchSummaryStyled = styled.div`
 
       &.team100 {
         background-color: #f5fafe;
-        
 
         &.currentUser {
           background-color: #dbeeff !important;        
@@ -40,7 +39,6 @@ export const MatchSummaryStyled = styled.div`
           background-color: #f2d7d7 !important;
         }
       }
-      
 
       .team {
         display: block;
@@ -118,5 +116,9 @@ export const MatchSummaryStyled = styled.div`
         }
       }
     }
+  }
+
+  .charts {
+    background-color: #e9eaec;
   }
 `;

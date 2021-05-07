@@ -143,12 +143,11 @@ const Match: FunctionComponent = () => {
             {isMatchesFetching ? (
               <span>loading</span>
             ) : (
-              <div className="content-border">
-                <div className="match-info">
-                  {/* <MatchSummary /> */}
-                  <MatchStats currentPlayer={currentPlayerIdentity} match={selectedGame} />
-                </div>
+              <div className="match-info">
+                {/* <MatchSummary /> */}
+                <MatchStats currentPlayer={currentPlayerIdentity} match={selectedGame} />
               </div>
+
             )}
           </div>
         </div>
