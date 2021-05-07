@@ -1,7 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import { useSelector } from 'react-redux';
-import { selectPatchData } from '../../../state';
+import { getSummoners } from '../../../../utils/helper';
+import { selectPatchData, selectSummonersData } from '../../../state';
 import Chart from '../../Chart';
+
+import { MatchSummaryStyled } from './styles';
 
 interface MatchSummaryProps {
   match: Record<any, any>;
@@ -12,17 +15,23 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
   props: MatchSummaryProps,
 ) => {
   const patchData = useSelector(selectPatchData);
+  const summoners = useSelector(selectSummonersData);
+  const summonersList = summoners?.data;
+
+  const { currentPlayer, match } = props;
 
   if (
     !patchData
-    || !props.currentPlayer.participantId
-    || !props.match.participants
-    || !props.match.teams
+    || !currentPlayer.participantId
+    || !match.participants
+    || !match.teams
   ) {
     return null;
   }
 
-  const statsData = props.match.participants.map(
+  const { participants, teams } = match;
+
+  const statsData = participants.map(
     ({
       participantId,
       championId,
@@ -42,7 +51,7 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
       // eslint-disable-next-line no-restricted-syntax, prefer-const
       for (let championData in patchData.patchData) {
         if (patchData.patchData[championData].key == championId) {
-          const teamStats = props.match.teams.find(
+          const teamStats = teams.find(
             (team: Record<any, any>) => team.teamId === teamId,
           );
           return {
@@ -86,17 +95,87 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
   const creepScoreStat = parseStats(statsData, 'creepScore');
 
   return (
-    <div data-testid="match-summary">
-      {totalDamageDealtStat && <Chart version={patchData.version} data={totalDamageDealtStat} title="Total Damage Dealt" />}
-      {totalDamageTakenStat && <Chart version={patchData.version} data={totalDamageTakenStat} title="Total Damage Taken" />}
-      {goldEarnedStat && <Chart version={patchData.version} data={goldEarnedStat} title="Gold Earned" />}
-      {killsStat && <Chart version={patchData.version} data={killsStat} title="Kills" />}
-      {assistsStat && <Chart version={patchData.version} data={assistsStat} title="Assists" />}
-      {killParticipationStat && <Chart version={patchData.version} data={killParticipationStat} title="Kill Participation (% rounded down)" />}
-      {deathStat && <Chart version={patchData.version} data={deathStat} title="Deaths" />}
-      {deathShareStat && <Chart version={patchData.version} data={deathShareStat} title="Death Share (% rounded down)" />}
-      {creepScoreStat && <Chart version={patchData.version} data={creepScoreStat} title="Creep Score" />}
-    </div>
+    <MatchSummaryStyled>
+      <div className="match-overview">
+        <div className="team-100">
+          {participants.map(({
+            item0,
+            item1,
+            item2,
+            item3,
+            item4,
+            item5,
+            item6,
+            goldEarned,
+            summonerName,
+            summoner1Id,
+            summoner2Id,
+            championName,
+            champLevel,
+            kills,
+            assists,
+            deaths,
+            totalMinionsKilled,
+            neutralMinionsKilled,
+          }) => {
+            const { spell1, spell2 } = getSummoners(summonersList, { summoner1Id, summoner2Id });
+            return (
+              <div className="base-info" key={summonerName}>
+                <div className="champion-image">
+                  <div className="champion-level">
+                    <img src={`http://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/champion/${championName}.png`} alt="champion" />
+                    <span>{champLevel}</span>
+                  </div>
+                  <div className="summoner-spells">
+                    <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/spell/${spell1}`} alt="spell 1" />
+                    <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/spell/${spell2}`} alt="spell 2" />
+                  </div>
+                </div>
+                <span>{item0}</span>
+                {' '}
+                <span>{item1}</span>
+                {' '}
+                <span>{item2}</span>
+                {' '}
+                <span>{item3}</span>
+                {' '}
+                <span>{item4}</span>
+                {' '}
+                <span>{item5}</span>
+                {' '}
+                <span>{item6}</span>
+                {' '}
+                <span>{goldEarned}</span>
+                {' '}
+                <span>{summonerName}</span>
+                {' '}
+                <span>{kills}</span>
+                {' '}
+                <span>{assists}</span>
+                {' '}
+                <span>{deaths}</span>
+                {' '}
+                <span>{totalMinionsKilled}</span>
+                {' '}
+                <span>{neutralMinionsKilled}</span>
+              </div>
+            );
+          })}
+        </div>
+        <div className="team-200" />
+      </div>
+      <div data-testid="match-summary">
+        {totalDamageDealtStat && <Chart version={patchData.version} data={totalDamageDealtStat} title="Total Damage Dealt" />}
+        {totalDamageTakenStat && <Chart version={patchData.version} data={totalDamageTakenStat} title="Total Damage Taken" />}
+        {goldEarnedStat && <Chart version={patchData.version} data={goldEarnedStat} title="Gold Earned" />}
+        {killsStat && <Chart version={patchData.version} data={killsStat} title="Kills" />}
+        {assistsStat && <Chart version={patchData.version} data={assistsStat} title="Assists" />}
+        {killParticipationStat && <Chart version={patchData.version} data={killParticipationStat} title="Kill Participation (% rounded down)" />}
+        {deathStat && <Chart version={patchData.version} data={deathStat} title="Deaths" />}
+        {deathShareStat && <Chart version={patchData.version} data={deathShareStat} title="Death Share (% rounded down)" />}
+        {creepScoreStat && <Chart version={patchData.version} data={creepScoreStat} title="Creep Score" />}
+      </div>
+    </MatchSummaryStyled>
   );
 };
 
