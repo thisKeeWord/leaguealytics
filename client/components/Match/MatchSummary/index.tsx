@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+import cx from 'classnames';
 import { useSelector } from 'react-redux';
 import { getSummoners } from '../../../../utils/helper';
 import { selectPatchData, selectSummonersData } from '../../../state';
@@ -94,91 +95,180 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
   const deathShareStat = parseStats(statsData, 'deathShare');
   const creepScoreStat = parseStats(statsData, 'creepScore');
 
+  const team100 = participants.filter(({ teamId }) => teamId === 100);
+  const team200 = participants.filter(({ teamId }) => teamId === 200);
+
   return (
     <MatchSummaryStyled>
-      <div className="match-overview">
-        <div className="team-100">
-          {participants.map(({
-            item0,
-            item1,
-            item2,
-            item3,
-            item4,
-            item5,
-            item6,
-            goldEarned,
-            summonerName,
-            summoner1Id,
-            summoner2Id,
-            championName,
-            champLevel,
-            kills,
-            assists,
-            deaths,
-            totalMinionsKilled,
-            neutralMinionsKilled,
-          }) => {
-            const { spell1, spell2 } = getSummoners(summonersList, { summoner1Id, summoner2Id });
-            return (
-              <div className="base-info" key={summonerName}>
-                <div className="champion-image">
-                  <div className="champion-level">
-                    <img src={`http://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/champion/${championName}.png`} alt="champion" />
-                    <span>{champLevel}</span>
-                  </div>
-                  <div className="summoner-spells">
-                    <div className="spell1">
-                      {spell1 && <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/spell/${spell1}`} alt="spell 1" />}
-                    </div>
-                    <div className="spell2">
-                      {spell2 && <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/spell/${spell2}`} alt="spell 2" />}
-                    </div>
-                  </div>
-                </div>
-                <span className="summonerName">{summonerName}</span>
-                <span>{item0}</span>
-                {' '}
-                <span>{item1}</span>
-                {' '}
-                <span>{item2}</span>
-                {' '}
-                <span>{item3}</span>
-                {' '}
-                <span>{item4}</span>
-                {' '}
-                <span>{item5}</span>
-                {' '}
-                <span>{item6}</span>
-                {' '}
-                <span>{goldEarned}</span>
-                {' '}
+      <div className="content-border">
 
-                {' '}
-                <span>{kills}</span>
-                {' '}
-                <span>{assists}</span>
-                {' '}
-                <span>{deaths}</span>
-                {' '}
-                <span>{totalMinionsKilled}</span>
-                {' '}
-                <span>{neutralMinionsKilled}</span>
-              </div>
-            );
-          })}
+        <div className="match-overview">
+          <div className="by-teams">
+            <div className="team-100">
+              {team100.map(({
+                item0,
+                item1,
+                item2,
+                item3,
+                item4,
+                item5,
+                item6,
+                goldEarned,
+                summonerName,
+                summoner1Id,
+                summoner2Id,
+                championName,
+                champLevel,
+                kills,
+                assists,
+                deaths,
+                totalMinionsKilled,
+                neutralMinionsKilled,
+                teamId,
+                summonerId,
+              }) => {
+                const { spell1, spell2 } = getSummoners(summonersList, { summoner1Id, summoner2Id });
+                return (
+                  <div className={cx('match-summary', { team100: teamId === 100, currentUser: currentPlayer.summonerId === summonerId })} key={summonerName}>
+                    <div className={cx('team', { blue: teamId === 100 })} />
+                    <div className="section-1">
+                      <div className="champion-image">
+                        <div className="champion-level">
+                          <img src={`http://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/champion/${championName}.png`} alt="champion" />
+                          <span>{champLevel}</span>
+                        </div>
+                        <div className="summoner-spells">
+                          <div className="spell1">
+                            {spell1 && <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/spell/${spell1}`} alt="spell 1" />}
+                          </div>
+                          <div className="spell2">
+                            {spell2 && <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/spell/${spell2}`} alt="spell 2" />}
+                          </div>
+                        </div>
+                      </div>
+                      <span className="summonerName">{summonerName}</span>
+                      <span className="kda">
+                        {kills}
+                        /
+                        {deaths}
+                        /
+                        {assists}
+                      </span>
+                    </div>
+                    <span>{item0}</span>
+                    {' '}
+                    <span>{item1}</span>
+                    {' '}
+                    <span>{item2}</span>
+                    {' '}
+                    <span>{item3}</span>
+                    {' '}
+                    <span>{item4}</span>
+                    {' '}
+                    <span>{item5}</span>
+                    {' '}
+                    <span>{item6}</span>
+                    {' '}
+                    <span>{goldEarned}</span>
+                    {' '}
+                    <span>{totalMinionsKilled}</span>
+                    {' '}
+                    <span>{neutralMinionsKilled}</span>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="team-200">
+              {team200.map(({
+                item0,
+                item1,
+                item2,
+                item3,
+                item4,
+                item5,
+                item6,
+                goldEarned,
+                summonerName,
+                summoner1Id,
+                summoner2Id,
+                championName,
+                champLevel,
+                kills,
+                assists,
+                deaths,
+                totalMinionsKilled,
+                neutralMinionsKilled,
+                teamId,
+                summonerId,
+              }) => {
+                const { spell1, spell2 } = getSummoners(summonersList, { summoner1Id, summoner2Id });
+                return (
+                  <div className={cx('match-summary', { team200: teamId === 200, currentUser: currentPlayer.summonerId === summonerId })} key={summonerName}>
+                    <div className={cx('team', { red: teamId === 200 })} />
+                    <div className="section-1">
+                      <div className="champion-image">
+                        <div className="champion-level">
+                          <img src={`http://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/champion/${championName}.png`} alt="champion" />
+                          <span>{champLevel}</span>
+                        </div>
+                        <div className="summoner-spells">
+                          <div className="spell1">
+                            {spell1 && <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/spell/${spell1}`} alt="spell 1" />}
+                          </div>
+                          <div className="spell2">
+                            {spell2 && <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/spell/${spell2}`} alt="spell 2" />}
+                          </div>
+                        </div>
+                      </div>
+                      <span className="summonerName">{summonerName}</span>
+                      <span className="kda">
+                        {kills}
+                        /
+                        {deaths}
+                        /
+                        {assists}
+                      </span>
+                    </div>
+                    <span>{item0}</span>
+                    {' '}
+                    <span>{item1}</span>
+                    {' '}
+                    <span>{item2}</span>
+                    {' '}
+                    <span>{item3}</span>
+                    {' '}
+                    <span>{item4}</span>
+                    {' '}
+                    <span>{item5}</span>
+                    {' '}
+                    <span>{item6}</span>
+                    {' '}
+                    <span>{goldEarned}</span>
+                    {' '}
+                    <span>{totalMinionsKilled}</span>
+                    {' '}
+                    <span>{neutralMinionsKilled}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
-        <div className="team-200" />
       </div>
-      <div data-testid="match-summary">
-        {totalDamageDealtStat && <Chart version={patchData.version} data={totalDamageDealtStat} title="Total Damage Dealt" />}
-        {totalDamageTakenStat && <Chart version={patchData.version} data={totalDamageTakenStat} title="Total Damage Taken" />}
-        {goldEarnedStat && <Chart version={patchData.version} data={goldEarnedStat} title="Gold Earned" />}
-        {killsStat && <Chart version={patchData.version} data={killsStat} title="Kills" />}
-        {assistsStat && <Chart version={patchData.version} data={assistsStat} title="Assists" />}
-        {killParticipationStat && <Chart version={patchData.version} data={killParticipationStat} title="Kill Participation (% rounded down)" />}
-        {deathStat && <Chart version={patchData.version} data={deathStat} title="Deaths" />}
-        {deathShareStat && <Chart version={patchData.version} data={deathShareStat} title="Death Share (% rounded down)" />}
-        {creepScoreStat && <Chart version={patchData.version} data={creepScoreStat} title="Creep Score" />}
+
+      <div className="content-border">
+        <div className="charts" data-testid="match-summary">
+          {totalDamageDealtStat && <Chart version={patchData.version} data={totalDamageDealtStat} title="Total Damage Dealt" />}
+          {totalDamageTakenStat && <Chart version={patchData.version} data={totalDamageTakenStat} title="Total Damage Taken" />}
+          {goldEarnedStat && <Chart version={patchData.version} data={goldEarnedStat} title="Gold Earned" />}
+          {killsStat && <Chart version={patchData.version} data={killsStat} title="Kills" />}
+          {assistsStat && <Chart version={patchData.version} data={assistsStat} title="Assists" />}
+          {killParticipationStat && <Chart version={patchData.version} data={killParticipationStat} title="Kill Participation (% rounded down)" />}
+          {deathStat && <Chart version={patchData.version} data={deathStat} title="Deaths" />}
+          {deathShareStat && <Chart version={patchData.version} data={deathShareStat} title="Death Share (% rounded down)" />}
+          {creepScoreStat && <Chart version={patchData.version} data={creepScoreStat} title="Creep Score" />}
+        </div>
       </div>
     </MatchSummaryStyled>
   );
