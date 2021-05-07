@@ -127,10 +127,15 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
                     <span>{champLevel}</span>
                   </div>
                   <div className="summoner-spells">
-                    <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/spell/${spell1}`} alt="spell 1" />
-                    <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/spell/${spell2}`} alt="spell 2" />
+                    <div className="spell1">
+                      {spell1 && <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/spell/${spell1}`} alt="spell 1" />}
+                    </div>
+                    <div className="spell2">
+                      {spell2 && <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/spell/${spell2}`} alt="spell 2" />}
+                    </div>
                   </div>
                 </div>
+                <span className="summonerName">{summonerName}</span>
                 <span>{item0}</span>
                 {' '}
                 <span>{item1}</span>
@@ -147,7 +152,7 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
                 {' '}
                 <span>{goldEarned}</span>
                 {' '}
-                <span>{summonerName}</span>
+
                 {' '}
                 <span>{kills}</span>
                 {' '}
