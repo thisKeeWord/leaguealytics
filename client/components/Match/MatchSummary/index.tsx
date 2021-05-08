@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import cx from 'classnames';
 import { useSelector } from 'react-redux';
-import { getSummoners } from '../../../../utils/helper';
+import { getSummoners, numberFormatter } from '../../../../utils/helper';
 import { selectPatchData, selectSummonersData } from '../../../state';
 import Chart from '../../Chart';
 
@@ -127,6 +127,7 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
                 teamId,
                 summonerId,
               }) => {
+                // eslint-disable-next-line max-len
                 const { spell1, spell2 } = getSummoners(summonersList, { summoner1Id, summoner2Id });
                 return (
                   <div className={cx('match-summary', { team100: teamId === 100, currentUser: currentPlayer.summonerId === summonerId })} key={summonerName}>
@@ -155,25 +156,36 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
                         {assists}
                       </span>
                     </div>
-                    <span>{item0}</span>
-                    {' '}
-                    <span>{item1}</span>
-                    {' '}
-                    <span>{item2}</span>
-                    {' '}
-                    <span>{item3}</span>
-                    {' '}
-                    <span>{item4}</span>
-                    {' '}
-                    <span>{item5}</span>
-                    {' '}
-                    <span>{item6}</span>
-                    {' '}
-                    <span>{goldEarned}</span>
-                    {' '}
-                    <span>{totalMinionsKilled}</span>
-                    {' '}
-                    <span>{neutralMinionsKilled}</span>
+                    <div className="items-list">
+                      <div className="item-set-1">
+                        {[item0, item1, item2, item3, item4, item5].map((item, index) => (
+                          <div id="view-751" className="view" key={index}>
+                            <div id="binding-778" className="item-icon binding">
+                              {item === 0 ? (
+                                <div className="no-image" />
+                              ) : (
+                                <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/item/${item}.png`} alt={`${item}.png`} />
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="default-1-4">
+                        <div id="inventory-trinket-8887" className="inventory-trinket">
+                          <div id="binding-9629" className="item-icon binding">
+                            <div data-rg-name="item_11.7.1" data-rg-id="3340">
+                              {item6 === 0 ? (
+                                <div className="no-image" />
+                              ) : (
+                                <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/item/${item6}.png`} alt={`${item6}`} />
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="cs">{totalMinionsKilled + neutralMinionsKilled}</div>
+                    <div className="gold-earned">{numberFormatter(goldEarned)}</div>
                   </div>
                 );
               })}
@@ -202,6 +214,7 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
                 teamId,
                 summonerId,
               }) => {
+                // eslint-disable-next-line max-len
                 const { spell1, spell2 } = getSummoners(summonersList, { summoner1Id, summoner2Id });
                 return (
                   <div className={cx('match-summary', { team200: teamId === 200, currentUser: currentPlayer.summonerId === summonerId })} key={summonerName}>
@@ -221,34 +234,45 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
                           </div>
                         </div>
                       </div>
-                      <span className="summonerName">{summonerName}</span>
-                      <span className="kda">
+                      <div className="summonerName">{summonerName}</div>
+                      <div className="kda">
                         {kills}
                         /
                         {deaths}
                         /
                         {assists}
-                      </span>
+                      </div>
                     </div>
-                    <span>{item0}</span>
-                    {' '}
-                    <span>{item1}</span>
-                    {' '}
-                    <span>{item2}</span>
-                    {' '}
-                    <span>{item3}</span>
-                    {' '}
-                    <span>{item4}</span>
-                    {' '}
-                    <span>{item5}</span>
-                    {' '}
-                    <span>{item6}</span>
-                    {' '}
-                    <span>{goldEarned}</span>
-                    {' '}
-                    <span>{totalMinionsKilled}</span>
-                    {' '}
-                    <span>{neutralMinionsKilled}</span>
+                    <div className="items-list">
+                      <div className="item-set-1">
+                        {[item0, item1, item2, item3, item4, item5].map((item, index) => (
+                          <div id="view-751" className="view" key={index}>
+                            <div id="binding-778" className="item-icon binding">
+                              {item === 0 ? (
+                                <div className="no-image" />
+                              ) : (
+                                <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/item/${item}.png`} alt={`${item}.png`} />
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="default-1-4">
+                        <div id="inventory-trinket-8887" className="inventory-trinket">
+                          <div id="binding-9629" className="item-icon binding">
+                            <div data-rg-name="item_11.7.1" data-rg-id="3340">
+                              {item6 === 0 ? (
+                                <div className="no-image" />
+                              ) : (
+                                <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/item/${item6}.png`} alt={`${item6}`} />
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="cs">{totalMinionsKilled + neutralMinionsKilled}</div>
+                    <div className="gold-earned">{numberFormatter(goldEarned)}</div>
                   </div>
                 );
               })}
