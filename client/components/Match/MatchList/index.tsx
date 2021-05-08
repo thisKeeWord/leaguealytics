@@ -18,7 +18,6 @@ interface MatchListProps {
   deaths: number;
   kills: number;
   assists: number;
-  queueId: number;
   summoner1Id: number;
   summoner2Id: number;
   victory: boolean;
@@ -50,7 +49,6 @@ export const MatchList: FunctionComponent<MatchListProps> = (
     kills,
     assists,
     creepScore,
-    queueId,
     summoner1Id,
     summoner2Id,
     victory,
@@ -102,7 +100,7 @@ export const MatchList: FunctionComponent<MatchListProps> = (
                 {item === 0 ? (
                   <div className="no-image" />
                 ) : (
-                  <img src={`https://ddragon.leagueoflegends.com/cdn/11.9.1/img/item/${item}.png`} alt={`${item}.png`} />
+                  <img src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${item}.png`} alt={`${item}.png`} />
                 )}
               </div>
             </div>

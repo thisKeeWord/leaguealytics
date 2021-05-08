@@ -80,7 +80,6 @@ const Match: FunctionComponent = () => {
                     kills,
                     assists,
                     creepScore,
-                    queueId,
                     summoner1Id,
                     summoner2Id,
                     victory,
@@ -106,7 +105,6 @@ const Match: FunctionComponent = () => {
                         kills={kills}
                         assists={assists}
                         creepScore={creepScore}
-                        queueId={queueId}
                         summoner1Id={summoner1Id}
                         summoner2Id={summoner2Id}
                         victory={victory}

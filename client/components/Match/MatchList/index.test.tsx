@@ -30,7 +30,6 @@ describe('MatchList', () => {
           kills={version}
           creepScore={version}
           assists={version}
-          queueId={version}
           summoner1Id={version}
           summoner2Id={version}
           victory
@@ -73,7 +72,6 @@ describe('MatchList', () => {
           kills={version}
           creepScore={version}
           assists={version}
-          queueId={version}
           summoner1Id={version}
           summoner2Id={version}
           victory

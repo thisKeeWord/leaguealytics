@@ -121,4 +121,40 @@ export const MatchSummaryStyled = styled.div`
   .charts {
     background-color: #e9eaec;
   }
+
+  .items-list {
+    display: flex;
+    width: 111px;
+    padding: 10px;
+    align-items: center;
+
+    .item-set-1 {
+      width: 75%;
+    }
+
+    .view,
+    .inventory-trinket {
+      height: 22px;
+      width: 22px;
+      display: inline-block;
+
+      .no-img, img {
+        height: 22px;
+        width: 22px;
+        padding: 1px;
+      }
+    }
+  }
+
+  .cs {
+    width: 45px;
+    padding: 5px;
+    font-size: 12px;
+  }
+
+  .gold-earned {
+    width: 50px;
+    padding: 5px;
+    font-size: 12px;
+  }
 `;
