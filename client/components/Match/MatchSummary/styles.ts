@@ -23,6 +23,7 @@ export const MatchSummaryStyled = styled.div`
       border-right: 1px solid #dbdfe0;
       margin: 1px 0;
       width: 100%;
+      font-size: 12px;
 
       &.team100 {
         background-color: #f5fafe;
@@ -113,13 +114,10 @@ export const MatchSummaryStyled = styled.div`
         .kda {
           width: 70px;
           padding: 5px;
+          text-align: center;
         }
       }
     }
-  }
-
-  .charts {
-    background-color: #e9eaec;
   }
 
   .items-list {
@@ -149,12 +147,104 @@ export const MatchSummaryStyled = styled.div`
   .cs {
     width: 45px;
     padding: 5px;
-    font-size: 12px;
+    text-align: center;
   }
 
   .gold-earned {
     width: 50px;
     padding: 5px;
-    font-size: 12px;
+    text-align: center;
+  }
+
+  .charts {
+    background-color: #e9eaec;
+  }
+
+  .icon-bar {
+    display: flex;
+    width: 100%;
+
+    .team-bar {
+      display: block;
+      position: absolute;
+      padding: 0;
+      width: 5px;
+
+      &.blue {
+        background-color: #2747e8;
+      }
+
+      &.red {
+        background-color: #cb2124;
+      }
+    }
+
+    &.blue {
+      background-color: #f5fafe;
+    }
+
+    &.red {
+      background-color: #fff3f3;
+    }
+
+    & > div {
+      height: 25px;
+    }
+
+    & > .champion {
+      background-image: url('../../../../images/champion.png');
+      background-repeat: no-repeat;
+      background-position: 21px center;
+    }
+
+    & > .champion-col {
+      width: 195px;
+      padding: 0 5px 0 10px;
+    }
+
+    & > .kills {
+      background-image: url('../../../../images/kda.png');
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    & > .kills-col {
+      width: 70px;
+      padding: 0 5px;
+    }
+
+    & > .items {
+      background-image: url('../../../../images/items.png');
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    & > .items-col {
+      width: 111px;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+
+    & > .minions {
+      background-image: url('../../../../images/minions.png');
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    & > .gold {
+      background-image: url('../../../../images/gold.png');
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    & > .minions-col {
+      width: 45px;
+      padding: 0 5px;
+    }
+
+    & > .gold-col {
+      width: 50px;
+      padding: 0 5px;
+    }
   }
 `;

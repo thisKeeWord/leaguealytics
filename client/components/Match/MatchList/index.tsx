@@ -116,11 +116,11 @@ export const MatchList: FunctionComponent<MatchListProps> = (
         <div className="stat">
           <span className="gold">
             {numberFormatter(goldEarned)}
-            <img className="label" src="https://matchhistory.na.leagueoflegends.com/assets/1.0.38/css/resources/images/scoreboardicon_gold.png" alt="gold" />
+            <img className="label" src="../../../images/gold.png" alt="gold" />
           </span>
           <span className="cs">
             {creepScore}
-            <img className="label" src="https://matchhistory.na.leagueoflegends.com/assets/1.0.38/css/resources/images/scoreboardicon_minion.png" alt="cs" />
+            <img className="label" src="../../../images/minions.png" alt="cs" />
 
           </span>
         </div>
