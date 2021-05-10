@@ -104,179 +104,103 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
 
         <div className="match-overview">
           <div className="by-teams">
-            <div className="team-100">
-              {team100.map(({
-                item0,
-                item1,
-                item2,
-                item3,
-                item4,
-                item5,
-                item6,
-                goldEarned,
-                summonerName,
-                summoner1Id,
-                summoner2Id,
-                championName,
-                champLevel,
-                kills,
-                assists,
-                deaths,
-                totalMinionsKilled,
-                neutralMinionsKilled,
-                teamId,
-                summonerId,
-              }) => {
-                // eslint-disable-next-line max-len
-                const { spell1, spell2 } = getSummoners(summonersList, { summoner1Id, summoner2Id });
-                return (
-                  <div className={cx('match-summary', { team100: teamId === 100, currentUser: currentPlayer.summonerId === summonerId })} key={summonerName}>
-                    <div className={cx('team', { blue: teamId === 100 })} />
-                    <div className="section-1">
-                      <div className="champion-image">
-                        <div className="champion-level">
-                          <img src={`http://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/champion/${championName}.png`} alt="champion" />
-                          <span>{champLevel}</span>
-                        </div>
-                        <div className="summoner-spells">
-                          <div className="spell1">
-                            {spell1 && <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/spell/${spell1}`} alt="spell 1" />}
-                          </div>
-                          <div className="spell2">
-                            {spell2 && <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/spell/${spell2}`} alt="spell 2" />}
-                          </div>
-                        </div>
-                      </div>
-                      <span className="summonerName">{summonerName}</span>
-                      <span className="kda">
-                        {kills}
-                        /
-                        {deaths}
-                        /
-                        {assists}
-                      </span>
-                    </div>
-                    <div className="items-list">
-                      <div className="item-set-1">
-                        {[item0, item1, item2, item3, item4, item5].map((item, index) => (
-                          <div id="view-751" className="view" key={index}>
-                            <div id="binding-778" className="item-icon binding">
-                              {item === 0 ? (
-                                <div className="no-image" />
-                              ) : (
-                                <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/item/${item}.png`} alt={`${item}.png`} />
-                              )}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                      <div className="default-1-4">
-                        <div id="inventory-trinket-8887" className="inventory-trinket">
-                          <div id="binding-9629" className="item-icon binding">
-                            <div data-rg-name="item_11.7.1" data-rg-id="3340">
-                              {item6 === 0 ? (
-                                <div className="no-image" />
-                              ) : (
-                                <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/item/${item6}.png`} alt={`${item6}`} />
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="cs">{totalMinionsKilled + neutralMinionsKilled}</div>
-                    <div className="gold-earned">{numberFormatter(goldEarned)}</div>
-                  </div>
-                );
-              })}
-            </div>
+            {[team100, team200].map((team, index) => (
+              <div className={cx({ 'team-100': index === 0, 'team-200': index === 1 })}>
 
-            <div className="team-200">
-              {team200.map(({
-                item0,
-                item1,
-                item2,
-                item3,
-                item4,
-                item5,
-                item6,
-                goldEarned,
-                summonerName,
-                summoner1Id,
-                summoner2Id,
-                championName,
-                champLevel,
-                kills,
-                assists,
-                deaths,
-                totalMinionsKilled,
-                neutralMinionsKilled,
-                teamId,
-                summonerId,
-              }) => {
-                // eslint-disable-next-line max-len
-                const { spell1, spell2 } = getSummoners(summonersList, { summoner1Id, summoner2Id });
-                return (
-                  <div className={cx('match-summary', { team200: teamId === 200, currentUser: currentPlayer.summonerId === summonerId })} key={summonerName}>
-                    <div className={cx('team', { red: teamId === 200 })} />
-                    <div className="section-1">
-                      <div className="champion-image">
-                        <div className="champion-level">
-                          <img src={`http://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/champion/${championName}.png`} alt="champion" />
-                          <span>{champLevel}</span>
-                        </div>
-                        <div className="summoner-spells">
-                          <div className="spell1">
-                            {spell1 && <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/spell/${spell1}`} alt="spell 1" />}
+                <div className={cx('icon-bar', { blue: index === 0, red: index === 1 })}>
+                  <div className={cx('team-bar', { blue: index === 0, red: index === 1 })} />
+                  <div className="champion champion-col" />
+                  <div className="kills kills-col" />
+                  <div className="items items-col" />
+                  <div className="minions minions-col" />
+                  <div className="gold gold-col" />
+                </div>
+                {team.map(({
+                  item0,
+                  item1,
+                  item2,
+                  item3,
+                  item4,
+                  item5,
+                  item6,
+                  goldEarned,
+                  summonerName,
+                  summoner1Id,
+                  summoner2Id,
+                  championName,
+                  champLevel,
+                  kills,
+                  assists,
+                  deaths,
+                  totalMinionsKilled,
+                  neutralMinionsKilled,
+                  teamId,
+                  summonerId,
+                }) => {
+                  // eslint-disable-next-line max-len
+                  const { spell1, spell2 } = getSummoners(summonersList, { summoner1Id, summoner2Id });
+                  return (
+                    <div className={cx('match-summary', { team100: teamId === 100, team200: teamId === 200, currentUser: currentPlayer.summonerId === summonerId })} key={summonerName}>
+                      <div className={cx('team', { blue: teamId === 100, red: teamId === 200 })} />
+                      <div className="section-1">
+                        <div className="champion-image">
+                          <div className="champion-level">
+                            <img src={`http://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/champion/${championName}.png`} alt="champion" />
+                            <span>{champLevel}</span>
                           </div>
-                          <div className="spell2">
-                            {spell2 && <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/spell/${spell2}`} alt="spell 2" />}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="summonerName">{summonerName}</div>
-                      <div className="kda">
-                        {kills}
-                        /
-                        {deaths}
-                        /
-                        {assists}
-                      </div>
-                    </div>
-                    <div className="items-list">
-                      <div className="item-set-1">
-                        {[item0, item1, item2, item3, item4, item5].map((item, index) => (
-                          <div id="view-751" className="view" key={index}>
-                            <div id="binding-778" className="item-icon binding">
-                              {item === 0 ? (
-                                <div className="no-image" />
-                              ) : (
-                                <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/item/${item}.png`} alt={`${item}.png`} />
-                              )}
+                          <div className="summoner-spells">
+                            <div className="spell1">
+                              {spell1 && <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/spell/${spell1}`} alt="spell 1" />}
                             </div>
-                          </div>
-                        ))}
-                      </div>
-                      <div className="default-1-4">
-                        <div id="inventory-trinket-8887" className="inventory-trinket">
-                          <div id="binding-9629" className="item-icon binding">
-                            <div data-rg-name="item_11.7.1" data-rg-id="3340">
-                              {item6 === 0 ? (
-                                <div className="no-image" />
-                              ) : (
-                                <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/item/${item6}.png`} alt={`${item6}`} />
-                              )}
+                            <div className="spell2">
+                              {spell2 && <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/spell/${spell2}`} alt="spell 2" />}
                             </div>
                           </div>
                         </div>
+                        <span className="summonerName">{summonerName}</span>
+                        <span className="kda">
+                          {kills}
+                          /
+                          {deaths}
+                          /
+                          {assists}
+                        </span>
                       </div>
+                      <div className="items-list">
+                        <div className="item-set-1">
+                          {[item0, item1, item2, item3, item4, item5].map((item, index) => (
+                            <div id="view-751" className="view" key={index}>
+                              <div id="binding-778" className="item-icon binding">
+                                {item === 0 ? (
+                                  <div className="no-image" />
+                                ) : (
+                                  <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/item/${item}.png`} alt={`${item}.png`} />
+                                )}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="default-1-4">
+                          <div id="inventory-trinket-8887" className="inventory-trinket">
+                            <div id="binding-9629" className="item-icon binding">
+                              <div data-rg-name="item_11.7.1" data-rg-id="3340">
+                                {item6 === 0 ? (
+                                  <div className="no-image" />
+                                ) : (
+                                  <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/item/${item6}.png`} alt={`${item6}`} />
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="cs">{totalMinionsKilled + neutralMinionsKilled}</div>
+                      <div className="gold-earned">{numberFormatter(goldEarned)}</div>
                     </div>
-                    <div className="cs">{totalMinionsKilled + neutralMinionsKilled}</div>
-                    <div className="gold-earned">{numberFormatter(goldEarned)}</div>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
+            ))}
           </div>
         </div>
       </div>
