@@ -160,6 +160,80 @@ export const MatchSummaryStyled = styled.div`
     background-color: #e9eaec;
   }
 
+  .team-summary {
+    display: flex;
+    position: relative;
+    width: 100%;
+    border-bottom: 1px solid #d7d7d7;
+
+    &.blue {
+      background-color: #f5fafe;
+    }
+
+    &.red {
+      background-color: #fff3f3;
+    }
+
+    .team-marker {
+      display: block;
+      position: absolute;
+      padding: 0;
+      width: 5px;
+      height: 100%;
+
+      &.blue {
+        background-color: #2747e8;
+      }
+
+      &.red {
+        background-color: #cb2124;
+      }
+    }
+
+    .team-gem {
+      display: block;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin-left: 5px;
+      width: 40px;
+
+      &.blue {
+        background-image: url('../../../../images/team-blue.png');
+      }
+
+      &.red {
+        background-image: url('../../../../images/team-red.png');
+      }
+    }
+
+    .game-conclusion {
+      width: 200px;
+      font-size: 24px;
+    }
+
+    .gold {
+      padding-left: 23px;
+      text-align: right;
+      background-image: url('../../../../images/gold.png');
+      background-position: 0% 50%;
+      background-repeat: no-repeat;
+      font-size: 20px;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+
+    .kills {
+      padding-left: 23px;
+      text-align: right;
+      background-image: url('../../../../images/kda.png');
+      background-position: 0% 50%;
+      background-repeat: no-repeat;
+      margin: auto 20px auto auto;
+      font-size: 20px;
+    }
+
+  }
+
   .icon-bar {
     display: flex;
     width: 100%;
