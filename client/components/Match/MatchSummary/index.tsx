@@ -106,7 +106,13 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
           <div className="by-teams">
             {[team100, team200].map((team, index) => (
               <div className={cx({ 'team-100': index === 0, 'team-200': index === 1 })}>
-
+                <div className={cx('team-summary', { blue: index === 0, red: index === 1 })}>
+                  <div className={cx('team-marker', { blue: index === 0, red: index === 1 })} />
+                  <div className={cx('team-gem', { blue: index === 0, red: index === 1 })} />
+                  <div className="game-conclusion">{teams[index].win ? 'VICTORY' : 'DEFEAT'}</div>
+                  <div className="gold">{numberFormatter(teams[index].goldEarned)}</div>
+                  <div className="kills">{teams[index].kills}</div>
+                </div>
                 <div className={cx('icon-bar', { blue: index === 0, red: index === 1 })}>
                   <div className={cx('team-bar', { blue: index === 0, red: index === 1 })} />
                   <div className="champion champion-col" />
