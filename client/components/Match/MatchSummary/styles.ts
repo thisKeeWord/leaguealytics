@@ -165,6 +165,7 @@ export const MatchSummaryStyled = styled.div`
     position: relative;
     width: 100%;
     border-bottom: 1px solid #d7d7d7;
+    height: 45px;
 
     &.blue {
       background-color: #f5fafe;
@@ -209,6 +210,8 @@ export const MatchSummaryStyled = styled.div`
     .game-conclusion {
       width: 200px;
       font-size: 24px;
+      margin-top: auto;
+      margin-bottom: auto;
     }
 
     .gold {
