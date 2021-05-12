@@ -324,4 +324,51 @@ export const MatchSummaryStyled = styled.div`
       padding: 0 5px;
     }
   }
+
+  .team-objectives {
+    width: 100%;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-right: 1px solid #dbdfe0;
+
+    &.blue {
+      background-color: #f5fafe;
+    }
+
+    &.red {
+      background-color: #fff3f3;
+    }
+
+    .team-marker {
+      display: block;
+      position: absolute;
+      padding: 0;
+      width: 5px;
+      top: 0;
+      bottom: 0;
+
+      &.blue {
+        background-color: #2747e8;
+      }
+
+      &.red {
+        background-color: #cb2124;
+      }
+    }
+
+    .bans {
+      display: flex;
+      align-items: center;
+      margin-left: 10px;
+    }
+
+    img {
+      width: 21px;
+      height: 21px;
+      margin-left: 2px;
+    }
+  }
 `;

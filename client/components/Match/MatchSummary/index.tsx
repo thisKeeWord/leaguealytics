@@ -31,6 +31,41 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
   }
 
   const { participants, teams } = match;
+  // console.log(teams, 'teams');
+  const adjustedTeams = teams.map((team, index, self) => {
+    const modifiedTeams = { ...team };
+    const teamsBans = team.bans.map((ban, index, self) => {
+      const adjustedBans = { ...ban };
+      // eslint-disable-next-line no-restricted-syntax, prefer-const
+      for (let championData in patchData.patchData) {
+        if (patchData.patchData[championData].key == ban.championId) {
+        // eslint-disable-next-line no-return-assign
+          adjustedBans.championImage = patchData.patchData[championData].image.full;
+        }
+      }
+
+      return adjustedBans;
+    });
+
+    modifiedTeams.bans = teamsBans;
+
+    return modifiedTeams;
+  });
+
+  // const adjustedBansRed = teams[1].bans.map((ban, index, self) => {
+  //   const adjustedBans = { ...ban };
+  //   // eslint-disable-next-line no-restricted-syntax, prefer-const
+  //   for (let championData in patchData.patchData) {
+  //     if (patchData.patchData[championData].key == ban.championId) {
+  //       // eslint-disable-next-line no-return-assign
+  //       adjustedBans.championImage = patchData.patchData[championData].image.full;
+  //     }
+  //   }
+
+  //   return adjustedBans;
+  // });
+
+  // const adjustedBans = [adjustedBansBlue, adjustedBansRed];
 
   const statsData = participants.map(
     ({
@@ -52,7 +87,7 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
       // eslint-disable-next-line no-restricted-syntax, prefer-const
       for (let championData in patchData.patchData) {
         if (patchData.patchData[championData].key == championId) {
-          const teamStats = teams.find(
+          const teamStats = adjustedTeams.find(
             (team: Record<any, any>) => team.teamId === teamId,
           );
           return {
@@ -105,13 +140,13 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
         <div className="match-overview">
           <div className="by-teams">
             {[team100, team200].map((team, index) => (
-              <div className={cx({ 'team-100': index === 0, 'team-200': index === 1 })}>
+              <div className={cx({ 'team-100': index === 0, 'team-200': index === 1 })} key={index}>
                 <div className={cx('team-summary', { blue: index === 0, red: index === 1 })}>
                   <div className={cx('team-marker', { blue: index === 0, red: index === 1 })} />
                   <div className={cx('team-gem', { blue: index === 0, red: index === 1 })} />
-                  <div className="game-conclusion">{teams[index].win ? 'VICTORY' : 'DEFEAT'}</div>
-                  <div className="gold">{numberFormatter(teams[index].goldEarned)}</div>
-                  <div className="kills">{teams[index].kills}</div>
+                  <div className="game-conclusion">{adjustedTeams[index].win ? 'VICTORY' : 'DEFEAT'}</div>
+                  <div className="gold">{numberFormatter(adjustedTeams[index].goldEarned)}</div>
+                  <div className="kills">{adjustedTeams[index].kills}</div>
                 </div>
                 <div className={cx('icon-bar', { blue: index === 0, red: index === 1 })}>
                   <div className={cx('team-bar', { blue: index === 0, red: index === 1 })} />
@@ -174,8 +209,8 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
                       </div>
                       <div className="items-list">
                         <div className="item-set-1">
-                          {[item0, item1, item2, item3, item4, item5].map((item, index) => (
-                            <div id="view-751" className="view" key={index}>
+                          {[item0, item1, item2, item3, item4, item5].map((item, idx) => (
+                            <div id="view-751" className="view" key={idx}>
                               <div id="binding-778" className="item-icon binding">
                                 {item === 0 ? (
                                   <div className="no-image" />
@@ -205,6 +240,15 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
                     </div>
                   );
                 })}
+                <div className={cx('team-objectives', { blue: index === 0, red: index === 1 })}>
+                  <div className={cx('team-marker', { blue: index === 0, red: index === 1 })} />
+                  <div className="bans">
+                    <span>Bans: </span>
+                    {adjustedTeams[index].bans.map(({ championImage }, i: number) => (
+                      <img src={`http://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/champion/${championImage}`} alt={championImage} key={i} />
+                    ))}
+                  </div>
+                </div>
               </div>
             ))}
           </div>
