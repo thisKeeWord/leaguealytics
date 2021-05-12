@@ -31,10 +31,9 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
   }
 
   const { participants, teams } = match;
-  // console.log(teams, 'teams');
-  const adjustedTeams = teams.map((team, index, self) => {
+  const adjustedTeams = teams.map((team) => {
     const modifiedTeams = { ...team };
-    const teamsBans = team.bans.map((ban, index, self) => {
+    const teamsBans = team.bans.map((ban) => {
       const adjustedBans = { ...ban };
       // eslint-disable-next-line no-restricted-syntax, prefer-const
       for (let championData in patchData.patchData) {
@@ -51,21 +50,6 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
 
     return modifiedTeams;
   });
-
-  // const adjustedBansRed = teams[1].bans.map((ban, index, self) => {
-  //   const adjustedBans = { ...ban };
-  //   // eslint-disable-next-line no-restricted-syntax, prefer-const
-  //   for (let championData in patchData.patchData) {
-  //     if (patchData.patchData[championData].key == ban.championId) {
-  //       // eslint-disable-next-line no-return-assign
-  //       adjustedBans.championImage = patchData.patchData[championData].image.full;
-  //     }
-  //   }
-
-  //   return adjustedBans;
-  // });
-
-  // const adjustedBans = [adjustedBansBlue, adjustedBansRed];
 
   const statsData = participants.map(
     ({
@@ -118,7 +102,6 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
       }
     },
   );
-  // console.log(props.match, 'props.match');
 
   const totalDamageDealtStat = parseStats(statsData, 'damageDealt');
   const totalDamageTakenStat = parseStats(statsData, 'damageTaken');
