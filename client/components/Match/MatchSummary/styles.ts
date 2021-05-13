@@ -234,7 +234,6 @@ export const MatchSummaryStyled = styled.div`
       margin: auto 20px auto auto;
       font-size: 20px;
     }
-
   }
 
   .icon-bar {
@@ -359,16 +358,37 @@ export const MatchSummaryStyled = styled.div`
       }
     }
 
-    .bans {
+    .bans-container {
       display: flex;
       align-items: center;
       margin-left: 10px;
+
+      img {
+        width: 21px;
+        height: 21px;
+        margin-left: 2px;
+      }
     }
 
-    img {
-      width: 21px;
-      height: 21px;
-      margin-left: 2px;
+    .objectives-container {
+      display: flex;
+      align-items: center;
+      margin-right: 10px;
+
+      & > div {
+        display: flex;
+        padding: 0 2px;
+
+        & > img {
+          width: 21px;
+          height: 21px;
+        }
+
+        & > span {
+          padding-left: 2px;
+        }
+      }
     }
+
   }
 `;
