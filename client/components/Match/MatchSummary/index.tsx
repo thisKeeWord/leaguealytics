@@ -225,11 +225,33 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
                 })}
                 <div className={cx('team-objectives', { blue: index === 0, red: index === 1 })}>
                   <div className={cx('team-marker', { blue: index === 0, red: index === 1 })} />
-                  <div className="bans">
+                  <div className="bans-container">
                     <span>Bans: </span>
                     {adjustedTeams[index].bans.map(({ championImage }, i: number) => (
                       <img src={`http://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/champion/${championImage}`} alt={championImage} key={i} />
                     ))}
+                  </div>
+                  <div className="objectives-container">
+                    <div className="tower-kills">
+                      <img src={`../../../../images/turret-${index === 0 ? 'blue' : 'red'}.png`} alt="tower" />
+                      <span>{adjustedTeams[index].objectives.tower.kills}</span>
+                    </div>
+                    <div className="inhibitor-kills">
+                      <img src={`../../../../images/inhibitor-${index === 0 ? 'blue' : 'red'}.png`} alt="inhibitor" />
+                      <span>{adjustedTeams[index].objectives.inhibitor.kills}</span>
+                    </div>
+                    <div className="dragon-kills">
+                      <img src={`../../../../images/dragon-${index === 0 ? 'blue' : 'red'}.png`} alt="dragon" />
+                      <span>{adjustedTeams[index].objectives.dragon.kills}</span>
+                    </div>
+                    <div className="rift-herald-kills">
+                      <img src={`../../../../images/riftherald-${index === 0 ? 'blue' : 'red'}.png`} alt="rift herald" />
+                      <span>{adjustedTeams[index].objectives.riftHerald.kills}</span>
+                    </div>
+                    <div className="baron-kills">
+                      <img src={`../../../../images/baron-nashor-${index === 0 ? 'blue' : 'red'}.png`} alt="baron" />
+                      <span>{adjustedTeams[index].objectives.baron.kills}</span>
+                    </div>
                   </div>
                 </div>
               </div>
