@@ -7,6 +7,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import store from '../state';
 import App from './App';
 import theme from '../theme';
+import About from './About';
 
 const Main: FunctionComponent = () => (
   <ThemeProvider theme={theme}>
@@ -14,7 +15,8 @@ const Main: FunctionComponent = () => (
       <ReduxProvider store={store}>
         <Router>
           <Route path="/" exact component={App} />
-          <Route path="/:name" component={App} />
+          <Route path="/?q=:name" component={App} />
+          <Route path="/about" component={About} />
         </Router>
       </ReduxProvider>
     </ScopedCssBaseline>

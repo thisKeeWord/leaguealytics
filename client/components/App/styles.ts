@@ -4,12 +4,23 @@ export const StyledApp = styled.div`
   width: 100%;
   min-height: 100%;
   background-color: #4c4c4c;
+  
+  a {
+    padding: 10px 40px 0 0;
+    display: block;
+    text-align: right;
+    color: white;
+
+    &:hover: {
+      color: lightgray;
+    }
+  }
 
   .root-form {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
+    padding: 5px 40px 20px 40px;
 
     .username {
       color: #fff;
