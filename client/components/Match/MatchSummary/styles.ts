@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const MatchSummaryStyled = styled.div`
   .by-teams {
     display: flex;
+    color: white;
 
     .team-100 {
       width: 50%;
@@ -17,44 +18,26 @@ export const MatchSummaryStyled = styled.div`
     .match-summary {
       display: flex;
       align-items: center;
-      padding: 5px 0;
+      padding: 5px;
       position: relative;
       border-bottom: 1px solid #dbdfe0;
       border-right: 1px solid #dbdfe0;
       margin: 1px 0;
       width: 100%;
-      font-size: 12px;
 
       &.team100 {
-        background-color: #f5fafe;
+        background-color: #9999ff;
 
         &.currentUser {
-          background-color: #dbeeff !important;        
+          background-color: #7f7fff !important;        
         }
       }
 
       &.team200 {
-        background-color: #fff3f3;
+        background-color: #ff4c4c;
 
         &.currentUser {
-          background-color: #f2d7d7 !important;
-        }
-      }
-
-      .team {
-        display: block;
-        position: absolute;
-        padding: 0;
-        top: 0;
-        width: 5px;
-        bottom: 0;
-
-        &.blue {
-          background-color: #2747e8;
-        }
-
-        &.red {
-          background-color: #cb2124;
+          background-color: #c85551 !important;
         }
       }
 
@@ -104,17 +87,26 @@ export const MatchSummaryStyled = styled.div`
         }
 
         .summonerName {
-          width: 110px;
+          width: 90px;
           padding-left: 10px;
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
         }
+      }
 
-        .kda {
-          width: 70px;
-          padding: 5px;
-          text-align: center;
+      .kda {
+        width: 70px;
+        padding: 5px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+
+
+        & > img {
+          height: 15px;
+          width: 15px;
+          margin-right: 2px;
         }
       }
     }
@@ -144,16 +136,32 @@ export const MatchSummaryStyled = styled.div`
     }
   }
 
-  .cs {
-    width: 45px;
-    padding: 5px;
+  .cs-gold {
+    width: 80px;
     text-align: center;
-  }
+    margin-left: auto;
 
-  .gold-earned {
-    width: 50px;
-    padding: 5px;
-    text-align: center;
+    .cs {
+      display: flex;
+      align-items: center;
+      padding: 5px 5px 2.5px 5px;
+
+      & > img {
+        height: 15px;
+        width: 15px;
+      }
+    }
+
+    .gold-earned {
+      display: flex;
+      align-items: center;
+      padding: 2.5px 5px 5px 5px;
+
+      & > img {
+        height: 12px;
+        width: 16px;
+      }
+    }
   }
 
   .charts {
@@ -166,161 +174,47 @@ export const MatchSummaryStyled = styled.div`
     width: 100%;
     border-bottom: 1px solid #d7d7d7;
     height: 45px;
+    padding: 0 10px;
 
     &.blue {
-      background-color: #f5fafe;
+      background-color: #9999ff;
     }
 
     &.red {
-      background-color: #fff3f3;
-    }
-
-    .team-marker {
-      display: block;
-      position: absolute;
-      padding: 0;
-      width: 5px;
-      height: 100%;
-
-      &.blue {
-        background-color: #2747e8;
-      }
-
-      &.red {
-        background-color: #cb2124;
-      }
-    }
-
-    .team-gem {
-      display: block;
-      background-position: center;
-      background-repeat: no-repeat;
-      margin-left: 5px;
-      width: 40px;
-
-      &.blue {
-        background-image: url('../../../../images/team-blue.png');
-      }
-
-      &.red {
-        background-image: url('../../../../images/team-red.png');
-      }
+      background-color: #ff4c4c;
     }
 
     .game-conclusion {
-      width: 200px;
+      width: 65px;
       font-size: 24px;
       margin-top: auto;
       margin-bottom: auto;
     }
 
     .gold {
+      display: flex;
+      align-items: center;
       padding-left: 23px;
       text-align: right;
-      background-image: url('../../../../images/gold.png');
-      background-position: 0% 50%;
-      background-repeat: no-repeat;
       font-size: 20px;
-      margin-top: auto;
-      margin-bottom: auto;
+      margin: 0 auto;
+
+      & > img {
+        margin-right: 3px;
+      }
     }
 
     .kills {
+      display: flex;
+      align-items: center;
       padding-left: 23px;
       text-align: right;
-      background-image: url('../../../../images/kda.png');
-      background-position: 0% 50%;
-      background-repeat: no-repeat;
-      margin: auto 20px auto auto;
+      margin-left: auto;
       font-size: 20px;
-    }
-  }
 
-  .icon-bar {
-    display: flex;
-    width: 100%;
-
-    .team-bar {
-      display: block;
-      position: absolute;
-      padding: 0;
-      width: 5px;
-
-      &.blue {
-        background-color: #2747e8;
+      & > img {
+        margin-right: 3px;
       }
-
-      &.red {
-        background-color: #cb2124;
-      }
-    }
-
-    &.blue {
-      background-color: #f5fafe;
-    }
-
-    &.red {
-      background-color: #fff3f3;
-    }
-
-    & > div {
-      height: 25px;
-    }
-
-    & > .champion {
-      background-image: url('../../../../images/champion.png');
-      background-repeat: no-repeat;
-      background-position: 21px center;
-    }
-
-    & > .champion-col {
-      width: 195px;
-      padding: 0 5px 0 10px;
-    }
-
-    & > .kills {
-      background-image: url('../../../../images/kda.png');
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-
-    & > .kills-col {
-      width: 70px;
-      padding: 0 5px;
-    }
-
-    & > .items {
-      background-image: url('../../../../images/items.png');
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-
-    & > .items-col {
-      width: 111px;
-      padding-left: 5px;
-      padding-right: 5px;
-    }
-
-    & > .minions {
-      background-image: url('../../../../images/minions.png');
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-
-    & > .gold {
-      background-image: url('../../../../images/gold.png');
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-
-    & > .minions-col {
-      width: 45px;
-      padding: 0 5px;
-    }
-
-    & > .gold-col {
-      width: 50px;
-      padding: 0 5px;
     }
   }
 
@@ -332,30 +226,15 @@ export const MatchSummaryStyled = styled.div`
     align-items: center;
     padding: 10px 0;
     border-right: 1px solid #dbdfe0;
+    border-bottom: 1px solid #d7d7d7;
 
     &.blue {
-      background-color: #f5fafe;
+      background-color: #9999ff;
     }
 
     &.red {
-      background-color: #fff3f3;
-    }
-
-    .team-marker {
-      display: block;
-      position: absolute;
-      padding: 0;
-      width: 5px;
-      top: 0;
-      bottom: 0;
-
-      &.blue {
-        background-color: #2747e8;
-      }
-
-      &.red {
-        background-color: #cb2124;
-      }
+      background-color: #ff4c4c;
+      #c85551
     }
 
     .bans-container {
@@ -389,6 +268,5 @@ export const MatchSummaryStyled = styled.div`
         }
       }
     }
-
   }
 `;
