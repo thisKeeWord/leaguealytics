@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -27,7 +27,7 @@ const App: FunctionComponent = () => {
       onSubmit: (values) => {
         const username = values.username.replace(/\s+/g, '').toLowerCase();
         dispatch(getUser({ username }));
-        history.push(`/${username}`, { updated: true });
+        history.push(`/?q=${username}`, { updated: true });
       },
       validationSchema: Yup.object({
         username: Yup.string()
@@ -38,14 +38,16 @@ const App: FunctionComponent = () => {
   );
 
   useEffect(() => {
-    if (location.pathname[1] && !location.state) {
-      dispatch(getUser({ username: location.pathname.slice(1) }));
+    if (location.search && !location.state) {
+      const queryUser = location.search.slice(3);
+      queryUser && dispatch(getUser({ username: location.search.slice(3) }));
     }
   }, []);
 
   return (
     <StyledApp>
       <div className="backdrop" />
+      <Link to="/about">About</Link>
       <div className="root-form">
         <span className="username">{user?.name}</span>
         <form onSubmit={handleSubmit} className="search" data-testid="app">
