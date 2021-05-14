@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const MatchSummaryStyled = styled.div`
   .by-teams {
     display: flex;
+    color: white;
 
     .team-100 {
       width: 50%;
@@ -26,17 +27,17 @@ export const MatchSummaryStyled = styled.div`
 
       &.team100 {
         background-color: #9999ff;
-        
+
         &.currentUser {
           background-color: #7f7fff !important;        
         }
       }
 
       &.team200 {
-        background-color: #ffa5a5;
+        background-color: #ff4c4c;
 
         &.currentUser {
-          background-color: #ff4c4c !important;
+          background-color: #c85551 !important;
         }
       }
 
@@ -180,7 +181,7 @@ export const MatchSummaryStyled = styled.div`
     }
 
     &.red {
-      background-color: #ffa5a5;
+      background-color: #ff4c4c;
     }
 
     .game-conclusion {
@@ -232,7 +233,8 @@ export const MatchSummaryStyled = styled.div`
     }
 
     &.red {
-      background-color: #ffa5a5;
+      background-color: #ff4c4c;
+      #c85551
     }
 
     .bans-container {

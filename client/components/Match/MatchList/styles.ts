@@ -11,16 +11,17 @@ export const MatchStyled = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
+    color: white;
 
     &.win {
-      background-color: #6ed56e;
+      background-color: forestgreen;
 
       &.active {
-        background-color: #9ce29c;
+        background-color: mediumseagreen;
       }
     
       &:hover {
-        background-color: #9ce29c;
+        background-color: mediumseagreen;
       }
     }
 
@@ -113,7 +114,6 @@ export const MatchStyled = styled.div`
       flex-direction: column;
       width: 130px;
       
-
       & > span {
         display: flex;
         align-items: center;
