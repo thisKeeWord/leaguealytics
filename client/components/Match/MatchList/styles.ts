@@ -6,35 +6,33 @@ export const MatchStyled = styled.div`
   width: 100%;
   height: 100%;
 
-  &.active {
-    background-color: #dcdcdc;
-  }
-
-  &:hover {
-    background-color: #dcdcdc;
-  }
-
   .match-button {
     padding: 7px;
     width: 100%;
     display: flex;
     align-items: center;
 
-    .victory {
-      display: block;
-      position: absolute;
-      padding: 0;
-      top: 0;
-      left: 0;
-      width: 10px;
-      bottom: 0;
+    &.win {
+      background-color: #6ed56e;
 
-      &.win {
-        background-color: #6ed56e;
+      &.active {
+        background-color: #9ce29c;
       }
+    
+      &:hover {
+        background-color: #9ce29c;
+      }
+    }
 
-      &.loss {
-        background-color: #a63935;
+    &.loss {
+      background-color: #c85551;
+
+      &.active {
+        background-color: #da8d8b;
+      }
+    
+      &:hover {
+        background-color: #da8d8b;
       }
     }
 
@@ -47,26 +45,25 @@ export const MatchStyled = styled.div`
           height: 37px;
           width: 37px;
         }
-
-        span {
-          position: absolute;
-          bottom: 5px;
-          left: 18px;
-          color: #fff;
-          text-shadow: 1px 0px 2px #000;
-          font-weight: bold;
-        }
       }
 
-      .summoner-spells {
+      .level-spells {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
         padding-left: 5px;
 
-        & > img {
-          height: 17px;
-          width: 17px;
+        .spells {
+          display: flex;
+          justify-content: space-between;
+
+          & > img {
+            height: 17px;
+            width: 17px;
+          }
+        }
+
+        span {
+          font-weight: bold;
         }
       }
     }
@@ -110,27 +107,33 @@ export const MatchStyled = styled.div`
       }
     }
 
-    .kda {
-      width: 80px;
-      padding-left: 15px;
-    }
-
     .stat {
-      padding-left: 20px;
+      padding-left: 40px;
       display: flex;
       flex-direction: column;
-      width: 100px;
+      width: 130px;
       
 
       & > span {
         display: flex;
+        align-items: center;
+
+        & > img {
+          height: 16px;
+          width: 16px;
+          margin-right: 5px;
+        }
+      }
+
+      .gold > img {
+        height: 12px !important;
       }
     }
 
     .match-time {
       display: flex;
       flex-direction: column;
-      padding-left: 20px;
+      margin: auto 10px auto auto;
     }
   }
 `;

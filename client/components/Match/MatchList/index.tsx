@@ -75,19 +75,19 @@ export const MatchList: FunctionComponent<MatchListProps> = (
       data-testid="input"
       role={role}
       onClick={() => handleClick(matchId)}
-      className={cx({ active: isActiveMatch })}
     >
-      <div className="match-button">
-        <div className={cx('victory', { win: victory, loss: !victory })} />
+      <div className={cx('match-button', { win: victory, loss: !victory, active: isActiveMatch })}>
         <div className="base-info">
           <div className="champion-image">
             <div className="champion-level">
               <img src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${championName}.png`} alt="champion" />
-              <span>{champLevel}</span>
             </div>
-            <div className="summoner-spells">
-              <img src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${spell1}`} alt="summoner spell 1" />
-              <img src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${spell2}`} alt="summoner spell 2" />
+            <div className="level-spells">
+              <div className="spells">
+                <img src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${spell1}`} alt="summoner spell 1" />
+                <img src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${spell2}`} alt="summoner spell 2" />
+              </div>
+              <span>{champLevel}</span>
             </div>
           </div>
         </div>
@@ -95,8 +95,8 @@ export const MatchList: FunctionComponent<MatchListProps> = (
         <div className="game-mode">{gameMode}</div>
         <div className="items">
           {[item0, item1, item2, item3, item4, item5, item6].map((item, index) => (
-            <div id="view-751" className="view" key={index}>
-              <div id="binding-778" className="item-icon binding">
+            <div className="view" key={index}>
+              <div className="item-icon binding">
                 {item === 0 ? (
                   <div className="no-image" />
                 ) : (
@@ -106,22 +106,23 @@ export const MatchList: FunctionComponent<MatchListProps> = (
             </div>
           ))}
         </div>
-        <span className="kda">
-          {kills}
-          /
-          {deaths}
-          /
-          {assists}
-        </span>
+
         <div className="stat">
           <span className="gold">
-            {numberFormatter(goldEarned)}
             <img className="label" src="../../../images/gold.png" alt="gold" />
+            {numberFormatter(goldEarned)}
           </span>
           <span className="cs">
-            {creepScore}
             <img className="label" src="../../../images/minions.png" alt="cs" />
-
+            {creepScore}
+          </span>
+          <span className="kda">
+            <img className="label" src="../../../images/kda.png" alt="kda" />
+            {kills}
+            /
+            {deaths}
+            /
+            {assists}
           </span>
         </div>
 

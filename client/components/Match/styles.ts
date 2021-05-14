@@ -9,6 +9,15 @@ export const MatchStyled = styled.div`
     margin: 50px auto 7px auto;
     background: transparent none repeat-y;
 
+    ul {
+      background-color: #D3D3D3;
+    }
+
+    li {
+      padding-top: 2px !important;
+      padding-bottom: 2px !important;
+    }
+
     .top {
       display: block;
       width: 100%;
@@ -45,23 +54,6 @@ export const MatchStyled = styled.div`
         min-height: 350px;
         z-index: 2;
 
-        .content-border {
-          box-sizing: border-box;
-          padding: 4px;
-          background-color: transparent;
-          -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#1A000000,endColorstr=#1A000000);
-          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#1A000000,endColorstr=#1A000000);
-          background-color: rgba(0,0,0,0.1);
-          border-left: 1px solid rgba(84,84,84,0.3);
-          border-top: 1px solid rgba(84,84,84,0.3);
-          border-bottom: 1px solid rgba(255,255,255,0.6);
-          border-right: 1px solid rgba(255,255,255,0.6);
-      
-          hr {
-            background-color: white !important;
-          }
-        }
-
         .match-list {
           padding: 0 !important;
 
@@ -77,7 +69,7 @@ export const MatchStyled = styled.div`
         }
 
         .paginator {
-          padding: 10px;
+          margin-bottom: 10px;
           & > ul {
             justify-content: center;
           }

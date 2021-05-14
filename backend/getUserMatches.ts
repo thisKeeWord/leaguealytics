@@ -22,7 +22,7 @@ export const getUserMatches = async (req, res) => {
       const teamStats = (matchOverviewData.info.participants as Array<any>)
         .reduce((accumulator, currentValue: Record<any, any>) => {
           const {
-            kills, deaths, goldEarned, teamId,
+            kills, deaths, assists, goldEarned, teamId,
           } = currentValue;
           accumulator[teamId] = {
             kills: accumulator[teamId]
@@ -31,6 +31,9 @@ export const getUserMatches = async (req, res) => {
             deaths: accumulator[teamId]
               ? accumulator[teamId].deaths + deaths
               : deaths,
+            assists: accumulator[teamId]
+              ? accumulator[teamId].assists + assists
+              : assists,
             goldEarned: accumulator[teamId]
               ? accumulator[teamId].goldEarned + goldEarned
               : goldEarned,
@@ -43,6 +46,7 @@ export const getUserMatches = async (req, res) => {
         ({ teamId }, index, self) => {
           self[index].kills = teamStats[teamId].kills;
           self[index].deaths = teamStats[teamId].deaths;
+          self[index].assists = teamStats[teamId].assists;
           self[index].goldEarned = teamStats[teamId].goldEarned;
         },
         {},
