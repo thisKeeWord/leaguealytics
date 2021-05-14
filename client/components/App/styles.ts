@@ -3,9 +3,6 @@ import styled from 'styled-components';
 export const StyledApp = styled.div`
   width: 100%;
   min-height: 100%;
-  // background-image: url("../../../images/dashboard.jpeg"), linear-gradient(black, #080808);
-  // background-repeat: no-repeat;
-  // background-size: cover;
   background-color: #4c4c4c;
 
   .root-form {
