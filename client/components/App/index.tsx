@@ -46,7 +46,6 @@ const App: FunctionComponent = () => {
 
   return (
     <StyledApp>
-      <div className="backdrop" />
       <Link to="/about">About</Link>
       <div className="root-form">
         <span className="username">{user?.name}</span>

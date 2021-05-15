@@ -13,11 +13,11 @@ const About: FunctionComponent = () => (
       </div>
       <div className="about-project" data-testid="about-body">
         <p>
-          This project started off as practicing with some new technologies,
+          Leaguealytics project started off as practicing with some new technologies,
           but soon ended up being a passion project.
         </p>
         <p>
-          This application focuses on end game data. A potential upcoming feature is having
+          Leaguealytics focuses on end game data. A potential upcoming feature is having
           viewable match timeline data. The goal would be to provide
           insight and hopefully provide areas of improvement. Whether or not the information
           provided is used to improve gameplay or just for fun, that will be up to the user.
@@ -26,7 +26,7 @@ const About: FunctionComponent = () => (
           GG.
         </p>
         <p className="disclaimer" data-testid="disclaimer">
-          Disclaimer: [The title of your Project] was created under Riot Games&lsquo;
+          Disclaimer: Leaguealytics was created under Riot Games&lsquo;
           &ldquo;Legal Jibber Jabber&ldquo; policy using assets owned by Riot Games.
           Riot Games does not endorse or sponsor this project.
         </p>
