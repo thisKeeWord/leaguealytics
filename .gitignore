@@ -5,6 +5,12 @@ node_modules
 config.env
 .env
 
+# package-lock
+package-lock.json
+
+# yarn.lock
+yarn.lock
+
 # npm debug log
 npm-debug.log
 
