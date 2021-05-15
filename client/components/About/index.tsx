@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react';
-import { Link } from 'react-router-dom';
 import { StyledAbout } from './styles';
 
 const About: FunctionComponent = () => (
@@ -8,11 +7,11 @@ const About: FunctionComponent = () => (
       <div id="backHome">
         <ul className="linkToPages">
           <li>
-            <Link to="/">Home</Link>
+            <a href="/" data-testid="home-link">Home</a>
           </li>
         </ul>
       </div>
-      <div className="about-project">
+      <div className="about-project" data-testid="about-body">
         <p>
           This project started off as practicing with some new technologies,
           but soon ended up being a passion project.
@@ -26,23 +25,23 @@ const About: FunctionComponent = () => (
         <p>
           GG.
         </p>
-        <p className="disclaimer">
+        <p className="disclaimer" data-testid="disclaimer">
           Disclaimer: [The title of your Project] was created under Riot Games&lsquo;
           &ldquo;Legal Jibber Jabber&ldquo; policy using assets owned by Riot Games.
           Riot Games does not endorse or sponsor this project.
         </p>
       </div>
-      <div className="icons">
-        <a href="https://www.linkedin.com/in/thiskeeword" target="_blank" rel="noreferrer">
+      <div className="icons" data-testid="social-icons">
+        <a href="https://www.linkedin.com/in/thiskeeword" target="_blank" rel="noreferrer" data-testid="media-icon">
           <i className="fa fa-linkedin fa-lg li grow" id="icon-link" />
         </a>
-        <a href="https://www.github.com/thisKeeWord" target="_blank" rel="noreferrer">
+        <a href="https://www.github.com/thisKeeWord" target="_blank" rel="noreferrer" data-testid="media-icon">
           <i className="fa fa-github-alt fa-lg gh grow" id="icon-link" />
         </a>
-        <a href="https://www.instagram.com/theonlyleonardk" target="_blank" rel="noreferrer">
+        <a href="https://www.instagram.com/theonlyleonardk" target="_blank" rel="noreferrer" data-testid="media-icon">
           <i className="fa fa-instagram fa-lg gh grow" id="icon-link" />
         </a>
-        <a href="http://www.leonardkee.com" target="_blank" rel="noreferrer">
+        <a href="http://www.leonardkee.com" target="_blank" rel="noreferrer" data-testid="media-icon">
           <i className="fa fa-laptop fa-lg gh grow" id="icon-link" />
         </a>
       </div>
