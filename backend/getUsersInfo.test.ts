@@ -29,7 +29,7 @@ describe('getUsersInfo', () => {
     expect(spy).toHaveBeenCalledWith(req.params.username);
   });
 
-  it('calls "riotAPI.matchList" api route', async () => {
+  it('calls "riotAPI.match.overview" api route', async () => {
     const basicSuccessResponse = generateAxiosResponseObject(
       {
         matches: [

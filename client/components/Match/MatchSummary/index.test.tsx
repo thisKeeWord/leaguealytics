@@ -7,7 +7,7 @@ import { MatchSummary } from '.';
 import store from '../../../state';
 
 describe('MatchSummary', () => {
-  it.only('returns null if no patchData', () => {
+  it('returns null if no patchData', () => {
     const currentPlayer = { participantId: faker.random.alphaNumeric() };
     const match = { participants: [], teams: [] };
 
