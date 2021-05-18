@@ -5,7 +5,6 @@ const theme = createMuiTheme({
     MuiScopedCssBaseline: {
       root: {
         height: '100%',
-        minWidth: '1000px',
       },
     },
   },

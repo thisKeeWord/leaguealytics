@@ -2,27 +2,24 @@ import styled from 'styled-components';
 
 export const MatchSummaryStyled = styled.div`
   .by-teams {
-    display: flex;
     color: white;
 
     .team-100 {
-      width: 50%;
-      margin-right: 1px;
+      width: 100%%;
     }
 
     .team-200 {
-      width: 50%;
-      margin-left: 1px;
+      width: 100%%;
     }
 
     .match-summary {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       padding: 5px;
       position: relative;
       border-bottom: 1px solid #dbdfe0;
       border-right: 1px solid #dbdfe0;
-      margin: 1px 0;
       width: 100%;
 
       &.team100 {
@@ -98,7 +95,6 @@ export const MatchSummaryStyled = styled.div`
       .kda {
         width: 70px;
         padding: 5px;
-        margin: 0 auto;
         display: flex;
         align-items: center;
 
@@ -114,24 +110,34 @@ export const MatchSummaryStyled = styled.div`
 
   .items-list {
     display: flex;
-    width: 111px;
     padding: 10px;
     align-items: center;
 
-    .item-set-1 {
-      width: 75%;
-    }
-
     .view,
     .inventory-trinket {
-      height: 22px;
-      width: 22px;
+      height: 37px;
+      width: 37px;
       display: inline-block;
+      margin: 0 1px;
 
-      .no-img, img {
-        height: 22px;
-        width: 22px;
-        padding: 1px;
+      .item-icon {
+        height: 37px;
+        width: 37px;
+
+        & > .no-image {
+          background-color: rgba(0, 0, 0, 0.1);
+          border-left: 1px solid rgba(84, 84, 84, 0.3);
+          border-top: 1px solid rgba(84, 84, 84, 0.3);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+          border-right: 1px solid rgba(255, 255, 255, 0.6);
+          height: 37px;
+          width: 37px;
+        }
+
+        & > img {
+          height: 37px;
+          width: 37px;
+        }
       }
     }
   }
@@ -139,7 +145,7 @@ export const MatchSummaryStyled = styled.div`
   .cs-gold {
     width: 80px;
     text-align: center;
-    margin-left: auto;
+    // margin-left: auto;
 
     .cs {
       display: flex;
@@ -170,6 +176,7 @@ export const MatchSummaryStyled = styled.div`
 
   .team-summary {
     display: flex;
+    justify-content: space-between;
     position: relative;
     width: 100%;
     border-bottom: 1px solid #d7d7d7;
@@ -209,7 +216,6 @@ export const MatchSummaryStyled = styled.div`
       align-items: center;
       padding-left: 23px;
       text-align: right;
-      margin-left: auto;
       font-size: 20px;
 
       & > img {

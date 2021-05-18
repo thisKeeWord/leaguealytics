@@ -5,17 +5,15 @@ export const getUsersInfo = async (req, res) => {
 
   try {
     const firestoreUser = await api.users.doc(username).get();
-    const hasUser = firestoreUser.exists;
 
-    if (hasUser) {
-      res.send(firestoreUser.data());
+    let userData = firestoreUser.data();
 
-      return;
+    if (!userData) {
+      const user = await api.riotAPI.users.get(username);
+      userData = user.data;
     }
-    const user = await api.riotAPI.users.get(username);
-    const userData = user.data;
 
-    const matchList = await api.riotAPI.matchList.get(userData.puuid);
+    const matchList = await api.riotAPI.matchList.get(userData!.puuid);
     const matches = matchList.data;
 
     matches.forEach((match, index, self) => {
