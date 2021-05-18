@@ -18,7 +18,7 @@ export const getUserMatches = async (req, res) => {
       );
       let matchDataObj = savedMatchData ? savedMatchData?.data() : {};
 
-      if (!Object.keys(matchDataObj)) {
+      if (!Object.keys(matchDataObj).length) {
         const matchOverviewData = (await api.riotAPI.match.overview.get(match.matchId)).data;
         const teamStats = (matchOverviewData.info.participants as Array<any>)
           .reduce((accumulator, currentValue: Record<any, any>) => {
