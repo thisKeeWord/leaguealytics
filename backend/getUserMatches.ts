@@ -16,63 +16,66 @@ export const getUserMatches = async (req, res) => {
       const savedMatchData = currentMatches.find(
         (currentMatchDoc) => currentMatchDoc.data().matchId == match.matchId,
       );
-      const savedMatchDataObj = savedMatchData ? savedMatchData?.data() : {};
+      let matchDataObj = savedMatchData ? savedMatchData?.data() : {};
 
-      const matchOverviewData = (await api.riotAPI.match.overview.get(match.matchId)).data;
-      const teamStats = (matchOverviewData.info.participants as Array<any>)
-        .reduce((accumulator, currentValue: Record<any, any>) => {
-          const {
-            kills, deaths, assists, goldEarned, teamId,
-          } = currentValue;
-          accumulator[teamId] = {
-            kills: accumulator[teamId]
-              ? accumulator[teamId].kills + kills
-              : kills,
-            deaths: accumulator[teamId]
-              ? accumulator[teamId].deaths + deaths
-              : deaths,
-            assists: accumulator[teamId]
-              ? accumulator[teamId].assists + assists
-              : assists,
-            goldEarned: accumulator[teamId]
-              ? accumulator[teamId].goldEarned + goldEarned
-              : goldEarned,
-          };
+      if (!Object.keys(matchDataObj).length) {
+        const matchOverviewData = (await api.riotAPI.match.overview.get(match.matchId)).data;
+        const teamStats = (matchOverviewData.info.participants as Array<any>)
+          .reduce((accumulator, currentValue: Record<any, any>) => {
+            const {
+              kills, deaths, assists, goldEarned, teamId,
+            } = currentValue;
+            accumulator[teamId] = {
+              kills: accumulator[teamId]
+                ? accumulator[teamId].kills + kills
+                : kills,
+              deaths: accumulator[teamId]
+                ? accumulator[teamId].deaths + deaths
+                : deaths,
+              assists: accumulator[teamId]
+                ? accumulator[teamId].assists + assists
+                : assists,
+              goldEarned: accumulator[teamId]
+                ? accumulator[teamId].goldEarned + goldEarned
+                : goldEarned,
+            };
 
-          return accumulator;
-        }, {});
+            return accumulator;
+          }, {});
 
-      (matchOverviewData.info.teams as Array<Record<any, any>>).forEach(
-        ({ teamId }, index, self) => {
-          self[index].kills = teamStats[teamId].kills;
-          self[index].deaths = teamStats[teamId].deaths;
-          self[index].assists = teamStats[teamId].assists;
-          self[index].goldEarned = teamStats[teamId].goldEarned;
-        },
-        {},
-      );
+        (matchOverviewData.info.teams as Array<Record<any, any>>).forEach(
+          ({ teamId }, index, self) => {
+            self[index].kills = teamStats[teamId].kills;
+            self[index].deaths = teamStats[teamId].deaths;
+            self[index].assists = teamStats[teamId].assists;
+            self[index].goldEarned = teamStats[teamId].goldEarned;
+          },
+          {},
+        );
+
+        matchDataObj = matchOverviewData.info;
+      }
 
       // eslint-disable-next-line max-len
-      const currentUser = matchOverviewData.info.participants.find(({ summonerId }) => summonerId === userDocData.id);
+      const currentUser = matchDataObj.participants.find(({ summonerId }) => summonerId === userDocData.id);
 
       await userMatchesDoc.doc(match.matchId).set({
-        ...savedMatchDataObj,
-        ...matchOverviewData.info,
+        ...matchDataObj,
         matchId: match.matchId,
       }, { merge: true });
 
       return ({
         matchId: match.matchId,
-        gameCreation: matchOverviewData.info.gameCreation,
-        gameDuration: matchOverviewData.info.gameDuration,
-        gameId: matchOverviewData.info.gameId,
-        gameMode: matchOverviewData.info.gameMode,
-        gameName: matchOverviewData.info.gameName,
-        gameType: matchOverviewData.info.gameType,
-        gameVersion: matchOverviewData.info.gameVersion,
-        mapId: matchOverviewData.info.mapId,
-        platformId: matchOverviewData.info.platformId,
-        queueId: matchOverviewData.info.queueId,
+        gameCreation: matchDataObj.gameCreation,
+        gameDuration: matchDataObj.gameDuration,
+        gameId: matchDataObj.gameId,
+        gameMode: matchDataObj.gameMode,
+        gameName: matchDataObj.gameName,
+        gameType: matchDataObj.gameType,
+        gameVersion: matchDataObj.gameVersion,
+        mapId: matchDataObj.mapId,
+        platformId: matchDataObj.platformId,
+        queueId: matchDataObj.queueId,
         champion: currentUser.championId,
         championName: currentUser.championName,
         champLevel: currentUser.champLevel,

@@ -62,8 +62,6 @@ const Match: FunctionComponent = () => {
   return (
     <MatchStyled>
       <div className="section">
-        {/* <div className="top" /> */}
-        {/* <div className="content"> */}
         <div className="wrapper">
           <div className="content-border">
             <List className="match-list">
@@ -148,8 +146,6 @@ const Match: FunctionComponent = () => {
 
           )}
         </div>
-        {/* </div> */}
-        {/* <div className="bottom" /> */}
       </div>
     </MatchStyled>
   );

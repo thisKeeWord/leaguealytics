@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import cx from 'classnames';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import TextField from '@material-ui/core/TextField';
@@ -9,12 +10,14 @@ import SearchIcon from '@material-ui/icons/Search';
 import { getUser } from '../../state/actions/getUser';
 import { selectUserDoc } from '../../state/selectors/user';
 import Match from '../Match';
+import Intro from '../Intro';
 import { StyledApp } from './styles';
 
 const App: FunctionComponent = () => {
   const user = useSelector(selectUserDoc);
   const dispatch = useDispatch();
   const location = useLocation();
+  const { state, search } = location;
   const history = useHistory();
 
   const {
@@ -38,34 +41,38 @@ const App: FunctionComponent = () => {
   );
 
   useEffect(() => {
-    if (location.search && !location.state) {
-      const queryUser = location.search.slice(3);
-      queryUser && dispatch(getUser({ username: location.search.slice(3) }));
+    if (search && !state && !user) {
+      dispatch(getUser({ username: search.slice(3) }));
     }
-  }, []);
+  }, [search]);
 
   return (
     <StyledApp>
-      <Link to="/about">About</Link>
-      <div className="root-form">
-        <span className="username">{user?.name}</span>
-        <form onSubmit={handleSubmit} className="search" data-testid="app">
-          <TextField
-            id="username"
-            name="username"
-            onChange={handleChange}
-            helperText={touched.username && errors.username}
-            error={touched.username && !!errors.username}
-            label="Summoner Name"
-            onBlur={handleBlur}
-            variant="outlined"
-          />
-          <IconButton type="submit" aria-label="search">
-            <SearchIcon />
-          </IconButton>
-        </form>
+      <div className={cx('container', { 'left-display': !search })}>
+        <Link to="/about">About</Link>
+        {!search && (
+          <Intro />
+        )}
+        <div className="root-form">
+          {search && <span className="username">{user?.name}</span>}
+          <form onSubmit={handleSubmit} className="search" data-testid="app">
+            <TextField
+              id="username"
+              name="username"
+              onChange={handleChange}
+              helperText={touched.username && errors.username}
+              error={touched.username && !!errors.username}
+              label="Summoner Name"
+              onBlur={handleBlur}
+              variant="outlined"
+            />
+            <IconButton type="submit" aria-label="search">
+              <SearchIcon />
+            </IconButton>
+          </form>
+        </div>
+        <Match />
       </div>
-      <Match />
     </StyledApp>
   );
 };

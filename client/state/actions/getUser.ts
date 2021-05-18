@@ -39,7 +39,6 @@ export const getUser = ({ username }: GetUserProps): AppThunk => async (
     }
 
     dispatch(setUser(matchList.data.user));
-    // eslint-disable-next-line max-len
     dispatch(loadMatchList(matchList.data));
   } catch (error) {
     dispatch(setUserError(error.message || 'An error has occurred'));

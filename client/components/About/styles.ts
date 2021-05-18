@@ -32,4 +32,17 @@ export const StyledAbout = styled.div`
       font-size: 10px;
     }
   }
+
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
+
+    .disclaimer {
+      font-size: 0.8rem;
+    }
+
+    .about-body {
+      width: 100%;
+      padding: 0 15px;
+    }
+  }
 `;

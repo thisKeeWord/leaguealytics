@@ -1,4 +1,3 @@
-// import util from 'util';
 import api from '../api';
 
 export const getMatchData = async (req, res) => {
@@ -11,6 +10,8 @@ export const getMatchData = async (req, res) => {
       .doc(matchId);
     const firestoreMatchData = (await firestoreMatchDoc.get()).data() || {};
 
+    // just in case frontend allowed api call to get timeline
+    // even though already saved
     if (firestoreMatchData.size > 0 && firestoreMatchData.byTimeframe) {
       res.send(firestoreMatchData);
 

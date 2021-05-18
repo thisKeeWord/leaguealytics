@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
-import cx from 'classnames';
 import { useSelector } from 'react-redux';
+import cx from 'classnames';
 import { selectSummonersData } from '../../../state';
 import { getSummoners, numberFormatter } from '../../../../utils/helper';
 import { MatchStyled } from './styles';
@@ -81,30 +81,41 @@ export const MatchList: FunctionComponent<MatchListProps> = (
           <div className="champion-image">
             <div className="champion-level">
               <img src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${championName}.png`} alt="champion" />
-            </div>
-            <div className="level-spells">
-              <div className="spells">
-                <img src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${spell1}`} alt="summoner spell 1" />
-                <img src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${spell2}`} alt="summoner spell 2" />
-              </div>
               <span>{champLevel}</span>
             </div>
+            <div className="summoner-spells">
+              <img src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${spell1}`} alt="summoner spell 1" />
+              <img src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${spell2}`} alt="summoner spell 2" />
+            </div>
           </div>
+          <span className="champion-name">{championName}</span>
         </div>
-        <span className="champion-name">{championName}</span>
         <div className="game-mode">{gameMode}</div>
         <div className="items">
-          {[item0, item1, item2, item3, item4, item5, item6].map((item, index) => (
-            <div className="view" key={index}>
+          <div className="item-set-1">
+            {[item0, item1, item2, item3, item4, item5].map((item, index) => (
+              <div className="view" key={index}>
+                <div className="item-icon binding">
+                  {item === 0 ? (
+                    <div className="no-image" />
+                  ) : (
+                    <img src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${item}.png`} alt={`${item}.png`} />
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="default-1-4">
+            <div className="inventory-trinket">
               <div className="item-icon binding">
-                {item === 0 ? (
+                {item6 === 0 ? (
                   <div className="no-image" />
                 ) : (
-                  <img src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${item}.png`} alt={`${item}.png`} />
+                  <img src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${item6}.png`} alt={`${item6}`} />
                 )}
               </div>
             </div>
-          ))}
+          </div>
         </div>
 
         <div className="stat">

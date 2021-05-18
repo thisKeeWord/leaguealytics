@@ -227,7 +227,7 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
                                 {item === 0 ? (
                                   <div className="no-image" />
                                 ) : (
-                                  <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/item/${item}.png`} alt={`${item}.png`} />
+                                  <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/item/${item}.png`} alt={`${item}`} />
                                 )}
                               </div>
                             </div>
@@ -236,13 +236,11 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
                         <div className="default-1-4">
                           <div className="inventory-trinket">
                             <div className="item-icon binding">
-                              <div>
-                                {item6 === 0 ? (
-                                  <div className="no-image" />
-                                ) : (
-                                  <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/item/${item6}.png`} alt={`${item6}`} />
-                                )}
-                              </div>
+                              {item6 === 0 ? (
+                                <div className="no-image" />
+                              ) : (
+                                <img src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/item/${item6}.png`} alt={`${item6}`} />
+                              )}
                             </div>
                           </div>
                         </div>
