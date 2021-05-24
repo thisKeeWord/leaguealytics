@@ -8,6 +8,7 @@ import store from '../state';
 import App from './App';
 import theme from '../theme';
 import About from './About';
+import FourOhFour from './FourOhFour';
 
 const Main: FunctionComponent = () => (
   <ThemeProvider theme={theme}>
@@ -17,6 +18,7 @@ const Main: FunctionComponent = () => (
           <Route path="/" exact component={App} />
           <Route path="/?q=:name" component={App} />
           <Route path="/about" component={About} />
+          <Route path="*" component={FourOhFour} />
         </Router>
       </ReduxProvider>
     </ScopedCssBaseline>
