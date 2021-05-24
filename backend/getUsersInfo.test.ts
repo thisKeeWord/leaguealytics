@@ -75,8 +75,8 @@ describe('getUsersInfo', () => {
     jest.spyOn(api.riotAPI.match.overview, 'get').mockImplementationOnce((): any => generateAxiosResponseObject(matchOverviewData, { status: 200 }));
     const spy = jest.spyOn(api.riotAPI.matchList, 'get');
     spy.mockImplementationOnce((): any => basicSuccessResponse);
-    await getUsersInfo(req, res);
 
+    await getUsersInfo(req, res);
     expect(spy).toHaveBeenCalled();
   });
 });
