@@ -48,6 +48,30 @@ describe('getUsersInfo', () => {
       },
       { status: 200 },
     );
+    jest.spyOn(api.riotAPI.users, 'get').mockImplementationOnce((): any => generateAxiosResponseObject({
+      data: {
+        accountId: '123',
+        id: '234',
+        summonerLevel: 271,
+        name: 'TEEHEE92',
+        profileIconId: 123,
+        puuid: '123',
+        revisionDate: 1616226785000,
+        matches: [
+          {
+            championImg: 'Anivia.png',
+            role: 'DUO_SUPPORT',
+            platformId: 'NA1',
+            queue: 450,
+            lane: 'MID',
+            gameId: 3833657566,
+            timestamp: 1616225321603,
+            season: 13,
+            champion: 34,
+          },
+        ],
+      },
+    }, { status: 200 }));
     jest.spyOn(api.riotAPI.match.overview, 'get').mockImplementationOnce((): any => generateAxiosResponseObject(matchOverviewData, { status: 200 }));
     const spy = jest.spyOn(api.riotAPI.matchList, 'get');
     spy.mockImplementationOnce((): any => basicSuccessResponse);
