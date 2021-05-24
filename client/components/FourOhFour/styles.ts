@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledAbout = styled.div`
+export const StyledFourOhFour = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
@@ -8,7 +8,7 @@ export const StyledAbout = styled.div`
   align-items: center;
   font-size: 20px;
 
-  .about-body {
+  .four-oh-four-body {
     width: 50%;
 
     .linkToPages {
@@ -28,19 +28,21 @@ export const StyledAbout = styled.div`
       }
     }
 
-    .disclaimer {
-      font-size: 10px;
+    .alistar-gif {
+      float: right;
+
+      img {
+        height: 240px;
+        width: 240px;
+      }
     }
   }
+}
 
   @media screen and (max-width: 768px) {
     font-size: 1rem;
 
-    .disclaimer {
-      font-size: 0.8rem;
-    }
-
-    .about-body {
+    .four-oh-four-body {
       width: 100%;
       padding: 0 45px;
     }
