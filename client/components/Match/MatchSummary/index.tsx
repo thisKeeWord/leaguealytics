@@ -1,11 +1,15 @@
-import React, { FunctionComponent } from 'react';
+import React, { ChangeEvent, FunctionComponent, useState } from 'react';
 import cx from 'classnames';
 import { useSelector } from 'react-redux';
+import Tab from '@material-ui/core/Tab';
+import Tabs from '@material-ui/core/Tabs';
+import Paper from '@material-ui/core/Paper';
 import { getSummoners, numberFormatter } from '../../../../utils/helper';
 import { selectPatchData, selectSummonersData } from '../../../state';
 import Chart from '../../Chart';
 
 import { MatchSummaryStyled } from './styles';
+import MatchTimeline from '../MatchTimeline';
 
 interface MatchSummaryProps {
   match: Record<any, any>;
@@ -17,7 +21,12 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
 ) => {
   const patchData = useSelector(selectPatchData);
   const summoners = useSelector(selectSummonersData);
+  const [matchView, setMatchView] = useState<number>(0);
   const summonersList = summoners?.data;
+
+  const handleViewChange = (event: ChangeEvent<{}>, newValue: number) => {
+    setMatchView(newValue);
+  };
 
   const { currentPlayer, match } = props;
 
@@ -278,17 +287,36 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
         </div>
       </div>
 
-      <div className="content-border">
-        <div className="charts" data-testid="match-summary">
-          {totalDamageDealtStat && <Chart version={patchData.version} data={totalDamageDealtStat} title="Total Damage Dealt" />}
-          {totalDamageTakenStat && <Chart version={patchData.version} data={totalDamageTakenStat} title="Total Damage Taken" />}
-          {goldEarnedStat && <Chart version={patchData.version} data={goldEarnedStat} title="Gold Earned" />}
-          {killsStat && <Chart version={patchData.version} data={killsStat} title="Kills" />}
-          {assistsStat && <Chart version={patchData.version} data={assistsStat} title="Assists" />}
-          {killParticipationStat && <Chart version={patchData.version} data={killParticipationStat} title="Kill Participation (% rounded down)" />}
-          {deathStat && <Chart version={patchData.version} data={deathStat} title="Deaths" />}
-          {deathShareStat && <Chart version={patchData.version} data={deathShareStat} title="Death Share (% rounded down)" />}
-          {creepScoreStat && <Chart version={patchData.version} data={creepScoreStat} title="Creep Score" />}
+      <div className="view">
+        <Paper>
+          <Tabs
+            value={matchView}
+            indicatorColor="primary"
+            textColor="primary"
+            onChange={handleViewChange}
+            aria-label="disabled tabs example"
+          >
+            <Tab label="Overview" />
+            <Tab label="Match Timeline" />
+          </Tabs>
+        </Paper>
+
+        <div className="content-border">
+          {matchView === 0 ? (
+            <div className="charts" data-testid="match-summary">
+              {totalDamageDealtStat && <Chart version={patchData.version} data={totalDamageDealtStat} title="Total Damage Dealt" />}
+              {totalDamageTakenStat && <Chart version={patchData.version} data={totalDamageTakenStat} title="Total Damage Taken" />}
+              {goldEarnedStat && <Chart version={patchData.version} data={goldEarnedStat} title="Gold Earned" />}
+              {killsStat && <Chart version={patchData.version} data={killsStat} title="Kills" />}
+              {assistsStat && <Chart version={patchData.version} data={assistsStat} title="Assists" />}
+              {killParticipationStat && <Chart version={patchData.version} data={killParticipationStat} title="Kill Participation (% rounded down)" />}
+              {deathStat && <Chart version={patchData.version} data={deathStat} title="Deaths" />}
+              {deathShareStat && <Chart version={patchData.version} data={deathShareStat} title="Death Share (% rounded down)" />}
+              {creepScoreStat && <Chart version={patchData.version} data={creepScoreStat} title="Creep Score" />}
+            </div>
+          ) : (
+            <MatchTimeline />
+          )}
         </div>
       </div>
     </MatchSummaryStyled>

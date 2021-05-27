@@ -140,7 +140,6 @@ const Match: FunctionComponent = () => {
             <span>loading</span>
           ) : (
             <div className="match-info">
-              {/* <MatchSummary /> */}
               <MatchStats currentPlayer={currentPlayerIdentity} match={selectedGame} />
             </div>
 
