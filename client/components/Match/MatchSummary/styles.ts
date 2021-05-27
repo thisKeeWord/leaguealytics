@@ -275,4 +275,12 @@ export const MatchSummaryStyled = styled.div`
       }
     }
   }
+
+  .view {
+    margin-top: 10px;
+
+    .MuiTabs-flexContainer {
+      justify-content: center;
+    }
+  }
 `;
