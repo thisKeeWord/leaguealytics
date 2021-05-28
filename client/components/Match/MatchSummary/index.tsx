@@ -122,6 +122,8 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
   const team100 = participants.filter(({ teamId }) => teamId === 100);
   const team200 = participants.filter(({ teamId }) => teamId === 200);
 
+  console.log(match, 'match');
+
   return (
     <MatchSummaryStyled>
       <div className="content-border">
@@ -469,7 +471,7 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
               )}
             </div>
           ) : (
-            <MatchTimeline />
+            <MatchTimeline currentPlayer={currentPlayer} timeline={match.byTimeframe} />
           )}
         </div>
       </div>

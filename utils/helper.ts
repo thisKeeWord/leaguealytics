@@ -50,14 +50,13 @@ export const getSummoners = (summonersList: Record<any, any> | null, summonerSpe
 ** toFixed(d) returns a string that has exactly 'd' digits
 ** after the decimal place, rounding if necessary.
 */
-export const numberFormatter = (num: number) => {
-  if (num > 999 && num < 1000000) {
+export const numberFormatter = (num: number): string => {
+  if (num > 999 && num <= 1000000) {
     return `${(num / 1000).toFixed(1)}K`; // convert to K for number from > 1000 < 1 million
   } if (num > 1000000) {
     return `${(num / 1000000).toFixed(1)}M`; // convert to M for number from > 1 million
-  } if (num < 900) {
-    return num; // if value < 1000, nothing to do
   }
+  return num.toString(); // if value < 1000, nothing to do
 };
 
 export const msToTime = (duration: number): string => {
@@ -89,4 +88,16 @@ export const parseStats = (statsData: Record<any, any>[], type: string) => {
   );
 
   return stats;
+};
+
+export const convertTimestamp = (timestamp: number): string => {
+  const hours = Math.floor(timestamp / (1000 * 3600));
+  const minutes = Math.floor(timestamp / (1000 * 60)) % 60;
+  const seconds = Math.floor(timestamp / 1000) % 60;
+
+  const longHours = hours < 10 ? `0${hours}` : hours;
+  const longMinutes = minutes < 10 ? `0${minutes}` : minutes;
+  const longSeconds = seconds < 10 ? `0${seconds}` : seconds;
+
+  return `${longHours}:${longMinutes}:${longSeconds}`;
 };
