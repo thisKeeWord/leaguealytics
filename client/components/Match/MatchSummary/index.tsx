@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Paper from '@material-ui/core/Paper';
-import { getSummoners, numberFormatter } from '../../../../utils/helper';
+import { getSummoners, numberFormatter, parseStats } from '../../../../utils/helper';
 import { selectPatchData, selectSummonersData } from '../../../state';
 import Chart from '../../Chart';
 
@@ -475,23 +475,4 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
       </div>
     </MatchSummaryStyled>
   );
-};
-
-const parseStats = (statsData: Record<any, any>[], type: string) => {
-  const stats = statsData.map(
-    ({
-      champion, isCurrentPlayer, player, team,
-    }, index, self) => ({
-      x: `${champion}`,
-      y: ['deathShare', 'killParticipation'].includes(type)
-        ? Math.floor(self[index][type])
-        : self[index][type],
-      player,
-      label: `${champion} ${player}`,
-      isCurrentPlayer,
-      team,
-    }),
-  );
-
-  return stats;
 };

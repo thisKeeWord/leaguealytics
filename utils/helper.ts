@@ -71,3 +71,22 @@ export const msToTime = (duration: number): string => {
 
   return `${hours}:${minutes}:${seconds}`;
 };
+
+export const parseStats = (statsData: Record<any, any>[], type: string) => {
+  const stats = statsData.map(
+    ({
+      champion, isCurrentPlayer, player, team,
+    }, index, self) => ({
+      x: `${champion}`,
+      y: ['deathShare', 'killParticipation'].includes(type)
+        ? Math.floor(self[index][type])
+        : self[index][type],
+      player,
+      label: `${champion} ${player}`,
+      isCurrentPlayer,
+      team,
+    }),
+  );
+
+  return stats;
+};
