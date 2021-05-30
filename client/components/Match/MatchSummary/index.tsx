@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Paper from '@material-ui/core/Paper';
-import { getSummoners, numberFormatter } from '../../../../utils/helper';
+import { getSummoners, numberFormatter, parseStats } from '../../../../utils/helper';
 import { selectPatchData, selectSummonersData } from '../../../state';
 import Chart from '../../Chart';
 
@@ -16,7 +16,7 @@ interface MatchSummaryProps {
   currentPlayer: Record<any, any>;
 }
 
-export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
+const MatchSummary: FunctionComponent<MatchSummaryProps> = (
   props: MatchSummaryProps,
 ) => {
   const patchData = useSelector(selectPatchData);
@@ -387,12 +387,14 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
         </div>
       </div>
 
-      <div className="view">
+      <div className="blank-div" />
+
+      <div className="view" data-testid="view">
         <Paper>
           <Tabs
-            value={matchView}
             indicatorColor="primary"
             textColor="primary"
+            value={matchView}
             onChange={handleViewChange}
             aria-label="disabled tabs example"
           >
@@ -469,7 +471,7 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
               )}
             </div>
           ) : (
-            <MatchTimeline />
+            <MatchTimeline currentPlayer={currentPlayer} timeline={match.byTimeframe} />
           )}
         </div>
       </div>
@@ -477,21 +479,4 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
   );
 };
 
-const parseStats = (statsData: Record<any, any>[], type: string) => {
-  const stats = statsData.map(
-    ({
-      champion, isCurrentPlayer, player, team,
-    }, index, self) => ({
-      x: `${champion}`,
-      y: ['deathShare', 'killParticipation'].includes(type)
-        ? Math.floor(self[index][type])
-        : self[index][type],
-      player,
-      label: `${champion} ${player}`,
-      isCurrentPlayer,
-      team,
-    }),
-  );
-
-  return stats;
-};
+export default MatchSummary;

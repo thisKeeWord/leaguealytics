@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import React from 'react';
 import faker from 'faker';
-import { MatchStats } from '.';
+import MatchStats from '.';
 
 jest.mock('../MatchSummary');
 
