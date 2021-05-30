@@ -34,7 +34,7 @@ interface MatchListProps {
   role?: 'button';
 }
 
-export const MatchList: FunctionComponent<MatchListProps> = (
+const MatchList: FunctionComponent<MatchListProps> = (
   props: MatchListProps,
 ) => {
   const {
@@ -146,3 +146,5 @@ export const MatchList: FunctionComponent<MatchListProps> = (
     </MatchStyled>
   );
 };
+
+export default MatchList;

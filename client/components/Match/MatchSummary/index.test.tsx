@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import React from 'react';
 import faker from 'faker';
 import { Provider } from 'react-redux';
-import { MatchSummary } from '.';
+import MatchSummary from '.';
 import store from '../../../state';
 
 describe('MatchSummary', () => {

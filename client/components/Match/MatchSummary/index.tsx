@@ -16,7 +16,7 @@ interface MatchSummaryProps {
   currentPlayer: Record<any, any>;
 }
 
-export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
+const MatchSummary: FunctionComponent<MatchSummaryProps> = (
   props: MatchSummaryProps,
 ) => {
   const patchData = useSelector(selectPatchData);
@@ -478,3 +478,5 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
     </MatchSummaryStyled>
   );
 };
+
+export default MatchSummary;

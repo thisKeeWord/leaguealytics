@@ -3,7 +3,7 @@ import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
 import { Provider } from 'react-redux';
 import faker from 'faker';
-import { MatchList } from '.';
+import MatchList from '.';
 import store from '../../../state';
 
 describe('MatchList', () => {

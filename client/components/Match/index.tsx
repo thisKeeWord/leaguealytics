@@ -13,8 +13,8 @@ import {
   selectUserFetching,
 } from '../../state';
 import { getMatchTimeline } from '../../state/actions/getMatchTimeline';
-import { MatchList } from './MatchList';
-import { MatchStats } from './MatchStats';
+import MatchList from './MatchList';
+import MatchStats from './MatchStats';
 import { MatchStyled } from './styles';
 
 const Match: FunctionComponent = () => {
