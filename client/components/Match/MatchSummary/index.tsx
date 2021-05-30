@@ -122,8 +122,6 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
   const team100 = participants.filter(({ teamId }) => teamId === 100);
   const team200 = participants.filter(({ teamId }) => teamId === 200);
 
-  console.log(match, 'match');
-
   return (
     <MatchSummaryStyled>
       <div className="content-border">
@@ -389,12 +387,14 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
         </div>
       </div>
 
-      <div className="view">
+      <div className="blank-div" />
+
+      <div className="view" data-testid="view">
         <Paper>
           <Tabs
-            value={matchView}
             indicatorColor="primary"
             textColor="primary"
+            value={matchView}
             onChange={handleViewChange}
             aria-label="disabled tabs example"
           >

@@ -1,6 +1,14 @@
 import styled from 'styled-components';
 
 export const MatchSummaryStyled = styled.div`
+  .Mui-selected {
+    color: black;
+  }
+
+  .MuiTabs-indicator {
+    background-color: black;
+  }
+
   .by-teams {
     color: white;
 
@@ -276,11 +284,22 @@ export const MatchSummaryStyled = styled.div`
     }
   }
 
-  .view {
-    margin-top: 10px;
+  .blank-div {
+    height: 10px;
+    width: 100%;
+    background-color: #4c4c4c;
+  }
 
+  .view {
     .MuiTabs-flexContainer {
       justify-content: center;
+    }
+  }
+
+
+  @media screen and (max-width: 768px) {
+    .view {
+      margin-bottom: 75px;
     }
   }
 `;
