@@ -14,7 +14,7 @@ import {
 } from '../../state';
 import { getMatchTimeline } from '../../state/actions/getMatchTimeline';
 import MatchList from './MatchList';
-import MatchStats from './MatchStats';
+import MatchSummary from './MatchSummary';
 import { MatchStyled } from './styles';
 
 const Match: FunctionComponent = () => {
@@ -144,9 +144,9 @@ const Match: FunctionComponent = () => {
           </div>
           {isMatchesFetching ? (
             <span>loading</span>
-          ) : (
+          ) : selectedGame.matchId && currentPlayerIdentity.summonerId && (
             <div className="match-info">
-              <MatchStats
+              <MatchSummary
                 currentPlayer={currentPlayerIdentity}
                 match={selectedGame}
               />
