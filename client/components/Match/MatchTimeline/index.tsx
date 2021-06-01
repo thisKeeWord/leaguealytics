@@ -2,15 +2,22 @@ import React, { ChangeEvent, FunctionComponent, useState } from 'react';
 import Slider from '@material-ui/core/Slider';
 import { convertTimestamp } from '../../../../utils/helper';
 import { StyledMatchTimeline } from './styles';
+import Map from '../Map';
 
 interface MatchTimelineProps {
   currentPlayer: Record<any, any>
   timeline: Record<any, any>
+  mapId: number
+  participants: Record<any, any>[]
+  version: number | string;
+  matchId: string
 }
 
 const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimelineProps) => {
   const [timeframe, setTimeframe] = useState(0);
-  const { currentPlayer, timeline } = props;
+  const {
+    currentPlayer, timeline, mapId, participants, version, matchId,
+  } = props;
 
   if (!timeline.length) {
     return null;
@@ -38,7 +45,8 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
           valueLabelFormat={(val: number) => convertTimestamp(timeline[val].timestamp)}
         />
       </div>
-
+      {/* eslint-disable-next-line max-len */}
+      <Map mapId={mapId} timeline={timeline[timeframe]} currentPlayer={currentPlayer} participants={participants} version={version} matchId={matchId} />
     </StyledMatchTimeline>
   );
 };

@@ -143,6 +143,7 @@ const CustomLabel = (props: CustomLabelProps) => {
 
   return (
     <foreignObject y={(props.y || 0) - 10} x={23} style={{ height: '20px', width: '20px' }}>
+      {/* eslint-disable-next-line max-len */}
       <img alt="champion" src={`http://ddragon.leagueoflegends.com/cdn/${props.version}/img/champion/${props.data[props.index].x}.png`} style={{ height: '20px', width: '20px' }} />
       <span>{props.data[props.index].player}</span>
     </foreignObject>

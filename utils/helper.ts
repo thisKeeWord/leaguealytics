@@ -101,3 +101,13 @@ export const convertTimestamp = (timestamp: number): string => {
 
   return `${longHours}:${longMinutes}:${longSeconds}`;
 };
+
+export const getStrokeColor = (participantId: number, isCurrentPlayer: boolean) => {
+  if (isCurrentPlayer) {
+    return 'purple';
+  }
+  if (participantId <= 5) {
+    return '#2747e8';
+  }
+  return '#cb2124';
+};

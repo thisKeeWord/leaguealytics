@@ -72,6 +72,7 @@ describe('getUsersInfo', () => {
         ],
       },
     }, { status: 200 }));
+    // eslint-disable-next-line max-len
     jest.spyOn(api.riotAPI.match.overview, 'get').mockImplementationOnce((): any => generateAxiosResponseObject(matchOverviewData, { status: 200 }));
     const spy = jest.spyOn(api.riotAPI.matchList, 'get');
     spy.mockImplementationOnce((): any => basicSuccessResponse);

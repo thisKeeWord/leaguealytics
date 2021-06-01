@@ -41,7 +41,6 @@ const Match: FunctionComponent = () => {
     return null;
   }
 
-  // eslint-disable-next-line max-len
   const selectedGame = selectedMatchId
     && matches[selectedMatchId]
     && matches[selectedMatchId].data.matchId
