@@ -16,7 +16,7 @@ export const getUsersInfo = async (req, res) => {
     const matchList = await api.riotAPI.matchList.get(userData!.puuid);
     const matches = matchList.data;
 
-    matches.forEach((match, index, self) => {
+    matches.forEach((match, index: number, self) => {
       self[index] = { matchId: match };
     });
 

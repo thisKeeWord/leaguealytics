@@ -43,22 +43,15 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
           <VictoryLabel
             text={props.title}
             y={20}
-            style={{
-              fill: 'black',
-              paddingLeft: '20px',
-            }}
+            style={{ fill: 'black', paddingLeft: '20px' }}
           />
           <VictoryAxis
             dependentAxis
             standalone={false}
             tickLabelComponent={<VictoryLabel renderInPortal />}
             style={{
-              tickLabels: {
-                fill: 'black',
-              },
-              axis: {
-                stroke: 'black',
-              },
+              tickLabels: { fill: 'black' },
+              axis: { stroke: 'black' },
             }}
           />
           <VictoryAxis
@@ -70,9 +63,7 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
               tickLabels: {
                 fill: ({ index }) => (playerType[index] ? 'green' : 'black'),
               },
-              axis: {
-                stroke: 'black',
-              },
+              axis: { stroke: 'black' },
             }}
           />
           <VictoryBar

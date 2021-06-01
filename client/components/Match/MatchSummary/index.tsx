@@ -16,9 +16,7 @@ interface MatchSummaryProps {
   currentPlayer: Record<any, any>;
 }
 
-const MatchSummary: FunctionComponent<MatchSummaryProps> = (
-  props: MatchSummaryProps,
-) => {
+const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryProps) => {
   const patchData = useSelector(selectPatchData);
   const summoners = useSelector(selectSummonersData);
   const [matchView, setMatchView] = useState<number>(0);

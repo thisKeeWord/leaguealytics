@@ -71,11 +71,7 @@ const MatchList: FunctionComponent<MatchListProps> = (
   const { spell1, spell2 } = getSummoners(summonersList, { summoner1Id, summoner2Id });
 
   return (
-    <MatchStyled
-      data-testid="input"
-      role={role}
-      onClick={() => handleClick(matchId)}
-    >
+    <MatchStyled data-testid="input" role={role} onClick={() => handleClick(matchId)}>
       <div className={cx('match-button', { win: victory, loss: !victory, active: isActiveMatch })}>
         <div className="base-info">
           <div className="champion-image">

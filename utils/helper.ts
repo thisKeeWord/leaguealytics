@@ -8,11 +8,7 @@ export const generateAxiosResponseObject = (data: any, options = {}): AxiosRespo
     config: {},
   };
 
-  return {
-    ...defaults,
-    ...options,
-    data,
-  };
+  return { ...defaults, ...options, data };
 };
 
 // get summoner spell name
