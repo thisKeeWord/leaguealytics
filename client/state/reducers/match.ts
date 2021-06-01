@@ -57,9 +57,6 @@ const matchSlice = createSlice({
 });
 
 export const {
-  loadMatchSuccess,
-  loadMatchFailure,
-  loadMatchList,
-  setMatchFetching,
+  loadMatchSuccess, loadMatchFailure, loadMatchList, setMatchFetching,
 } = matchSlice.actions;
 export default matchSlice.reducer;

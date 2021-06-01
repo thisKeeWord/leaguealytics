@@ -32,9 +32,5 @@ const summonersSlice = createSlice({
   },
 });
 
-export const {
-  loadSummonersSuccess,
-  loadSummonersFailure,
-  setSummonersFetching,
-} = summonersSlice.actions;
+export const { loadSummonersSuccess, loadSummonersFailure, setSummonersFetching } = summonersSlice.actions;
 export default summonersSlice.reducer;

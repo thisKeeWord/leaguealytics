@@ -12,6 +12,10 @@ describe('MatchTimeline', () => {
       <MatchTimeline
         timeline={[]}
         currentPlayer={currentPlayer}
+        mapId={faker.datatype.number()}
+        participants={[]}
+        version={faker.datatype.number()}
+        matchId={faker.random.alphaNumeric()}
       />,
     );
 
@@ -25,6 +29,10 @@ describe('MatchTimeline', () => {
       <MatchTimeline
         timeline={[{ timestamp: faker.datatype.number() }]}
         currentPlayer={currentPlayer}
+        mapId={faker.datatype.number()}
+        participants={[]}
+        version={faker.datatype.number()}
+        matchId={faker.random.alphaNumeric()}
       />,
     );
 

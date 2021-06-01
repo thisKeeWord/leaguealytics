@@ -7,10 +7,7 @@ interface GetMatchTimelineProps {
   matchId: string;
 }
 
-export const getMatchTimeline = ({ username, matchId }: GetMatchTimelineProps): AppThunk => async (
-  dispatch,
-  getState,
-): Promise<void> => {
+export const getMatchTimeline = ({ username, matchId }: GetMatchTimelineProps): AppThunk => async (dispatch, getState): Promise<void> => {
   const state = getState();
   const match = state.match;
   dispatch(setMatchFetching({ isFetching: true }));

@@ -33,11 +33,9 @@ export const getMatchData = async (req, res) => {
         participantFrames[key] = {
           ...participantFrames[key],
           participantId: frame.participantFrames[key].participantId,
-          // eslint-disable-next-line max-len
           minionsKilled: frame.participantFrames[key].minionsKilled + frame.participantFrames[key].jungleMinionsKilled,
           position: frame.participantFrames[key].position,
           totalGold: frame.participantFrames[key].totalGold,
-          // eslint-disable-next-line max-len
           damageDoneToChampions: frame.participantFrames[key].damageStats.totalDamageDoneToChampions,
           damageTaken: frame.participantFrames[key].damageStats.totalDamageTaken,
           items: (Boolean(participantFrames[key]) && participantFrames[key].items) || [],
@@ -45,7 +43,6 @@ export const getMatchData = async (req, res) => {
           deaths: (Boolean(participantFrames[key]) && participantFrames[key].deaths) || 0,
           kills: (Boolean(participantFrames[key]) && participantFrames[key].kills) || 0,
           wardsPlaced: (Boolean(participantFrames[key]) && participantFrames[key].wardsPlaced) || 0,
-          // eslint-disable-next-line max-len
           wardsPurchased: (Boolean(participantFrames[key]) && participantFrames[key].wardsPurchased) || 0,
           wardsKilled: (Boolean(participantFrames[key]) && participantFrames[key].wardsKilled) || 0,
 
@@ -86,7 +83,6 @@ export const getMatchData = async (req, res) => {
 
         // ITEM HANDLING MAY REMOVED AS IT REQUIRES POTENTIAL FREQUENT UPDATES
         if (type === 'ITEM_SOLD') {
-          // eslint-disable-next-line max-len
           participantFrames[participantId].items.splice(participantFrames[participantId].items.lastIndexOf(itemId), 1);
         }
 
@@ -116,43 +112,31 @@ export const getMatchData = async (req, res) => {
         */
         if (type === 'ITEM_DESTROYED') {
           if (itemId === 3003) {
-            // eslint-disable-next-line max-len
             participantFrames[participantId].items.splice(participantFrames[participantId].items.lastIndexOf(itemId), 1, 3040);
           } else if (itemId === 3004) {
-            // eslint-disable-next-line max-len
             participantFrames[participantId].items.splice(participantFrames[participantId].items.lastIndexOf(itemId), 1, 3042);
           } else if (itemId === 3850) {
-            // eslint-disable-next-line max-len
             participantFrames[participantId].items.splice(participantFrames[participantId].items.lastIndexOf(itemId), 1, 3851);
           } else if (itemId === 3851) {
-            // eslint-disable-next-line max-len
             participantFrames[participantId].items.splice(participantFrames[participantId].items.lastIndexOf(itemId), 1, 3853);
           } else if (itemId === 3854) {
-            // eslint-disable-next-line max-len
             participantFrames[participantId].items.splice(participantFrames[participantId].items.lastIndexOf(itemId), 1, 3855);
           } else if (itemId === 3855) {
-            // eslint-disable-next-line max-len
             participantFrames[participantId].items.splice(participantFrames[participantId].items.lastIndexOf(itemId), 1, 3857);
           } else if (itemId === 3858) {
-            // eslint-disable-next-line max-len
             participantFrames[participantId].items.splice(participantFrames[participantId].items.lastIndexOf(itemId), 1, 3859);
           } else if (itemId === 3859) {
-            // eslint-disable-next-line max-len
             participantFrames[participantId].items.splice(participantFrames[participantId].items.lastIndexOf(itemId), 1, 3860);
           } else if (itemId === 3862) {
-            // eslint-disable-next-line max-len
             participantFrames[participantId].items.splice(participantFrames[participantId].items.lastIndexOf(itemId), 1, 3863);
           } else if (itemId === 3863) {
-            // eslint-disable-next-line max-len
             participantFrames[participantId].items.splice(participantFrames[participantId].items.lastIndexOf(itemId), 1, 3864);
           } else {
-          // eslint-disable-next-line max-len
             participantFrames[participantId].items.splice(participantFrames[participantId].items.lastIndexOf(itemId), 1);
           }
         }
         // ITEM HANDLING MAY REMOVED AS IT REQUIRES POTENTIAL FREQUENT UPDATES
         if (type === 'ITEM_PURCHASED') {
-          // eslint-disable-next-line max-len
           participantFrames[participantId].items.push(itemId);
           // control ward
           if (itemId === 2055) {
@@ -162,19 +146,15 @@ export const getMatchData = async (req, res) => {
         // ITEM HANDLING MAY REMOVED AS IT REQUIRES POTENTIAL FREQUENT UPDATES
         if (type === 'ITEM_UNDO') {
           if (Array.isArray(afterId)) {
-          // eslint-disable-next-line max-len
             participantFrames[participantId].items.splice(participantFrames[participantId].items.lastIndexOf(beforeId), 1, ...afterId);
           } else if (afterId) {
-            // eslint-disable-next-line max-len
             participantFrames[participantId].items.splice(participantFrames[participantId].items.lastIndexOf(beforeId), 1, afterId);
           } else {
-            // eslint-disable-next-line max-len
             participantFrames[participantId].items.splice(participantFrames[participantId].items.lastIndexOf(beforeId), 1);
           }
         }
       }
 
-      // eslint-disable-next-line max-len
       const filteredParticipantFrames = participantFrames.filter((participantFrame) => !!participantFrame);
       // ITEM HANDLING MAY REMOVED AS IT REQUIRES POTENTIAL FREQUENT UPDATES
       const updatedParticipantFrames = filteredParticipantFrames.map((filteredFrame) => {
@@ -184,7 +164,6 @@ export const getMatchData = async (req, res) => {
         return filteredFrame;
       });
 
-      // eslint-disable-next-line max-len
       byTimeframe.push({ timestamp: frame.timestamp, events, participantFrames: updatedParticipantFrames });
     }
 

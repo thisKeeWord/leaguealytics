@@ -16,9 +16,7 @@ interface MatchSummaryProps {
   currentPlayer: Record<any, any>;
 }
 
-const MatchSummary: FunctionComponent<MatchSummaryProps> = (
-  props: MatchSummaryProps,
-) => {
+const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryProps) => {
   const patchData = useSelector(selectPatchData);
   const summoners = useSelector(selectSummonersData);
   const [matchView, setMatchView] = useState<number>(0);
@@ -85,7 +83,6 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (
           );
           return {
             champion: championName,
-            // eslint-disable-next-line max-len
             player: summonerName,
             participantId,
             damageDealt: totalDamageDealtToChampions,
@@ -269,11 +266,7 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (
                     teamId,
                     summonerId,
                   }) => {
-                    // eslint-disable-next-line max-len
-                    const { spell1, spell2 } = getSummoners(summonersList, {
-                      summoner1Id,
-                      summoner2Id,
-                    });
+                    const { spell1, spell2 } = getSummoners(summonersList, { summoner1Id, summoner2Id });
                     return (
                       <div
                         className={cx('match-summary', {
@@ -471,7 +464,8 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (
               )}
             </div>
           ) : (
-            <MatchTimeline currentPlayer={currentPlayer} timeline={match.byTimeframe} />
+            // eslint-disable-next-line max-len
+            <MatchTimeline currentPlayer={currentPlayer} timeline={match.byTimeframe} mapId={match.mapId} participants={match.participants} version={patchData.version} matchId={match.matchId} />
           )}
         </div>
       </div>

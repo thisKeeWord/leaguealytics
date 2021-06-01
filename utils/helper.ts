@@ -8,11 +8,7 @@ export const generateAxiosResponseObject = (data: any, options = {}): AxiosRespo
     config: {},
   };
 
-  return {
-    ...defaults,
-    ...options,
-    data,
-  };
+  return { ...defaults, ...options, data };
 };
 
 // get summoner spell name
@@ -100,4 +96,14 @@ export const convertTimestamp = (timestamp: number): string => {
   const longSeconds = seconds < 10 ? `0${seconds}` : seconds;
 
   return `${longHours}:${longMinutes}:${longSeconds}`;
+};
+
+export const getStrokeColor = (participantId: number, isCurrentPlayer: boolean) => {
+  if (isCurrentPlayer) {
+    return 'purple';
+  }
+  if (participantId <= 5) {
+    return '#2747e8';
+  }
+  return '#cb2124';
 };

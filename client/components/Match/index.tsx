@@ -14,7 +14,7 @@ import {
 } from '../../state';
 import { getMatchTimeline } from '../../state/actions/getMatchTimeline';
 import MatchList from './MatchList';
-import MatchStats from './MatchStats';
+import MatchSummary from './MatchSummary';
 import { MatchStyled } from './styles';
 
 const Match: FunctionComponent = () => {
@@ -41,7 +41,6 @@ const Match: FunctionComponent = () => {
     return null;
   }
 
-  // eslint-disable-next-line max-len
   const selectedGame = selectedMatchId
     && matches[selectedMatchId]
     && matches[selectedMatchId].data.matchId
@@ -68,64 +67,59 @@ const Match: FunctionComponent = () => {
             <List className="match-list">
               {user.matches
                 .slice((page - 1) * itemsPerPage, page * itemsPerPage)
-                .map(
-                  (
-                    {
-                      championName,
-                      champLevel,
-                      gameCreation,
-                      gameDuration,
-                      gameMode,
-                      matchId,
-                      deaths,
-                      kills,
-                      assists,
-                      creepScore,
-                      summoner1Id,
-                      summoner2Id,
-                      victory,
-                      goldEarned,
-                      item0,
-                      item1,
-                      item2,
-                      item3,
-                      item4,
-                      item5,
-                      item6,
-                    },
-                    index,
-                  ) => (
-                    <ListItem key={index}>
-                      <MatchList
-                        handleClick={handleClick}
-                        championName={championName}
-                        champLevel={champLevel}
-                        gameCreation={gameCreation}
-                        gameDuration={gameDuration}
-                        gameMode={gameMode}
-                        matchId={matchId}
-                        deaths={deaths}
-                        kills={kills}
-                        assists={assists}
-                        creepScore={creepScore}
-                        summoner1Id={summoner1Id}
-                        summoner2Id={summoner2Id}
-                        victory={victory}
-                        goldEarned={goldEarned}
-                        item0={item0}
-                        item1={item1}
-                        item2={item2}
-                        item3={item3}
-                        item4={item4}
-                        item5={item5}
-                        item6={item6}
-                        version={patchData.version}
-                        role="button"
-                        isActiveMatch={selectedMatchId === matchId}
-                      />
-                    </ListItem>
-                  ),
-                )}
+                .map(({
+                  championName,
+                  champLevel,
+                  gameCreation,
+                  gameDuration,
+                  gameMode,
+                  matchId,
+                  deaths,
+                  kills,
+                  assists,
+                  creepScore,
+                  summoner1Id,
+                  summoner2Id,
+                  victory,
+                  goldEarned,
+                  item0,
+                  item1,
+                  item2,
+                  item3,
+                  item4,
+                  item5,
+                  item6,
+                }, index) => (
+                  <ListItem key={index}>
+                    <MatchList
+                      handleClick={handleClick}
+                      championName={championName}
+                      champLevel={champLevel}
+                      gameCreation={gameCreation}
+                      gameDuration={gameDuration}
+                      gameMode={gameMode}
+                      matchId={matchId}
+                      deaths={deaths}
+                      kills={kills}
+                      assists={assists}
+                      creepScore={creepScore}
+                      summoner1Id={summoner1Id}
+                      summoner2Id={summoner2Id}
+                      victory={victory}
+                      goldEarned={goldEarned}
+                      item0={item0}
+                      item1={item1}
+                      item2={item2}
+                      item3={item3}
+                      item4={item4}
+                      item5={item5}
+                      item6={item6}
+                      version={patchData.version}
+                      role="button"
+                      isActiveMatch={selectedMatchId === matchId}
+                    />
+                  </ListItem>
+                ))}
             </List>
             <Divider />
             <Box component="span">
@@ -144,9 +138,9 @@ const Match: FunctionComponent = () => {
           </div>
           {isMatchesFetching ? (
             <span>loading</span>
-          ) : (
+          ) : selectedGame.matchId && currentPlayerIdentity.summonerId && (
             <div className="match-info">
-              <MatchStats
+              <MatchSummary
                 currentPlayer={currentPlayerIdentity}
                 match={selectedGame}
               />

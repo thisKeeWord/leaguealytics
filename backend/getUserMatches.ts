@@ -56,7 +56,6 @@ export const getUserMatches = async (req, res) => {
         matchDataObj = matchOverviewData.info;
       }
 
-      // eslint-disable-next-line max-len
       const currentUser = matchDataObj.participants.find(({ summonerId }) => summonerId === userDocData.id);
 
       await userMatchesDoc.doc(match.matchId).set({

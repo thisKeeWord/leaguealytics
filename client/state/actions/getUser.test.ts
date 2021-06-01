@@ -24,10 +24,7 @@ describe('getUser', () => {
   it('calls dispatch with setUser if api call was successful', async () => {
     const dispatch = jest.fn();
     const getState = jest.fn();
-
-    const responseData = {
-      data: { user: {} },
-    };
+    const responseData = { data: { user: {} } };
 
     jest
       .spyOn(axios, 'get')
@@ -41,14 +38,9 @@ describe('getUser', () => {
   it('calls dispatch with loadMatchList if api call was successful', async () => {
     const dispatch = jest.fn();
     const getState = jest.fn();
+    const responseData = { data: {} };
 
-    const responseData = {
-      data: {},
-    };
-
-    jest
-      .spyOn(axios, 'get')
-      .mockImplementation(() => Promise.resolve(responseData));
+    jest.spyOn(axios, 'get').mockImplementation(() => Promise.resolve(responseData));
 
     getUser({ username })(dispatch, getState, null);
 

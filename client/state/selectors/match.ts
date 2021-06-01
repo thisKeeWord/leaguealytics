@@ -6,5 +6,4 @@ export const selectMatchIDs = (state: RootState): typeof state.match.ids => stat
 export const selectMatchesIsFetching = (state: RootState): boolean => state.match.isFetching;
 export const selectMetaLoaded = (state: RootState): boolean => state.match.isMetaLoaded;
 export const selectMatchesError = (state: RootState): string | null => state.match.error;
-// eslint-disable-next-line max-len
 export const selectMatchesList = createSelector([selectMatchesByID, selectMatchIDs], (byId, ids) => ids.map((id) => byId[id]));

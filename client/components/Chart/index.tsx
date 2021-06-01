@@ -43,22 +43,15 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
           <VictoryLabel
             text={props.title}
             y={20}
-            style={{
-              fill: 'black',
-              paddingLeft: '20px',
-            }}
+            style={{ fill: 'black', paddingLeft: '20px' }}
           />
           <VictoryAxis
             dependentAxis
             standalone={false}
             tickLabelComponent={<VictoryLabel renderInPortal />}
             style={{
-              tickLabels: {
-                fill: 'black',
-              },
-              axis: {
-                stroke: 'black',
-              },
+              tickLabels: { fill: 'black' },
+              axis: { stroke: 'black' },
             }}
           />
           <VictoryAxis
@@ -70,9 +63,7 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
               tickLabels: {
                 fill: ({ index }) => (playerType[index] ? 'green' : 'black'),
               },
-              axis: {
-                stroke: 'black',
-              },
+              axis: { stroke: 'black' },
             }}
           />
           <VictoryBar
@@ -143,6 +134,7 @@ const CustomLabel = (props: CustomLabelProps) => {
 
   return (
     <foreignObject y={(props.y || 0) - 10} x={23} style={{ height: '20px', width: '20px' }}>
+      {/* eslint-disable-next-line max-len */}
       <img alt="champion" src={`http://ddragon.leagueoflegends.com/cdn/${props.version}/img/champion/${props.data[props.index].x}.png`} style={{ height: '20px', width: '20px' }} />
       <span>{props.data[props.index].player}</span>
     </foreignObject>
