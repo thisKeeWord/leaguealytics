@@ -11,7 +11,7 @@ describe('MatchSummary', () => {
     const currentPlayer = { participantId: faker.random.alphaNumeric() };
     const match = { participants: [], teams: [] };
 
-    const { queryAllByTestId } = render(
+    const { queryByTestId } = render(
       <Provider store={store}>
         <MatchSummary
           match={match}
@@ -21,13 +21,13 @@ describe('MatchSummary', () => {
       </Provider>,
     );
 
-    expect(queryAllByTestId('match-stats')).toHaveLength(0);
+    expect(queryByTestId('match-stats')).not.toBeInTheDocument();
   });
 
   it('returns null if no currentPlayer.participantId exists', () => {
     const match = { participants: [], teams: [] };
 
-    const { queryAllByTestId } = render(
+    const { queryByTestId } = render(
       <Provider store={store}>
         <MatchSummary
           match={match}
@@ -37,14 +37,14 @@ describe('MatchSummary', () => {
       </Provider>,
     );
 
-    expect(queryAllByTestId('match-stats')).toHaveLength(0);
+    expect(queryByTestId('match-stats')).not.toBeInTheDocument();
   });
 
   it('returns null if no match.teams exists', () => {
     const currentPlayer = { participantId: faker.random.alphaNumeric() };
     const match = { participants: [] };
 
-    const { queryAllByTestId } = render(
+    const { queryByTestId } = render(
       <Provider store={store}>
         <MatchSummary
           match={match}
@@ -54,14 +54,14 @@ describe('MatchSummary', () => {
       </Provider>,
     );
 
-    expect(queryAllByTestId('match-stats')).toHaveLength(0);
+    expect(queryByTestId('match-stats')).not.toBeInTheDocument();
   });
 
   it('returns null if no match.participants exists', () => {
     const currentPlayer = { participantId: faker.random.alphaNumeric() };
     const match = { teams: [] };
 
-    const { queryAllByTestId } = render(
+    const { queryByTestId } = render(
       <Provider store={store}>
         <MatchSummary
           match={match}
@@ -71,6 +71,6 @@ describe('MatchSummary', () => {
       </Provider>,
     );
 
-    expect(queryAllByTestId('match-stats')).toHaveLength(0);
+    expect(queryByTestId('match-stats')).not.toBeInTheDocument();
   });
 });

@@ -120,7 +120,7 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
   const team200 = participants.filter(({ teamId }) => teamId === 200);
 
   return (
-    <MatchSummaryStyled>
+    <MatchSummaryStyled data-testid="match-stats">
       <div className="content-border">
         <div className="match-overview">
           <div className="by-teams">
