@@ -94,13 +94,13 @@ const Map: FunctionComponent<MapProps> = (props: MapProps) => {
     }
   }, [props.timeline, props.currentPlayer, props.mapId, matchMap]);
 
-  if (props.mapId === 21) {
+  if (props.mapId === 21 || !props.mapId) {
     return null;
   }
 
   return (
     <MapStyled>
-      <div id="map" />
+      <div id="map" data-testid="map" />
     </MapStyled>
   );
 };
