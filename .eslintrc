@@ -32,6 +32,7 @@
     "eqeqeq": 0,
     "no-plusplus": 0,
     "max-len": [1, 140],
+    "react/no-unused-prop-types": "warn",
     "import/extensions": [
       "error",
       "ignorePackages",
