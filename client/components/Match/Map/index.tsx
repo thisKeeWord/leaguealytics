@@ -57,7 +57,7 @@ const Map: FunctionComponent<MapProps> = (props: MapProps) => {
   }, [props.matchId]);
 
   useEffect(() => {
-    if (matchMap && props.participantFrames) {
+    if (matchMap && props.participantFrames && props.participantFrames.length) {
       d3.selectAll('.champIcons').remove();
       d3.selectAll('.champBorders').remove();
 
