@@ -4,11 +4,10 @@ import { MapStyled } from './styles';
 import { getStrokeColor } from '../../../../utils/helper';
 
 interface MapProps {
-  // eslint-disable-next-line react/no-unused-prop-types
-  currentPlayer: Record<any, any>
-  timeline: Record<any, any>
-  mapId: number
+  participantFrames: Record<any, any>
   participants: Record<any, any>[]
+  currentPlayer: Record<any, any>
+  mapId: number
   version: number | string
   matchId: string
 }
@@ -58,11 +57,11 @@ const Map: FunctionComponent<MapProps> = (props: MapProps) => {
   }, [props.matchId]);
 
   useEffect(() => {
-    if (matchMap && props.timeline.participantFrames) {
+    if (matchMap && props.participantFrames) {
       d3.selectAll('.champIcons').remove();
       d3.selectAll('.champBorders').remove();
 
-      props.timeline.participantFrames.forEach(({ position, participantId }) => {
+      props.participantFrames.forEach(({ position, participantId }) => {
         const participantObj = props.participants.find((participant) => participant.participantId === participantId);
         const isCurrentPlayer = props.currentPlayer.participantId === participantId;
 
@@ -92,7 +91,7 @@ const Map: FunctionComponent<MapProps> = (props: MapProps) => {
           .attr('fill', 'transparent');
       });
     }
-  }, [props.timeline, props.currentPlayer, props.mapId, matchMap]);
+  }, [props.participantFrames, props.currentPlayer, props.mapId, matchMap]);
 
   if (props.mapId === 21 || !props.mapId) {
     return null;

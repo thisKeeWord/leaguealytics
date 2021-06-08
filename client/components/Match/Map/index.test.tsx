@@ -9,7 +9,7 @@ describe('Map', () => {
     const { queryByTestId } = render(
       <Map
         currentPlayer={{}}
-        timeline={{}}
+        participantFrames={{}}
         mapId={21}
         participants={[]}
         version={faker.datatype.number()}
@@ -23,7 +23,7 @@ describe('Map', () => {
     const { getByTestId } = render(
       <Map
         currentPlayer={{}}
-        timeline={{}}
+        participantFrames={{}}
         mapId={11}
         participants={[]}
         version={faker.datatype.number()}

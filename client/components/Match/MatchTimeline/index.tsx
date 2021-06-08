@@ -3,6 +3,7 @@ import Slider from '@material-ui/core/Slider';
 import { convertTimestamp } from '../../../../utils/helper';
 import { StyledMatchTimeline } from './styles';
 import Map from '../Map';
+import MatchEvents from '../MatchEvents';
 
 interface MatchTimelineProps {
   currentPlayer: Record<any, any>
@@ -46,7 +47,11 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
         />
       </div>
       {/* eslint-disable-next-line max-len */}
-      <Map mapId={mapId} timeline={timeline[timeframe]} currentPlayer={currentPlayer} participants={participants} version={version} matchId={matchId} />
+      <div className="map-events">
+        {/* eslint-disable-next-line max-len */}
+        <Map mapId={mapId} participantFrames={timeline[timeframe].participantFrames} currentPlayer={currentPlayer} participants={participants} version={version} matchId={matchId} />
+        <MatchEvents events={timeline[timeframe].events} currentPlayer={currentPlayer} participants={participants} version={version} />
+      </div>
     </StyledMatchTimeline>
   );
 };
