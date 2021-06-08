@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const StyledMatchTimeline = styled.div`
-
   .slider-container {
     text-align: center;
     padding: 20px 30px;
@@ -57,6 +56,14 @@ export const StyledMatchTimeline = styled.div`
           color: #fff !important;
         }
       }
+    }
+  }
+
+  .map-events {
+    display: flex;
+    
+    @media screen and (max-width: 1000px) {
+      flex-direction: column;
     }
   }
 `;

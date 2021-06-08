@@ -23,7 +23,7 @@ export const MapStyled = styled.div`
   }
 
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1000px) {
     padding: 10px;
     margin: 0 auto;
     text-align: center;
