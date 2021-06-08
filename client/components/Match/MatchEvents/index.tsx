@@ -23,18 +23,19 @@ const MatchEvents: FunctionComponent<MatchEventsProps> = (props: MatchEventsProp
   ** WARD_KILLED && WARD_TYPE
   */
 
-  const eventsList: (ReactElement | null)[] = events.map((event) => {
+  const eventsList: (ReactElement | null)[] = events ? events.map((event, index) => {
     if (event.type === 'CHAMPION_KILL') {
       const victim = participants.find((participant) => participant.participantId === event.victimId) || {};
       const killer = participants.find((participant) => participant.participantId === event.killerId) || {};
       const assisters = event.assistingParticipantIds ? event.assistingParticipantIds.map((assister: number) => {
         const assist = participants.find((participant) => participant.participantId === assister);
         if (!assist) {
-          return <div className="no-champion" />;
+          return <div className="no-champion" key={assister} />;
         }
 
         return (
           <div
+            key={assister}
             className={cx('champion-assister', { blue: assister <= 5, red: assister > 5, user: assister === currentPlayer.participantId })}
           >
             <img src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${assist.championName}.png`} alt="champion" />
@@ -43,7 +44,7 @@ const MatchEvents: FunctionComponent<MatchEventsProps> = (props: MatchEventsProp
       }) : [];
 
       return (
-        <div className="event-champion-kills">
+        <div className="champion-kills" key={index}>
           <div className="team-kill">
             <div
               // eslint-disable-next-line max-len
@@ -73,7 +74,7 @@ const MatchEvents: FunctionComponent<MatchEventsProps> = (props: MatchEventsProp
     }
 
     return null;
-  });
+  }) : [];
 
   return (
     <StyledMatchEvents>

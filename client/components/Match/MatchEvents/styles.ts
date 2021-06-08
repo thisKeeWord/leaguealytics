@@ -16,7 +16,7 @@ export const StyledMatchEvents = styled.div`
     border: 1px solid rgba(84,84,84,0.3);
     padding: 2px;
 
-    .event-champion-kills {
+    .champion-kills {
       display: flex;
       justify-content: space-evenly;
       padding: 5px;
