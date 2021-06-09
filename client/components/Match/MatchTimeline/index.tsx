@@ -20,7 +20,7 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
     currentPlayer, timeline, mapId, participants, version, matchId,
   } = props;
 
-  if (!timeline.length) {
+  if (!timeline || !timeline.length) {
     return null;
   }
 

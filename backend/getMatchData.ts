@@ -67,9 +67,10 @@ export const getMatchData = async (req, res) => {
           }
         }
 
-        if (type === 'BUILDING_KILL') {
+        if (type === 'ELITE_MONSTER_KILL' || type === 'BUILDING_KILL') {
           events.push(frame.events[j]);
         }
+
         if (type === 'WARD_PLACED') {
           events.push(frame.events[j]);
           if (wardType !== 'UNDEFINED') {
@@ -87,7 +88,6 @@ export const getMatchData = async (req, res) => {
         if (type === 'ITEM_SOLD') {
           participantFrames[participantId].items.splice(participantFrames[participantId].items.lastIndexOf(itemId), 1);
         }
-
         // ITEM HANDLING MAY REMOVED AS IT REQUIRES POTENTIAL FREQUENT UPDATES
         /* special cases for later since they are, with the exception of
         ** stopwatch and broken stopwatch, items not bought:
