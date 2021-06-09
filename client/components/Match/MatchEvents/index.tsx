@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { Fragment, FunctionComponent, ReactElement } from 'react';
 import cx from 'classnames';
 import { StyledMatchEvents } from './styles';
 
@@ -16,11 +16,8 @@ const MatchEvents: FunctionComponent<MatchEventsProps> = (props: MatchEventsProp
   /* BUILDING_KILL,
   ** - BUILDING_TYPE: TOWER_BUILDING
   ** - TOWER_TYPE: INNER_TURRET, OUTER_TURRET, BASE_TURRET, NEXUS_TURRET, INHIBITOR_BUILDING
-  ** CHAMPION_KILL,
   ** ELITE_MONSTER_KILL,
   ** - DRAGON, RIFTHERALD, ELDER_DRAGON, BARON_NASHOR
-  ** WARD_PLACED && WARD_TYPE
-  ** WARD_KILLED && WARD_TYPE
   */
 
   const eventsList: (ReactElement | null)[] = events ? events.map((event, index) => {
@@ -54,22 +51,76 @@ const MatchEvents: FunctionComponent<MatchEventsProps> = (props: MatchEventsProp
                 <img src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${killer.championName}.png`} alt="champion" />
               ) : 'Executed'}
             </div>
-            {assisters.length > 0 && (
-              <div className="team-assist">
-                {assisters}
-              </div>
-            )}
+            <div className="desc-icon">
+              <img src="../../../../images/kda.png" alt="kda" />
+            </div>
+            <div
+            // eslint-disable-next-line max-len
+              className={cx('champion-victim', { blue: victim.participantId <= 5, red: victim.participantId > 5, user: victim.participantId === currentPlayer.participantId })}
+            >
+              <img src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${victim.championName}.png`} alt="champion" />
+            </div>
           </div>
-          <div className="desc-icon">
-            <img src="../../../../images/kda.png" alt="kda" />
+          {assisters.length > 0 && (
+          <div className="team-assist">
+            {assisters}
           </div>
-          <div
-              // eslint-disable-next-line max-len
-            className={cx('champion-victim', { blue: victim.participantId <= 5, red: victim.participantId > 5, user: victim.participantId === currentPlayer.participantId })}
-          >
-            <img src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${victim.championName}.png`} alt="champion" />
-          </div>
+          )}
         </div>
+      );
+    }
+
+    if (event.type === 'WARD_PLACED') {
+      let wardNumber = '';
+      const wardCreator = participants.find((participant) => participant.participantId === event.creatorId) || {};
+      if (event.wardType === 'YELLOW_TRINKET') {
+        wardNumber = '3340'; // stealth ward
+      }
+      if (event.wardType === 'CONTROL_WARD') {
+        wardNumber = '2055';
+      }
+
+      return (
+        <Fragment key={index}>
+          {(wardNumber && wardCreator.participantId) && (
+          <div
+            // eslint-disable-next-line max-len
+            className={cx('ward-event', { blue: wardCreator.participantId <= 5, red: wardCreator.participantId > 5, user: wardCreator.participantId === currentPlayer.participantId })}
+          >
+            {/* eslint-disable-next-line max-len */}
+            <img className="champion" src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${wardCreator.championName}.png`} alt="champion" />
+            <span>placed</span>
+            <img src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${wardNumber}.png`} alt="ward" />
+          </div>
+          )}
+        </Fragment>
+      );
+    }
+
+    if (event.type === 'WARD_KILL') {
+      let wardNumber = '';
+      const wardKiller = participants.find((participant) => participant.participantId === event.killerId) || {};
+      if (event.wardType === 'YELLOW_TRINKET') {
+        wardNumber = '3340'; // stealth ward
+      }
+      if (event.wardType === 'CONTROL_WARD') {
+        wardNumber = '2055';
+      }
+
+      return (
+        <Fragment key={index}>
+          {(wardNumber && wardKiller.participantId) && (
+          <div
+            // eslint-disable-next-line max-len
+            className={cx('ward-event', { blue: wardKiller.participantId <= 5, red: wardKiller.participantId > 5, user: wardKiller.participantId === currentPlayer.participantId })}
+          >
+            {/* eslint-disable-next-line max-len */}
+            <img className="champion" src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${wardKiller.championName}.png`} alt="champion" />
+            <span>destroyed</span>
+            <img src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${wardNumber}.png`} alt="ward" />
+          </div>
+          )}
+        </Fragment>
       );
     }
 

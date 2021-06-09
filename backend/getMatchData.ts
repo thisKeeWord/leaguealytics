@@ -71,11 +71,13 @@ export const getMatchData = async (req, res) => {
           events.push(frame.events[j]);
         }
         if (type === 'WARD_PLACED') {
+          events.push(frame.events[j]);
           if (wardType !== 'UNDEFINED') {
             participantFrames[creatorId].wardsPlaced++;
           }
         }
         if (type === 'WARD_KILL') {
+          events.push(frame.events[j]);
           if (wardType !== 'UNDEFINED') {
             participantFrames[killerId].wardsKilled++;
           }
