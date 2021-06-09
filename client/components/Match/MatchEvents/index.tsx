@@ -70,9 +70,10 @@ const MatchEvents: FunctionComponent<MatchEventsProps> = (props: MatchEventsProp
       );
     }
 
-    if (event.type === 'WARD_PLACED') {
+    if (event.type === 'WARD_PLACED' || event.type === 'WARD_KILL') {
       let wardNumber = '';
-      const wardCreator = participants.find((participant) => participant.participantId === event.creatorId) || {};
+      // eslint-disable-next-line max-len
+      const wardParticipant = participants.find((participant) => participant.participantId === (event.type === 'WARD_PLACED' ? event.creatorId : event.killerId)) || {};
       if (event.wardType === 'YELLOW_TRINKET') {
         wardNumber = '3340'; // stealth ward
       }
@@ -82,41 +83,14 @@ const MatchEvents: FunctionComponent<MatchEventsProps> = (props: MatchEventsProp
 
       return (
         <Fragment key={index}>
-          {(wardNumber && wardCreator.participantId) && (
+          {(wardNumber && wardParticipant.participantId) && (
           <div
             // eslint-disable-next-line max-len
-            className={cx('ward-event', { blue: wardCreator.participantId <= 5, red: wardCreator.participantId > 5, user: wardCreator.participantId === currentPlayer.participantId })}
+            className={cx('ward-event', { blue: wardParticipant.participantId <= 5, red: wardParticipant.participantId > 5, user: wardParticipant.participantId === currentPlayer.participantId })}
           >
             {/* eslint-disable-next-line max-len */}
-            <img className="champion" src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${wardCreator.championName}.png`} alt="champion" />
-            <span>placed</span>
-            <img src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${wardNumber}.png`} alt="ward" />
-          </div>
-          )}
-        </Fragment>
-      );
-    }
-
-    if (event.type === 'WARD_KILL') {
-      let wardNumber = '';
-      const wardKiller = participants.find((participant) => participant.participantId === event.killerId) || {};
-      if (event.wardType === 'YELLOW_TRINKET') {
-        wardNumber = '3340'; // stealth ward
-      }
-      if (event.wardType === 'CONTROL_WARD') {
-        wardNumber = '2055';
-      }
-
-      return (
-        <Fragment key={index}>
-          {(wardNumber && wardKiller.participantId) && (
-          <div
-            // eslint-disable-next-line max-len
-            className={cx('ward-event', { blue: wardKiller.participantId <= 5, red: wardKiller.participantId > 5, user: wardKiller.participantId === currentPlayer.participantId })}
-          >
-            {/* eslint-disable-next-line max-len */}
-            <img className="champion" src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${wardKiller.championName}.png`} alt="champion" />
-            <span>destroyed</span>
+            <img className="champion" src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${wardParticipant.championName}.png`} alt="champion" />
+            <span>{event.type === 'WARD_PLACED' ? 'placed' : 'destroyed'}</span>
             <img src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${wardNumber}.png`} alt="ward" />
           </div>
           )}
