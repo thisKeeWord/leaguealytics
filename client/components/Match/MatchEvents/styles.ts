@@ -26,43 +26,23 @@ export const StyledMatchEvents = styled.div`
         display: flex;
         justify-content: space-between;
 
-        .champion-killer {
+        img {
           height: 40px;
+          width: 40px;
 
           &.blue {
-            width: 40px;
-
-            img {
-              border: 2px solid #2747e8;
-            }
+            border: 2px solid #2747e8;
           }
-
+  
           &.red {
-            width: 40px;
-
-            img {
-              border: 2px solid #cb2124;
-            }
+            border: 2px solid #cb2124;
           }
-
+  
           &.user {
-            width: 40px;
-
-            img {
-              border: 2px solid purple;
-            }
+            border: 2px solid purple;
           }
 
-          img {
-            height: 40px;
-            width: 40px;
-          }
-        }
-
-        .desc-icon {
-          padding: 7px;
-
-          img {
+          &.desc-icon {
             height: 24px;
             width: 24px;
           }
@@ -102,34 +82,6 @@ export const StyledMatchEvents = styled.div`
           }
         }
       }
-
-      .champion-victim {
-        height: 40px;
-        width: 40px;
-
-        &.blue {
-          img {
-            border: 2px solid #2747e8;
-          }
-        }
-
-        &.red {
-          img {
-            border: 2px solid #cb2124;
-          }
-        }
-
-        &.user {
-          img {
-            border: 2px solid purple;
-          }
-        }
-
-        img {
-          height: 40px;
-          width: 40px;
-        }
-      }
     }
 
     .ward-event {
@@ -144,30 +96,21 @@ export const StyledMatchEvents = styled.div`
         padding: 0 5px;
       }
 
-      &.blue {
-        img.champion {
-          width: 40px;
-          border: 2px solid #2747e8;
-        }
-      }
-
-      &.red {
-        img.champion {
-          width: 40px;
-          border: 2px solid #cb2124;
-        }
-      }
-
-      &.user {
-        img.champion {
-          width: 40px;
-          border: 2px solid purple;
-        }
-      }
-
       img {
         height: 40px;
         width: 40px;
+
+        &.blue {
+          border: 2px solid #2747e8;
+        }
+  
+        &.red {
+          border: 2px solid #cb2124;
+        }
+  
+        &.user {
+          border: 2px solid purple;
+        }
       }
     }
   }

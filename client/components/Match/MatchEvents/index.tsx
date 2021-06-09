@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FunctionComponent, ReactElement } from 'react';
 import cx from 'classnames';
 import { StyledMatchEvents } from './styles';
 
@@ -43,23 +43,14 @@ const MatchEvents: FunctionComponent<MatchEventsProps> = (props: MatchEventsProp
       return (
         <div className="champion-kills" key={index}>
           <div className="team-kill">
-            <div
+
+            {killer.participantId ? (
               // eslint-disable-next-line max-len
-              className={cx('champion-killer', { blue: killer.participantId <= 5, red: killer.participantId > 5, user: killer.participantId === currentPlayer.participantId })}
-            >
-              {killer.participantId ? (
-                <img src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${killer.championName}.png`} alt="champion" />
-              ) : 'Executed'}
-            </div>
-            <div className="desc-icon">
-              <img src="../../../../images/kda.png" alt="kda" />
-            </div>
-            <div
-            // eslint-disable-next-line max-len
-              className={cx('champion-victim', { blue: victim.participantId <= 5, red: victim.participantId > 5, user: victim.participantId === currentPlayer.participantId })}
-            >
-              <img src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${victim.championName}.png`} alt="champion" />
-            </div>
+              <img className={cx('champion-killer', { blue: killer.participantId <= 5, red: killer.participantId > 5, user: killer.participantId === currentPlayer.participantId })} src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${killer.championName}.png`} alt="champion" />
+            ) : 'Executed'}
+            <img className="desc-icon" src="../../../../images/kda.png" alt="kda" />
+            {/* eslint-disable-next-line max-len */}
+            <img className={cx('champion-victim', { blue: victim.participantId <= 5, red: victim.participantId > 5, user: victim.participantId === currentPlayer.participantId })} src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${victim.championName}.png`} alt="champion" />
           </div>
           {assisters.length > 0 && (
           <div className="team-assist">
@@ -81,20 +72,17 @@ const MatchEvents: FunctionComponent<MatchEventsProps> = (props: MatchEventsProp
         wardNumber = '2055';
       }
 
+      if (!wardNumber || !wardParticipant.participantId) {
+        return null;
+      }
+
       return (
-        <Fragment key={index}>
-          {(wardNumber && wardParticipant.participantId) && (
-          <div
-            // eslint-disable-next-line max-len
-            className={cx('ward-event', { blue: wardParticipant.participantId <= 5, red: wardParticipant.participantId > 5, user: wardParticipant.participantId === currentPlayer.participantId })}
-          >
-            {/* eslint-disable-next-line max-len */}
-            <img className="champion" src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${wardParticipant.championName}.png`} alt="champion" />
-            <span>{event.type === 'WARD_PLACED' ? 'placed' : 'destroyed'}</span>
-            <img src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${wardNumber}.png`} alt="ward" />
-          </div>
-          )}
-        </Fragment>
+        <div className="ward-event" key={index}>
+          {/* eslint-disable-next-line max-len */}
+          <img className={cx({ blue: wardParticipant.participantId <= 5, red: wardParticipant.participantId > 5, user: wardParticipant.participantId === currentPlayer.participantId })} src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${wardParticipant.championName}.png`} alt="champion" />
+          <span>{event.type === 'WARD_PLACED' ? 'placed' : 'destroyed'}</span>
+          <img src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${wardNumber}.png`} alt="ward" />
+        </div>
       );
     }
 
