@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import * as d3 from 'd3';
 import { MapStyled } from './styles';
-import { getStrokeColor } from '../../../../utils/helper';
+import { getParticipant, getStrokeColor } from '../../../../utils/helper';
 
 interface MapProps {
   participantFrames: Record<any, any>
@@ -62,7 +62,7 @@ const Map: FunctionComponent<MapProps> = (props: MapProps) => {
       d3.selectAll('.champBorders').remove();
 
       props.participantFrames.forEach(({ position, participantId }) => {
-        const participantObj = props.participants.find((participant) => participant.participantId === participantId);
+        const participantObj = getParticipant(props.participants, participantId);
         const isCurrentPlayer = props.currentPlayer.participantId === participantId;
 
         matchMap.append('svg:g')

@@ -17,14 +17,17 @@ export const StyledMatchEvents = styled.div`
     padding: 2px;
     overflow-y: scroll;
 
-    .champion-kills {
+    .champion-kills,
+    .monster-kills {
       width: 245px;
       padding: 5px;
       margin: 0 auto;
 
-      .team-kill {
+      .team-champion-kill,
+      .team-monster-kill {
         display: flex;
         justify-content: space-between;
+        align-items: center;
 
         img {
           height: 40px;
@@ -53,7 +56,7 @@ export const StyledMatchEvents = styled.div`
         display: flex;
         padding: 3px 1px 0 0;
 
-        .champion-assister {
+        .assister {
           height: 20px;
           width: 20px;
 
