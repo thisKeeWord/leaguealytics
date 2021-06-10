@@ -107,3 +107,40 @@ export const getStrokeColor = (participantId: number, isCurrentPlayer: boolean) 
   }
   return '#cb2124';
 };
+
+export const getParticipant = (participants: Record<any, any>[], playerId: number): Record<any, any> => {
+  const participantObj = participants.find((participant) => participant.participantId === playerId) || {};
+  return participantObj;
+};
+
+export const getMonster = (monsterType: string, monsterSubType: string, killerTeamId: 100 | 200): string | null => {
+  const teamColor = killerTeamId === 100 ? 'blue' : 'red';
+
+  if (monsterType === 'DRAGON') {
+    if (monsterSubType === 'AIR_DRAGON') {
+      return `air-dragon-${teamColor}`;
+    }
+    if (monsterSubType === 'EARTH_DRAGON') {
+      return `earth-dragon-${teamColor}`;
+    }
+    if (monsterSubType === 'FIRE_DRAGON') {
+      return `fire-dragon-${teamColor}`;
+    }
+    if (monsterSubType === 'WATER_DRAGON') {
+      return `water-dragon-${teamColor}`;
+    }
+    if (monsterSubType === 'ELDER_DRAGON') {
+      return `elder-dragon-${teamColor}`;
+    }
+  }
+
+  if (monsterType === 'RIFTHERALD') {
+    return `riftherald-${teamColor}`;
+  }
+
+  if (monsterType === 'BARON_NASHOR') {
+    return `baron-nashor-${teamColor}`;
+  }
+
+  return null;
+};

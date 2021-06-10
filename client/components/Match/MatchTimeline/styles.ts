@@ -22,7 +22,7 @@ export const StyledMatchTimeline = styled.div`
 
         & > span {
           height: unset !important;
-          width: unset !important;
+          width: max-content !important;
           transform: none !important;
           border-radius: unset !important;
           background-color: unset !important;
@@ -40,7 +40,7 @@ export const StyledMatchTimeline = styled.div`
     .slider-container {
       position: fixed;
       bottom: 0;
-      padding: 20px 50px;
+      padding: 20px 70px;
       z-index: 2;
       background-color: #4c4c4c;
       color: #fff;

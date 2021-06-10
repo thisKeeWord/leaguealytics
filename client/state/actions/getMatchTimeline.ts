@@ -24,6 +24,7 @@ export const getMatchTimeline = ({ username, matchId }: GetMatchTimelineProps): 
     if (matchData.data.error) {
       throw new Error(matchData.data);
     }
+
     dispatch(loadMatchSuccess({ matchData: matchData.data, matchId }));
   } catch (error) {
     dispatch(loadMatchFailure(error.message || 'An error has occurred'));

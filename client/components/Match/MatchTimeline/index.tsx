@@ -1,4 +1,6 @@
-import React, { ChangeEvent, FunctionComponent, useState } from 'react';
+import React, {
+  ChangeEvent, FunctionComponent, useEffect, useState,
+} from 'react';
 import Slider from '@material-ui/core/Slider';
 import { convertTimestamp } from '../../../../utils/helper';
 import { StyledMatchTimeline } from './styles';
@@ -20,7 +22,7 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
     currentPlayer, timeline, mapId, participants, version, matchId,
   } = props;
 
-  if (!timeline.length) {
+  if (!timeline || !timeline.length) {
     return null;
   }
 
@@ -30,6 +32,14 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
     }
     setTimeframe(value);
   };
+
+  useEffect(() => {
+    setTimeframe(0);
+  }, [matchId, timeline]);
+
+  if (!timeline[timeframe]) {
+    return null;
+  }
 
   return (
     <StyledMatchTimeline data-testid="timeline">
@@ -43,7 +53,8 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
           max={timeline.length - 1}
           onChange={onChange}
           value={timeframe}
-          valueLabelFormat={(val: number) => convertTimestamp(timeline[val].timestamp)}
+          // eslint-disable-next-line max-len
+          valueLabelFormat={(val: number) => `${val > 0 ? `${convertTimestamp(timeline[val - 1].timestamp)} - ` : ''} ${convertTimestamp(timeline[val].timestamp)}`}
         />
       </div>
       {/* eslint-disable-next-line max-len */}
