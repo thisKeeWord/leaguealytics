@@ -113,33 +113,46 @@ export const getParticipant = (participants: Record<any, any>[], playerId: numbe
   return participantObj;
 };
 
-export const getMonster = (monsterType: string, monsterSubType: string, killerTeamId: 100 | 200): string | null => {
-  const teamColor = killerTeamId === 100 ? 'blue' : 'red';
+interface EventByTypeProps {
+  type: string
+  subType?: string
+  teamId: 100 | 200
+}
+export const getEventByType = ({ type, subType, teamId }: EventByTypeProps): string | null => {
+  const teamColor = teamId === 100 ? 'blue' : 'red';
 
-  if (monsterType === 'DRAGON') {
-    if (monsterSubType === 'AIR_DRAGON') {
+  if (type === 'DRAGON') {
+    if (subType === 'AIR_DRAGON') {
       return `air-dragon-${teamColor}`;
     }
-    if (monsterSubType === 'EARTH_DRAGON') {
+    if (subType === 'EARTH_DRAGON') {
       return `earth-dragon-${teamColor}`;
     }
-    if (monsterSubType === 'FIRE_DRAGON') {
+    if (subType === 'FIRE_DRAGON') {
       return `fire-dragon-${teamColor}`;
     }
-    if (monsterSubType === 'WATER_DRAGON') {
+    if (subType === 'WATER_DRAGON') {
       return `water-dragon-${teamColor}`;
     }
-    if (monsterSubType === 'ELDER_DRAGON') {
+    if (subType === 'ELDER_DRAGON') {
       return `elder-dragon-${teamColor}`;
     }
   }
 
-  if (monsterType === 'RIFTHERALD') {
+  if (type === 'RIFTHERALD') {
     return `riftherald-${teamColor}`;
   }
 
-  if (monsterType === 'BARON_NASHOR') {
+  if (type === 'BARON_NASHOR') {
     return `baron-nashor-${teamColor}`;
+  }
+
+  if (type === 'TOWER_BUILDING') {
+    return `turret-${teamColor}`;
+  }
+
+  if (type === 'INHIBITOR_BUILDING') {
+    return `inhibitor-${teamColor}`;
   }
 
   return null;

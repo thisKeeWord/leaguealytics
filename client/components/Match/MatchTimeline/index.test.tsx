@@ -27,7 +27,7 @@ describe('MatchTimeline', () => {
 
     const { getByTestId } = render(
       <MatchTimeline
-        timeline={[{ timestamp: faker.datatype.number() }]}
+        timeline={[{ events: [], timestamp: faker.datatype.number() }]}
         currentPlayer={currentPlayer}
         mapId={faker.datatype.number()}
         participants={[]}

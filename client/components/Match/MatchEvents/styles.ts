@@ -6,7 +6,12 @@ export const StyledMatchEvents = styled.div`
   
   h4 {
     text-align: center;
-    margin-top: 10px;
+    margin: 10px 0 0 0;
+  }
+
+  .time-range {
+    margin-bottom: 12px;
+    text-align: center;
   }
   
   .events {
@@ -18,20 +23,42 @@ export const StyledMatchEvents = styled.div`
     overflow-y: scroll;
 
     .champion-kills,
-    .monster-kills {
+    .monster-kills,
+    .building-kills {
       width: 245px;
       padding: 5px;
       margin: 0 auto;
 
       .team-champion-kill,
-      .team-monster-kill {
+      .team-monster-kill,
+      .team-building-kill {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        
+
+        span.minion {
+          height: 40px;
+          width: 40px;
+          display: flex;
+          align-items: center;
+
+          &.blue {
+            color: #2747e8;
+          }
+  
+          &.red {
+            color: #cb2124;
+          }
+        }
 
         img {
           height: 40px;
           width: 40px;
+
+          &.building-victim {
+            margin-top: -8px;
+          }
 
           &.blue {
             border: 2px solid #2747e8;
@@ -46,9 +73,19 @@ export const StyledMatchEvents = styled.div`
           }
 
           &.desc-icon {
-            height: 24px;
-            width: 24px;
+            height: 20px;
+            width: 20px;
           }
+        }
+      }
+
+      .event-desc {
+        display: flex;
+        justify-content: space-between;
+
+        .building-desc {
+          margin-left: auto;
+          font-size: 12px;
         }
       }
 
@@ -114,6 +151,22 @@ export const StyledMatchEvents = styled.div`
         &.user {
           border: 2px solid purple;
         }
+      }
+    }
+
+    .ward-timestamp,
+    .champion-timestamp,
+    .monster-timestamp,
+    .building-timestamp {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 40px;
+      width: 100%;
+
+      .timestamp {
+        font-size: 10px;
       }
     }
   }
