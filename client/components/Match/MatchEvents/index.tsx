@@ -49,7 +49,7 @@ const MatchEvents: FunctionComponent<MatchEventsProps> = (props: MatchEventsProp
       const assisters = getAssisters(event.assistingParticipantIds || [], participants, currentPlayer, version);
 
       return (
-        <div className="champion-kills" key={`champion-kills-${index}`}>
+        <div className="champion-kills" key={`champion-kills-${index}`} data-testid="champion-kills">
           <div className="team-champion-kill">
             {killer.participantId ? (
               // eslint-disable-next-line max-len
@@ -74,11 +74,14 @@ const MatchEvents: FunctionComponent<MatchEventsProps> = (props: MatchEventsProp
     if (event.type === 'WARD_PLACED' || event.type === 'WARD_KILL') {
       let wardNumber = '';
       const wardParticipant = getParticipant(participants, event.type === 'WARD_PLACED' ? event.creatorId : event.killerId);
-      if (event.wardType === 'YELLOW_TRINKET') {
+      if (event.wardType === 'YELLOW_TRINKET' || event.wardType === 'SIGHT_WARD') {
         wardNumber = '3340'; // stealth ward
       }
       if (event.wardType === 'CONTROL_WARD') {
         wardNumber = '2055';
+      }
+      if (event.wardType === 'BLUE_TRINKET') {
+        wardNumber = '3363';
       }
 
       if (!wardNumber || !wardParticipant.participantId) {
@@ -86,7 +89,7 @@ const MatchEvents: FunctionComponent<MatchEventsProps> = (props: MatchEventsProp
       }
 
       return (
-        <div className="ward-event" key={`ward-event-${index}`}>
+        <div className="ward-event" key={`ward-event-${index}`} data-testid="ward-event">
           {/* eslint-disable-next-line max-len */}
           <img className={cx({ blue: wardParticipant.participantId <= 5, red: wardParticipant.participantId > 5, user: wardParticipant.participantId === currentPlayer.participantId })} src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${wardParticipant.championName}.png`} alt="champion" />
           <div className="ward-timestamp">
@@ -108,7 +111,7 @@ const MatchEvents: FunctionComponent<MatchEventsProps> = (props: MatchEventsProp
       const monster = getEventByType({ type: event.monsterType, subType: event.monsterSubType, teamId: event.killerTeamId || event.teamId });
 
       return (
-        <div className="monster-kills" key={`monster-kills-${index}`}>
+        <div className="monster-kills" key={`monster-kills-${index}`} data-testid="elite-monster-kills">
           <div className="team-monster-kill">
             {killer.participantId ? (
               // eslint-disable-next-line max-len
@@ -140,7 +143,7 @@ const MatchEvents: FunctionComponent<MatchEventsProps> = (props: MatchEventsProp
       const laneLocation = event.towerType ? event.towerType.split('_')[0].toLowerCase() : '';
 
       return (
-        <div className="building-kills" key={`building-kills-${index}`}>
+        <div className="building-kills" key={`building-kills-${index}`} data-testid="building-kills">
           <div className="team-building-kill">
             {/* eslint-disable-next-line max-len */}
             {killer.participantId ? (
@@ -178,7 +181,7 @@ const MatchEvents: FunctionComponent<MatchEventsProps> = (props: MatchEventsProp
     <StyledMatchEvents>
       <div className="events">
         <h4>Objectives</h4>
-        <div className="time-range">
+        <div className="time-range" data-testid="time-range">
           {currTimeframe > 0 && `${convertTimestamp(prevTimeframe)} - `}
           {convertTimestamp(currTimeframe)}
         </div>
