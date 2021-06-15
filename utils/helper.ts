@@ -68,6 +68,10 @@ export const msToTime = (duration: number): string => {
 };
 
 export const parseStats = (statsData: Record<any, any>[], type: string) => {
+  if (!statsData.length) {
+    return statsData;
+  }
+
   const stats = statsData.map(
     ({
       champion, isCurrentPlayer, player, team,
