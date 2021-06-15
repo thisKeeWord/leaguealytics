@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { fireEvent, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import faker from 'faker';
 import React from 'react';
 import MatchEvents from '.';

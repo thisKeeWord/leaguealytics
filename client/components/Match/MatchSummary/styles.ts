@@ -9,6 +9,12 @@ export const MatchSummaryStyled = styled.div`
     background-color: black;
   }
 
+  .MuiTabs-root.overview {
+    .MuiTab-root {
+      font-weight: bold;
+    }
+  }
+
   .by-teams {
     color: white;
 

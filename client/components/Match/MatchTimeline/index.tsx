@@ -2,10 +2,14 @@ import React, {
   ChangeEvent, FunctionComponent, useEffect, useState,
 } from 'react';
 import Slider from '@material-ui/core/Slider';
+import Tab from '@material-ui/core/Tab';
+import Tabs from '@material-ui/core/Tabs';
+import Paper from '@material-ui/core/Paper';
 import Map from '../Map';
 import MatchEvents from '../MatchEvents';
-import { convertTimestamp } from '../../../../utils/helper';
+import { convertTimestamp, parseStats } from '../../../../utils/helper';
 import { StyledMatchTimeline } from './styles';
+import Chart from '../../Chart';
 
 interface MatchTimelineProps {
   currentPlayer: Record<any, any>
@@ -18,6 +22,12 @@ interface MatchTimelineProps {
 
 const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimelineProps) => {
   const [timeframe, setTimeframe] = useState(0);
+  const [matchStatsView, setMatchStatsView] = useState<number>(0);
+
+  const handleViewChange = (event: ChangeEvent<{}>, newValue: number) => {
+    setMatchStatsView(newValue);
+  };
+
   const {
     currentPlayer, timeline, mapId, participants, version, matchId,
   } = props;
@@ -35,14 +45,53 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
 
   useEffect(() => {
     setTimeframe(0);
+    setMatchStatsView(0);
   }, [matchId, timeline]);
 
   if (!timeline[timeframe]) {
     return null;
   }
 
+  const stats = timeline[timeframe].participantFrames ? timeline[timeframe].participantFrames.map((participantFrame) => {
+    const player = participants.find((participant) => participant.participantId === participantFrame.participantId) || {};
+
+    return {
+      champion: player.championName,
+      player: player.summonerName,
+      participantId: participantFrame.participantId,
+      damageDealt: Math.floor(participantFrame.damageDoneToChampions),
+      damageTaken: Math.floor(participantFrame.damageTaken),
+      goldEarned: Math.floor(participantFrame.goldEarned),
+      kills: Math.floor(participantFrame.kills),
+      assists: Math.floor(participantFrame.assists),
+      deaths: Math.floor(participantFrame.deaths),
+      creepScore: Math.floor(participantFrame.minionsKilled),
+      wardsPurchased: Math.floor(participantFrame.wardsPurchased),
+      wardsPlaced: Math.floor(participantFrame.wardsPlaced),
+      wardsKilled: Math.floor(participantFrame.wardsKilled),
+      isCurrentPlayer: currentPlayer.participantId == participantFrame.participantId,
+      team: participantFrame.participantId <= 5 ? 100 : 200,
+    };
+  }) : [];
+
+  const creepScoreStat = parseStats(stats, 'creepScore');
+
   return (
     <StyledMatchTimeline data-testid="timeline">
+      <Paper>
+        <Tabs
+          indicatorColor="secondary"
+          textColor="secondary"
+          value={matchStatsView}
+          onChange={handleViewChange}
+          aria-label="disabled tabs example"
+          className="timeline"
+        >
+          <Tab label="Objectives" />
+          <Tab label="Gold Earned" />
+        </Tabs>
+      </Paper>
+
       <div className="slider-container" data-testid="slider">
         <Slider
           aria-labelledby="discrete-slider-always"
@@ -55,6 +104,7 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
           valueLabelFormat={(val: number) => `${convertTimestamp(timeline[val].timestamp)}`}
         />
       </div>
+
       <div className="map-events">
         <Map
           mapId={mapId}
@@ -64,14 +114,27 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
           version={version}
           matchId={matchId}
         />
-        <MatchEvents
-          prevTimeframe={timeframe > 0 && timeline[timeframe - 1].timestamp}
-          currTimeframe={timeline[timeframe].timestamp}
-          events={timeline[timeframe].events}
-          currentPlayer={currentPlayer}
-          participants={participants}
-          version={version}
-        />
+
+        {matchStatsView === 0 && (
+          <MatchEvents
+            prevTimeframe={timeframe > 0 && timeline[timeframe - 1].timestamp}
+            currTimeframe={timeline[timeframe].timestamp}
+            events={timeline[timeframe].events}
+            currentPlayer={currentPlayer}
+            participants={participants}
+            version={version}
+          />
+        )}
+
+        {matchStatsView === 1 && creepScoreStat && (
+          <Chart
+            version={version}
+            data={creepScoreStat}
+            title="Creep Score"
+            className="timeline-stat"
+            needsFloor
+          />
+        )}
       </div>
     </StyledMatchTimeline>
   );

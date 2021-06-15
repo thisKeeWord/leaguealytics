@@ -36,6 +36,21 @@ export const StyledMatchTimeline = styled.div`
     }
   }
 
+  .MuiTabs-root.timeline {
+    min-height: 36px !important;
+    height: 36px;
+    
+    .MuiTab-root {
+      font-size: 12px;
+      min-height: unset !important;
+      text-transform: capitalize;
+    }
+  }
+
+  .timeline-stat {
+    height: unset !important;
+  }
+
   @media screen and (max-width: 768px) {
     .slider-container {
       position: fixed;
@@ -61,9 +76,18 @@ export const StyledMatchTimeline = styled.div`
 
   .map-events {
     display: flex;
+  }
     
-    @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1000px) {
+    .map-events {
       flex-direction: column;
+    }
+
+    .timeline-stat {
+      width: 486px;
+      height: 486px !important;
+      max-height: 486px;
+      margin: 0 auto;
     }
   }
 `;
