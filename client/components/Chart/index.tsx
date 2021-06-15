@@ -2,12 +2,15 @@ import React, { FunctionComponent, useState } from 'react';
 import {
   VictoryAxis, VictoryBar, VictoryChart, VictoryClipContainer, VictoryLabel,
 } from 'victory';
+import cx from 'classnames';
 import { StyledChart } from './styles';
 
 interface ChartProps {
   data: any;
   title: string;
   version: string | number
+  className?: string
+  needsFloor?: boolean
 }
 
 const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
@@ -26,7 +29,7 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
   const playerType = sortedData.map(({ isCurrentPlayer }) => isCurrentPlayer);
 
   return (
-    <StyledChart>
+    <StyledChart className={cx(props.className)}>
       <div className="sort">
         <select onChange={(e) => setSortBy(e.target.value)}>
           <option value="">no sort</option>
@@ -53,6 +56,7 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
               tickLabels: { fill: 'black' },
               axis: { stroke: 'black' },
             }}
+            tickFormat={(d: number) => (props.needsFloor ? Math.floor(d) : d)}
           />
           <VictoryAxis
             standalone={false}

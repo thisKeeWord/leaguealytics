@@ -390,6 +390,7 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
             value={matchView}
             onChange={handleViewChange}
             aria-label="disabled tabs example"
+            className="overview"
           >
             <Tab label="Overview" />
             <Tab label="Match Timeline" />
