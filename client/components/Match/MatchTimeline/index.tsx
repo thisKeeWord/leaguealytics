@@ -7,9 +7,9 @@ import Tabs from '@material-ui/core/Tabs';
 import Paper from '@material-ui/core/Paper';
 import Map from '../Map';
 import MatchEvents from '../MatchEvents';
+import Chart from '../../Chart';
 import { convertTimestamp, parseStats } from '../../../../utils/helper';
 import { StyledMatchTimeline } from './styles';
-import Chart from '../../Chart';
 
 interface MatchTimelineProps {
   currentPlayer: Record<any, any>
@@ -75,20 +75,32 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
   }) : [];
 
   const creepScoreStat = parseStats(stats, 'creepScore');
+  const killStat = parseStats(stats, 'kills');
+  const deathStat = parseStats(stats, 'deaths');
+  const assistStat = parseStats(stats, 'assists');
+  const damageDealtStat = parseStats(stats, 'damageDealt');
+  const damageTakenStat = parseStats(stats, 'damageTaken');
 
   return (
     <StyledMatchTimeline data-testid="timeline">
-      <Paper>
+      <Paper square>
         <Tabs
           indicatorColor="secondary"
           textColor="secondary"
+          variant="scrollable"
+          scrollButtons="on"
           value={matchStatsView}
           onChange={handleViewChange}
-          aria-label="disabled tabs example"
+          aria-label="scrollable force tabs example"
           className="timeline"
         >
           <Tab label="Objectives" />
           <Tab label="Gold Earned" />
+          <Tab label="Kills" />
+          <Tab label="Deaths" />
+          <Tab label="Assists" />
+          <Tab label="Damage Dealt" />
+          <Tab label="Damage Taken" />
         </Tabs>
       </Paper>
 
@@ -131,6 +143,56 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
             version={version}
             data={creepScoreStat}
             title="Creep Score"
+            className="timeline-stat"
+            needsFloor
+          />
+        )}
+
+        {matchStatsView === 2 && killStat && (
+          <Chart
+            version={version}
+            data={killStat}
+            title="Kills"
+            className="timeline-stat"
+            needsFloor
+          />
+        )}
+
+        {matchStatsView === 3 && deathStat && (
+          <Chart
+            version={version}
+            data={deathStat}
+            title="Deaths"
+            className="timeline-stat"
+            needsFloor
+          />
+        )}
+
+        {matchStatsView === 4 && assistStat && (
+          <Chart
+            version={version}
+            data={assistStat}
+            title="Assists"
+            className="timeline-stat"
+            needsFloor
+          />
+        )}
+
+        {matchStatsView === 5 && damageDealtStat && (
+          <Chart
+            version={version}
+            data={damageDealtStat}
+            title="Damage Dealt"
+            className="timeline-stat"
+            needsFloor
+          />
+        )}
+
+        {matchStatsView === 6 && damageTakenStat && (
+          <Chart
+            version={version}
+            data={damageTakenStat}
+            title="Damage Taken"
             className="timeline-stat"
             needsFloor
           />

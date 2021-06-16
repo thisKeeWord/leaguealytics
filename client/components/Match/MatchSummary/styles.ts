@@ -10,6 +10,8 @@ export const MatchSummaryStyled = styled.div`
   }
 
   .MuiTabs-root.overview {
+    border-bottom: 1px solid lightgray;
+    
     .MuiTab-root {
       font-weight: bold;
     }

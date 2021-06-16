@@ -39,6 +39,12 @@ export const StyledMatchTimeline = styled.div`
   .MuiTabs-root.timeline {
     min-height: 36px !important;
     height: 36px;
+
+    .MuiTabs-scroller {
+      .MuiTabs-flexContainer {
+        display: unset !important;
+      }
+    }
     
     .MuiTab-root {
       font-size: 12px;
