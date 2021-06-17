@@ -405,7 +405,6 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
                   version={patchData.version}
                   data={totalDamageDealtStat}
                   title="Total Damage Dealt"
-                  needsFloor
                 />
               )}
               {totalDamageTakenStat && (
@@ -413,7 +412,6 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
                   version={patchData.version}
                   data={totalDamageTakenStat}
                   title="Total Damage Taken"
-                  needsFloor
                 />
               )}
               {goldEarnedStat && (
@@ -421,7 +419,6 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
                   version={patchData.version}
                   data={goldEarnedStat}
                   title="Gold Earned"
-                  needsFloor
                 />
               )}
               {killsStat && (
@@ -429,7 +426,6 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
                   version={patchData.version}
                   data={killsStat}
                   title="Kills"
-                  needsFloor
                 />
               )}
               {assistsStat && (
@@ -437,7 +433,6 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
                   version={patchData.version}
                   data={assistsStat}
                   title="Assists"
-                  needsFloor
                 />
               )}
               {killParticipationStat && (
@@ -452,7 +447,6 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
                   version={patchData.version}
                   data={deathStat}
                   title="Deaths"
-                  needsFloor
                 />
               )}
               {deathShareStat && (
@@ -467,7 +461,6 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
                   version={patchData.version}
                   data={creepScoreStat}
                   title="Creep Score"
-                  needsFloor
                 />
               )}
             </div>

@@ -10,7 +10,6 @@ interface ChartProps {
   title: string;
   version: string | number
   className?: string
-  needsFloor?: boolean
 }
 
 const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
@@ -56,7 +55,7 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
               tickLabels: { fill: 'black' },
               axis: { stroke: 'black' },
             }}
-            tickFormat={(d: number) => (props.needsFloor ? Math.floor(d) : d)}
+            tickFormat={() => ''}
           />
           <VictoryAxis
             standalone={false}
