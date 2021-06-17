@@ -81,6 +81,7 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
   const damageDealtStat = parseStats(stats, 'damageDealt');
   const damageTakenStat = parseStats(stats, 'damageTaken');
   const wardsPurchasedStat = parseStats(stats, 'wardsPurchased');
+  const wardsPlacedStat = parseStats(stats, 'wardsPlaced');
 
   return (
     <StyledMatchTimeline data-testid="timeline">
@@ -103,6 +104,7 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
           <Tab label="Damage Dealt" />
           <Tab label="Damage Taken" />
           <Tab label="Wards Purchased" />
+          <Tab label="Wards Placed" />
         </Tabs>
       </Paper>
 
@@ -199,6 +201,15 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
             version={version}
             data={wardsPurchasedStat}
             title="Wards Purchased"
+            className="timeline-stat"
+          />
+        )}
+
+        {matchStatsView === 7 && wardsPlacedStat && (
+          <Chart
+            version={version}
+            data={wardsPlacedStat}
+            title="Wards Placed"
             className="timeline-stat"
           />
         )}
