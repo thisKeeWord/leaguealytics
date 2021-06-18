@@ -179,7 +179,7 @@ const MatchEvents: FunctionComponent<MatchEventsProps> = (props: MatchEventsProp
 
   return (
     <StyledMatchEvents>
-      <div className="events">
+      <div className="events" data-testid="events">
         <h4>Objectives</h4>
         <div className="time-range" data-testid="time-range">
           {currTimeframe > 0 && `${convertTimestamp(prevTimeframe)} - `}

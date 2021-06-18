@@ -150,6 +150,7 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
             data={creepScoreStat}
             title="Creep Score"
             className="timeline-stat"
+            testId="creepScoreStat"
           />
         )}
 
@@ -159,6 +160,7 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
             data={killStat}
             title="Kills"
             className="timeline-stat"
+            testId="killStat"
           />
         )}
 
@@ -168,6 +170,7 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
             data={deathStat}
             title="Deaths"
             className="timeline-stat"
+            testId="deathStat"
           />
         )}
 
@@ -177,6 +180,7 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
             data={assistStat}
             title="Assists"
             className="timeline-stat"
+            testId="assistStat"
           />
         )}
 
@@ -186,6 +190,7 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
             data={damageDealtStat}
             title="Damage Dealt"
             className="timeline-stat"
+            testId="damageDealtStat"
           />
         )}
 
@@ -195,6 +200,7 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
             data={damageTakenStat}
             title="Damage Taken"
             className="timeline-stat"
+            testId="damageTakenStat"
           />
         )}
 
@@ -204,6 +210,7 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
             data={wardsPurchasedStat}
             title="Wards Purchased"
             className="timeline-stat"
+            testId="wardsPurchasedStat"
           />
         )}
 
@@ -213,6 +220,7 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
             data={wardsPlacedStat}
             title="Wards Placed"
             className="timeline-stat"
+            testId="wardsPlacedStat"
           />
         )}
 
@@ -222,6 +230,7 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
             data={wardsKilledStat}
             title="Wards Killed"
             className="timeline-stat"
+            testId="wardsKilledStat"
           />
         )}
       </div>

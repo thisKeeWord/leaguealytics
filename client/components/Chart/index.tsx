@@ -10,6 +10,7 @@ interface ChartProps {
   title: string;
   version: string | number
   className?: string
+  testId?: string
 }
 
 const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
@@ -28,7 +29,7 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
   const playerType = sortedData.map(({ isCurrentPlayer }) => isCurrentPlayer);
 
   return (
-    <StyledChart className={cx(props.className)}>
+    <StyledChart className={cx(props.className)} data-testid={props.testId}>
       <div className="sort">
         <select onChange={(e) => setSortBy(e.target.value)}>
           <option value="">no sort</option>
@@ -50,7 +51,7 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
           <VictoryAxis
             dependentAxis
             standalone={false}
-            tickLabelComponent={<VictoryLabel renderInPortal />}
+            tickLabelComponent={<VictoryLabel />}
             style={{
               tickLabels: { fill: 'black' },
               axis: { stroke: 'black' },
