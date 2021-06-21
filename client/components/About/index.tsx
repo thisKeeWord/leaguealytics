@@ -13,12 +13,11 @@ const About: FunctionComponent = () => (
       </div>
       <div className="about-project" data-testid="about-body">
         <p>
-          Leaguealytics project started off as practicing with some new technologies,
+          Leaguealytics started off as a practice project with to learn some technologies,
           but soon ended up being a passion project.
         </p>
         <p>
-          Leaguealytics focuses on end game data. A potential upcoming feature is having
-          viewable match timeline data. The goal would be to provide
+          Leaguealytics focuses on end game data. The goal would be to provide
           insight and hopefully provide areas of improvement. Whether or not the information
           provided is used to improve gameplay or just for fun, that will be up to the user.
         </p>
