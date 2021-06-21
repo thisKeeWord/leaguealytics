@@ -7,7 +7,7 @@ import { StyledChart } from './styles';
 
 interface ChartProps {
   data: any;
-  title: string;
+  title?: string;
   version: string | number
   className?: string
   testId?: string

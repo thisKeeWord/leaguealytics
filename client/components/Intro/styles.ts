@@ -22,7 +22,7 @@ export const StyledIntro = styled.div`
     }
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1000px) {
     h2 {
       font-size: 1.5rem;
     }

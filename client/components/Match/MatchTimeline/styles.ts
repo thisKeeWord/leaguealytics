@@ -57,7 +57,7 @@ export const StyledMatchTimeline = styled.div`
     height: unset !important;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1000px) {
     .slider-container {
       position: fixed;
       bottom: 0;

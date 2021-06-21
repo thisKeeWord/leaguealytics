@@ -11,7 +11,7 @@ export const MatchSummaryStyled = styled.div`
 
   .MuiTabs-root.overview {
     border-bottom: 1px solid lightgray;
-    
+
     .MuiTab-root {
       font-weight: bold;
     }
@@ -305,7 +305,7 @@ export const MatchSummaryStyled = styled.div`
   }
 
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1000px) {
     .view {
       margin-bottom: 75px;
     }

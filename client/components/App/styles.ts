@@ -89,7 +89,7 @@ export const StyledApp = styled.div`
     }
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1000px) {
     a {
       font-size: 1rem;
     }

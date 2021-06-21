@@ -7,9 +7,9 @@ import Tabs from '@material-ui/core/Tabs';
 import Paper from '@material-ui/core/Paper';
 import Map from '../Map';
 import MatchEvents from '../MatchEvents';
-import Chart from '../../Chart';
 import { convertTimestamp, parseStats } from '../../../../utils/helper';
 import { StyledMatchTimeline } from './styles';
+import TimelineChart from '../../Chart/TimelineChart';
 
 interface MatchTimelineProps {
   currentPlayer: Record<any, any>
@@ -134,102 +134,121 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
         />
 
         {matchStatsView === 0 && (
-          <MatchEvents
-            prevTimeframe={timeframe > 0 && timeline[timeframe - 1].timestamp}
-            currTimeframe={timeline[timeframe].timestamp}
-            events={timeline[timeframe].events}
-            currentPlayer={currentPlayer}
-            participants={participants}
-            version={version}
-          />
+
+        <MatchEvents
+          prevTimeframe={timeframe > 0 && timeline[timeframe - 1].timestamp}
+          currTimeframe={timeline[timeframe].timestamp}
+          events={timeline[timeframe].events}
+          currentPlayer={currentPlayer}
+          participants={participants}
+          version={version}
+        />
         )}
 
-        {matchStatsView === 1 && creepScoreStat && (
-          <Chart
+        {matchStatsView === 1 && (
+          <TimelineChart
             version={version}
             data={creepScoreStat}
             title="Creep Score"
-            className="timeline-stat"
+            className="timeline-chart"
+            initialTimeframe={timeline[0].timestamp}
+            currTimeframe={timeline[timeframe].timestamp}
             testId="creepScoreStat"
           />
         )}
 
-        {matchStatsView === 2 && killStat && (
-          <Chart
+        {matchStatsView === 2 && (
+          <TimelineChart
             version={version}
             data={killStat}
             title="Kills"
-            className="timeline-stat"
+            className="timeline-chart"
+            initialTimeframe={timeline[0].timestamp}
+            currTimeframe={timeline[timeframe].timestamp}
             testId="killStat"
           />
         )}
 
-        {matchStatsView === 3 && deathStat && (
-          <Chart
+        {matchStatsView === 3 && (
+          <TimelineChart
             version={version}
             data={deathStat}
             title="Deaths"
-            className="timeline-stat"
+            className="timeline-chart"
+            initialTimeframe={timeline[0].timestamp}
+            currTimeframe={timeline[timeframe].timestamp}
             testId="deathStat"
           />
         )}
 
-        {matchStatsView === 4 && assistStat && (
-          <Chart
+        {matchStatsView === 4 && (
+          <TimelineChart
             version={version}
             data={assistStat}
             title="Assists"
-            className="timeline-stat"
+            className="timeline-chart"
+            initialTimeframe={timeline[0].timestamp}
+            currTimeframe={timeline[timeframe].timestamp}
             testId="assistStat"
           />
         )}
 
-        {matchStatsView === 5 && damageDealtStat && (
-          <Chart
+        {matchStatsView === 5 && (
+          <TimelineChart
             version={version}
             data={damageDealtStat}
             title="Damage Dealt"
-            className="timeline-stat"
+            className="timeline-chart"
+            initialTimeframe={timeline[0].timestamp}
+            currTimeframe={timeline[timeframe].timestamp}
             testId="damageDealtStat"
           />
         )}
 
-        {matchStatsView === 6 && damageTakenStat && (
-          <Chart
+        {matchStatsView === 6 && (
+          <TimelineChart
             version={version}
             data={damageTakenStat}
             title="Damage Taken"
-            className="timeline-stat"
+            className="timeline-chart"
+            initialTimeframe={timeline[0].timestamp}
+            currTimeframe={timeline[timeframe].timestamp}
             testId="damageTakenStat"
           />
         )}
 
-        {matchStatsView === 7 && wardsPurchasedStat && (
-          <Chart
+        {matchStatsView === 7 && (
+          <TimelineChart
             version={version}
             data={wardsPurchasedStat}
             title="Wards Purchased"
-            className="timeline-stat"
+            className="timeline-chart"
+            initialTimeframe={timeline[0].timestamp}
+            currTimeframe={timeline[timeframe].timestamp}
             testId="wardsPurchasedStat"
           />
         )}
 
-        {matchStatsView === 8 && wardsPlacedStat && (
-          <Chart
+        {matchStatsView === 8 && (
+          <TimelineChart
             version={version}
             data={wardsPlacedStat}
             title="Wards Placed"
-            className="timeline-stat"
+            className="timeline-chart"
+            initialTimeframe={timeline[0].timestamp}
+            currTimeframe={timeline[timeframe].timestamp}
             testId="wardsPlacedStat"
           />
         )}
 
-        {matchStatsView === 9 && wardsKilledStat && (
-          <Chart
+        {matchStatsView === 9 && (
+          <TimelineChart
             version={version}
             data={wardsKilledStat}
             title="Wards Killed"
-            className="timeline-stat"
+            className="timeline-chart"
+            initialTimeframe={timeline[0].timestamp}
+            currTimeframe={timeline[timeframe].timestamp}
             testId="wardsKilledStat"
           />
         )}
