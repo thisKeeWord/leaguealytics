@@ -33,7 +33,7 @@ export const StyledAbout = styled.div`
     }
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1000px) {
     font-size: 1rem;
 
     .disclaimer {

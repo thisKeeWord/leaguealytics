@@ -39,7 +39,7 @@ export const StyledFourOhFour = styled.div`
   }
 }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1000px) {
     font-size: 1rem;
 
     .four-oh-four-body {
