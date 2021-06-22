@@ -28,12 +28,7 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
 
   const { currentPlayer, match } = props;
 
-  if (
-    !patchData
-    || !currentPlayer.participantId
-    || !match.participants
-    || !match.teams
-  ) {
+  if (!patchData || !currentPlayer.participantId || !match.participants || !match.teams) {
     return null;
   }
 
@@ -465,8 +460,14 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
               )}
             </div>
           ) : (
-            // eslint-disable-next-line max-len
-            <MatchTimeline currentPlayer={currentPlayer} timeline={match.byTimeframe} mapId={match.mapId} participants={match.participants} version={patchData.version} matchId={match.matchId} />
+            <MatchTimeline
+              currentPlayer={currentPlayer}
+              timeline={match.byTimeframe}
+              mapId={match.mapId}
+              participants={match.participants}
+              version={patchData.version}
+              matchId={match.matchId}
+            />
           )}
         </div>
       </div>
