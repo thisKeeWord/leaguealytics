@@ -114,8 +114,12 @@ const MatchEvents: FunctionComponent<MatchEventsProps> = (props: MatchEventsProp
         <div className="monster-kills" key={`monster-kills-${index}`} data-testid="elite-monster-kills">
           <div className="team-monster-kill">
             {killer.participantId ? (
-              // eslint-disable-next-line max-len
-              <img className={cx('monster-killer', { blue: killer.participantId <= 5, red: killer.participantId > 5, user: killer.participantId === currentPlayer.participantId })} src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${killer.championName}.png`} alt="champion" />
+              <img
+                // eslint-disable-next-line max-len
+                className={cx('monster-killer', { blue: killer.participantId <= 5, red: killer.participantId > 5, user: killer.participantId === currentPlayer.participantId })}
+                src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${killer.championName}.png`}
+                alt="champion"
+              />
             ) : (
               <span className={cx('minion', { blue: event.teamId === 100, red: event.teamId === 200 })}>minion</span>
             )}

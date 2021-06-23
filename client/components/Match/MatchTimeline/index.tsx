@@ -10,6 +10,7 @@ import MatchEvents from '../MatchEvents';
 import { convertTimestamp, parseStats } from '../../../../utils/helper';
 import { StyledMatchTimeline } from './styles';
 import TimelineChart from '../../Chart/TimelineChart';
+import MatchPlayerBuilds from '../../MatchPlayerBuilds';
 
 interface MatchTimelineProps {
   currentPlayer: Record<any, any>
@@ -107,6 +108,7 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
           <Tab label="Wards Purchased" />
           <Tab label="Wards Placed" />
           <Tab label="Wards Killed" />
+          <Tab label="Player Builds" />
         </Tabs>
       </Paper>
 
@@ -250,6 +252,18 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
             initialTimeframe={timeline[0].timestamp}
             currTimeframe={timeline[timeframe].timestamp}
             testId="wardsKilledStat"
+          />
+        )}
+
+        {matchStatsView === 10 && (
+          <MatchPlayerBuilds
+            version={version}
+            participantFrames={timeline[timeframe].participantFrames}
+            participants={participants}
+            currentPlayer={currentPlayer}
+            title="Player Builds"
+            initialTimeframe={timeline[0].timestamp}
+            currTimeframe={timeline[timeframe].timestamp}
           />
         )}
       </div>
