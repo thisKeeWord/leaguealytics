@@ -84,9 +84,9 @@ const MatchList: FunctionComponent<MatchListProps> = (
               <img src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${spell2}`} alt="summoner spell 2" />
             </div>
           </div>
-          <span className="champion-name">{championName}</span>
+          <span className="champion-name" title={championName}>{championName}</span>
         </div>
-        <div className="game-mode">{gameMode}</div>
+        <div className="game-mode" title={gameMode}>{gameMode}</div>
         <div className="items">
           <div className="item-set-1">
             {[item0, item1, item2, item3, item4, item5].map((item, index) => (
