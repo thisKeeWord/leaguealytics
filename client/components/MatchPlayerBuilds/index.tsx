@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+import cx from 'classnames';
 import { convertTimestamp } from '../../../utils/helper';
 import { MatchPlayerBuildsStyled } from './styles';
 
@@ -21,13 +22,14 @@ const MatchPlayerBuilds: FunctionComponent<MatchPlayerBuildsProps> = (props: Mat
 
     // itemSet object within participantFrame
     return (
-      <div className="player-items">
+      // eslint-disable-next-line max-len
+      <div className={cx('player-items', { blue: participantObj.teamId === 100, red: participantObj.teamId === 200, user: participantFrame.participantId === props.currentPlayer.participantId })}>
         <div className="player">
-          <span className="player-name">{participantObj?.summonerName}</span>
           <img
             src={`http://ddragon.leagueoflegends.com/cdn/${props.version}/img/champion/${participantObj?.championName}.png`}
             alt={participantObj?.championName}
           />
+          <div className="name" title={participantObj?.summonerName}>{participantObj?.summonerName}</div>
         </div>
         <div className="items-list">
           {items.map((item, index) => (

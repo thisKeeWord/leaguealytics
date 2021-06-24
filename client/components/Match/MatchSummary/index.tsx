@@ -299,7 +299,7 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
                               </div>
                             </div>
                           </div>
-                          <span className="summonerName">{summonerName}</span>
+                          <span className="summonerName" title={summonerName}>{summonerName}</span>
                         </div>
                         <div className="items-list">
                           <div className="item-set-1">
