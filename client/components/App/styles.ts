@@ -9,6 +9,11 @@ export const StyledApp = styled.div`
     margin: 0 auto;
     padding-top: 50px;
 
+    .about-link {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
     &.left-display {
       max-width: 980px;
 
@@ -33,6 +38,8 @@ export const StyledApp = styled.div`
       justify-content: space-between;
       align-items: center;
       padding: 5px 20px 20px 20px;
+      max-width: 980px;
+      margin: 0 auto;
 
       .username {
         color: #fff;
