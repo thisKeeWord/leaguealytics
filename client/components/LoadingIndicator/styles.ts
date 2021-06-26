@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledLoading = styled.div`
+export const StyledLoadingIndicator = styled.div`
     margin: 50px auto;
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #3498db; /* Blue */
