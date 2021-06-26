@@ -15,7 +15,7 @@ import {
 import { getMatchTimeline } from '../../state/actions/getMatchTimeline';
 import MatchList from './MatchList';
 import MatchSummary from './MatchSummary';
-import Loading from '../Loading';
+import LoadingIndicator from '../LoadingIndicator';
 import { MatchStyled } from './styles';
 
 const Match: FunctionComponent = () => {
@@ -35,7 +35,7 @@ const Match: FunctionComponent = () => {
   };
 
   if (isFetching) {
-    return <Loading />;
+    return <LoadingIndicator />;
   }
 
   if (!user?.matches || !matches || !patchData?.version) {
@@ -138,7 +138,7 @@ const Match: FunctionComponent = () => {
             </Box>
           </div>
           {isMatchesFetching ? (
-            <Loading />
+            <LoadingIndicator />
           ) : selectedGame.matchId && currentPlayerIdentity.summonerId && (
             <div className="match-info">
               <MatchSummary
