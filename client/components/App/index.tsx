@@ -49,7 +49,7 @@ const App: FunctionComponent = () => {
   return (
     <StyledApp>
       <div className={cx('container', { 'left-display': !search })}>
-        <Link to="/about">About</Link>
+        <Link className="about-link" to="/about">About</Link>
         {!search && (
           <Intro />
         )}
