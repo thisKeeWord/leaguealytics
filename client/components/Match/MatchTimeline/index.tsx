@@ -58,6 +58,7 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
 
     return {
       champion: player.championName,
+      championImg: player.championImg,
       player: player.summonerName,
       participantId: participantFrame.participantId,
       damageDealt: Math.floor(participantFrame.damageDoneToChampions),

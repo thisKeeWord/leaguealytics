@@ -78,6 +78,7 @@ export const MatchStyled = styled.div`
       padding-left: 10px;
       width: 100px;
       text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .game-mode {

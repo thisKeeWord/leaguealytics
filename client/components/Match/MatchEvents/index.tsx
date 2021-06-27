@@ -22,7 +22,7 @@ const getAssisters = (
         key={`assister-${index}`}
         className={cx('assister', { blue: assister <= 5, red: assister > 5, user: assister === currentPlayer.participantId })}
       >
-        <img src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${assist.championName}.png`} alt="champion" />
+        <img src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${assist.championImg}.png`} alt="champion" />
       </div>
     );
   });
@@ -53,14 +53,14 @@ const MatchEvents: FunctionComponent<MatchEventsProps> = (props: MatchEventsProp
           <div className="team-champion-kill">
             {killer.participantId ? (
               // eslint-disable-next-line max-len
-              <img className={cx('champion-killer', { blue: killer.participantId <= 5, red: killer.participantId > 5, user: killer.participantId === currentPlayer.participantId })} src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${killer.championName}.png`} alt="champion" />
+              <img className={cx('champion-killer', { blue: killer.participantId <= 5, red: killer.participantId > 5, user: killer.participantId === currentPlayer.participantId })} src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${killer.championImg}.png`} alt="champion" />
             ) : 'Executed'}
             <div className="champion-timestamp">
               <img className="desc-icon" src="../../../../images/kda.png" alt="kda" />
               <span className="timestamp">{convertTimestamp(event.timestamp)}</span>
             </div>
             {/* eslint-disable-next-line max-len */}
-            <img className={cx('champion-victim', { blue: victim.participantId <= 5, red: victim.participantId > 5, user: victim.participantId === currentPlayer.participantId })} src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${victim.championName}.png`} alt="champion" />
+            <img className={cx('champion-victim', { blue: victim.participantId <= 5, red: victim.participantId > 5, user: victim.participantId === currentPlayer.participantId })} src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${victim.championImg}.png`} alt="champion" />
           </div>
           {assisters.length > 0 && (
             <div className="team-assist">
@@ -91,7 +91,7 @@ const MatchEvents: FunctionComponent<MatchEventsProps> = (props: MatchEventsProp
       return (
         <div className="ward-event" key={`ward-event-${index}`} data-testid="ward-event">
           {/* eslint-disable-next-line max-len */}
-          <img className={cx({ blue: wardParticipant.participantId <= 5, red: wardParticipant.participantId > 5, user: wardParticipant.participantId === currentPlayer.participantId })} src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${wardParticipant.championName}.png`} alt="champion" />
+          <img className={cx({ blue: wardParticipant.participantId <= 5, red: wardParticipant.participantId > 5, user: wardParticipant.participantId === currentPlayer.participantId })} src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${wardParticipant.championImg}.png`} alt="champion" />
           <div className="ward-timestamp">
             <span className="desc-icon">{event.type === 'WARD_PLACED' ? 'placed' : 'destroyed'}</span>
             <span className="timestamp">{convertTimestamp(event.timestamp)}</span>
@@ -117,7 +117,7 @@ const MatchEvents: FunctionComponent<MatchEventsProps> = (props: MatchEventsProp
               <img
                 // eslint-disable-next-line max-len
                 className={cx('monster-killer', { blue: killer.participantId <= 5, red: killer.participantId > 5, user: killer.participantId === currentPlayer.participantId })}
-                src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${killer.championName}.png`}
+                src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${killer.championImg}.png`}
                 alt="champion"
               />
             ) : (
@@ -152,7 +152,7 @@ const MatchEvents: FunctionComponent<MatchEventsProps> = (props: MatchEventsProp
             {/* eslint-disable-next-line max-len */}
             {killer.participantId ? (
               // eslint-disable-next-line max-len
-              <img className={cx('building-killer', { blue: killer.participantId <= 5, red: killer.participantId > 5, user: killer.participantId === currentPlayer.participantId })} src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${killer.championName}.png`} alt="champion" />
+              <img className={cx('building-killer', { blue: killer.participantId <= 5, red: killer.participantId > 5, user: killer.participantId === currentPlayer.participantId })} src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${killer.championImg}.png`} alt="champion" />
             ) : (
               <span className={cx('minion', { blue: event.teamId === 100, red: event.teamId === 200 })}>minion</span>
             )}

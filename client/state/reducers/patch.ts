@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { PatchData } from '../../../utils/interface';
 
 export interface PatchState {
-  patchData: Record<any, any> | null;
+  patchData: PatchData | null;
   isFetching: boolean;
   error: string | null;
 }

@@ -74,9 +74,9 @@ export const parseStats = (statsData: Record<any, any>[], type: string) => {
 
   const stats = statsData.map(
     ({
-      champion, isCurrentPlayer, player, team,
+      champion, championImg, isCurrentPlayer, player, team,
     }, index, self) => ({
-      x: `${champion}`,
+      x: `${championImg}`,
       y: ['deathShare', 'killParticipation'].includes(type)
         ? Math.floor(self[index][type])
         : self[index][type],

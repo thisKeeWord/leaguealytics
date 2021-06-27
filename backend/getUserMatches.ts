@@ -5,7 +5,10 @@ export const getUserMatches = async (req, res) => {
 
   try {
     const firestoreUser = (await api.users.where('puuid', '==', puuid).get()).docs[0].id;
+    const firestorePatchData = api.patchData.doc('latest');
+    const firestorePatchObject = (await firestorePatchData.get()).data();
 
+    const { data } = firestorePatchObject || {};
     const userDoc = api.users.doc(firestoreUser);
     const userDocData = (await userDoc.get()).data();
 
@@ -53,6 +56,18 @@ export const getUserMatches = async (req, res) => {
           {},
         );
 
+        (matchOverviewData.info.participants as Array<Record<any, any>>).forEach((participant, index, self) => {
+          // eslint-disable-next-line no-restricted-syntax, no-unused-vars
+          for (const [_key, value] of Object.entries(data as Record<any, any>)) {
+            if (value.key == participant.championId) {
+              self[index].championName = value.name;
+              self[index].championImg = value.id;
+
+              break;
+            }
+          }
+        });
+
         matchDataObj = matchOverviewData.info;
       }
 
@@ -62,6 +77,17 @@ export const getUserMatches = async (req, res) => {
         ...matchDataObj,
         matchId: match.matchId,
       }, { merge: true });
+
+      const usersChampionObj = { championName: '', championImg: '' };
+      // eslint-disable-next-line no-restricted-syntax, no-unused-vars
+      for (const [_key, value] of Object.entries(data as Record<any, any>)) {
+        if (value.key == currentUser.championId) {
+          usersChampionObj.championName = value.name;
+          usersChampionObj.championImg = value.id;
+
+          break;
+        }
+      }
 
       return ({
         matchId: match.matchId,
@@ -76,7 +102,8 @@ export const getUserMatches = async (req, res) => {
         platformId: matchDataObj.platformId,
         queueId: matchDataObj.queueId,
         champion: currentUser.championId,
-        championName: currentUser.championName,
+        championName: usersChampionObj.championName,
+        championImg: usersChampionObj.championImg,
         champLevel: currentUser.champLevel,
         goldEarned: currentUser.goldEarned,
         summoner1Id: currentUser.summoner1Id,

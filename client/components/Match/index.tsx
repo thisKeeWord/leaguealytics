@@ -70,6 +70,7 @@ const Match: FunctionComponent = () => {
                 .slice((page - 1) * itemsPerPage, page * itemsPerPage)
                 .map(({
                   championName,
+                  championImg,
                   champLevel,
                   gameCreation,
                   gameDuration,
@@ -95,6 +96,7 @@ const Match: FunctionComponent = () => {
                     <MatchList
                       handleClick={handleClick}
                       championName={championName}
+                      championImg={championImg}
                       champLevel={champLevel}
                       gameCreation={gameCreation}
                       gameDuration={gameDuration}
