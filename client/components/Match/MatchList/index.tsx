@@ -13,6 +13,7 @@ interface MatchListProps {
   gameDuration: number;
   gameMode: string;
   championName: string;
+  championImg: string;
   matchId: string;
   champLevel: number;
   deaths: number;
@@ -43,6 +44,7 @@ const MatchList: FunctionComponent<MatchListProps> = (
     gameDuration,
     gameMode,
     championName,
+    championImg,
     matchId,
     champLevel,
     deaths,
@@ -76,7 +78,7 @@ const MatchList: FunctionComponent<MatchListProps> = (
         <div className="base-info">
           <div className="champion-image">
             <div className="champion-level">
-              <img src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${championName}.png`} alt="champion" />
+              <img src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${championImg}.png`} alt="champion" />
               <span>{champLevel}</span>
             </div>
             <div className="summoner-spells">

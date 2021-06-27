@@ -58,6 +58,7 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
       participantId,
       championId,
       championName,
+      championImg,
       totalDamageDealtToChampions,
       totalDamageTaken,
       goldEarned,
@@ -78,6 +79,7 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
           );
           return {
             champion: championName,
+            championImg,
             player: summonerName,
             participantId,
             damageDealt: totalDamageDealtToChampions,
@@ -251,7 +253,7 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
                     summonerName,
                     summoner1Id,
                     summoner2Id,
-                    championName,
+                    championImg,
                     champLevel,
                     kills,
                     assists,
@@ -275,7 +277,7 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
                           <div className="champion-image">
                             <div className="champion-level">
                               <img
-                                src={`http://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/champion/${championName}.png`}
+                                src={`http://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/champion/${championImg}.png`}
                                 alt="champion"
                               />
                               <span>{champLevel}</span>
