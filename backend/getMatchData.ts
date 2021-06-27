@@ -1,4 +1,5 @@
 import api from '../api';
+import { TimelineAPIDoc } from '../utils/interface';
 
 export const getMatchData = async (req, res) => {
   const { username, matchId } = req.params;
@@ -18,7 +19,7 @@ export const getMatchData = async (req, res) => {
       return;
     }
 
-    const matchTimelineData = (await api.riotAPI.match.timeline.get(matchId)).data;
+    const matchTimelineData: TimelineAPIDoc = (await api.riotAPI.match.timeline.get(matchId)).data;
 
     // eslint-disable-next-line prefer-const
     let byTimeframe: Record<any, any>[] = [];

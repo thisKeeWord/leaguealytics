@@ -20,7 +20,6 @@ export type RootState = ReturnType<typeof rootReducer>;
 export type AppDispatch = typeof store.dispatch;
 
 export * from './selectors';
-// export * from "./actions";
 
 export interface ThunkAPI {
   dispatch: AppDispatch;
