@@ -23,7 +23,7 @@ describe('MatchTimeline', () => {
   it('displays the slider', () => {
     const { getByTestId } = render(
       <MatchTimeline
-        timeline={[{ events: [], timestamp: faker.datatype.number() }]}
+        timeline={[{ events: [], timestamp: faker.datatype.number(), participantFrames: [] }]}
         currentPlayer={{ participantId: faker.random.alphaNumeric() }}
         mapId={faker.datatype.number()}
         participants={[]}
@@ -38,7 +38,7 @@ describe('MatchTimeline', () => {
   it('displays the map', () => {
     const { getByTestId } = render(
       <MatchTimeline
-        timeline={[{ events: [], timestamp: faker.datatype.number() }]}
+        timeline={[{ events: [], timestamp: faker.datatype.number(), participantFrames: [] }]}
         currentPlayer={{ participantId: faker.random.alphaNumeric() }}
         mapId={faker.datatype.number()}
         participants={[]}
@@ -53,7 +53,7 @@ describe('MatchTimeline', () => {
   it('displays the objectives events', () => {
     const { getByTestId } = render(
       <MatchTimeline
-        timeline={[{ events: [], timestamp: faker.datatype.number() }]}
+        timeline={[{ events: [], timestamp: faker.datatype.number(), participantFrames: [] }]}
         currentPlayer={{ participantId: faker.random.alphaNumeric() }}
         mapId={faker.datatype.number()}
         participants={[]}

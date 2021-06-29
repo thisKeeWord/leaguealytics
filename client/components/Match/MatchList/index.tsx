@@ -68,6 +68,7 @@ const MatchList: FunctionComponent<MatchListProps> = (
   } = props;
 
   const summoners = useSelector(selectSummonersData);
+
   const summonersList = summoners?.data;
 
   const { spell1, spell2 } = getSummoners(summonersList, { summoner1Id, summoner2Id });

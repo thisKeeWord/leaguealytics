@@ -30,10 +30,10 @@ export interface MatchesByIdData {
   mapId?: number
   gameType?: number
   tournamentCode?: string
-  gameStartTimestamp:number
+  gameStartTimestamp?: number
   matchId?: string
   platformId?: string
-  gameCreation:number
+  gameCreation?: number
   gameName?: string
   participants?: Record<any, any>[]
   teams?: Team[]
@@ -103,4 +103,10 @@ interface ParticipantFrame {
     x: number
     y: number
   }
+}
+
+export interface SummonersData {
+  type: string
+  data: Record<any, any>
+  version: string
 }

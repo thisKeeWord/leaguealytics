@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { SummonersData } from '../../../utils/interface';
 
 export interface SummonersState {
-  summonersData: Record<any, any> | null;
+  summonersData: SummonersData | null;
   isFetching: boolean;
   error: string | null;
 }
