@@ -10,9 +10,10 @@ import Chart from '../../Chart';
 
 import { MatchSummaryStyled } from './styles';
 import MatchTimeline from '../MatchTimeline';
+import { MatchesByIdData } from '../../../../utils/interface';
 
 interface MatchSummaryProps {
-  match: Record<any, any>;
+  match: MatchesByIdData
   currentPlayer: Record<any, any>;
 }
 
@@ -89,11 +90,11 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
             assists,
             deaths,
             killParticipation:
-              teamStats.kills === 0
+              !teamStats?.kills || teamStats?.kills === 0
                 ? 0
-                : ((kills + assists) / teamStats.kills) * 100,
+                : ((kills + assists) / teamStats?.kills) * 100,
             deathShare:
-              teamStats.deaths === 0 ? 0 : (deaths / teamStats.deaths) * 100,
+              !teamStats?.deaths || teamStats?.deaths === 0 ? 0 : (deaths / teamStats?.deaths) * 100,
             creepScore: totalMinionsKilled + neutralMinionsKilled,
             isCurrentPlayer: props.currentPlayer.participantId == participantId,
             team: teamId,
@@ -103,18 +104,22 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
     },
   );
 
-  const totalDamageDealtStat = parseStats(statsData, 'damageDealt');
-  const totalDamageTakenStat = parseStats(statsData, 'damageTaken');
-  const goldEarnedStat = parseStats(statsData, 'goldEarned');
-  const killsStat = parseStats(statsData, 'kills');
-  const assistsStat = parseStats(statsData, 'assists');
-  const killParticipationStat = parseStats(statsData, 'killParticipation');
-  const deathStat = parseStats(statsData, 'deaths');
-  const deathShareStat = parseStats(statsData, 'deathShare');
-  const creepScoreStat = parseStats(statsData, 'creepScore');
+  const totalDamageDealtStat = parseStats(statsData as Record<any, any>[], 'damageDealt');
+  const totalDamageTakenStat = parseStats(statsData as Record<any, any>[], 'damageTaken');
+  const goldEarnedStat = parseStats(statsData as Record<any, any>[], 'goldEarned');
+  const killsStat = parseStats(statsData as Record<any, any>[], 'kills');
+  const assistsStat = parseStats(statsData as Record<any, any>[], 'assists');
+  const killParticipationStat = parseStats(statsData as Record<any, any>[], 'killParticipation');
+  const deathStat = parseStats(statsData as Record<any, any>[], 'deaths');
+  const deathShareStat = parseStats(statsData as Record<any, any>[], 'deathShare');
+  const creepScoreStat = parseStats(statsData as Record<any, any>[], 'creepScore');
 
   const team100 = participants.filter(({ teamId }) => teamId === 100);
   const team200 = participants.filter(({ teamId }) => teamId === 200);
+
+  if (!match.matchId || !match.mapId) {
+    return null;
+  }
 
   return (
     <MatchSummaryStyled data-testid="match-stats">
@@ -236,7 +241,7 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
                         }.png`}
                         alt="baron"
                       />
-                      <span>{adjustedTeams[index].objectives.baron.kills}</span>
+                      <span>{adjustedTeams[index].objectives.baron!.kills}</span>
                     </div>
                   </div>
                 </div>

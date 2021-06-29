@@ -11,10 +11,11 @@ import { convertTimestamp, parseStats } from '../../../../utils/helper';
 import { StyledMatchTimeline } from './styles';
 import TimelineChart from '../../Chart/TimelineChart';
 import MatchPlayerBuilds from '../../MatchPlayerBuilds';
+import { ByTimeframe } from '../../../../utils/interface';
 
 interface MatchTimelineProps {
   currentPlayer: Record<any, any>
-  timeline: Record<any, any>
+  timeline?: ByTimeframe[]
   mapId: number
   participants: Record<any, any>[]
   version: number | string;
@@ -63,7 +64,7 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
       participantId: participantFrame.participantId,
       damageDealt: Math.floor(participantFrame.damageDoneToChampions),
       damageTaken: Math.floor(participantFrame.damageTaken),
-      goldEarned: Math.floor(participantFrame.goldEarned),
+      goldEarned: Math.floor(participantFrame.goldEarned || 0),
       kills: Math.floor(participantFrame.kills),
       assists: Math.floor(participantFrame.assists),
       deaths: Math.floor(participantFrame.deaths),
@@ -139,7 +140,7 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
         {matchStatsView === 0 && (
 
         <MatchEvents
-          prevTimeframe={timeframe > 0 && timeline[timeframe - 1].timestamp}
+          prevTimeframe={timeframe > 0 ? timeline[timeframe - 1].timestamp : 0}
           currTimeframe={timeline[timeframe].timestamp}
           events={timeline[timeframe].events}
           currentPlayer={currentPlayer}

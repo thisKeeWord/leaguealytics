@@ -17,6 +17,7 @@ import MatchList from './MatchList';
 import MatchSummary from './MatchSummary';
 import LoadingIndicator from '../LoadingIndicator';
 import { MatchStyled } from './styles';
+import { MatchesByIdData } from '../../../utils/interface';
 
 const Match: FunctionComponent = () => {
   const user = useSelector(selectUserDoc);
@@ -42,7 +43,7 @@ const Match: FunctionComponent = () => {
     return null;
   }
 
-  const selectedGame = selectedMatchId
+  const selectedGame: MatchesByIdData = selectedMatchId
     && matches[selectedMatchId]
     && matches[selectedMatchId].data.matchId
     ? matches[selectedMatchId].data
@@ -59,6 +60,10 @@ const Match: FunctionComponent = () => {
   const currentPlayerIdentity = selectedGame.participants
     ? selectedGame.participants.find(({ summonerId }) => summonerId == user?.id)
     : {};
+
+  if (!currentPlayerIdentity) {
+    return null;
+  }
 
   return (
     <MatchStyled>

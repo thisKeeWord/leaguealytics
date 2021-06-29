@@ -17,7 +17,7 @@ interface Summoners {
   summoner2Id: number
 }
 
-export const getSummoners = (summonersList: Record<any, any> | null, summonerSpells: Summoners) => {
+export const getSummoners = (summonersList: Record<any, any> | undefined | null, summonerSpells: Summoners) => {
   const spellName = {
     spell1: '',
     spell2: '',
