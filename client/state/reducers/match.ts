@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { MatchesById } from '../../../utils/interface';
 
 export interface MatchState {
-  byId: any;
+  byId: MatchesById;
   ids: string[];
   isFetching: boolean;
   isMetaLoaded: boolean;
