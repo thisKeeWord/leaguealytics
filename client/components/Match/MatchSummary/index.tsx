@@ -10,7 +10,7 @@ import Chart from '../../Chart';
 
 import { MatchSummaryStyled } from './styles';
 import MatchTimeline from '../MatchTimeline';
-import { MatchesByIdData } from '../../../../utils/interface';
+import { MatchesByIdData, Team } from '../../../../utils/interface';
 
 interface MatchSummaryProps {
   match: MatchesByIdData
@@ -72,11 +72,13 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
       summonerName,
       // eslint-disable-next-line array-callback-return
     }) => {
-      // eslint-disable-next-line no-restricted-syntax, prefer-const
-      for (let championData in patchData.patchData) {
-        if (patchData.patchData[championData].key == championId) {
+      // eslint-disable-next-line no-restricted-syntax, no-unused-vars
+      for (const [_key, value] of Object.entries(patchData.patchData.data)) {
+        const val = value as Record<any, any>;
+
+        if (parseInt(val.key, 10) === championId) {
           const teamStats = adjustedTeams.find(
-            (team: Record<any, any>) => team.teamId === teamId,
+            (team: Team) => team.teamId === teamId,
           );
           return {
             champion: championName,
