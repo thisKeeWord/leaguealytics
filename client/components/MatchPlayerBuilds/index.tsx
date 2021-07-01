@@ -14,7 +14,7 @@ interface MatchPlayerBuildsProps {
 }
 
 const MatchPlayerBuilds: FunctionComponent<MatchPlayerBuildsProps> = (props: MatchPlayerBuildsProps) => {
-  const particpantsItemSet = props.participantFrames.map((participantFrame: Record<any, any>) => {
+  const particpantsItemSet = props.participantFrames.map((participantFrame: Record<any, any>, index) => {
     const participantObj = props.participants.find((participant: Record<any, any>) => (
       participant.participantId === participantFrame.participantId
     )) || {};
@@ -23,7 +23,7 @@ const MatchPlayerBuilds: FunctionComponent<MatchPlayerBuildsProps> = (props: Mat
     // itemSet object within participantFrame
     return (
       // eslint-disable-next-line max-len
-      <div className={cx('player-items', { blue: participantObj.teamId === 100, red: participantObj.teamId === 200, user: participantFrame.participantId === props.currentPlayer.participantId })}>
+      <div key={index} className={cx('player-items', { blue: participantObj.teamId === 100, red: participantObj.teamId === 200, user: participantFrame.participantId === props.currentPlayer.participantId })}>
         <div className="player">
           <img
             src={`http://ddragon.leagueoflegends.com/cdn/${props.version}/img/champion/${participantObj?.championImg}.png`}
@@ -32,8 +32,8 @@ const MatchPlayerBuilds: FunctionComponent<MatchPlayerBuildsProps> = (props: Mat
           <div className="name" title={participantObj?.summonerName}>{participantObj?.summonerName}</div>
         </div>
         <div className="items-list">
-          {items.map((item, index) => (
-            <img src={`https://ddragon.leagueoflegends.com/cdn/${props.version}/img/item/${item}.png`} alt="item" key={index} />
+          {items.map((item, i) => (
+            <img src={`https://ddragon.leagueoflegends.com/cdn/${props.version}/img/item/${item}.png`} alt="item" key={i} />
           ))}
         </div>
       </div>

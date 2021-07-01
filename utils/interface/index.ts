@@ -40,7 +40,7 @@ export interface MatchesByIdData {
   byTimeframe?: ByTimeframe[]
 }
 
-interface Team {
+export interface Team {
   assists: number
   teamId: number
   kills: number
