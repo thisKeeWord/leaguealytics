@@ -84,7 +84,7 @@ export interface ByTimeframe {
   participantFrames: ParticipantFrame[]
 }
 
-interface ParticipantFrame {
+export interface ParticipantFrame {
   participantId: number
   minionsKilled: number
   totalGold: number

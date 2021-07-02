@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import cx from 'classnames';
 import { convertTimestamp } from '../../../utils/helper';
+import { ParticipantFrame } from '../../../utils/interface';
 import { MatchPlayerBuildsStyled } from './styles';
 
 interface MatchPlayerBuildsProps {
@@ -8,13 +9,13 @@ interface MatchPlayerBuildsProps {
   title: string
   initialTimeframe: number
   currTimeframe: number
-  participantFrames: Record<any, any>
+  participantFrames: ParticipantFrame[]
   participants: Record<any, any>[]
   currentPlayer: Record<any, any>
 }
 
 const MatchPlayerBuilds: FunctionComponent<MatchPlayerBuildsProps> = (props: MatchPlayerBuildsProps) => {
-  const particpantsItemSet = props.participantFrames.map((participantFrame: Record<any, any>, index) => {
+  const particpantsItemSet = props.participantFrames.map((participantFrame: ParticipantFrame, index) => {
     const participantObj = props.participants.find((participant: Record<any, any>) => (
       participant.participantId === participantFrame.participantId
     )) || {};
