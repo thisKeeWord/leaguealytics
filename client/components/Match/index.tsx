@@ -21,7 +21,7 @@ import { MatchesByIdData } from '../../../utils/interface';
 
 const Match: FunctionComponent = () => {
   const user = useSelector(selectUserDoc);
-  const isFetching = useSelector(selectUserFetching);
+  const isUserFetching = useSelector(selectUserFetching);
   const patchData = useSelector(selectPatchData);
   const matches = useSelector(selectMatchesByID);
   const isMatchesFetching = useSelector(selectMatchesIsFetching);
@@ -35,7 +35,7 @@ const Match: FunctionComponent = () => {
     setPage(value);
   };
 
-  if (isFetching) {
+  if (isUserFetching) {
     return <LoadingIndicator />;
   }
 

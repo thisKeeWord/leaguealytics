@@ -17,6 +17,7 @@ const patchSlice = createSlice({
   name: 'patch',
   initialState,
   reducers: {
+    // unused
     setPatchFetching(state, action): void {
       state.isFetching = action.payload.isFetching;
     },
