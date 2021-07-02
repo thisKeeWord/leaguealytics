@@ -34,7 +34,12 @@ const MatchPlayerBuilds: FunctionComponent<MatchPlayerBuildsProps> = (props: Mat
         </div>
         <div className="items-list">
           {items.map((item, i) => (
-            <img src={`https://ddragon.leagueoflegends.com/cdn/${props.version}/img/item/${item}.png`} alt="item" key={i} />
+            <img
+              src={`https://ddragon.leagueoflegends.com/cdn/${props.version}/img/item/${item}.png`}
+              alt="item"
+              key={i}
+              data-testid="item"
+            />
           ))}
         </div>
       </div>
@@ -46,7 +51,7 @@ const MatchPlayerBuilds: FunctionComponent<MatchPlayerBuildsProps> = (props: Mat
       <div data-testid="match-player-builds" className="match-player-builds">
         <h4>{props.title}</h4>
 
-        <div className="time-range">
+        <div className="time-range" data-testid="time-range">
           {props.currTimeframe > 0 && `${convertTimestamp(props.initialTimeframe)} - `}
           {convertTimestamp(props.currTimeframe)}
         </div>
