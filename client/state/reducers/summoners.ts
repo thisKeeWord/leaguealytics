@@ -17,6 +17,7 @@ const summonersSlice = createSlice({
   name: 'summoners',
   initialState,
   reducers: {
+    // unused
     setSummonersFetching(state, action): void {
       state.isFetching = action.payload.isFetching;
     },

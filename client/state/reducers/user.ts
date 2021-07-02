@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { FirebaseUserDoc } from '../../../utils/interface/index';
 
 export interface UserState {
-  fetching: false;
+  fetching: boolean;
   doc: FirebaseUserDoc | null;
   error?: string;
 }
