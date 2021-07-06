@@ -17,7 +17,6 @@ describe('MatchSummary', () => {
           match={match}
           currentPlayer={currentPlayer}
         />
-
       </Provider>,
     );
 
@@ -33,7 +32,6 @@ describe('MatchSummary', () => {
           match={match}
           currentPlayer={{}}
         />
-
       </Provider>,
     );
 
@@ -50,7 +48,6 @@ describe('MatchSummary', () => {
           match={match}
           currentPlayer={currentPlayer}
         />
-
       </Provider>,
     );
 
@@ -67,7 +64,6 @@ describe('MatchSummary', () => {
           match={match}
           currentPlayer={currentPlayer}
         />
-
       </Provider>,
     );
 

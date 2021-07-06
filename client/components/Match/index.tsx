@@ -67,7 +67,7 @@ const Match: FunctionComponent = () => {
   }
 
   return (
-    <MatchStyled>
+    <MatchStyled data-testid="match">
       <div className="section">
         <div className="wrapper">
           <div className="content-border">
