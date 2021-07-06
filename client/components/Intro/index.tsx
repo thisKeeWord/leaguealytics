@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { StyledIntro } from './styles';
 
 const Intro: FunctionComponent = () => (
-  <StyledIntro>
+  <StyledIntro data-testid="intro">
     <h2 data-testid="title">Leaguealytics</h2>
     <p>
       <span>

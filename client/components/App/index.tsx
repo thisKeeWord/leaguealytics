@@ -49,13 +49,13 @@ const App: FunctionComponent = () => {
   return (
     <StyledApp>
       <div className={cx('container', { 'left-display': !search })}>
-        <Link className="about-link" to="/about">About</Link>
+        <Link className="about-link" to="/about" data-testid="about-link">About</Link>
         {!search && (
           <Intro />
         )}
         <div className="root-form">
-          {search && <span className="username">{user?.name}</span>}
-          <form onSubmit={handleSubmit} className="search" data-testid="app">
+          {search && <span className="username" data-testid="username">{user?.name}</span>}
+          <form onSubmit={handleSubmit} className="search" data-testid="form">
             <TextField
               id="username"
               name="username"

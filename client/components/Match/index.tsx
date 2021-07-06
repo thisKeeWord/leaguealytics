@@ -19,6 +19,8 @@ import LoadingIndicator from '../LoadingIndicator';
 import { MatchStyled } from './styles';
 import { MatchesByIdData } from '../../../utils/interface';
 
+const itemsPerPage = 4;
+
 const Match: FunctionComponent = () => {
   const user = useSelector(selectUserDoc);
   const isUserFetching = useSelector(selectUserFetching);
@@ -27,7 +29,6 @@ const Match: FunctionComponent = () => {
   const isMatchesFetching = useSelector(selectMatchesIsFetching);
   const dispatch = useDispatch();
   const [selectedMatchId, setSelectedMatchId] = useState<string>();
-  const itemsPerPage = 4;
   const [page, setPage] = useState(1);
   const noOfPages = matches ? Object.keys(matches).length / itemsPerPage : 0;
 
@@ -66,7 +67,7 @@ const Match: FunctionComponent = () => {
   }
 
   return (
-    <MatchStyled>
+    <MatchStyled data-testid="match">
       <div className="section">
         <div className="wrapper">
           <div className="content-border">
