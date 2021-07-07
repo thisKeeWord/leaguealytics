@@ -6,7 +6,7 @@ import MatchTimeline from '.';
 
 describe('MatchTimeline', () => {
   it('returns null if no timeline', () => {
-    const { queryAllByTestId } = render(
+    const { queryByTestId } = render(
       <MatchTimeline
         timeline={[]}
         currentPlayer={{ participantId: faker.random.alphaNumeric() }}
@@ -17,7 +17,7 @@ describe('MatchTimeline', () => {
       />,
     );
 
-    expect(queryAllByTestId('timeline')).toHaveLength(0);
+    expect(queryByTestId('timeline')).not.toBeInTheDocument();
   });
 
   it('displays the slider', () => {
