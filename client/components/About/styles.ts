@@ -28,6 +28,10 @@ export const StyledAbout = styled.div`
       }
     }
 
+    .notice {
+      font-size: 12px;
+    }
+
     .disclaimer {
       font-size: 10px;
     }
