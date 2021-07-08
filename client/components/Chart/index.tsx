@@ -31,7 +31,7 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
   return (
     <StyledChart className={cx(props.className)} data-testid={props.testId}>
       <div className="sort">
-        <select onChange={(e) => setSortBy(e.target.value)}>
+        <select onChange={(e) => setSortBy(e.target.value)} data-testid="sort-select">
           <option value="">no sort</option>
           <option value="ascending">ascending</option>
           <option value="descending">descending</option>
@@ -41,6 +41,7 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
         viewBox="0 0 430 430"
         height="100%"
         width="100%"
+        data-testid="chart-svg"
       >
         <VictoryChart domainPadding={10} height={410} width={410} horizontal standalone={false}>
           <VictoryLabel
@@ -138,8 +139,11 @@ const CustomLabel = (props: CustomLabelProps) => {
 
   return (
     <foreignObject y={(props.y || 0) - 10} x={23} style={{ height: '20px', width: '20px' }}>
-      {/* eslint-disable-next-line max-len */}
-      <img alt="champion" src={`http://ddragon.leagueoflegends.com/cdn/${props.version}/img/champion/${props.data[props.index].x}.png`} style={{ height: '20px', width: '20px' }} />
+      <img
+        alt="champion"
+        src={`http://ddragon.leagueoflegends.com/cdn/${props.version}/img/champion/${props.data[props.index].x}.png`}
+        style={{ height: '20px', width: '20px' }}
+      />
       <span>{props.data[props.index].player}</span>
     </foreignObject>
   );

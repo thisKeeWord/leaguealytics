@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const TimelineChartStyled = styled.div`
+export const MatchTimelineChartStyled = styled.div`
   width: 50%;
   padding: 0 10px 10px 10px;
 

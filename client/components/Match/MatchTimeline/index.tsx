@@ -7,11 +7,11 @@ import Tabs from '@material-ui/core/Tabs';
 import Paper from '@material-ui/core/Paper';
 import Map from '../Map';
 import MatchEvents from '../MatchEvents';
+import MatchPlayerBuilds from '../../MatchPlayerBuilds';
+import TimelineChart from '../MatchTimelineChart';
+import { ByTimeframe } from '../../../../utils/interface';
 import { convertTimestamp, parseStats } from '../../../../utils/helper';
 import { StyledMatchTimeline } from './styles';
-import TimelineChart from '../../Chart/TimelineChart';
-import MatchPlayerBuilds from '../../MatchPlayerBuilds';
-import { ByTimeframe } from '../../../../utils/interface';
 
 interface MatchTimelineProps {
   currentPlayer: Record<any, any>

@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react';
-import Chart from '.';
-import { convertTimestamp } from '../../../utils/helper';
-import { TimelineChartStyled } from './TimelineChartStyles';
+import Chart from '../../Chart';
+import { convertTimestamp } from '../../../../utils/helper';
+import { MatchTimelineChartStyled } from './styles';
 
-interface TimelineChartProps {
+interface MatchTimelineChartProps {
   data: any;
   title: string;
   version: string | number
@@ -13,21 +13,21 @@ interface TimelineChartProps {
   currTimeframe: number
 }
 
-const TimelineChart: FunctionComponent<TimelineChartProps> = (props: TimelineChartProps) => (
-  <TimelineChartStyled>
+const TimelineChart: FunctionComponent<MatchTimelineChartProps> = (props: MatchTimelineChartProps) => (
+  <MatchTimelineChartStyled>
     <div data-testid={props.testId} className={props.className}>
       <h4>{props.title}</h4>
 
-      <div className="time-range">
+      <div className="time-range" data-testid="time-range">
         {props.currTimeframe > 0 && `${convertTimestamp(props.initialTimeframe)} - `}
         {convertTimestamp(props.currTimeframe)}
       </div>
 
       {props.data && (
-        <Chart version={props.version} data={props.data} className="base-chart" />
+        <Chart version={props.version} data={props.data} className="base-chart" testId="base-chart" />
       )}
     </div>
-  </TimelineChartStyled>
+  </MatchTimelineChartStyled>
 );
 
 export default TimelineChart;
