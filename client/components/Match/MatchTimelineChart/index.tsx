@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
-import Chart from '.';
-import { convertTimestamp } from '../../../utils/helper';
-import { TimelineChartStyled } from './TimelineChartStyles';
+import Chart from '../../Chart';
+import { convertTimestamp } from '../../../../utils/helper';
+import { TimelineChartStyled } from './styles';
 
 interface TimelineChartProps {
   data: any;
