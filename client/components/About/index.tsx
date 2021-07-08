@@ -26,8 +26,8 @@ const About: FunctionComponent = () => (
         </p>
         <p className="notice" data-testid="notice">
           <strong>NOTE: </strong>
-          Only NA is supported at the moment since this started off as just a practice project.
-          However, should there be a number of requests to support other regions, I will highly
+          Only summoners in the North America server is supported at the moment since this started off as just a practice project.
+          Should there be a number of requests to support other regions, I will highly
           consider adding support for the remaining regions. Keep in mind that this would require
           addtional time and maintenance, especially being the only developer on this project.
         </p>

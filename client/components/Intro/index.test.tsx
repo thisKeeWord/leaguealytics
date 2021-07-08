@@ -21,6 +21,7 @@ describe('Intro', () => {
   });
 
   it('displays the restriction disclaimer', () => {
-    expect(getByTestId('restriction-disclaimer')).toBeInTheDocument();
+    // eslint-disable-next-line max-len
+    expect(getByTestId('restriction-disclaimer')).toHaveTextContent('Only summoners in the North America server is supported at the moment since this started off as just a practice project.');
   });
 });

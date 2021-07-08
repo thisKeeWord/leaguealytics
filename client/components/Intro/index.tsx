@@ -13,9 +13,11 @@ const Intro: FunctionComponent = () => (
         To get started, enter a summoner name in the search bar.
       </span>
       <span className="restriction-disclaimer" data-testid="restriction-disclaimer">
-        (Note: The wider the screen (ex: mobile landscape view) the better the view.
-        Only summoners in the North America server are currently supported,
-        but eventually may add support to the rest of the regions.)
+        <strong>NOTE: </strong>
+        Only summoners in the North America server is supported at the moment since this started off as just a practice project.
+        Should there be a number of requests to support other regions, it will be highly
+        consider to add support for the remaining regions. Keep in mind that this would require
+        addtional time and maintenance, especially having only a single developer on this project.
       </span>
     </p>
   </StyledIntro>
