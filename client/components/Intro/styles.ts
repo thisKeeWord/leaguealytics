@@ -17,8 +17,8 @@ export const StyledIntro = styled.div`
     }
     
     .restriction-disclaimer {
-      font-size: 10px;
-      padding-top: 5px;
+      font-size: 12px;
+      padding-top: 10px;
     }
   }
 

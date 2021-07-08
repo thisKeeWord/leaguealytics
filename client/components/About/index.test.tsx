@@ -29,6 +29,11 @@ describe('About', () => {
     expect(getByTestId('about-body')).toBeInTheDocument();
   });
 
+  it('displays the notice', () => {
+    // eslint-disable-next-line max-len
+    expect(getByTestId('notice')).toHaveTextContent('Only summoners in the North America server is supported at the moment since this started off as just a practice project.');
+  });
+
   it('displays the disclaimer', () => {
     expect(getByTestId('disclaimer')).toBeInTheDocument();
   });
