@@ -18,13 +18,13 @@ const TimelineChart: FunctionComponent<MatchTimelineChartProps> = (props: MatchT
     <div data-testid={props.testId} className={props.className}>
       <h4>{props.title}</h4>
 
-      <div className="time-range">
+      <div className="time-range" data-testid="time-range">
         {props.currTimeframe > 0 && `${convertTimestamp(props.initialTimeframe)} - `}
         {convertTimestamp(props.currTimeframe)}
       </div>
 
       {props.data && (
-        <Chart version={props.version} data={props.data} className="base-chart" />
+        <Chart version={props.version} data={props.data} className="base-chart" testId="base-chart" />
       )}
     </div>
   </MatchTimelineChartStyled>
