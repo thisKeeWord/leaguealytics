@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import cx from 'classnames';
@@ -6,31 +6,38 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import { getUser } from '../../state/actions/getUser';
-import { selectUserDoc } from '../../state/selectors/user';
+import { selectUserDoc, selectUserFetching } from '../../state/selectors/user';
 import Match from '../Match';
 import Intro from '../Intro';
+import LoadingIndicator from '../LoadingIndicator';
 import { StyledApp } from './styles';
 
 const App: FunctionComponent = () => {
+  const [isNewUser, setIsNewUser] = useState<boolean>(false);
   const user = useSelector(selectUserDoc);
+  const userLoading = useSelector(selectUserFetching);
   const dispatch = useDispatch();
   const location = useLocation();
   const { state, search } = location;
   const history = useHistory();
 
   const {
-    handleSubmit, handleChange, handleBlur, errors, touched,
+    handleSubmit, handleChange, handleBlur, errors, touched, values, resetForm,
   } = useFormik(
     {
       initialValues: {
         username: '',
       },
-      onSubmit: (values) => {
-        const username = values.username.replace(/\s+/g, '').toLowerCase();
-        dispatch(getUser({ username }));
-        history.push(`/?q=${username}`, { updated: true });
+      onSubmit: async (val) => {
+        const username = val.username.replace(/\s+/g, '').toLowerCase();
+        const currentUsername = user?.name.replace(/\s+/g, '').toLowerCase();
+        setIsNewUser(currentUsername ? username !== currentUsername : false);
+        history.push(`/?q=${username}`, { updated: true }); // maybe remove the updated?
+        await dispatch(getUser({ username }));
+        resetForm();
       },
       validationSchema: Yup.object({
         username: Yup.string()
@@ -39,6 +46,13 @@ const App: FunctionComponent = () => {
       }),
     },
   );
+
+  const refreshUser = (): void => {
+    if (user?.name) {
+      setIsNewUser(false);
+      dispatch(getUser({ username: user.name.replace(/\s+/g, '').toLowerCase() }));
+    }
+  };
 
   useEffect(() => {
     if (search && !state && !user) {
@@ -54,7 +68,25 @@ const App: FunctionComponent = () => {
           <Intro />
         )}
         <div className="root-form">
-          {search && <span className="username" data-testid="username">{user?.name}</span>}
+          {search && (
+            <div className="username-refresh">
+              <div className="username-level">
+                <span className="username" data-testid="username">{user?.name}</span>
+                {user?.summonerLevel && (
+                  <span className="level">
+                    level
+                    {' '}
+                    {user.summonerLevel}
+                  </span>
+                )}
+              </div>
+              {user?.id && (
+                <Button className="refresh-button" onClick={refreshUser}>
+                  <i className={cx('fa fa-refresh', { 'fa-spin': userLoading && !isNewUser })} data-testid="refresh" />
+                </Button>
+              )}
+            </div>
+          )}
           <form onSubmit={handleSubmit} className="search" data-testid="form">
             <TextField
               id="username"
@@ -65,13 +97,18 @@ const App: FunctionComponent = () => {
               label="Summoner Name"
               onBlur={handleBlur}
               variant="outlined"
+              value={values.username}
             />
             <IconButton type="submit" aria-label="search">
               <SearchIcon />
             </IconButton>
           </form>
         </div>
-        <Match />
+        {userLoading && (!user?.id || isNewUser) ? (
+          <LoadingIndicator />
+        ) : (
+          <Match />
+        )}
       </div>
     </StyledApp>
   );

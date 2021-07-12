@@ -41,10 +41,38 @@ export const StyledApp = styled.div`
       max-width: 980px;
       margin: 0 auto;
 
-      .username {
-        color: #fff;
-        font-size: 30px;
+      .username-refresh {
         padding-right: 12px;
+        display: flex;
+        color: #fff;
+
+        .username-level {
+          display: flex;
+          flex-direction: column;
+          
+          .username {
+            font-size: 30px;
+          }
+
+          .level {
+            font-size: 14px;
+          }
+        }
+
+        .refresh-button {
+          color: #fff;
+          min-width: unset !important;
+          height: auto !important;
+          margin-left: 10px;
+
+          .MuiTouchRipple-root {
+            display: none;
+          }
+
+          i {
+            font-size: 20px;
+          }
+        }
       }
 
       .search {
