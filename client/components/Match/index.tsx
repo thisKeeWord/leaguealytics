@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Divider from '@material-ui/core/Divider/Divider';
 import Box from '@material-ui/core/Box/Box';
@@ -26,7 +26,7 @@ const Match: FunctionComponent = () => {
   const matches = useSelector(selectMatchesByID);
   const isMatchesFetching = useSelector(selectMatchesIsFetching);
   const dispatch = useDispatch();
-  const [selectedMatchId, setSelectedMatchId] = useState<string>();
+  const [selectedMatchId, setSelectedMatchId] = useState<string>('');
   const [page, setPage] = useState(1);
   const noOfPages = matches ? Object.keys(matches).length / itemsPerPage : 0;
 
@@ -59,6 +59,10 @@ const Match: FunctionComponent = () => {
   if (!currentPlayerIdentity) {
     return null;
   }
+
+  useEffect(() => {
+    setSelectedMatchId('');
+  }, user.matches);
 
   return (
     <MatchStyled data-testid="match">

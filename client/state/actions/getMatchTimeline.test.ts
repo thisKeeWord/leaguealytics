@@ -25,7 +25,7 @@ const stateData = {
   patch: {
     patchData: {
       version: faker.random.alphaNumeric(),
-      patchData: {},
+      data: {},
     },
     isFetching: false,
     error: null,

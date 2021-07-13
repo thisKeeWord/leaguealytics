@@ -5,7 +5,8 @@ export const getPatchData = async (req, res) => {
     const versions = await api.riotAPI.patch.version.get();
     const firestorePatchData = api.patchData.doc('latest');
     const firestorePatchObject = (await firestorePatchData.get()).data();
-    const { version, data } = firestorePatchObject || {};
+    const { version, data, ...firestoreRest } = firestorePatchObject || {};
+
     const latestVersion = versions.data[0];
 
     if (!latestVersion) {
@@ -14,9 +15,10 @@ export const getPatchData = async (req, res) => {
 
     const isPatchEqual = version === latestVersion;
 
-    const responseData = {
+    let responseData = {
       version: latestVersion,
-      patchData: isPatchEqual ? data : {},
+      data: isPatchEqual ? data : {},
+      ...firestoreRest,
     };
 
     if (!version || !isPatchEqual) {
@@ -27,7 +29,9 @@ export const getPatchData = async (req, res) => {
         ...newData,
       });
 
-      responseData.patchData = newData;
+      responseData = {
+        ...newData,
+      };
     }
 
     res.send(responseData);
