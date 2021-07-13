@@ -39,10 +39,10 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
     const teamsBans = team.bans.map((ban) => {
       const adjustedBans = { ...ban };
       // eslint-disable-next-line no-restricted-syntax, prefer-const
-      for (let championData in patchData.patchData) {
-        if (patchData.patchData[championData].key == ban.championId) {
+      for (let championData in patchData.data) {
+        if (patchData.data[championData].key == ban.championId) {
           // eslint-disable-next-line no-return-assign
-          adjustedBans.championImage = patchData.patchData[championData].image.full;
+          adjustedBans.championImage = patchData.data[championData].image.full;
         }
       }
 
@@ -73,7 +73,7 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
       // eslint-disable-next-line array-callback-return
     }) => {
       // eslint-disable-next-line no-restricted-syntax, no-unused-vars
-      for (const [_key, value] of Object.entries(patchData.patchData.data)) {
+      for (const [_key, value] of Object.entries(patchData.data)) {
         const val = value as Record<any, any>;
 
         if (parseInt(val.key, 10) === championId) {

@@ -5,24 +5,20 @@ export const getUsersInfo = async (req, res) => {
 
   try {
     const firestoreUser = await api.users.doc(username).get();
+    const userData = firestoreUser.data();
 
-    let userData = firestoreUser.data();
+    const user = await api.riotAPI.users.get(username);
 
-    if (!userData) {
-      const user = await api.riotAPI.users.get(username);
-      userData = user.data;
-    }
-
-    const matchList = await api.riotAPI.matchList.get(userData!.puuid);
+    const matchList = await api.riotAPI.matchList.get(user.data.puuid);
     const matches = matchList.data;
 
     matches.forEach((match, index: number, self) => {
       self[index] = { matchId: match };
     });
 
-    await api.users.doc(username).set({ ...userData, matches });
+    await api.users.doc(username).set({ ...userData, ...user.data, matches });
 
-    res.send({ ...userData, matches });
+    res.send({ ...userData, ...user.data, matches });
   } catch (error) {
     res.send({ error: error.message ? error.message : error });
   }

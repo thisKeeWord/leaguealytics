@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Divider from '@material-ui/core/Divider/Divider';
 import Box from '@material-ui/core/Box/Box';
@@ -10,7 +10,6 @@ import {
   selectMatchesIsFetching,
   selectPatchData,
   selectUserDoc,
-  selectUserFetching,
 } from '../../state';
 import { getMatchTimeline } from '../../state/actions/getMatchTimeline';
 import MatchList from './MatchList';
@@ -23,22 +22,17 @@ const itemsPerPage = 4;
 
 const Match: FunctionComponent = () => {
   const user = useSelector(selectUserDoc);
-  const isUserFetching = useSelector(selectUserFetching);
   const patchData = useSelector(selectPatchData);
   const matches = useSelector(selectMatchesByID);
   const isMatchesFetching = useSelector(selectMatchesIsFetching);
   const dispatch = useDispatch();
-  const [selectedMatchId, setSelectedMatchId] = useState<string>();
+  const [selectedMatchId, setSelectedMatchId] = useState<string>('');
   const [page, setPage] = useState(1);
   const noOfPages = matches ? Object.keys(matches).length / itemsPerPage : 0;
 
   const handlePageChange = (_event, value: number) => {
     setPage(value);
   };
-
-  if (isUserFetching) {
-    return <LoadingIndicator />;
-  }
 
   if (!user?.matches || !matches || !patchData?.version) {
     return null;
@@ -65,6 +59,10 @@ const Match: FunctionComponent = () => {
   if (!currentPlayerIdentity) {
     return null;
   }
+
+  useEffect(() => {
+    setSelectedMatchId('');
+  }, user.matches);
 
   return (
     <MatchStyled data-testid="match">

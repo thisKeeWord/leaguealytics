@@ -11,7 +11,9 @@ export interface FirebaseUserDoc {
 
 export interface PatchData {
   version: string
-  patchData: Record<any, any>
+  data: Record<any, any>
+  format?: string
+  type?: string
 }
 
 export interface MatchesById {

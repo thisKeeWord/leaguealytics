@@ -48,6 +48,10 @@ describe('App', () => {
   it('does not render a match with empty redux state', () => {
     expect(queryByTestId('match')).not.toBeInTheDocument();
   });
+
+  it('does not display the refresh button if no user id', () => {
+    expect(queryByTestId('refresh')).not.toBeInTheDocument();
+  });
 });
 
 // submits the form test
