@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import Divider from '@material-ui/core/Divider/Divider';
 import Box from '@material-ui/core/Box/Box';
 import List from '@material-ui/core/List/List';
@@ -7,6 +8,7 @@ import ListItem from '@material-ui/core/ListItem/ListItem';
 import Pagination from '@material-ui/lab/Pagination';
 import {
   selectMatchesByID,
+  selectMatchesError,
   selectMatchesIsFetching,
   selectPatchData,
   selectUserDoc,
@@ -24,6 +26,7 @@ const Match: FunctionComponent = () => {
   const user = useSelector(selectUserDoc);
   const patchData = useSelector(selectPatchData);
   const matches = useSelector(selectMatchesByID);
+  const matchesError = useSelector(selectMatchesError);
   const isMatchesFetching = useSelector(selectMatchesIsFetching);
   const dispatch = useDispatch();
   const [selectedMatchId, setSelectedMatchId] = useState<string>('');
@@ -63,6 +66,10 @@ const Match: FunctionComponent = () => {
   useEffect(() => {
     setSelectedMatchId('');
   }, user.matches);
+
+  if (matchesError) {
+    toast.error(matchesError);
+  }
 
   return (
     <MatchStyled data-testid="match">

@@ -173,6 +173,6 @@ export const getMatchData = async (req, res) => {
 
     res.send({ ...firestoreMatchData, byTimeframe });
   } catch (error) {
-    res.send({ error: error.message });
+    res.status(500).send({ error: error.message });
   }
 };

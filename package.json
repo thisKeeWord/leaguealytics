@@ -58,6 +58,7 @@
     "react-redux": "^7.2.2",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
+    "react-toastify": "^7.0.4",
     "reactify": "^1.1.1",
     "styled-components": "^5.2.1",
     "ts-loader": "^8.0.12",

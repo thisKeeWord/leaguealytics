@@ -21,13 +21,11 @@ export const getMatchTimeline = ({ username, matchId }: GetMatchTimelineProps): 
   try {
     const matchData = await axios.get(`/api/${formattedUsername}/match/${matchId}`);
 
-    if (matchData.data.error) {
-      throw new Error(matchData.data);
-    }
-
     dispatch(loadMatchSuccess({ matchData: matchData.data, matchId }));
   } catch (error) {
-    dispatch(loadMatchFailure(error.message || 'An error has occurred'));
+    dispatch(loadMatchFailure(
+      { message: `Could not fetch match timeline. ${error.response.statusText}: ${error.response.data.error}` || 'An error has occurred' },
+    ));
   } finally {
     dispatch(setMatchFetching({ isFetching: false }));
   }
