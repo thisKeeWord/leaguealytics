@@ -13,6 +13,7 @@ const req = {
 };
 const res = {
   send: jest.fn(),
+  status: jest.fn(() => res),
 };
 
 describe('getMatchData', () => {
