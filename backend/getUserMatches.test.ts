@@ -16,8 +16,8 @@ const res = {
 
 describe('getUserMatches', () => {
   it('calls firebase users collection api route', async () => {
-    // eslint-disable-next-line max-len
-    jest.spyOn(api.riotAPI.match.overview, 'get').mockImplementationOnce((): any => generateAxiosResponseObject(matchOverviewData, { status: 200 }));
+    jest.spyOn(api.riotAPI.match.overview, 'get')
+      .mockImplementationOnce((): any => generateAxiosResponseObject(matchOverviewData, { status: 200 }));
     const spy = jest.spyOn(api.users, 'doc');
     await getUserMatches(req, res);
 
