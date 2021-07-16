@@ -8,8 +8,9 @@ import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
+import { toast } from 'react-toastify';
 import { getUser } from '../../state/actions/getUser';
-import { selectUserDoc, selectUserFetching } from '../../state/selectors/user';
+import { selectUserDoc, selectUserError, selectUserFetching } from '../../state/selectors/user';
 import Match from '../Match';
 import Intro from '../Intro';
 import LoadingIndicator from '../LoadingIndicator';
@@ -18,6 +19,7 @@ import { StyledApp } from './styles';
 const App: FunctionComponent = () => {
   const [isNewUser, setIsNewUser] = useState<boolean>(false);
   const user = useSelector(selectUserDoc);
+  const userError = useSelector(selectUserError);
   const userLoading = useSelector(selectUserFetching);
   const dispatch = useDispatch();
   const location = useLocation();
@@ -59,6 +61,10 @@ const App: FunctionComponent = () => {
       dispatch(getUser({ username: search.slice(3) }));
     }
   }, [search]);
+
+  if (userError) {
+    toast.error(userError);
+  }
 
   return (
     <StyledApp>

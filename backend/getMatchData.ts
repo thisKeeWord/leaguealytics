@@ -173,6 +173,6 @@ export const getMatchData = async (req, res) => {
 
     res.send({ ...firestoreMatchData, byTimeframe });
   } catch (error) {
-    res.status(500).send({ error: error.message });
+    res.status(500).send({ error: `An error occurred fetching match timeline. ${error.message ? error.message : error}` });
   }
 };

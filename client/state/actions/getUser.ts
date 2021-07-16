@@ -9,6 +9,8 @@ interface GetUserProps {
   username: string;
 }
 
+// should ideally separate each api call into different
+// try/catch block and set individual errors
 // eslint-disable-next-line no-unused-vars
 export const getUser = ({ username }: GetUserProps): AppThunk => async (dispatch, getState): Promise<void> => {
   dispatch(setFetching({ isFetching: true }));
@@ -39,7 +41,7 @@ export const getUser = ({ username }: GetUserProps): AppThunk => async (dispatch
     dispatch(setUser(matchList.data.user));
     dispatch(loadMatchList(matchList.data));
   } catch (error) {
-    dispatch(setUserError(error.message || 'An error has occurred'));
+    dispatch(setUserError({ message: `${error.response?.statusText}: ${error.response?.data.error}` || 'An error has occurred' }));
   } finally {
     dispatch(setFetching({ isFetching: false }));
   }

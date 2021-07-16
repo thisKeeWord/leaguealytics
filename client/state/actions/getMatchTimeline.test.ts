@@ -41,6 +41,7 @@ const stateData = {
       revisionDate: faker.datatype.number(),
       summonerLevel: faker.datatype.number(),
     },
+    error: null,
   },
 };
 
