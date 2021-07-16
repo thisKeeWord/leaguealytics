@@ -20,6 +20,6 @@ export const getUsersInfo = async (req, res) => {
 
     res.send({ ...userData, ...user.data, matches });
   } catch (error) {
-    res.send({ error: error.message ? error.message : error });
+    res.status(500).send({ error: `An error occurred fetching the user's profile. ${error.message ? error.message : error}` });
   }
 };
