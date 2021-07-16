@@ -47,15 +47,15 @@ describe('getUser', () => {
     await waitFor(() => expect(dispatch).toHaveBeenCalledWith(loadMatchList(responseData.data)));
   });
 
-  it('calls dispatch with setUserError if api call was unsuccessful', async () => {
+  it('calls dispatch with setUserError if api call was unsuccessful', () => {
     const dispatch = jest.fn();
     const getState = jest.fn();
 
     // eslint-disable-next-line prefer-promise-reject-errors
-    jest.spyOn(axios, 'get').mockImplementationOnce(() => Promise.reject({ data: [] }));
+    jest.spyOn(axios, 'get').mockImplementationOnce(() => Promise.reject({ data: {} }));
 
     getUser({ username })(dispatch, getState, null);
 
-    await waitFor(() => expect(dispatch).toHaveBeenCalledWith(setUserError('An error has occurred')));
+    waitFor(() => expect(dispatch).toHaveBeenCalledWith(setUserError('An error has occurred')));
   });
 });

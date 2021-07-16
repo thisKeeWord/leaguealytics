@@ -4,12 +4,13 @@ import { FirebaseUserDoc } from '../../../utils/interface/index';
 export interface UserState {
   fetching: boolean;
   doc: FirebaseUserDoc | null;
-  error?: string;
+  error: boolean | null;
 }
 
 const initialState: UserState = {
   fetching: false,
   doc: null,
+  error: null,
 };
 
 const user = createSlice({
@@ -23,11 +24,9 @@ const user = createSlice({
       state.fetching = action.payload.isFetching;
     },
     setUserError(state, action): void {
-      if (action.payload?.message) {
-        state.error = action.payload.message;
-      } else {
-        state.error && delete state.error;
-      }
+      const { message } = action.payload;
+      state.error = message;
+      state.fetching = false;
     },
   },
 });

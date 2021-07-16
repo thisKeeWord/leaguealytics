@@ -26,7 +26,7 @@ export const getMatchTimeline = ({ username, matchId }: GetMatchTimelineProps): 
     dispatch(loadMatchFailure(
       {
         message:
-        `Could not fetch match timeline. ${error.response?.statusText}: ${error.response?.data.error}` || 'An error has occurred',
+        `${error.response?.statusText}: ${error.response?.data.error}` || 'An error has occurred',
       },
     ));
   } finally {
