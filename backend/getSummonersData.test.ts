@@ -5,6 +5,7 @@ import { getSummonersData } from './getSummonersData';
 jest.mock('../api');
 const res = {
   send: jest.fn(),
+  status: jest.fn(() => res),
 };
 
 describe('getSummonersData', () => {
