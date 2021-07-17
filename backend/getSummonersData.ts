@@ -42,6 +42,6 @@ export const getSummonersData = async (req, res) => {
 
     res.send(responseData);
   } catch (error) {
-    res.send({ error: error.message ? error.message : error });
+    res.status(500).send({ error: `An error occurred fetching summoner spells information. ${error.message ? error.message : error}` });
   }
 };
