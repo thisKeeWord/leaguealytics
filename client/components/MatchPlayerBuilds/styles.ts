@@ -25,7 +25,7 @@ export const MatchPlayerBuildsStyled = styled.div`
 
     .player-items {
       display: flex;
-      padding: 7px 0;
+      padding: 7px 10px;
 
       .player {
         display: flex;
