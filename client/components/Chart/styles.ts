@@ -5,7 +5,7 @@ export const StyledChart = styled.div`
   display: inline-block;
   padding: 10px;
   width: 50%;
-  height: 40%;
+  height: 450px;
 
   .sort {
     position: absolute;
@@ -14,7 +14,7 @@ export const StyledChart = styled.div`
     z-index: 1;
   }
 
-  @media (max-width: 1000px) {
+  @media screen and (max-width: 1000px) {
     width: 100%;
   }
 `;
