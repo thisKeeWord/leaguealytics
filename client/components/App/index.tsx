@@ -63,7 +63,7 @@ const App: FunctionComponent = () => {
   }, [search]);
 
   if (userError) {
-    toast.error(userError);
+    toast.error(userError, { toastId: 'rootError' });
   }
 
   return (

@@ -20,13 +20,10 @@ export const getMatchData = async (req, res) => {
 
     const matchTimelineData = (await api.riotAPI.match.timeline.get(matchId)).data;
 
-    // eslint-disable-next-line prefer-const
-    let byTimeframe: Record<any, any>[] = [];
-    // eslint-disable-next-line prefer-const
-    let participantFrames: Record<string, any>[] = [];
+    const byTimeframe: Record<any, any>[] = [];
+    const participantFrames: Record<string, any>[] = [];
     for (let i = 0; i < matchTimelineData.info.frames.length; i++) {
-      // eslint-disable-next-line prefer-const
-      let frame = matchTimelineData.info.frames[i];
+      const frame = matchTimelineData.info.frames[i];
       const events: Record<any, any>[] = [];
       // eslint-disable-next-line prefer-const, no-restricted-syntax, guard-for-in
       for (let key in frame.participantFrames) {
@@ -50,8 +47,7 @@ export const getMatchData = async (req, res) => {
       }
       for (let j = 0; j < frame.events.length; j++) {
         const {
-          // eslint-disable-next-line max-len, no-unused-vars
-          type, creatorId, victimId, position, killerId, assistingParticipantIds, timestamp, itemId, participantId, beforeId, afterId, wardType,
+          type, creatorId, victimId, killerId, assistingParticipantIds, itemId, participantId, beforeId, afterId, wardType,
         } = frame.events[j];
 
         if (type === 'CHAMPION_KILL') {
