@@ -121,13 +121,10 @@ const Chart: FunctionComponent<ChartProps> = (props: ChartProps) => {
 interface CustomLabelProps {
   // eslint-disable-next-line react/no-unused-prop-types
   x?: number
-  // eslint-disable-next-line react/no-unused-prop-types
   y?: number
-  // eslint-disable-next-line react/no-unused-prop-types
   data?: any[]
   // eslint-disable-next-line react/no-unused-prop-types
   datum?: any
-  // eslint-disable-next-line react/no-unused-prop-types
   index?: number
   version: number | string
 }
