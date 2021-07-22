@@ -23,6 +23,15 @@ module.exports = {
       testMatch: ['<rootDir>/client/**/*.test.*', '<rootDir>/client/**/*.test.*'],
       modulePathIgnorePatterns: ['<rootDir>/.*/__mocks__'],
     },
+    {
+      displayName: 'utils',
+      testEnvironment: 'node',
+      preset: 'ts-jest',
+      setupFilesAfterEnv: ['./jest.setup.ts'],
+      setupFiles: ['dotenv/config'],
+      testMatch: ['<rootDir>/utils/**/*.test.*'],
+      modulePathIgnorePatterns: ['<rootDir>/.*/__mocks__'],
+    },
   ],
   testPathIgnorePatterns: ['/node_modules/'],
 };
