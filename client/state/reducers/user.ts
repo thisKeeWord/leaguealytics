@@ -19,9 +19,11 @@ const user = createSlice({
   reducers: {
     setUser: (state, action): void => {
       state.doc = action.payload;
+      state.error = null;
     },
     setFetching(state, action): void {
       state.fetching = action.payload.isFetching;
+      state.error = null;
     },
     setUserError(state, action): void {
       const { message } = action.payload;

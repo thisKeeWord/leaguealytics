@@ -20,3 +20,6 @@ yarn-error.log
 # bundle
 dist/bundle.js
 
+# DS_Store
+.DS_Store
+

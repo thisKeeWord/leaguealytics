@@ -23,6 +23,7 @@ const matchSlice = createSlice({
   reducers: {
     setMatchFetching(state, action): void {
       state.isFetching = action.payload.isFetching;
+      state.error = null;
     },
     loadMatchSuccess(state, action): void {
       const { matchId, matchData } = action.payload;
