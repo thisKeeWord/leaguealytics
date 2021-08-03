@@ -12,4 +12,4 @@ This project took the idea of my previous project (ana-lol-ics) and incorporated
 - Firebase
 - Jest
 
-It's undergoing development and is more of a practice project.
+It is currently undergoing development.
