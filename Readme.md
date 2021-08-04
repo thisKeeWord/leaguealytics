@@ -11,7 +11,7 @@ It is currently undergoing development.
 
 ## Technologies
 
-The current list includes, but is not limited to, the following:
+The list currently includes, but is not limited to, the following:
 
 - Typescript
 - React
