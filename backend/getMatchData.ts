@@ -168,7 +168,7 @@ export const getMatchData = async (req, res) => {
     await firestoreMatchDoc.set({ byTimeframe }, { merge: true });
 
     res.send({ ...firestoreMatchData, byTimeframe });
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).send({ error: `An error occurred fetching match timeline. ${error.message ? error.message : error}` });
   }
 };
