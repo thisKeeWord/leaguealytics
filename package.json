@@ -9,7 +9,7 @@
     "test": "is-ci \"test:coverage\" \"test:watch\"",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch --verbose",
-    "heroku-postbuild": "npm start & npm run build"
+    "heroku-postbuild": "webpack --mode production"
   },
   "dependencies": {
     "@babel/cli": "^7.6.4",
