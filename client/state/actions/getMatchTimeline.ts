@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { AppThunk } from '../index';
 import { loadMatchFailure, loadMatchSuccess, setMatchFetching } from '../reducers/match';
 
@@ -22,7 +22,7 @@ export const getMatchTimeline = ({ username, matchId }: GetMatchTimelineProps): 
     const matchData = await axios.get(`/api/${formattedUsername}/match/${matchId}`);
 
     dispatch(loadMatchSuccess({ matchData: matchData.data, matchId }));
-  } catch (error) {
+  } catch (error: any) {
     dispatch(loadMatchFailure(
       {
         message:

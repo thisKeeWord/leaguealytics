@@ -19,7 +19,7 @@ export const getUsersInfo = async (req, res) => {
     await api.users.doc(username).set({ ...userData, ...user.data, matches });
 
     res.send({ ...userData, ...user.data, matches });
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).send({ error: `An error occurred fetching the user's profile. ${error.message ? error.message : error}` });
   }
 };

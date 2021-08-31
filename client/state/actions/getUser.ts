@@ -40,7 +40,7 @@ export const getUser = ({ username }: GetUserProps): AppThunk => async (dispatch
 
     dispatch(setUser(matchList.data.user));
     dispatch(loadMatchList(matchList.data));
-  } catch (error) {
+  } catch (error: any) {
     dispatch(setUserError({ message: `${error.response?.statusText}: ${error.response?.data.error}` || 'An error has occurred' }));
   } finally {
     dispatch(setFetching({ isFetching: false }));

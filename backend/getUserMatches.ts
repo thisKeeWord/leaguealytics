@@ -134,7 +134,7 @@ export const getUserMatches = async (req, res) => {
       matches: userDocData?.matches,
       matchListData: updatedMatches.map((match) => match.data()),
     });
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).send({ error: `An error occurred fetching the user's match history. ${error.message ? error.message : error}` });
   }
 };
