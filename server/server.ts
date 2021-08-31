@@ -21,8 +21,4 @@ app.get('/api/patch', getPatchData);
 app.get('/api/summoners/:version', getSummonersData);
 app.get('/api/:username/match/:matchId', getMatchData);
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(`${__dirname}./../index.html`));
-});
-
 app.listen(3000);
