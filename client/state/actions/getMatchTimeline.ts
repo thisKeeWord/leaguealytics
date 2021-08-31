@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import { AppThunk } from '../index';
 import { loadMatchFailure, loadMatchSuccess, setMatchFetching } from '../reducers/match';
 

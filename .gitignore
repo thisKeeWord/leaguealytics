@@ -17,9 +17,6 @@ npm-debug.log
 # yarn error log
 yarn-error.log
 
-# bundle
-dist/bundle.js
-
 # DS_Store
 .DS_Store
 
