@@ -3,13 +3,12 @@
   "version": "0.1.0",
   "description": "",
   "scripts": {
-    "start": "nodemon --watch \"./\" --ext \"ts,tsx,json\" --exec \"ts-node\" server/server.ts",
+    "dev": "nodemon --watch \"./\" --ext \"ts,tsx,json\" --exec \"ts-node\" server/server.ts",
     "build": "webpack --config ./webpack.config.js --progress",
-    "dev": "npm start & npm run build",
     "test": "is-ci \"test:coverage\" \"test:watch\"",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch --verbose",
-    "heroku-postbuild": "webpack --mode production"
+    "heroku-postbuild": "webpack -p"
   },
   "dependencies": {
     "@babel/cli": "^7.6.4",
