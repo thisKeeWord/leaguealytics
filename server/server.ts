@@ -9,6 +9,7 @@ import {
 } from '../backend';
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -21,4 +22,4 @@ app.get('/api/patch', getPatchData);
 app.get('/api/summoners/:version', getSummonersData);
 app.get('/api/:username/match/:matchId', getMatchData);
 
-app.listen(3000);
+app.listen(PORT);
