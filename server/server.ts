@@ -16,6 +16,10 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, './../')));
 
+app.get('/riot.txt', (req, res) => {
+  res.sendFile('riot.txt');
+});
+
 app.get('/api/users/:username', getUsersInfo);
 app.get('/api/user/:puuid', getUserMatches);
 app.get('/api/patch', getPatchData);
