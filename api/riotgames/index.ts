@@ -4,15 +4,19 @@ import rateLimit from 'axios-rate-limit';
 
 const riot: AxiosInstance = rateLimit(axios.create({
   baseURL: 'https://americas.api.riotgames.com/lol',
-}), { maxRequests: 1, perMilliseconds: 2000 });
+}), { maxRequests: 250, perMilliseconds: 10000 });
 
 const riotUser: AxiosInstance = rateLimit(axios.create({
   baseURL: 'https://na1.api.riotgames.com/lol',
-}), { maxRequests: 1, perMilliseconds: 2000 });
+}), { maxRequests: 1600, perMilliseconds: 60000 });
 
 const riotStatic: AxiosInstance = axios.create({
   baseURL: 'https://ddragon.leagueoflegends.com',
 });
+
+riot.defaults.timeout = 45000;
+riotUser.defaults.timeout = 45000;
+riotStatic.defaults.timeout = 45000;
 
 export interface RiotAPI {
   users: {
