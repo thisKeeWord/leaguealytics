@@ -6,7 +6,7 @@ module.exports = {
   watch: true,
   entry: [
     // entry point of our app
-    'react-hot-loader/patch', './client/components/index.tsx',
+    'react-hot-loader/patch', './client/index.tsx',
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -28,9 +28,7 @@ module.exports = {
     publicPath: '/',
     // fallback to root for other urls
     historyApiFallback: true,
-
     inline: true,
-
     headers: { 'Access-Control-Allow-Origin': '*' },
     // proxy is required in order to make api calls to express server while using hot-reload webpack server
     // routes api fetch requests from localhost:8080/api/* (webpack dev server)

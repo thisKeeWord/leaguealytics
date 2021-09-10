@@ -6,11 +6,11 @@ import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline/ScopedCssBase
 import { ThemeProvider } from '@material-ui/core/styles';
 import { ToastContainer } from 'react-toastify';
 import { injectStyle } from 'react-toastify/dist/inject-style';
-import store from '../state';
-import App from './App';
-import theme from '../theme';
-import About from './About';
-import FourOhFour from './FourOhFour';
+import store from './state';
+import App from './components/App';
+import theme from './theme';
+import About from './components/About';
+import FourOhFour from './components/FourOhFour';
 
 injectStyle();
 
