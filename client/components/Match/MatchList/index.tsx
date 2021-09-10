@@ -79,7 +79,7 @@ const MatchList: FunctionComponent<MatchListProps> = (
         <div className="base-info">
           <div className="champion-image">
             <div className="champion-level">
-              <img src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${championImg}.png`} alt="champion" />
+              <img src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${championImg}.png`} alt="champion" />
               <span>{champLevel}</span>
             </div>
             <div className="summoner-spells">

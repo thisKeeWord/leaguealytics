@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const StyledIntro = styled.div`
   color: white;
-  padding: 0 20px;
 
   h2 {
     margin-top: 0 !important;

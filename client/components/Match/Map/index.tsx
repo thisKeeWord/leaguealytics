@@ -73,7 +73,7 @@ const Map: FunctionComponent<MapProps> = (props: MapProps) => {
           .append('image')
           .attr(
             'xlink:href',
-            `http://ddragon.leagueoflegends.com/cdn/${props.version}/img/champion/${participantObj?.championImg}.png`,
+            `https://ddragon.leagueoflegends.com/cdn/${props.version}/img/champion/${participantObj?.championImg}.png`,
           )
           .attr('x', (d) => xScale(d[0]))
           .attr('y', (d) => yScale(d[1]));

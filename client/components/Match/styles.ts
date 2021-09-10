@@ -14,15 +14,13 @@ export const MatchStyled = styled.div`
     }
 
     li {
-      padding-top: 2px !important;
-      padding-bottom: 2px !important;
+      padding: 2px 0 !important;
     }
 
     .wrapper {
       position: relative;
-      max-width: 980px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 20px 0;
       min-height: 350px;
       z-index: 2;
 
@@ -42,12 +40,18 @@ export const MatchStyled = styled.div`
 
       .paginator {
         margin-bottom: 10px;
+
         & > ul {
           justify-content: center;
+          background-color: darkgray;
         }
     
         button {
           color: white !important;
+
+          &.Mui-selected {
+            background-color: gray !important;
+          }
         }
       }
 

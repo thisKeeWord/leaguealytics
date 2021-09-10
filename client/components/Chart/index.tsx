@@ -138,7 +138,7 @@ const CustomLabel = (props: CustomLabelProps) => {
     <foreignObject y={(props.y || 0) - 10} x={23} style={{ height: '20px', width: '20px' }}>
       <img
         alt="champion"
-        src={`http://ddragon.leagueoflegends.com/cdn/${props.version}/img/champion/${props.data[props.index].x}.png`}
+        src={`https://ddragon.leagueoflegends.com/cdn/${props.version}/img/champion/${props.data[props.index].x}.png`}
         style={{ height: '20px', width: '20px' }}
       />
       <span>{props.data[props.index].player}</span>
