@@ -2,8 +2,10 @@
 const dotenv = require('dotenv').config({ path: '.env' });
 
 import express from 'express';
+import fallback from 'express-history-api-fallback';
 import path from 'path';
 import bodyParser from 'body-parser';
+
 import {
   getMatchData, getPatchData, getSummonersData, getUsersInfo, getUserMatches,
 } from '../backend';
@@ -15,6 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, './../')));
+app.use(fallback('index.html', { root: `${__dirname}./../` }));
 
 app.get('/riot.txt', (req, res) => {
   res.sendFile('riot.txt');

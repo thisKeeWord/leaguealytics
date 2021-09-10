@@ -8,9 +8,9 @@ export const StyledApp = styled.div`
   .container {
     margin: 0 auto;
     padding-top: 50px;
+    max-width: 980px;
 
     .about-link {
-      max-width: 980px;
       margin: 0 auto;
     }
 
