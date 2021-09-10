@@ -17,7 +17,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, './../')));
-app.use(fallback('index.html', { root: `${__dirname}./../` }));
 
 app.get('/riot.txt', (req, res) => {
   res.sendFile('riot.txt');
@@ -28,5 +27,7 @@ app.get('/api/user/:puuid', getUserMatches);
 app.get('/api/patch', getPatchData);
 app.get('/api/summoners/:version', getSummonersData);
 app.get('/api/:username/match/:matchId', getMatchData);
+
+app.use(fallback('index.html', { root: `${__dirname}./../` }));
 
 app.listen(PORT);
