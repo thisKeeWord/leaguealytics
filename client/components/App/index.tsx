@@ -27,7 +27,7 @@ const App: FunctionComponent = () => {
   const history = useHistory();
 
   const {
-    handleSubmit, handleChange, handleBlur, errors, touched, values, resetForm,
+    handleSubmit, handleChange, errors, touched, values, resetForm,
   } = useFormik(
     {
       initialValues: {
@@ -101,7 +101,6 @@ const App: FunctionComponent = () => {
               helperText={touched.username && errors.username}
               error={touched.username && !!errors.username}
               label="Summoner Name"
-              onBlur={handleBlur}
               variant="outlined"
               value={values.username}
             />
