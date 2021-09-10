@@ -27,7 +27,7 @@ const MatchPlayerBuilds: FunctionComponent<MatchPlayerBuildsProps> = (props: Mat
       <div key={index} className={cx('player-items', { blue: participantObj.teamId === 100, red: participantObj.teamId === 200, user: participantFrame.participantId === props.currentPlayer.participantId })}>
         <div className="player">
           <img
-            src={`http://ddragon.leagueoflegends.com/cdn/${props.version}/img/champion/${participantObj?.championImg}.png`}
+            src={`https://ddragon.leagueoflegends.com/cdn/${props.version}/img/champion/${participantObj?.championImg}.png`}
             alt={participantObj?.championName}
           />
           <div className="name" title={participantObj?.summonerName}>{participantObj?.summonerName}</div>

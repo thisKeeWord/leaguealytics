@@ -7,23 +7,21 @@ export const StyledApp = styled.div`
 
   .container {
     margin: 0 auto;
-    padding-top: 50px;
+    padding: 50px 20px 0 20px;
     max-width: 980px;
 
     .about-link {
-      margin: 0 auto;
+      width: fit-content;
+      margin-left: auto;
+      margin-bottom: 5px;
     }
 
-    &.left-display {
-      max-width: 980px;
-
-      a {
-        text-align: left !important;
-      }
+    &.left-display a {
+      text-align: left !important;
     }
   
     a {
-      padding: 10px 20px 0 20px;
+      padding-top: 10px;
       display: block;
       text-align: right;
       color: white;
@@ -37,8 +35,7 @@ export const StyledApp = styled.div`
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 5px 20px 20px 20px;
-      max-width: 980px;
+      padding: 5px 0 20px 0; 
       margin: 0 auto;
 
       .username-refresh {

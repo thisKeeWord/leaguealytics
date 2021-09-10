@@ -186,7 +186,7 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
                     {adjustedTeams[index].bans.map(
                       ({ championImage }, i: number) => (
                         <img
-                          src={`http://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/champion/${championImage}`}
+                          src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/champion/${championImage}`}
                           alt={championImage}
                           key={i}
                         />
@@ -284,7 +284,7 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
                           <div className="champion-image">
                             <div className="champion-level">
                               <img
-                                src={`http://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/champion/${championImg}.png`}
+                                src={`https://ddragon.leagueoflegends.com/cdn/${patchData.version}/img/champion/${championImg}.png`}
                                 alt="champion"
                               />
                               <span>{champLevel}</span>
