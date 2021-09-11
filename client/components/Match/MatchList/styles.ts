@@ -4,7 +4,6 @@ export const MatchStyled = styled.div`
   cursor: pointer;
   display: flex;
   width: 100%;
-  height: 100%;
 
   .match-button {
     padding: 7px;

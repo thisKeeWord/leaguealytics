@@ -16,8 +16,8 @@ export const StyledApp = styled.div`
       margin-bottom: 5px;
     }
 
-    &.left-display a {
-      text-align: left !important;
+    &.left-display .about-link {
+      margin-left: 0 !important;
     }
   
     a {

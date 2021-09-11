@@ -4,7 +4,6 @@ const dotenv = require('dotenv').config({ path: '.env' });
 import express from 'express';
 import fallback from 'express-history-api-fallback';
 import path from 'path';
-import bodyParser from 'body-parser';
 
 import {
   getMatchData, getPatchData, getSummonersData, getUsersInfo, getUserMatches,
@@ -12,9 +11,6 @@ import {
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, './../')));
 
