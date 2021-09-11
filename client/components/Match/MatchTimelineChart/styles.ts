@@ -23,7 +23,7 @@ export const MatchTimelineChartStyled = styled.div`
 
     .base-chart {
       padding: 0;
-      height: 87% !important;
+      height: 492px !important;
       display: block !important;
       width: 100% !important;
     }
@@ -34,8 +34,8 @@ export const MatchTimelineChartStyled = styled.div`
 
     .timeline-chart {
       margin: 0 auto;
-      width: 486px;
-      height: 486px;
+      width: 492px;
+      height: 492px;
     }
   }
 `;

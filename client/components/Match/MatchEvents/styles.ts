@@ -176,7 +176,7 @@ export const StyledMatchEvents = styled.div`
     margin: 0 auto;
 
     .events {
-      height: auto;
+      // height: auto;
       width: 486px;
     }
   }
