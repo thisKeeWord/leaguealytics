@@ -1,5 +1,5 @@
 /* eslint-disable import/first, import/order */
-const dotenv = require('dotenv').config({ path: '.env' });
+// const dotenv = require('dotenv').config({ path: '.env' });
 
 import express from 'express';
 import fallback from 'express-history-api-fallback';
