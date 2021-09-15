@@ -20,7 +20,7 @@ export const MatchStyled = styled.div`
     .wrapper {
       position: relative;
       margin: 0 auto;
-      padding: 20px 0;
+      padding: 5px 0 20px 0;
       min-height: 350px;
       z-index: 2;
 

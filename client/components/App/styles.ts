@@ -119,6 +119,11 @@ export const StyledApp = styled.div`
         }
       }
     }
+
+    .games > span {
+      padding-top: 20px;
+      color: white;
+    }
   }
 
   @media screen and (max-width: 1000px) {

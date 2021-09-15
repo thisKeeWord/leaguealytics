@@ -112,7 +112,10 @@ const App: FunctionComponent = () => {
         {userLoading && (!user?.id || isNewUser) ? (
           <LoadingIndicator />
         ) : (
-          <Match />
+          <div className="games">
+            {user?.name && <span><i>Only Howling Abyss and Summoner&apos;s Rift games</i></span>}
+            <Match />
+          </div>
         )}
       </div>
     </StyledApp>

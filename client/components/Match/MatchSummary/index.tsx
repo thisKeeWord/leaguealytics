@@ -143,7 +143,7 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
                   })}
                 >
                   <div className="game-conclusion">
-                    {adjustedTeams[index].win ? 'WIN' : 'LOSS'}
+                    {adjustedTeams[index].win ? 'VICTORY' : 'DEFEAT'}
                   </div>
                   <div className="gold">
                     <img

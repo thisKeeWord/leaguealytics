@@ -13,6 +13,12 @@ export const MatchStyled = styled.div`
     justify-content: space-between;
     color: white;
 
+    .match-status {
+      color: white;
+      width: 40px;
+      font-size: 13px;
+    }
+
     &.win {
       background-color: forestgreen;
 
@@ -44,8 +50,10 @@ export const MatchStyled = styled.div`
     .champion-image {
       display: flex;
       margin-left: 10px;
-
+      
       .champion-level {
+        position: relative;
+
         & > img {
           height: 37px;
           width: 37px;
@@ -54,6 +62,7 @@ export const MatchStyled = styled.div`
         span {
           position: absolute;
           left: 18px;
+          top: 18px;
           color: #fff;
           text-shadow: 1px 0px 2px #000;
           font-weight: bold;
