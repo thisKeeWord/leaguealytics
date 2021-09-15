@@ -76,6 +76,7 @@ const MatchList: FunctionComponent<MatchListProps> = (
   return (
     <MatchStyled data-testid="input" role={role} onClick={() => handleClick(matchId)}>
       <div className={cx('match-button', { win: victory, loss: !victory, active: isActiveMatch })}>
+        <span className="match-status">{victory ? 'win' : 'loss'}</span>
         <div className="base-info">
           <div className="champion-image">
             <div className="champion-level">
