@@ -524,26 +524,26 @@
     }
 
     &.win {
-      background-color: forestgreen;
+      background-color: #00802b;
 
       &.active {
-        background-color: mediumseagreen;
+        background-color: #00b33c;
       }
     
       &:hover {
-        background-color: mediumseagreen;
+        background-color: #00b33c;
       }
     }
 
     &.loss {
-      background-color: #c85551;
+      background-color: #db2427;
 
       &.active {
-        background-color: #da8d8b;
+        background-color: #e25052;
       }
     
       &:hover {
-        background-color: #da8d8b;
+        background-color: #e25052;
       }
     }
 
@@ -696,18 +696,18 @@
       width: 100%;
 
       &.team100 {
-        background-color: #9999ff;
+        background-color: rgb(47, 78, 233);
 
         &.currentUser {
-          background-color: #7f7fff !important;        
+          background-color: #5d76ee !important;        
         }
       }
 
       &.team200 {
-        background-color: #ff4c4c;
+        background-color: rgb(203, 33, 36);
 
         &.currentUser {
-          background-color: #c85551 !important;
+          background-color: #df3a3c !important;
         }
       }
 
@@ -857,11 +857,11 @@
     padding: 0 10px;
 
     &.blue {
-      background-color: #9999ff;
+      background-color: rgb(47, 78, 233);
     }
 
     &.red {
-      background-color: #ff4c4c;
+      background-color: rgb(203, 33, 36);
     }
 
     .game-conclusion {
@@ -908,12 +908,11 @@
     border-bottom: 1px solid #d7d7d7;
 
     &.blue {
-      background-color: #9999ff;
+      background-color: rgb(47, 78, 233);
     }
 
     &.red {
-      background-color: #ff4c4c;
-      #c85551
+      background-color: rgb(203, 33, 36);
     }
 
     .bans-container {
