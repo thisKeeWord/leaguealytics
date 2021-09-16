@@ -20,26 +20,26 @@ export const MatchStyled = styled.div`
     }
 
     &.win {
-      background-color: forestgreen;
+      background-color: #00802b;
 
       &.active {
-        background-color: mediumseagreen;
+        background-color: #00b33c;
       }
     
       &:hover {
-        background-color: mediumseagreen;
+        background-color: #00b33c;
       }
     }
 
     &.loss {
-      background-color: #c85551;
+      background-color: #db2427;
 
       &.active {
-        background-color: #da8d8b;
+        background-color: #e25052;
       }
     
       &:hover {
-        background-color: #da8d8b;
+        background-color: #e25052;
       }
     }
 
