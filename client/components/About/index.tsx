@@ -13,7 +13,7 @@ const About: FunctionComponent = () => (
       </div>
       <div className="about-project" data-testid="about-body">
         <p>
-          Leaguealytics started off as a practice project with to learn some technologies,
+          Leaguealytics started off as a practice project to learn some technologies,
           but soon ended up being a passion project.
         </p>
         <p>
