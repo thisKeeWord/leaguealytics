@@ -11,6 +11,7 @@ import App from './components/App';
 import theme from './theme';
 import About from './components/About';
 import FourOhFour from './components/FourOhFour';
+import IssueTracker from './components/IssueTracker';
 
 injectStyle();
 
@@ -32,6 +33,7 @@ const Main: FunctionComponent = () => (
             <Route path="/" exact component={App} />
             <Route path="/?q=:name" component={App} />
             <Route path="/about" component={About} />
+            <Route path="/submit-issue" component={IssueTracker} />
             <Route path="*" component={FourOhFour} />
           </Switch>
         </Router>

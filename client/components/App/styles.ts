@@ -10,13 +10,17 @@ export const StyledApp = styled.div`
     padding: 50px 20px 0 20px;
     max-width: 980px;
 
-    .about-link {
-      width: fit-content;
+    .links {
+      display: flex;
       margin-left: auto;
       margin-bottom: 5px;
     }
 
-    &.left-display .about-link {
+    .about-link {
+      margin-right: 10px;
+    }
+
+    &.left-display .links {
       margin-left: 0 !important;
     }
   
