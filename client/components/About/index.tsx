@@ -4,12 +4,9 @@ import { StyledAbout } from './styles';
 const About: FunctionComponent = () => (
   <StyledAbout>
     <div className="about-body">
-      <div id="backHome">
-        <ul className="linkToPages">
-          <li>
-            <a href="/" data-testid="home-link">Home</a>
-          </li>
-        </ul>
+      <div className="links">
+        <a className="home-link" href="/" data-testid="home-link">Home</a>
+        <a href="/submit-issue" data-testid="issue-link">Submit An Issue</a>
       </div>
       <div className="about-project" data-testid="about-body">
         <p>

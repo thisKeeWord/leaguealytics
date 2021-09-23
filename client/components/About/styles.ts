@@ -11,11 +11,15 @@ export const StyledAbout = styled.div`
   .about-body {
     width: 50%;
 
-    .linkToPages {
-      padding-left: 4px;
+    .links {
+      display: flex;
+      margin-bottom: 5px;
       font-size: 15px;
-      margin: 0;
-      list-style: none;
+
+      .home-link {
+        margin-right: 10px;
+        padding-right: 0;
+      }
     }
 
     a {

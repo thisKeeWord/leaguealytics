@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const StyledIntro = styled.div`
   color: white;
+  padding-bottom: 10px;
 
   h2 {
     margin-top: 0 !important;
@@ -15,11 +16,11 @@ export const StyledIntro = styled.div`
       span {
         display: inline-block;
       }
+    }
       
-      .restriction-disclaimer {
-        font-size: 12px;
-        padding-top: 10px;
-      }
+    .restriction-disclaimer {
+      font-size: 12px;
+      padding-top: 10px;
     }
   }
 

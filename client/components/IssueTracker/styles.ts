@@ -11,11 +11,18 @@ export const StyledIssueTracker = styled.div`
   .issue-body {
     width: 50%;
 
-    .linkToPages {
-      padding-left: 4px;
+    .links {
+      display: flex;
+      margin-bottom: 5px;
       font-size: 15px;
-      margin: 0;
-      list-style: none;
+
+      .home-link {
+        margin-right: 10px;
+      }
+    }
+
+    .email {
+      color: inherit;
     }
   }
 
