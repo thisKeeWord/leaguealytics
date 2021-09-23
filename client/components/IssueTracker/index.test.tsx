@@ -24,7 +24,7 @@ describe('IssueTracker', () => {
   });
 
   it('displays a link to the about page', () => {
-    expect(getByTestId('issue-link')).toBeInTheDocument();
+    expect(getByTestId('about-link')).toBeInTheDocument();
     expect(getByText('About')).toBeInTheDocument();
   });
 

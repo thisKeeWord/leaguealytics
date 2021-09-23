@@ -8,16 +8,18 @@ export const StyledIntro = styled.div`
     font-size: 1.7rem;
   }
 
-  p {
+  .intro-body {
     font-size: 1.1rem;
-    
-    span {
-      display: inline-block;
-    }
-    
-    .restriction-disclaimer {
-      font-size: 12px;
-      padding-top: 10px;
+
+    p {
+      span {
+        display: inline-block;
+      }
+      
+      .restriction-disclaimer {
+        font-size: 12px;
+        padding-top: 10px;
+      }
     }
   }
 

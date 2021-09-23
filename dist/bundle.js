@@ -251,7 +251,7 @@
       padding: 0 45px;
     }
   }
-`},447:function(e,t,n){"use strict";var r=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(t,"__esModule",{value:!0});const i=r(n(7294)),o=n(2181);t.default=()=>i.default.createElement(o.StyledIntro,{"data-testid":"intro"},i.default.createElement("h2",{"data-testid":"title"},"Leaguealytics"),i.default.createElement("p",null,i.default.createElement("span",null,"Your one stop shop to finding more than a summary but less than a replay of a League of Legends game!"),i.default.createElement("p",null,i.default.createElement("span",null,i.default.createElement("i",null,"Only games played on Howling Abyss and Summoner's Rift will be shown.")),i.default.createElement("span",null,"To get started, enter a summoner name in the search bar.")),i.default.createElement("span",{className:"restriction-disclaimer","data-testid":"restriction-disclaimer"},i.default.createElement("strong",null,"NOTE: "),i.default.createElement("i",null,"Only summoners in the North America server is supported at the moment."),"Should there be a number of requests to support other regions, it will be highly considered to add support for the remaining regions. Keep in mind that this would require addtional time and maintenance, especially having only a single developer on this project.")))},2181:function(e,t,n){"use strict";var r=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(t,"__esModule",{value:!0}),t.StyledIntro=void 0;const i=r(n(9163));t.StyledIntro=i.default.div`
+`},447:function(e,t,n){"use strict";var r=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(t,"__esModule",{value:!0});const i=r(n(7294)),o=n(2181);t.default=()=>i.default.createElement(o.StyledIntro,{"data-testid":"intro"},i.default.createElement("h2",{"data-testid":"title"},"Leaguealytics"),i.default.createElement("div",{className:"intro-body"},i.default.createElement("span",null,"Your one stop shop to finding more than a summary but less than a replay of a League of Legends game!"),i.default.createElement("p",null,i.default.createElement("span",null,i.default.createElement("i",null,"Only games played on Howling Abyss and Summoner's Rift will be shown.")),i.default.createElement("span",null,"To get started, enter a summoner name in the search bar.")),i.default.createElement("span",{className:"restriction-disclaimer","data-testid":"restriction-disclaimer"},i.default.createElement("strong",null,"NOTE: "),i.default.createElement("i",null,"Only summoners in the North America server is supported at the moment."),"Should there be a number of requests to support other regions, it will be highly considered to add support for the remaining regions. Keep in mind that this would require addtional time and maintenance, especially having only a single developer on this project.")))},2181:function(e,t,n){"use strict";var r=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(t,"__esModule",{value:!0}),t.StyledIntro=void 0;const i=r(n(9163));t.StyledIntro=i.default.div`
   color: white;
 
   h2 {
@@ -259,16 +259,18 @@
     font-size: 1.7rem;
   }
 
-  p {
+  .intro-body {
     font-size: 1.1rem;
-    
-    span {
-      display: inline-block;
-    }
-    
-    .restriction-disclaimer {
-      font-size: 12px;
-      padding-top: 10px;
+
+    p {
+      span {
+        display: inline-block;
+      }
+      
+      .restriction-disclaimer {
+        font-size: 12px;
+        padding-top: 10px;
+      }
     }
   }
 
