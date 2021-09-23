@@ -4,7 +4,7 @@ import { StyledIntro } from './styles';
 const Intro: FunctionComponent = () => (
   <StyledIntro data-testid="intro">
     <h2 data-testid="title">Leaguealytics</h2>
-    <p>
+    <div className="intro-body">
       <span>
         Your one stop shop to finding more than a summary but less than a replay
         of a League of Legends game!
@@ -24,7 +24,7 @@ const Intro: FunctionComponent = () => (
         considered to add support for the remaining regions. Keep in mind that this would require
         addtional time and maintenance, especially having only a single developer on this project.
       </span>
-    </p>
+    </div>
   </StyledIntro>
 );
 

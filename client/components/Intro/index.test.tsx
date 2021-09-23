@@ -21,7 +21,9 @@ describe('Intro', () => {
   });
 
   it('displays the restriction disclaimer', () => {
-    // eslint-disable-next-line max-len
-    expect(getByTestId('restriction-disclaimer')).toHaveTextContent('Only summoners in the North America server is supported at the moment since this started off as just a practice project.');
+    expect(getByTestId('restriction-disclaimer')).toHaveTextContent(
+      // eslint-disable-next-line max-len
+      'NOTE: Only summoners in the North America server is supported at the moment.Should there be a number of requests to support other regions, it will be highly considered to add support for the remaining regions. Keep in mind that this would require addtional time and maintenance, especially having only a single developer on this project.',
+    );
   });
 });

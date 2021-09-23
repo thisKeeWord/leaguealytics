@@ -2,19 +2,22 @@ import styled from 'styled-components';
 
 export const StyledIntro = styled.div`
   color: white;
+  padding-bottom: 10px;
 
   h2 {
     margin-top: 0 !important;
     font-size: 1.7rem;
   }
 
-  p {
+  .intro-body {
     font-size: 1.1rem;
-    
-    span {
-      display: inline-block;
+
+    p {
+      span {
+        display: inline-block;
+      }
     }
-    
+      
     .restriction-disclaimer {
       font-size: 12px;
       padding-top: 10px;

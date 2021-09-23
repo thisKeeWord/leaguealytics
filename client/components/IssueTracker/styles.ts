@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledAbout = styled.div`
+export const StyledIssueTracker = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
@@ -8,7 +8,7 @@ export const StyledAbout = styled.div`
   align-items: center;
   font-size: 20px;
 
-  .about-body {
+  .issue-body {
     width: 50%;
 
     .links {
@@ -18,37 +18,18 @@ export const StyledAbout = styled.div`
 
       .home-link {
         margin-right: 10px;
-        padding-right: 0;
       }
     }
 
-    a {
-      padding-right: 10px;
-
-      #icon-link {
-        height: 25px;
-        width: 25px;
-        color: black;
-      }
-    }
-
-    .notice {
-      font-size: 12px;
-    }
-
-    .disclaimer {
-      font-size: 10px;
+    .email {
+      color: inherit;
     }
   }
 
   @media screen and (max-width: 1000px) {
     font-size: 1rem;
 
-    .disclaimer {
-      font-size: 0.8rem;
-    }
-
-    .about-body {
+    .issue-body {
       width: 100%;
       padding: 0 45px;
     }
