@@ -12,6 +12,7 @@ export const StyledApp = styled.div`
 
     .links {
       display: flex;
+      justify-content: flex-end;
       margin-left: auto;
       margin-bottom: 5px;
     }
@@ -21,7 +22,7 @@ export const StyledApp = styled.div`
     }
 
     &.left-display .links {
-      margin-left: 0 !important;
+      justify-content: flex-start;
     }
   
     a {
