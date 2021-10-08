@@ -53,5 +53,3 @@ describe('App', () => {
     expect(queryByTestId('refresh')).not.toBeInTheDocument();
   });
 });
-
-// submits the form test
