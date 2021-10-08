@@ -161,7 +161,6 @@ export const MatchSummaryStyled = styled.div`
   .cs-gold {
     width: 80px;
     text-align: center;
-    // margin-left: auto;
 
     .cs {
       display: flex;

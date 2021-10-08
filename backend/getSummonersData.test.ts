@@ -16,7 +16,6 @@ describe('getSummonersData', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  // fix later
   xit('calls riotAPI.summoners api route', async () => {
     const firebaseSpy = jest.spyOn(api.summoners, 'doc');
     const get = jest.fn();
