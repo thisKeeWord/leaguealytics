@@ -79,8 +79,6 @@ const MatchList: FunctionComponent<MatchListProps> = (
 
   const totalDuration = gameEndTimestamp ? gameDuration * 1000 : gameDuration;
 
-  console.log(totalDuration + gameStartTimestamp);
-
   return (
     <MatchStyled data-testid="input" role={role} onClick={() => handleClick(matchId)}>
       <div className={cx('match-button', { win: victory, loss: !victory, active: isActiveMatch })}>
