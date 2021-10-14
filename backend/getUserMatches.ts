@@ -92,7 +92,9 @@ export const getUserMatches = async (req, res) => {
       return ({
         matchId: match.matchId,
         gameCreation: matchDataObj.gameCreation,
+        gameStartTimestamp: matchDataObj.gameStartTimestamp || null,
         gameDuration: matchDataObj.gameDuration,
+        gameEndTimestamp: matchDataObj.gameEndTimestamp || null,
         gameId: matchDataObj.gameId,
         gameMode: matchDataObj.gameMode,
         gameName: matchDataObj.gameName,

@@ -10,7 +10,9 @@ interface MatchListProps {
   handleClick: (matchId: string) => void;
   version: number | string;
   gameCreation: Date;
+  gameStartTimestamp: number;
   gameDuration: number;
+  gameEndTimestamp?: number;
   gameMode: string;
   championName: string;
   championImg: string;
@@ -41,7 +43,9 @@ const MatchList: FunctionComponent<MatchListProps> = (
   const {
     version,
     gameCreation,
+    gameStartTimestamp,
     gameDuration,
+    gameEndTimestamp,
     gameMode,
     championName,
     championImg,
@@ -72,6 +76,10 @@ const MatchList: FunctionComponent<MatchListProps> = (
   const summonersList = summoners?.data;
 
   const { spell1, spell2 } = getSummoners(summonersList, { summoner1Id, summoner2Id });
+
+  const totalDuration = gameEndTimestamp ? gameDuration * 1000 : gameDuration;
+
+  console.log(totalDuration + gameStartTimestamp);
 
   return (
     <MatchStyled data-testid="input" role={role} onClick={() => handleClick(matchId)}>
@@ -138,8 +146,15 @@ const MatchList: FunctionComponent<MatchListProps> = (
         </div>
 
         <div className="match-time">
-          <span className="date">{new Date(gameCreation).toLocaleDateString()}</span>
-          <span className="duration">{new Date(gameDuration).toISOString().substr(11, 8)}</span>
+          <span className="date">{new Date(gameStartTimestamp || gameCreation).toLocaleDateString()}</span>
+          <span className="date">
+            {new Date(gameStartTimestamp || gameCreation).toLocaleTimeString()}
+            {/* {' '}
+            ~
+            {' '}
+            {new Date(totalDuration + gameStartTimestamp).toLocaleTimeString()} */}
+          </span>
+          <span className="duration">{new Date(totalDuration).toISOString().substr(11, 8)}</span>
         </div>
 
       </div>
