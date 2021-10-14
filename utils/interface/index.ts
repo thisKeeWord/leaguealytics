@@ -36,6 +36,7 @@ export interface MatchesByIdData {
   matchId?: string
   platformId?: string
   gameCreation?: number
+  gameEndTimestamp?: number
   gameName?: string
   participants?: Record<any, any>[]
   teams?: Team[]

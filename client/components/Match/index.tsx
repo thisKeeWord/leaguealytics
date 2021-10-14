@@ -84,7 +84,9 @@ const Match: FunctionComponent = () => {
                   championImg,
                   champLevel,
                   gameCreation,
+                  gameStartTimestamp,
                   gameDuration,
+                  gameEndTimestamp,
                   gameMode,
                   matchId,
                   deaths,
@@ -110,7 +112,9 @@ const Match: FunctionComponent = () => {
                       championImg={championImg}
                       champLevel={champLevel}
                       gameCreation={gameCreation}
+                      gameStartTimestamp={gameStartTimestamp}
                       gameDuration={gameDuration}
+                      gameEndTimestamp={gameEndTimestamp}
                       gameMode={gameMode}
                       matchId={matchId}
                       deaths={deaths}

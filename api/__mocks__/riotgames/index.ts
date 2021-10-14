@@ -49,6 +49,7 @@ const riotAPI: RiotAPI = {
               name: 'Aatrox',
               title: 'the Darkin Blade',
               blurb:
+                  // eslint-disable-next-line max-len
                   'Once honored defenders of Shurima against the Void, Aatrox and his brethren would eventually become an even greater threat to Runeterra, and were defeated only by cunning mortal sorcery. But after centuries of imprisonment, Aatrox was the first to find...',
               info: {
                 attack: 8,
@@ -105,7 +106,9 @@ const riotAPI: RiotAPI = {
           gameId: 3813810489,
           platformId: 'NA1',
           gameCreation: 1615019688009,
+          gameStartTimestamp: 1615019688009,
           gameDuration: 1190,
+          gameEndTimestamp: 1615019988009,
           queueId: 900,
           mapId: 11,
           seasonId: 13,
