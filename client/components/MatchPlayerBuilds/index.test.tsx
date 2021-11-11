@@ -1,16 +1,16 @@
-import '@testing-library/jest-dom';
-import { render } from '@testing-library/react';
-import React from 'react';
-import faker from 'faker';
-import MatchPlayerBuilds from '.';
+import '@testing-library/jest-dom'
+import { render } from '@testing-library/react'
+import React from 'react'
+import faker from 'faker'
+import MatchPlayerBuilds from '.'
 
-const initialTimeframe = 0;
-const currTimeframe = 120000;
+const initialTimeframe = 0
+const currTimeframe = 120000
 
 describe('MatchPlayerBuilds', () => {
-  let renderer: ReturnType<typeof render>;
-  let getByTestId: Function;
-  let queryAllByTestId: Function;
+  let renderer: ReturnType<typeof render>
+  let getByTestId: Function
+  let queryAllByTestId: Function
 
   beforeEach(() => {
     renderer = render(
@@ -38,24 +38,24 @@ describe('MatchPlayerBuilds', () => {
         initialTimeframe={initialTimeframe}
         currTimeframe={currTimeframe}
       />,
-    );
-    getByTestId = renderer.getByTestId;
-    queryAllByTestId = renderer.queryAllByTestId;
-  });
+    )
+    getByTestId = renderer.getByTestId
+    queryAllByTestId = renderer.queryAllByTestId
+  })
 
   afterEach(() => {
-    renderer.unmount();
-  });
+    renderer.unmount()
+  })
 
   it('displays match player builds', () => {
-    expect(getByTestId('match-player-builds')).toBeInTheDocument();
-  });
+    expect(getByTestId('match-player-builds')).toBeInTheDocument()
+  })
 
   it('displays the items', () => {
-    expect(queryAllByTestId('item')).toHaveLength(2);
-  });
+    expect(queryAllByTestId('item')).toHaveLength(2)
+  })
 
   it('displays the time range', () => {
-    expect(getByTestId('time-range')).toHaveTextContent('00:00:00 - 00:02:00');
-  });
-});
+    expect(getByTestId('time-range')).toHaveTextContent('00:00:00 - 00:02:00')
+  })
+})

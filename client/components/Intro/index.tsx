@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from 'react';
-import { StyledIntro } from './styles';
+import React, { FunctionComponent } from 'react'
+import { StyledIntro } from './styles'
 
 const Intro: FunctionComponent = () => (
   <StyledIntro data-testid="intro">
@@ -26,6 +26,6 @@ const Intro: FunctionComponent = () => (
       </span>
     </div>
   </StyledIntro>
-);
+)
 
-export default Intro;
+export default Intro

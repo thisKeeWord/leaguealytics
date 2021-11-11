@@ -1,19 +1,19 @@
-import React, { FunctionComponent } from 'react';
-import ReactDOM from 'react-dom';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import { Provider as ReduxProvider } from 'react-redux';
-import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline/ScopedCssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles';
-import { ToastContainer } from 'react-toastify';
-import { injectStyle } from 'react-toastify/dist/inject-style';
-import store from './state';
-import App from './components/App';
-import theme from './theme';
-import About from './components/About';
-import FourOhFour from './components/FourOhFour';
-import IssueTracker from './components/IssueTracker';
+import React, { FunctionComponent } from 'react'
+import ReactDOM from 'react-dom'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
+import { Provider as ReduxProvider } from 'react-redux'
+import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline/ScopedCssBaseline'
+import { ThemeProvider } from '@material-ui/core/styles'
+import { ToastContainer } from 'react-toastify'
+import { injectStyle } from 'react-toastify/dist/inject-style'
+import store from './state'
+import App from './components/App'
+import theme from './theme'
+import About from './components/About'
+import FourOhFour from './components/FourOhFour'
+import IssueTracker from './components/IssueTracker'
 
-injectStyle();
+injectStyle()
 
 const Main: FunctionComponent = () => (
   <ThemeProvider theme={theme}>
@@ -40,6 +40,6 @@ const Main: FunctionComponent = () => (
       </ReduxProvider>
     </ScopedCssBaseline>
   </ThemeProvider>
-);
+)
 
-ReactDOM.render(<Main />, document.getElementById('content'));
+ReactDOM.render(<Main />, document.getElementById('content'))

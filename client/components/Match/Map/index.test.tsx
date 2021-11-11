@@ -1,8 +1,8 @@
-import React from 'react';
-import '@testing-library/jest-dom';
-import { render } from '@testing-library/react';
-import faker from 'faker';
-import Map from '.';
+import React from 'react'
+import '@testing-library/jest-dom'
+import { render } from '@testing-library/react'
+import faker from 'faker'
+import Map from '.'
 
 describe('Map', () => {
   it('should render nothing if mapId prop is 21', () => {
@@ -15,9 +15,9 @@ describe('Map', () => {
         version={faker.datatype.number()}
         matchId={faker.random.word()}
       />,
-    );
-    expect(queryByTestId('map')).not.toBeInTheDocument();
-  });
+    )
+    expect(queryByTestId('map')).not.toBeInTheDocument()
+  })
 
   it('should render the map if mapId prop is not 21', () => {
     const { getByTestId } = render(
@@ -29,7 +29,7 @@ describe('Map', () => {
         version={faker.datatype.number()}
         matchId={faker.random.word()}
       />,
-    );
-    expect(getByTestId('map')).toBeInTheDocument();
-  });
-});
+    )
+    expect(getByTestId('map')).toBeInTheDocument()
+  })
+})

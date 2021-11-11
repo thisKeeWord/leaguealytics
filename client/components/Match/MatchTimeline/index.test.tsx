@@ -1,8 +1,8 @@
-import '@testing-library/jest-dom';
-import { fireEvent, render } from '@testing-library/react';
-import React from 'react';
-import faker from 'faker';
-import MatchTimeline from '.';
+import '@testing-library/jest-dom'
+import { fireEvent, render } from '@testing-library/react'
+import React from 'react'
+import faker from 'faker'
+import MatchTimeline from '.'
 
 describe('MatchTimeline', () => {
   it('returns null if no timeline', () => {
@@ -15,10 +15,10 @@ describe('MatchTimeline', () => {
         version={faker.datatype.number()}
         matchId={faker.random.alphaNumeric()}
       />,
-    );
+    )
 
-    expect(queryByTestId('timeline')).not.toBeInTheDocument();
-  });
+    expect(queryByTestId('timeline')).not.toBeInTheDocument()
+  })
 
   it('displays the slider', () => {
     const { getByTestId } = render(
@@ -30,10 +30,10 @@ describe('MatchTimeline', () => {
         version={faker.datatype.number()}
         matchId={faker.random.alphaNumeric()}
       />,
-    );
+    )
 
-    expect(getByTestId('slider')).toBeInTheDocument();
-  });
+    expect(getByTestId('slider')).toBeInTheDocument()
+  })
 
   it('displays the map', () => {
     const { getByTestId } = render(
@@ -45,10 +45,10 @@ describe('MatchTimeline', () => {
         version={faker.datatype.number()}
         matchId={faker.random.alphaNumeric()}
       />,
-    );
+    )
 
-    expect(getByTestId('map')).toBeInTheDocument();
-  });
+    expect(getByTestId('map')).toBeInTheDocument()
+  })
 
   it('displays the objectives events', () => {
     const { getByTestId } = render(
@@ -60,10 +60,10 @@ describe('MatchTimeline', () => {
         version={faker.datatype.number()}
         matchId={faker.random.alphaNumeric()}
       />,
-    );
+    )
 
-    expect(getByTestId('events')).toBeInTheDocument();
-  });
+    expect(getByTestId('events')).toBeInTheDocument()
+  })
 
   it('displays the Gold Earned stats', () => {
     const { getByTestId, getByText } = render(
@@ -94,13 +94,13 @@ describe('MatchTimeline', () => {
         version={faker.datatype.number()}
         matchId={faker.random.alphaNumeric()}
       />,
-    );
+    )
 
-    const tab = getByText('Gold Earned');
-    fireEvent.click(tab);
+    const tab = getByText('Gold Earned')
+    fireEvent.click(tab)
 
-    expect(getByTestId('creepScoreStat')).toBeInTheDocument();
-  });
+    expect(getByTestId('creepScoreStat')).toBeInTheDocument()
+  })
 
   it('displays the Kills stats', () => {
     const { getByTestId, getByText } = render(
@@ -131,13 +131,13 @@ describe('MatchTimeline', () => {
         version={faker.datatype.number()}
         matchId={faker.random.alphaNumeric()}
       />,
-    );
+    )
 
-    const tab = getByText('Kills');
-    fireEvent.click(tab);
+    const tab = getByText('Kills')
+    fireEvent.click(tab)
 
-    expect(getByTestId('killStat')).toBeInTheDocument();
-  });
+    expect(getByTestId('killStat')).toBeInTheDocument()
+  })
 
   it('displays the Deaths stats', () => {
     const { getByTestId, getByText } = render(
@@ -168,13 +168,13 @@ describe('MatchTimeline', () => {
         version={faker.datatype.number()}
         matchId={faker.random.alphaNumeric()}
       />,
-    );
+    )
 
-    const tab = getByText('Deaths');
-    fireEvent.click(tab);
+    const tab = getByText('Deaths')
+    fireEvent.click(tab)
 
-    expect(getByTestId('deathStat')).toBeInTheDocument();
-  });
+    expect(getByTestId('deathStat')).toBeInTheDocument()
+  })
 
   it('displays the Assists stats', () => {
     const { getByTestId, getByText } = render(
@@ -205,13 +205,13 @@ describe('MatchTimeline', () => {
         version={faker.datatype.number()}
         matchId={faker.random.alphaNumeric()}
       />,
-    );
+    )
 
-    const tab = getByText('Assists');
-    fireEvent.click(tab);
+    const tab = getByText('Assists')
+    fireEvent.click(tab)
 
-    expect(getByTestId('assistStat')).toBeInTheDocument();
-  });
+    expect(getByTestId('assistStat')).toBeInTheDocument()
+  })
 
   it('displays the Damage Dealt stats', () => {
     const { getByTestId, getByText } = render(
@@ -242,13 +242,13 @@ describe('MatchTimeline', () => {
         version={faker.datatype.number()}
         matchId={faker.random.alphaNumeric()}
       />,
-    );
+    )
 
-    const tab = getByText('Damage Dealt');
-    fireEvent.click(tab);
+    const tab = getByText('Damage Dealt')
+    fireEvent.click(tab)
 
-    expect(getByTestId('damageDealtStat')).toBeInTheDocument();
-  });
+    expect(getByTestId('damageDealtStat')).toBeInTheDocument()
+  })
 
   it('displays the Damage Taken stats', () => {
     const { getByTestId, getByText } = render(
@@ -279,13 +279,13 @@ describe('MatchTimeline', () => {
         version={faker.datatype.number()}
         matchId={faker.random.alphaNumeric()}
       />,
-    );
+    )
 
-    const tab = getByText('Damage Taken');
-    fireEvent.click(tab);
+    const tab = getByText('Damage Taken')
+    fireEvent.click(tab)
 
-    expect(getByTestId('damageTakenStat')).toBeInTheDocument();
-  });
+    expect(getByTestId('damageTakenStat')).toBeInTheDocument()
+  })
 
   it('displays the Wards Purchased stats', () => {
     const { getByTestId, getByText } = render(
@@ -316,13 +316,13 @@ describe('MatchTimeline', () => {
         version={faker.datatype.number()}
         matchId={faker.random.alphaNumeric()}
       />,
-    );
+    )
 
-    const tab = getByText('Wards Purchased');
-    fireEvent.click(tab);
+    const tab = getByText('Wards Purchased')
+    fireEvent.click(tab)
 
-    expect(getByTestId('wardsPurchasedStat')).toBeInTheDocument();
-  });
+    expect(getByTestId('wardsPurchasedStat')).toBeInTheDocument()
+  })
 
   it('displays the Wards Placed stats', () => {
     const { getByTestId, getByText } = render(
@@ -353,13 +353,13 @@ describe('MatchTimeline', () => {
         version={faker.datatype.number()}
         matchId={faker.random.alphaNumeric()}
       />,
-    );
+    )
 
-    const tab = getByText('Wards Placed');
-    fireEvent.click(tab);
+    const tab = getByText('Wards Placed')
+    fireEvent.click(tab)
 
-    expect(getByTestId('wardsPlacedStat')).toBeInTheDocument();
-  });
+    expect(getByTestId('wardsPlacedStat')).toBeInTheDocument()
+  })
 
   it('displays the Wards Killed stats', () => {
     const { getByTestId, getByText } = render(
@@ -390,11 +390,11 @@ describe('MatchTimeline', () => {
         version={faker.datatype.number()}
         matchId={faker.random.alphaNumeric()}
       />,
-    );
+    )
 
-    const tab = getByText('Wards Killed');
-    fireEvent.click(tab);
+    const tab = getByText('Wards Killed')
+    fireEvent.click(tab)
 
-    expect(getByTestId('wardsKilledStat')).toBeInTheDocument();
-  });
-});
+    expect(getByTestId('wardsKilledStat')).toBeInTheDocument()
+  })
+})

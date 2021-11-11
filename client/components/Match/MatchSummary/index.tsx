@@ -1,58 +1,58 @@
-import React, { ChangeEvent, FunctionComponent, useState } from 'react';
-import cx from 'classnames';
-import { useSelector } from 'react-redux';
-import Tab from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
-import Paper from '@material-ui/core/Paper';
-import { getSummoners, numberFormatter, parseStats } from '../../../../utils/helper';
-import { selectPatchData, selectSummonersData } from '../../../state';
-import Chart from '../../Chart';
+import React, { ChangeEvent, FunctionComponent, useState } from 'react'
+import cx from 'classnames'
+import { useSelector } from 'react-redux'
+import Tab from '@material-ui/core/Tab'
+import Tabs from '@material-ui/core/Tabs'
+import Paper from '@material-ui/core/Paper'
+import { getSummoners, numberFormatter, parseStats } from '../../../../utils/helper'
+import { selectPatchData, selectSummonersData } from '../../../state'
+import Chart from '../../Chart'
 
-import { MatchSummaryStyled } from './styles';
-import MatchTimeline from '../MatchTimeline';
-import { MatchesByIdData, Team } from '../../../../utils/interface';
+import { MatchSummaryStyled } from './styles'
+import MatchTimeline from '../MatchTimeline'
+import { MatchesByIdData, Team } from '../../../../utils/interface'
 
 interface MatchSummaryProps {
   match: MatchesByIdData
-  currentPlayer: Record<any, any>;
+  currentPlayer: Record<any, any>
 }
 
 const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryProps) => {
-  const patchData = useSelector(selectPatchData);
-  const summoners = useSelector(selectSummonersData);
-  const [matchView, setMatchView] = useState<number>(0);
-  const summonersList = summoners?.data;
+  const patchData = useSelector(selectPatchData)
+  const summoners = useSelector(selectSummonersData)
+  const [matchView, setMatchView] = useState<number>(0)
+  const summonersList = summoners?.data
 
   const handleViewChange = (event: ChangeEvent<{}>, newValue: number) => {
-    setMatchView(newValue);
-  };
-
-  const { currentPlayer, match } = props;
-
-  if (!patchData || !currentPlayer.participantId || !match.participants || !match.teams) {
-    return null;
+    setMatchView(newValue)
   }
 
-  const { participants, teams } = match;
+  const { currentPlayer, match } = props
+
+  if (!patchData || !currentPlayer.participantId || !match.participants || !match.teams) {
+    return null
+  }
+
+  const { participants, teams } = match
   const adjustedTeams = teams.map((team) => {
-    const modifiedTeams = { ...team };
+    const modifiedTeams = { ...team }
     const teamsBans = team.bans.map((ban) => {
-      const adjustedBans = { ...ban };
+      const adjustedBans = { ...ban }
       // eslint-disable-next-line no-restricted-syntax, prefer-const
       for (let championData in patchData.data) {
         if (patchData.data[championData].key == ban.championId) {
           // eslint-disable-next-line no-return-assign
-          adjustedBans.championImage = patchData.data[championData].image.full;
+          adjustedBans.championImage = patchData.data[championData].image.full
         }
       }
 
-      return adjustedBans;
-    });
+      return adjustedBans
+    })
 
-    modifiedTeams.bans = teamsBans;
+    modifiedTeams.bans = teamsBans
 
-    return modifiedTeams;
-  });
+    return modifiedTeams
+  })
 
   const statsData = participants.map(
     ({
@@ -74,12 +74,12 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
     }) => {
       // eslint-disable-next-line no-restricted-syntax, no-unused-vars
       for (const [_key, value] of Object.entries(patchData.data)) {
-        const val = value as Record<any, any>;
+        const val = value as Record<any, any>
 
         if (parseInt(val.key, 10) === championId) {
           const teamStats = adjustedTeams.find(
             (team: Team) => team.teamId === teamId,
-          );
+          )
           return {
             champion: championName,
             championImg,
@@ -100,27 +100,27 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
             creepScore: totalMinionsKilled + neutralMinionsKilled,
             isCurrentPlayer: props.currentPlayer.participantId == participantId,
             team: teamId,
-          };
+          }
         }
       }
     },
-  );
+  )
 
-  const totalDamageDealtStat = parseStats(statsData as Record<any, any>[], 'damageDealt');
-  const totalDamageTakenStat = parseStats(statsData as Record<any, any>[], 'damageTaken');
-  const goldEarnedStat = parseStats(statsData as Record<any, any>[], 'goldEarned');
-  const killsStat = parseStats(statsData as Record<any, any>[], 'kills');
-  const assistsStat = parseStats(statsData as Record<any, any>[], 'assists');
-  const killParticipationStat = parseStats(statsData as Record<any, any>[], 'killParticipation');
-  const deathStat = parseStats(statsData as Record<any, any>[], 'deaths');
-  const deathShareStat = parseStats(statsData as Record<any, any>[], 'deathShare');
-  const creepScoreStat = parseStats(statsData as Record<any, any>[], 'creepScore');
+  const totalDamageDealtStat = parseStats(statsData as Record<any, any>[], 'damageDealt')
+  const totalDamageTakenStat = parseStats(statsData as Record<any, any>[], 'damageTaken')
+  const goldEarnedStat = parseStats(statsData as Record<any, any>[], 'goldEarned')
+  const killsStat = parseStats(statsData as Record<any, any>[], 'kills')
+  const assistsStat = parseStats(statsData as Record<any, any>[], 'assists')
+  const killParticipationStat = parseStats(statsData as Record<any, any>[], 'killParticipation')
+  const deathStat = parseStats(statsData as Record<any, any>[], 'deaths')
+  const deathShareStat = parseStats(statsData as Record<any, any>[], 'deathShare')
+  const creepScoreStat = parseStats(statsData as Record<any, any>[], 'creepScore')
 
-  const team100 = participants.filter(({ teamId }) => teamId === 100);
-  const team200 = participants.filter(({ teamId }) => teamId === 200);
+  const team100 = participants.filter(({ teamId }) => teamId === 100)
+  const team200 = participants.filter(({ teamId }) => teamId === 200)
 
   if (!match.matchId || !match.mapId) {
-    return null;
+    return null
   }
 
   return (
@@ -196,18 +196,16 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
                   <div className="objectives-container">
                     <div className="tower-kills">
                       <img
-                        src={`../../../../images/turret-${
-                          index === 0 ? 'blue' : 'red'
-                        }.png`}
+                        src={`../../../../images/turret-${index === 0 ? 'blue' : 'red'
+                          }.png`}
                         alt="tower"
                       />
                       <span>{adjustedTeams[index].objectives.tower.kills}</span>
                     </div>
                     <div className="inhibitor-kills">
                       <img
-                        src={`../../../../images/inhibitor-${
-                          index === 0 ? 'blue' : 'red'
-                        }.png`}
+                        src={`../../../../images/inhibitor-${index === 0 ? 'blue' : 'red'
+                          }.png`}
                         alt="inhibitor"
                       />
                       <span>
@@ -216,9 +214,8 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
                     </div>
                     <div className="dragon-kills">
                       <img
-                        src={`../../../../images/dragon-${
-                          index === 0 ? 'blue' : 'red'
-                        }.png`}
+                        src={`../../../../images/dragon-${index === 0 ? 'blue' : 'red'
+                          }.png`}
                         alt="dragon"
                       />
                       <span>
@@ -227,9 +224,8 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
                     </div>
                     <div className="rift-herald-kills">
                       <img
-                        src={`../../../../images/riftherald-${
-                          index === 0 ? 'blue' : 'red'
-                        }.png`}
+                        src={`../../../../images/riftherald-${index === 0 ? 'blue' : 'red'
+                          }.png`}
                         alt="rift herald"
                       />
                       <span>
@@ -238,9 +234,8 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
                     </div>
                     <div className="baron-kills">
                       <img
-                        src={`../../../../images/baron-nashor-${
-                          index === 0 ? 'blue' : 'red'
-                        }.png`}
+                        src={`../../../../images/baron-nashor-${index === 0 ? 'blue' : 'red'
+                          }.png`}
                         alt="baron"
                       />
                       <span>{adjustedTeams[index].objectives.baron!.kills}</span>
@@ -270,7 +265,7 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
                     teamId,
                     summonerId,
                   }) => {
-                    const { spell1, spell2 } = getSummoners(summonersList, { summoner1Id, summoner2Id });
+                    const { spell1, spell2 } = getSummoners(summonersList, { summoner1Id, summoner2Id })
                     return (
                       <div
                         className={cx('match-summary', {
@@ -375,7 +370,7 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
                           </div>
                         </div>
                       </div>
-                    );
+                    )
                   },
                 )}
               </div>
@@ -481,7 +476,7 @@ const MatchSummary: FunctionComponent<MatchSummaryProps> = (props: MatchSummaryP
         </div>
       </div>
     </MatchSummaryStyled>
-  );
-};
+  )
+}
 
-export default MatchSummary;
+export default MatchSummary

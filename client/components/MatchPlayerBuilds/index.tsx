@@ -1,8 +1,8 @@
-import React, { FunctionComponent } from 'react';
-import cx from 'classnames';
-import { convertTimestamp } from '../../../utils/helper';
-import { ParticipantFrame } from '../../../utils/interface';
-import { MatchPlayerBuildsStyled } from './styles';
+import React, { FunctionComponent } from 'react'
+import cx from 'classnames'
+import { convertTimestamp } from '../../../utils/helper'
+import { ParticipantFrame } from '../../../utils/interface'
+import { MatchPlayerBuildsStyled } from './styles'
 
 interface MatchPlayerBuildsProps {
   version: string | number
@@ -18,8 +18,8 @@ const MatchPlayerBuilds: FunctionComponent<MatchPlayerBuildsProps> = (props: Mat
   const particpantsItemSet = props.participantFrames.map((participantFrame: ParticipantFrame, index) => {
     const participantObj = props.participants.find((participant: Record<any, any>) => (
       participant.participantId === participantFrame.participantId
-    )) || {};
-    const items = Object.values(participantFrame.itemSet || {});
+    )) || {}
+    const items = Object.values(participantFrame.itemSet || {})
 
     // itemSet object within participantFrame
     return (
@@ -43,8 +43,8 @@ const MatchPlayerBuilds: FunctionComponent<MatchPlayerBuildsProps> = (props: Mat
           ))}
         </div>
       </div>
-    );
-  });
+    )
+  })
 
   return (
     <MatchPlayerBuildsStyled>
@@ -59,7 +59,7 @@ const MatchPlayerBuilds: FunctionComponent<MatchPlayerBuildsProps> = (props: Mat
         {particpantsItemSet}
       </div>
     </MatchPlayerBuildsStyled>
-  );
-};
+  )
+}
 
-export default MatchPlayerBuilds;
+export default MatchPlayerBuilds

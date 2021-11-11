@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from 'react';
-import { StyledIssueTracker } from './styles';
+import React, { FunctionComponent } from 'react'
+import { StyledIssueTracker } from './styles'
 
 const IssueTracker: FunctionComponent = () => (
   <StyledIssueTracker>
@@ -25,6 +25,6 @@ const IssueTracker: FunctionComponent = () => (
       </div>
     </div>
   </StyledIssueTracker>
-);
+)
 
-export default IssueTracker;
+export default IssueTracker

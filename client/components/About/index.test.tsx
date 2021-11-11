@@ -1,45 +1,45 @@
-import '@testing-library/jest-dom';
-import { render } from '@testing-library/react';
-import React from 'react';
-import About from '.';
+import '@testing-library/jest-dom'
+import { render } from '@testing-library/react'
+import React from 'react'
+import About from '.'
 
 describe('About', () => {
-  let renderer: ReturnType<typeof render>;
-  let getByTestId: Function;
-  let getAllByTestId: Function;
-  let getByText: Function;
+  let renderer: ReturnType<typeof render>
+  let getByTestId: Function
+  let getAllByTestId: Function
+  let getByText: Function
 
   beforeEach(() => {
-    renderer = render(<About />);
-    getByTestId = renderer.getByTestId;
-    getAllByTestId = renderer.getAllByTestId;
-    getByText = renderer.getByText;
-  });
+    renderer = render(<About />)
+    getByTestId = renderer.getByTestId
+    getAllByTestId = renderer.getAllByTestId
+    getByText = renderer.getByText
+  })
 
   afterEach(() => {
-    renderer.unmount();
-  });
+    renderer.unmount()
+  })
 
   it('displays a link to the home page', () => {
-    expect(getByTestId('home-link')).toBeInTheDocument();
-    expect(getByText('Home')).toBeInTheDocument();
-  });
+    expect(getByTestId('home-link')).toBeInTheDocument()
+    expect(getByText('Home')).toBeInTheDocument()
+  })
 
   it('displays the about section', () => {
-    expect(getByTestId('about-body')).toBeInTheDocument();
-  });
+    expect(getByTestId('about-body')).toBeInTheDocument()
+  })
 
   it('displays the notice', () => {
     // eslint-disable-next-line max-len
-    expect(getByTestId('notice')).toHaveTextContent('Only summoners in the North America server is supported at the moment since this started off as just a practice project.');
-  });
+    expect(getByTestId('notice')).toHaveTextContent('Only summoners in the North America server is supported at the moment since this started off as just a practice project.')
+  })
 
   it('displays the disclaimer', () => {
-    expect(getByTestId('disclaimer')).toBeInTheDocument();
-  });
+    expect(getByTestId('disclaimer')).toBeInTheDocument()
+  })
 
   it('displays the social icons', () => {
-    expect(getByTestId('social-icons')).toBeInTheDocument();
-    expect(getAllByTestId('media-icon')).toHaveLength(4);
-  });
-});
+    expect(getByTestId('social-icons')).toBeInTheDocument()
+    expect(getAllByTestId('media-icon')).toHaveLength(4)
+  })
+})

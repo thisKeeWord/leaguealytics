@@ -1,61 +1,61 @@
 import React, {
   ChangeEvent, FunctionComponent, useEffect, useState,
-} from 'react';
-import Slider from '@material-ui/core/Slider';
-import Tab from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
-import Paper from '@material-ui/core/Paper';
-import Map from '../Map';
-import MatchEvents from '../MatchEvents';
-import MatchPlayerBuilds from '../../MatchPlayerBuilds';
-import TimelineChart from '../MatchTimelineChart';
-import { ByTimeframe } from '../../../../utils/interface';
-import { convertTimestamp, parseStats } from '../../../../utils/helper';
-import { StyledMatchTimeline } from './styles';
+} from 'react'
+import Slider from '@material-ui/core/Slider'
+import Tab from '@material-ui/core/Tab'
+import Tabs from '@material-ui/core/Tabs'
+import Paper from '@material-ui/core/Paper'
+import Map from '../Map'
+import MatchEvents from '../MatchEvents'
+import MatchPlayerBuilds from '../../MatchPlayerBuilds'
+import TimelineChart from '../MatchTimelineChart'
+import { ByTimeframe } from '../../../../utils/interface'
+import { convertTimestamp, parseStats } from '../../../../utils/helper'
+import { StyledMatchTimeline } from './styles'
 
 interface MatchTimelineProps {
   currentPlayer: Record<any, any>
   timeline?: ByTimeframe[]
   mapId: number
   participants: Record<any, any>[]
-  version: number | string;
+  version: number | string
   matchId: string
 }
 
 const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimelineProps) => {
-  const [timeframe, setTimeframe] = useState(0);
-  const [matchStatsView, setMatchStatsView] = useState<number>(0);
+  const [timeframe, setTimeframe] = useState(0)
+  const [matchStatsView, setMatchStatsView] = useState<number>(0)
 
   const handleViewChange = (event: ChangeEvent<{}>, newValue: number) => {
-    setMatchStatsView(newValue);
-  };
+    setMatchStatsView(newValue)
+  }
 
   const {
     currentPlayer, timeline, mapId, participants, version, matchId,
-  } = props;
+  } = props
 
   if (!timeline || !timeline.length) {
-    return null;
+    return null
   }
 
   const onChange = (e: ChangeEvent<{}>, value: number | number[]): void => {
     if (Array.isArray(value)) {
-      return;
+      return
     }
-    setTimeframe(value);
-  };
+    setTimeframe(value)
+  }
 
   useEffect(() => {
-    setTimeframe(0);
-    setMatchStatsView(0);
-  }, [matchId, timeline]);
+    setTimeframe(0)
+    setMatchStatsView(0)
+  }, [matchId, timeline])
 
   if (!timeline[timeframe]) {
-    return null;
+    return null
   }
 
   const stats = timeline[timeframe].participantFrames ? timeline[timeframe].participantFrames.map((participantFrame) => {
-    const player = participants.find((participant) => participant.participantId === participantFrame.participantId) || {};
+    const player = participants.find((participant) => participant.participantId === participantFrame.participantId) || {}
 
     return {
       champion: player.championName,
@@ -74,18 +74,18 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
       wardsKilled: Math.floor(participantFrame.wardsKilled),
       isCurrentPlayer: currentPlayer.participantId == participantFrame.participantId,
       team: participantFrame.participantId <= 5 ? 100 : 200,
-    };
-  }) : [];
+    }
+  }) : []
 
-  const creepScoreStat = parseStats(stats, 'creepScore');
-  const killStat = parseStats(stats, 'kills');
-  const deathStat = parseStats(stats, 'deaths');
-  const assistStat = parseStats(stats, 'assists');
-  const damageDealtStat = parseStats(stats, 'damageDealt');
-  const damageTakenStat = parseStats(stats, 'damageTaken');
-  const wardsPurchasedStat = parseStats(stats, 'wardsPurchased');
-  const wardsPlacedStat = parseStats(stats, 'wardsPlaced');
-  const wardsKilledStat = parseStats(stats, 'wardsKilled');
+  const creepScoreStat = parseStats(stats, 'creepScore')
+  const killStat = parseStats(stats, 'kills')
+  const deathStat = parseStats(stats, 'deaths')
+  const assistStat = parseStats(stats, 'assists')
+  const damageDealtStat = parseStats(stats, 'damageDealt')
+  const damageTakenStat = parseStats(stats, 'damageTaken')
+  const wardsPurchasedStat = parseStats(stats, 'wardsPurchased')
+  const wardsPlacedStat = parseStats(stats, 'wardsPlaced')
+  const wardsKilledStat = parseStats(stats, 'wardsKilled')
 
   return (
     <StyledMatchTimeline data-testid="timeline">
@@ -139,14 +139,14 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
 
         {matchStatsView === 0 && (
 
-        <MatchEvents
-          prevTimeframe={timeframe > 0 ? timeline[timeframe - 1].timestamp : 0}
-          currTimeframe={timeline[timeframe].timestamp}
-          events={timeline[timeframe].events}
-          currentPlayer={currentPlayer}
-          participants={participants}
-          version={version}
-        />
+          <MatchEvents
+            prevTimeframe={timeframe > 0 ? timeline[timeframe - 1].timestamp : 0}
+            currTimeframe={timeline[timeframe].timestamp}
+            events={timeline[timeframe].events}
+            currentPlayer={currentPlayer}
+            participants={participants}
+            version={version}
+          />
         )}
 
         {matchStatsView === 1 && (
@@ -270,7 +270,7 @@ const MatchTimeline: FunctionComponent<MatchTimelineProps> = (props: MatchTimeli
         )}
       </div>
     </StyledMatchTimeline>
-  );
-};
+  )
+}
 
-export default MatchTimeline;
+export default MatchTimeline

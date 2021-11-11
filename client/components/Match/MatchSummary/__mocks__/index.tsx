@@ -1,7 +1,7 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react'
 
 interface MatchSummaryProps {
-  match: Record<any, any>;
+  match: Record<any, any>
   currentPlayer: Record<any, any>
 }
 
@@ -12,4 +12,4 @@ export const MatchSummary: FunctionComponent<MatchSummaryProps> = (
     <div>{props.match.matchId}</div>
     <div>{props.currentPlayer.summonerId}</div>
   </>
-);
+)
