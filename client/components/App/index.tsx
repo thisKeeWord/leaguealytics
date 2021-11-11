@@ -1,30 +1,30 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import cx from 'classnames';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import TextField from '@material-ui/core/TextField';
-import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
-import SearchIcon from '@material-ui/icons/Search';
-import { toast } from 'react-toastify';
-import { getUser } from '../../state/actions/getUser';
-import { selectUserDoc, selectUserError, selectUserFetching } from '../../state/selectors/user';
-import Match from '../Match';
-import Intro from '../Intro';
-import LoadingIndicator from '../LoadingIndicator';
-import { StyledApp } from './styles';
+import React, { FunctionComponent, useEffect, useState } from 'react'
+import { Link, useHistory, useLocation } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import cx from 'classnames'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
+import TextField from '@material-ui/core/TextField'
+import IconButton from '@material-ui/core/IconButton'
+import Button from '@material-ui/core/Button'
+import SearchIcon from '@material-ui/icons/Search'
+import { toast } from 'react-toastify'
+import { getUser } from '../../state/actions/getUser'
+import { selectUserDoc, selectUserError, selectUserFetching } from '../../state/selectors/user'
+import Match from '../Match'
+import Intro from '../Intro'
+import LoadingIndicator from '../LoadingIndicator'
+import { StyledApp } from './styles'
 
 const App: FunctionComponent = () => {
-  const [isNewUser, setIsNewUser] = useState<boolean>(false);
-  const user = useSelector(selectUserDoc);
-  const userError = useSelector(selectUserError);
-  const userLoading = useSelector(selectUserFetching);
-  const dispatch = useDispatch();
-  const location = useLocation();
-  const { state, search } = location;
-  const history = useHistory();
+  const [isNewUser, setIsNewUser] = useState<boolean>(false)
+  const user = useSelector(selectUserDoc)
+  const userError = useSelector(selectUserError)
+  const userLoading = useSelector(selectUserFetching)
+  const dispatch = useDispatch()
+  const location = useLocation()
+  const { state, search } = location
+  const history = useHistory()
 
   const {
     handleSubmit, handleChange, errors, touched, values, resetForm,
@@ -34,12 +34,12 @@ const App: FunctionComponent = () => {
         username: '',
       },
       onSubmit: async (val) => {
-        const username = val.username.replace(/\s+/g, '').toLowerCase();
-        const currentUsername = user?.name.replace(/\s+/g, '').toLowerCase();
-        setIsNewUser(currentUsername ? username !== currentUsername : false);
-        history.push(`/?q=${username}`, { updated: true }); // maybe remove the updated?
-        await dispatch(getUser({ username }));
-        resetForm();
+        const username = val.username.replace(/\s+/g, '').toLowerCase()
+        const currentUsername = user?.name.replace(/\s+/g, '').toLowerCase()
+        setIsNewUser(currentUsername ? username !== currentUsername : false)
+        history.push(`/?q=${username}`, { updated: true }) // maybe remove the updated?
+        await dispatch(getUser({ username }))
+        resetForm()
       },
       validationSchema: Yup.object({
         username: Yup.string()
@@ -47,23 +47,23 @@ const App: FunctionComponent = () => {
           .required('Please enter a username'),
       }),
     },
-  );
+  )
 
   const refreshUser = (): void => {
     if (user?.name) {
-      setIsNewUser(false);
-      dispatch(getUser({ username: user.name.replace(/\s+/g, '').toLowerCase() }));
+      setIsNewUser(false)
+      dispatch(getUser({ username: user.name.replace(/\s+/g, '').toLowerCase() }))
     }
-  };
+  }
 
   useEffect(() => {
     if (search && !state && !user) {
-      dispatch(getUser({ username: search.slice(3) }));
+      dispatch(getUser({ username: search.slice(3) }))
     }
-  }, [search]);
+  }, [search])
 
   if (userError) {
-    toast.error(userError, { toastId: 'rootError' });
+    toast.error(userError, { toastId: 'rootError' })
   }
 
   return (
@@ -122,7 +122,7 @@ const App: FunctionComponent = () => {
         )}
       </div>
     </StyledApp>
-  );
-};
+  )
+}
 
-export default App;
+export default App

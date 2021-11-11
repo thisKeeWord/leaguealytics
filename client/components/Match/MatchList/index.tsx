@@ -1,40 +1,40 @@
-import React, { FunctionComponent } from 'react';
-import { useSelector } from 'react-redux';
-import cx from 'classnames';
-import { selectSummonersData } from '../../../state';
-import { getSummoners, numberFormatter } from '../../../../utils/helper';
-import { MatchStyled } from './styles';
+import React, { FunctionComponent } from 'react'
+import { useSelector } from 'react-redux'
+import cx from 'classnames'
+import { selectSummonersData } from '../../../state'
+import { getSummoners, numberFormatter } from '../../../../utils/helper'
+import { MatchStyled } from './styles'
 
 interface MatchListProps {
   // eslint-disable-next-line no-unused-vars
-  handleClick: (matchId: string) => void;
-  version: number | string;
-  gameCreation: Date;
-  gameStartTimestamp: number;
-  gameDuration: number;
-  gameEndTimestamp?: number;
-  gameMode: string;
-  championName: string;
-  championImg: string;
-  matchId: string;
-  champLevel: number;
-  deaths: number;
-  kills: number;
-  assists: number;
-  summoner1Id: number;
-  summoner2Id: number;
-  victory: boolean;
-  goldEarned: number;
-  creepScore: number;
-  item0: number;
-  item1: number;
-  item2: number;
-  item3: number;
-  item4: number;
-  item5: number;
-  item6: number;
-  isActiveMatch: boolean;
-  role?: 'button';
+  handleClick: (matchId: string) => void
+  version: number | string
+  gameCreation: Date
+  gameStartTimestamp: number
+  gameDuration: number
+  gameEndTimestamp?: number
+  gameMode: string
+  championName: string
+  championImg: string
+  matchId: string
+  champLevel: number
+  deaths: number
+  kills: number
+  assists: number
+  summoner1Id: number
+  summoner2Id: number
+  victory: boolean
+  goldEarned: number
+  creepScore: number
+  item0: number
+  item1: number
+  item2: number
+  item3: number
+  item4: number
+  item5: number
+  item6: number
+  isActiveMatch: boolean
+  role?: 'button'
 }
 
 const MatchList: FunctionComponent<MatchListProps> = (
@@ -69,15 +69,15 @@ const MatchList: FunctionComponent<MatchListProps> = (
     isActiveMatch,
     role,
     handleClick,
-  } = props;
+  } = props
 
-  const summoners = useSelector(selectSummonersData);
+  const summoners = useSelector(selectSummonersData)
 
-  const summonersList = summoners?.data;
+  const summonersList = summoners?.data
 
-  const { spell1, spell2 } = getSummoners(summonersList, { summoner1Id, summoner2Id });
+  const { spell1, spell2 } = getSummoners(summonersList, { summoner1Id, summoner2Id })
 
-  const totalDuration = gameEndTimestamp ? gameDuration * 1000 : gameDuration;
+  const totalDuration = gameEndTimestamp ? gameDuration * 1000 : gameDuration
 
   return (
     <MatchStyled data-testid="input" role={role} onClick={() => handleClick(matchId)}>
@@ -157,7 +157,7 @@ const MatchList: FunctionComponent<MatchListProps> = (
 
       </div>
     </MatchStyled>
-  );
-};
+  )
+}
 
-export default MatchList;
+export default MatchList

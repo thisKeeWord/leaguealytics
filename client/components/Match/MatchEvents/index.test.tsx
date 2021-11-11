@@ -1,8 +1,8 @@
-import '@testing-library/jest-dom';
-import { render } from '@testing-library/react';
-import faker from 'faker';
-import React from 'react';
-import MatchEvents from '.';
+import '@testing-library/jest-dom'
+import { render } from '@testing-library/react'
+import faker from 'faker'
+import React from 'react'
+import MatchEvents from '.'
 
 const participants = [
   { participantId: 1 },
@@ -15,7 +15,7 @@ const participants = [
   { participantId: 8 },
   { participantId: 9 },
   { participantId: 10 },
-];
+]
 const eventFrame = [
   {
     buildingType: 'TOWER_BUILDING',
@@ -69,7 +69,7 @@ const eventFrame = [
     timestamp: 1342601,
     type: 'ELITE_MONSTER_KILL',
   },
-];
+]
 
 const currentPlayer = {
   teamId: 200,
@@ -78,14 +78,14 @@ const currentPlayer = {
   physicalDamageDealt: 22041,
   summonerName: 'TEEHEE92',
   goldEarned: 10740,
-};
+}
 
-const prevTimeframe = 60000;
-const currTimeframe = 120000;
+const prevTimeframe = 60000
+const currTimeframe = 120000
 
 describe('MatchEvents', () => {
-  let renderer: ReturnType<typeof render>;
-  let getByTestId: Function;
+  let renderer: ReturnType<typeof render>
+  let getByTestId: Function
 
   beforeEach(() => {
     renderer = render(
@@ -97,33 +97,33 @@ describe('MatchEvents', () => {
         participants={participants}
         currentPlayer={currentPlayer}
       />,
-    );
-    getByTestId = renderer.getByTestId;
-  });
+    )
+    getByTestId = renderer.getByTestId
+  })
 
   afterEach(() => {
-    renderer.unmount();
-  });
+    renderer.unmount()
+  })
 
   it('displays the champion kills block if CHAMPION_KILL event exists', () => {
-    expect(getByTestId('champion-kills')).toBeInTheDocument();
-  });
+    expect(getByTestId('champion-kills')).toBeInTheDocument()
+  })
 
   it('displays the ward event block if WARD_PLACED event exists', () => {
-    expect(getByTestId('ward-event')).toBeInTheDocument();
-  });
+    expect(getByTestId('ward-event')).toBeInTheDocument()
+  })
 
   it('displays the elite monster kills block if ELITE_MONSTER_KILL event exists', () => {
-    expect(getByTestId('elite-monster-kills')).toBeInTheDocument();
-  });
+    expect(getByTestId('elite-monster-kills')).toBeInTheDocument()
+  })
 
   it('displays the building kills block if BUILDING_KILL event exists', () => {
-    expect(getByTestId('building-kills')).toBeInTheDocument();
-  });
+    expect(getByTestId('building-kills')).toBeInTheDocument()
+  })
 
   it('displays the time range', () => {
-    const timeRange = getByTestId('time-range');
+    const timeRange = getByTestId('time-range')
 
-    expect(timeRange).toHaveTextContent('00:01:00 - 00:02:00');
-  });
-});
+    expect(timeRange).toHaveTextContent('00:01:00 - 00:02:00')
+  })
+})

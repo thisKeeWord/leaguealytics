@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from 'react';
-import { StyledFourOhFour } from './styles';
+import React, { FunctionComponent } from 'react'
+import { StyledFourOhFour } from './styles'
 
 const FourOhFour: FunctionComponent = () => (
   <StyledFourOhFour>
@@ -22,6 +22,6 @@ const FourOhFour: FunctionComponent = () => (
       </div>
     </div>
   </StyledFourOhFour>
-);
+)
 
-export default FourOhFour;
+export default FourOhFour

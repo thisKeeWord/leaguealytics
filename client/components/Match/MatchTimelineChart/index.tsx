@@ -1,11 +1,11 @@
-import React, { FunctionComponent } from 'react';
-import Chart from '../../Chart';
-import { convertTimestamp } from '../../../../utils/helper';
-import { MatchTimelineChartStyled } from './styles';
+import React, { FunctionComponent } from 'react'
+import Chart from '../../Chart'
+import { convertTimestamp } from '../../../../utils/helper'
+import { MatchTimelineChartStyled } from './styles'
 
 interface MatchTimelineChartProps {
-  data: any;
-  title: string;
+  data: any
+  title: string
   version: string | number
   className?: string
   testId?: string
@@ -28,6 +28,6 @@ const TimelineChart: FunctionComponent<MatchTimelineChartProps> = (props: MatchT
       )}
     </div>
   </MatchTimelineChartStyled>
-);
+)
 
-export default TimelineChart;
+export default TimelineChart
