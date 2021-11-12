@@ -103,6 +103,7 @@ export const StyledApp = styled.div`
           padding: 0;
           border: none;
           background: white;
+          color: rgba(0, 0, 0, 0.54);
 
           &:focus {
             outline: none;
