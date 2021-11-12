@@ -5,7 +5,6 @@ import cx from 'classnames'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import TextField from '@material-ui/core/TextField'
-import IconButton from '@material-ui/core/IconButton'
 import Button from '@material-ui/core/Button'
 import SearchIcon from '@material-ui/icons/Search'
 import { toast } from 'react-toastify'
@@ -27,7 +26,7 @@ const App: FunctionComponent = () => {
   const history = useHistory()
 
   const {
-    handleSubmit, handleChange, errors, touched, values, resetForm,
+    handleSubmit, handleChange, handleBlur, errors, touched, values, resetForm,
   } = useFormik(
     {
       initialValues: {
@@ -37,9 +36,9 @@ const App: FunctionComponent = () => {
         const username = val.username.replace(/\s+/g, '').toLowerCase()
         const currentUsername = user?.name.replace(/\s+/g, '').toLowerCase()
         setIsNewUser(currentUsername ? username !== currentUsername : false)
+        document.getElementById('username')?.blur()
         history.push(`/?q=${username}`, { updated: true }) // maybe remove the updated?
         await dispatch(getUser({ username }))
-        resetForm()
       },
       validationSchema: Yup.object({
         username: Yup.string()
@@ -101,15 +100,16 @@ const App: FunctionComponent = () => {
               id="username"
               name="username"
               onChange={handleChange}
+              onBlur={handleBlur}
               helperText={touched.username && errors.username}
               error={touched.username && !!errors.username}
               label="Summoner Name"
               variant="outlined"
               value={values.username}
             />
-            <IconButton type="submit" aria-label="search">
+            <Button type="submit" aria-label="search">
               <SearchIcon />
-            </IconButton>
+            </Button>
           </form>
         </div>
         {userLoading && (!user?.id || isNewUser) ? (
